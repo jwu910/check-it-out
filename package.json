@@ -1,0 +1,33 @@
+{
+  "name": "check-it-out",
+  "version": "0.0.1",
+  "description": "Easy git checkout CLI tool.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwu910/check-it-out.git"
+  },
+  "keywords": [
+    "git",
+    "github",
+    "cli",
+    "tool",
+    "checkout",
+    "git-checkout",
+    "branch",
+    "git-branch",
+    "easy"
+  ],
+  "author": "Joshua Wu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jwu910/check-it-out/issues"
+  },
+  "homepage": "https://github.com/jwu910/check-it-out#readme",
+  "dependencies": {
+    "commander": "^2.14.0"
+  }
+}
