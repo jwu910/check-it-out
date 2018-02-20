@@ -12,6 +12,9 @@ program.command('test').action(() => {
     title: 'Check It Out',
   });
 
+  const currBranch = git.currentBranch();
+  const listData = git.getBranchList();
+
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
   const table = contrib.table({
@@ -22,19 +25,22 @@ program.command('test').action(() => {
     selectedFg: 'white',
     selectedBg: 'magenta',
     interactive: true,
-    label: 'Check It Out',
+    label: 'Check It Out -- Current Branch: ' + currBranch,
     width: '90%',
     height: '90%',
     border: { type: 'line', fg: 'magenta' },
     columnSpacing: 1, //in chars
-    columnWidth: [80, 20, 10] /*in chars*/,
+    columnWidth: [
+      60, 10
+    ] /*in chars TODO: Get char length as percentage(or set width) of output*/,
   });
 
   table.setData({
-    headers: ['Git Sha', 'col2', 'col3'],
-      // Data should be array of information. [remote, branch, date last commited, etc]
-      // Each data pushed to data array
-    data: [['THIS IS A TEST', 'Thello there are some words', 3], ['This is a really really long test test test tests testst', 5, 6]],
+    // set data object
+    headers: ['Branch Name', 'Remote'],
+    // Data should be array of information. [remote, branch, date last commited, etc]
+    // Each data pushed to data array
+    data: [['test'], ['test']],
   });
 
   // Append our box to the screen.
