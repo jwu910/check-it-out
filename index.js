@@ -1,10 +1,15 @@
+#!/usr/bin/env node
+
 const blessed = require('blessed');
 const program = require('commander');
 const git = require('./utils/git');
 
-program.version('0.0.1');
+program
+  .version('0.0.1', '-v, --version')
 
-program.command('test').action(() => {
+program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
   const screen = blessed.screen({
     autoPadding: true,
     debug: true,
@@ -26,7 +31,7 @@ program.command('test').action(() => {
   const table = blessed.listtable({
     align: 'left',
     border: { type: 'line' },
-    height: 'shrink',
+    height: '90%',
     top: 'top',
     left: 'center',
     keys: true,
@@ -80,8 +85,4 @@ program.command('test').action(() => {
 
     screen.render();
   });
-});
-
-program.parse(process.argv);
-
-if (program.args.length === 0) program.help();
+};

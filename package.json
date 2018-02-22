@@ -1,8 +1,8 @@
 {
-  "description": "Easy git checkout CLI tool.",
-  "main": "index.js",
   "name": "check-it-out",
   "version": "0.0.1",
+  "description": "Easy git checkout CLI tool.",
+  "main": "index.js",
   "scripts": {
     "test": "test"
   },
@@ -21,6 +21,12 @@
     "github",
     "tool"
   ],
+  "bin": {
+    "checkit": "index.js"
+  },
+  "engines": {
+    "node": ">=7"
+  },
   "author": "Joshua Wu",
   "license": "MIT",
   "bugs": {
