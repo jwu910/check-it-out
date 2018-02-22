@@ -4,7 +4,7 @@ const blessed = require('blessed');
 const program = require('commander');
 const git = require('./utils/git');
 
-program.version('0.1.0', '-v, --version');
+program.version('0.1.1', '-v, --version');
 
 program.parse(process.argv);
 
