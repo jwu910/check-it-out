@@ -29,9 +29,7 @@
   "homepage": "https://github.com/jwu910/check-it-out#readme",
   "dependencies": {
     "blessed": "^0.1.81",
-    "blessed-contrib": "^4.8.5",
     "commander": "^2.14.0",
-    "lodash": "^4.17.5",
-    "shelljs": "^0.8.1"
+    "lodash": "^4.17.5"
   }
 }
