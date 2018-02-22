@@ -4,8 +4,7 @@ const blessed = require('blessed');
 const program = require('commander');
 const git = require('./utils/git');
 
-program
-  .version('0.0.1', '-v, --version')
+program.version('0.0.1', '-v, --version');
 
 program.parse(process.argv);
 
@@ -19,7 +18,7 @@ if (!process.argv.slice(2).length) {
     warnings: true,
   });
 
-  // Get name of current branch 
+  // Get name of current branch
   git.currentBranch().then(result => {
     const currBranchName = result;
 
@@ -85,4 +84,4 @@ if (!process.argv.slice(2).length) {
 
     screen.render();
   });
-};
+}
