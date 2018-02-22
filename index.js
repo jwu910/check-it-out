@@ -14,7 +14,12 @@ program.command('test').action(() => {
     warnings: true,
   });
 
-  const currBranch = git.currentBranch();
+  // Get name of current branch 
+  git.currentBranch().then(result => {
+    const currBranchName = result;
+
+    table.setLabel('Check it out -- Current Branch: ' + currBranchName);
+  });
 
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
@@ -31,14 +36,14 @@ program.command('test').action(() => {
       cell: {
         selected: {
           bg: '#FFFFFF',
-          fg: '#000000',
+          fg: '#272727',
         },
       },
       header: {
         fg: '#EF9B66',
       },
       label: {
-        fg: '#66D9EF',
+        fg: '#FFFFFF',
       },
     },
     tags: true,
@@ -47,25 +52,31 @@ program.command('test').action(() => {
     width: '70%',
   });
 
-  // Append our box to the screen.
   screen.append(table);
 
-  //allow control the table with the keyboard
   table.focus();
 
+  // Handle key presses
   table.on('select', (val, key) => {
-    return process.exit(0);
+    const branchInfo = val.content
+      // .split('/([a-z]|[1-9])?\w+/gi')
+      .replace(' ', ',')
+      .split(',')
+      .map(x => {
+        return x.trim() !== 'local' ? x.trim() : '';
+      });
+
+    const gitBranch = branchInfo[0];
+    const gitRemote = branchInfo[1];
+
+    git.checkoutBranch(gitRemote, gitBranch).then(screen.destroy());
   });
 
+  // Build list array
   git.buildListArray().then(results => {
     const listData = results;
-    
-    table.setData(
-      [
-        ['Branch Name', 'Remote'],
-        ...listData
-      ]
-    );
+
+    table.setData([['Branch Name', 'Remote'], ...listData]);
 
     screen.render();
   });

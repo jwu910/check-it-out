@@ -1,13 +1,25 @@
 const { spawn } = require('child_process');
-// const { split } = require('lodash');
 
-// {
-//   headers: ['col1', 'col2', 'col3'],
-//   data: [
-//     ['row1 data', 'row1 col2 data', 'row1 col3 data'],
-//     ['row2 data', 'row2 col2 data', 'row2 col3 data']
-//   ]
-// }
+function buildListArray(refs) {
+  return getRemotes();
+}
+
+async function checkoutBranch(remote, branch) {
+  const branchPath =
+    remote && remote !== 'local' ? [remote, branch].join('/') : branch;
+
+  const args = ['checkout', branchPath];
+
+  await execGit(args);
+}
+
+async function currentBranch() {
+  const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
+
+  const retVal = await execGit(args);
+
+  return retVal;
+}
 
 function execGit(args) {
   return new Promise((resolve, reject) => {
@@ -32,28 +44,9 @@ function execGit(args) {
   });
 }
 
-function getRemotes() {
-  const args = ['for-each-ref', '--sort=refname', '--format=%(refname)'];
-
-  return execGit(args).then(formatRefs);
-}
-
-const currentBranch = () => {
-  const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
-
-  return execGit(args).toString();
-};
-
-function buildListArray(refs) {
-  return getRemotes();
-  // return getRemotes().then((result) => {
-  //   return result;
-  // });
-};
-
 function formatRefs(output) {
-  // console.log(output);
   var retVal = [];
+
   output.split('\n').forEach(line => {
     const currLine = line.split('/');
 
@@ -70,7 +63,16 @@ function formatRefs(output) {
   return Promise.resolve(retVal);
 }
 
+async function getRemotes() {
+  const args = ['for-each-ref', '--sort=refname', '--format=%(refname)'];
+
+  const retVal = await execGit(args).then(formatRefs);
+
+  return retVal;
+}
+
 module.exports = {
   buildListArray: buildListArray,
+  checkoutBranch: checkoutBranch,
   currentBranch: currentBranch,
 };
