@@ -1,8 +1,8 @@
 {
-  "name": "check-it-out",
-  "version": "0.0.1",
   "description": "Easy git checkout CLI tool.",
   "main": "index.js",
+  "name": "check-it-out",
+  "version": "0.0.1",
   "scripts": {
     "test": "test"
   },
@@ -11,15 +11,15 @@
     "url": "git+https://github.com/jwu910/check-it-out.git"
   },
   "keywords": [
-    "git",
-    "github",
-    "cli",
-    "tool",
-    "checkout",
-    "git-checkout",
     "branch",
+    "checkout",
+    "cli",
+    "easy",
+    "git",
     "git-branch",
-    "easy"
+    "git-checkout",
+    "github",
+    "tool"
   ],
   "author": "Joshua Wu",
   "license": "MIT",
@@ -29,7 +29,6 @@
   "homepage": "https://github.com/jwu910/check-it-out#readme",
   "dependencies": {
     "blessed": "^0.1.81",
-    "commander": "^2.14.0",
-    "lodash": "^4.17.5"
+    "commander": "^2.14.0"
   }
 }
