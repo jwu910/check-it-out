@@ -35,6 +35,7 @@ if (!process.argv.slice(2).length) {
     left: 'center',
     keys: true,
     noCellBorders: true,
+    padding: 1,
     style: {
       border: { fg: '#EF9B66' },
       cell: {
@@ -53,7 +54,7 @@ if (!process.argv.slice(2).length) {
     tags: true,
     top: 1,
     vi: true,
-    width: '70%',
+    width: 'shrink',
   });
 
   screen.append(table);
