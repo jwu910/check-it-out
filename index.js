@@ -29,14 +29,15 @@ if (!process.argv.slice(2).length) {
 
   const table = blessed.listtable({
     align: 'left',
-    border: { type: 'line' },
+    border: {type: 'line'},
     height: '90%',
     top: 'top',
     left: 'center',
     keys: true,
     noCellBorders: true,
+    scrollbar: true,
     style: {
-      border: { fg: '#EF9B66' },
+      border: {fg: '#EF9B66'},
       cell: {
         selected: {
           bg: '#FFFFFF',
@@ -48,6 +49,9 @@ if (!process.argv.slice(2).length) {
       },
       label: {
         fg: '#FFFFFF',
+      },
+      scrollbar: {
+        bg: '#EF9B66',
       },
     },
     tags: true,
