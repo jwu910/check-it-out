@@ -35,7 +35,6 @@ if (!process.argv.slice(2).length) {
     left: 'center',
     keys: true,
     noCellBorders: true,
-    padding: 1,
     style: {
       border: { fg: '#EF9B66' },
       cell: {
