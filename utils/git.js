@@ -4,7 +4,7 @@ function buildListArray(refs) {
   return getRemotes();
 }
 
-async function checkoutBranch(remote, branch) {
+async function checkoutBranch(branch, remote) {
   const branchPath =
     remote && remote !== 'local' ? [remote, branch].join('/') : branch;
 
@@ -55,9 +55,9 @@ function formatRefs(output) {
     }
 
     if (currLine[1] === 'heads') {
-      retVal.push([currLine[currLine.length - 1], 'local']);
+      retVal.push(['local', currLine[currLine.length - 1]]);
     } else if (currLine[1] === 'remotes') {
-      retVal.push([currLine[currLine.length - 1], currLine[2]]);
+      retVal.push([currLine[2], currLine[currLine.length - 1]]);
     }
   });
 
