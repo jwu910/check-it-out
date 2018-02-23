@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const blessed = require('blessed');
-const program = require('commander');
+const chalk = require('chalk');
 const git = require('./utils/git');
+const program = require('commander');
 
 program.version('0.1.1', '-v, --version');
 
@@ -76,6 +77,10 @@ if (!process.argv.slice(2).length) {
 
     const gitBranch = branchInfo[0];
     const gitRemote = branchInfo[1];
+
+    process.on('unhandledRejection', reason => {
+      console.log(chalk.yellow('[LOG] ') + reason);
+    });
 
     git.checkoutBranch(gitRemote, gitBranch).then(screen.destroy());
   });
