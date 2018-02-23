@@ -15,7 +15,7 @@ if (!process.argv.slice(2).length) {
     fullUnicode: true,
     smartCSR: true,
     title: 'Check It Out',
-    warnings: true,
+    warnings: true
   });
 
   // Get name of current branch
@@ -29,7 +29,7 @@ if (!process.argv.slice(2).length) {
 
   const table = blessed.listtable({
     align: 'left',
-    border: {type: 'line'},
+    border: { type: 'line' },
     height: '90%',
     top: 'top',
     left: 'center',
@@ -37,27 +37,27 @@ if (!process.argv.slice(2).length) {
     noCellBorders: true,
     scrollbar: true,
     style: {
-      border: {fg: '#EF9B66'},
+      border: { fg: '#EF9B66' },
       cell: {
         selected: {
           bg: '#FFFFFF',
-          fg: '#272727',
-        },
+          fg: '#272727'
+        }
       },
       header: {
-        fg: '#EF9B66',
+        fg: '#EF9B66'
       },
       label: {
-        fg: '#FFFFFF',
+        fg: '#FFFFFF'
       },
       scrollbar: {
-        bg: '#EF9B66',
-      },
+        bg: '#EF9B66'
+      }
     },
     tags: true,
     top: 1,
     vi: true,
-    width: 'shrink',
+    width: 'shrink'
   });
 
   screen.append(table);
