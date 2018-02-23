@@ -21,3 +21,6 @@ checkit
 |`j/k up/down`| Navigate the list |
 |`enter`| Select highlighted item |
 |`q, C-c, esc`| Exit check-it-out |
+
+### License
+MIT @ [Joshua Wu](https://www.npmjs.com/~jwu910)
