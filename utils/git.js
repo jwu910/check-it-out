@@ -25,7 +25,7 @@ function execGit(args) {
   return new Promise((resolve, reject) => {
     const gitResponse = spawn('git', args, {
       cwd: process.cwd(),
-      silent: true,
+      silent: true
     });
 
     var retVal = '';
@@ -39,7 +39,7 @@ function execGit(args) {
     });
 
     gitResponse.stderr.on('data', stderr => {
-      reject('Error at: ' + stderr);
+      reject(stderr.toString());
     });
   });
 }
@@ -60,7 +60,8 @@ function formatRefs(output) {
       retVal.push([currLine[currLine.length - 1], currLine[2]]);
     }
   });
-  return Promise.resolve(retVal);
+
+  return retVal;
 }
 
 async function getRemotes() {
@@ -74,5 +75,5 @@ async function getRemotes() {
 module.exports = {
   buildListArray: buildListArray,
   checkoutBranch: checkoutBranch,
-  currentBranch: currentBranch,
+  currentBranch: currentBranch
 };
