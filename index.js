@@ -89,7 +89,7 @@ if (!process.argv.slice(2).length) {
   git.buildListArray().then(results => {
     const listData = results;
 
-    table.setData([['Branch Name', 'Remote'], ...listData]);
+    table.setData([['Remote', 'Branch Name'], ...listData]);
 
     screen.render();
   });
