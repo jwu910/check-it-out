@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const git = require('./utils/git');
 const program = require('commander');
 
-program.version('0.1.1', '-v, --version');
+program.version('0.1.2', '-v, --version');
 
 program.parse(process.argv);
 
