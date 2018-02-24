@@ -44,6 +44,12 @@ function execGit(args) {
   });
 }
 
+async function fetchBranches() {
+  const args = ['fetch', '-p'];
+
+  await execGit(args);
+}
+
 function formatRefs(output) {
   var retVal = [];
 
@@ -66,8 +72,9 @@ function formatRefs(output) {
 
 async function getRemotes() {
   const args = ['for-each-ref', '--sort=refname', '--format=%(refname)'];
-
   const retVal = await execGit(args).then(formatRefs);
+
+  await fetchBranches();
 
   return retVal;
 }
