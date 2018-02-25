@@ -9,6 +9,8 @@ program.version('0.1.2', '-v, --version');
 
 program.parse(process.argv);
 
+const THEME_COLOR = '#FFA66D';
+
 if (!process.argv.slice(2).length) {
   const screen = blessed.screen({
     autoPadding: true,
@@ -28,7 +30,11 @@ if (!process.argv.slice(2).length) {
 
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
-  const THEME_COLOR = '#FFA66D';
+  screen.key(['r'], (ch, key) => {
+    table.clearItems();
+
+    git.fetchBranches().then(() => refreshTable());
+  });
 
   const table = blessed.listtable({
     align: 'left',
@@ -83,15 +89,20 @@ if (!process.argv.slice(2).length) {
       console.log(chalk.yellow('[LOG] ') + reason);
     });
 
-    git.checkoutBranch(gitRemote, gitBranch).then(screen.destroy());
+    git.checkoutBranch(gitRemote, gitBranch).then(screen.destroy);
+    // }
   });
 
   // Build list array
-  git.buildListArray().then(results => {
-    const listData = results;
+  function refreshTable() {
+    git.buildListArray().then(results => {
+      const listData = results;
 
-    table.setData([['Remote', 'Branch Name'], ...listData]);
+      table.setData([['Remote', 'Branch Name'], ...listData]);
 
-    screen.render();
-  });
+      screen.render();
+    });
+  }
+
+  refreshTable();
 }
