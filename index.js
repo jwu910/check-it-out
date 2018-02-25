@@ -28,6 +28,8 @@ if (!process.argv.slice(2).length) {
 
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
+  const THEME_COLOR = '#FFA66D';
+
   const table = blessed.listtable({
     align: 'left',
     border: { type: 'line' },
@@ -37,7 +39,7 @@ if (!process.argv.slice(2).length) {
     noCellBorders: true,
     scrollbar: true,
     style: {
-      border: { fg: '#EF9B66' },
+      border: { fg: THEME_COLOR },
       cell: {
         selected: {
           bg: '#FFFFFF',
@@ -45,13 +47,13 @@ if (!process.argv.slice(2).length) {
         }
       },
       header: {
-        fg: '#EF9B66'
+        fg: THEME_COLOR
       },
       label: {
         fg: '#FFFFFF'
       },
       scrollbar: {
-        bg: '#EF9B66'
+        bg: THEME_COLOR
       }
     },
     tags: true,
