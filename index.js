@@ -9,6 +9,8 @@ program.version('0.1.2', '-v, --version');
 
 program.parse(process.argv);
 
+const THEME_COLOR = '#FFA66D';
+
 if (!process.argv.slice(2).length) {
   const screen = blessed.screen({
     autoPadding: true,
@@ -29,11 +31,13 @@ if (!process.argv.slice(2).length) {
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
   screen.key(['r'], (ch, key) => {
-    git.fetchBranches().then(() => {
-      table.clearItems();
+    git.fetchBranches()
+      .then(() => {
+        table.clearItems();
 
-      refreshTable();
+        refreshTable();
     });
+
   });
 
   const table = blessed.listtable({

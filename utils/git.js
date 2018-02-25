@@ -103,5 +103,6 @@ async function getRemotes() {
 module.exports = {
   buildListArray: buildListArray,
   checkoutBranch: checkoutBranch,
-  currentBranch: currentBranch
+  currentBranch: currentBranch,
+  fetchBranches: fetchBranches
 };
