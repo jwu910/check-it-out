@@ -5,6 +5,9 @@ function buildListArray(refs) {
 }
 
 async function checkoutBranch(branch, remote) {
+  /*
+  Pull branch information from selection and pass as args to execGit().
+  */
   const branchPath =
     remote && remote !== 'local' ? [remote, branch].join('/') : branch;
 
@@ -14,6 +17,9 @@ async function checkoutBranch(branch, remote) {
 }
 
 async function currentBranch() {
+  /*
+  Return name of current branch.
+  */
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
   const retVal = await execGit(args);
@@ -22,6 +28,11 @@ async function currentBranch() {
 }
 
 function execGit(args) {
+  /*
+  Execute git command with passed arguments.
+  <args> is expected to be an array of strings.
+  Example: ['fetch', '-pv']
+  */
   return new Promise((resolve, reject) => {
     const gitResponse = spawn('git', args, {
       cwd: process.cwd(),
@@ -45,12 +56,19 @@ function execGit(args) {
 }
 
 async function fetchBranches() {
+  /*
+  Fetch and prune.
+  */
   const args = ['fetch', '-p'];
 
   await execGit(args);
 }
 
-function formatRefs(output) {
+function _formatRefs(output) {
+  /*
+  Format output from getRemotes() and return an array of arrays containing
+  formatted lines for the data table.
+  */
   var retVal = [];
 
   output.split('\n').forEach(line => {
@@ -71,8 +89,11 @@ function formatRefs(output) {
 }
 
 async function getRemotes() {
+  /*
+  Function call to get list of branch refs formatted by ref name.
+  */
   const args = ['for-each-ref', '--sort=refname', '--format=%(refname)'];
-  const retVal = await execGit(args).then(formatRefs);
+  const retVal = await execGit(args).then(_formatRefs);
 
   await fetchBranches();
 
