@@ -31,13 +31,9 @@ if (!process.argv.slice(2).length) {
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
   screen.key(['r'], (ch, key) => {
-    git.fetchBranches()
-      .then(() => {
-        table.clearItems();
+    table.clearItems();
 
-        refreshTable();
-    });
-
+    git.fetchBranches().then(() => refreshTable());
   });
 
   const table = blessed.listtable({
