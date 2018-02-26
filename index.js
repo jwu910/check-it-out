@@ -10,7 +10,7 @@ const updateNotifier = require('update-notifier');
 // Checks for available update and returns an instance
 const notifier = updateNotifier({ pkg });
 
-program.version('0.1.0', '-v, --version');
+program.version('0.2.0', '-v, --version');
 
 program.parse(process.argv);
 
