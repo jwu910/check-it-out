@@ -3,9 +3,14 @@
 const blessed = require('blessed');
 const chalk = require('chalk');
 const git = require('./utils/git');
+const pkg = require('./package.json');
 const program = require('commander');
+const updateNotifier = require('update-notifier');
 
-program.version('0.2.0', '-v, --version');
+// Checks for available update and returns an instance
+const notifier = updateNotifier({ pkg });
+
+program.version('0.1.0', '-v, --version');
 
 program.parse(process.argv);
 
@@ -85,8 +90,13 @@ if (!process.argv.slice(2).length) {
     const gitBranch = branchInfo[1];
     const gitRemote = branchInfo[0];
 
+    // TODO: Identify and handle unhandledRejections
     process.on('unhandledRejection', reason => {
       console.log(chalk.yellow('[LOG] ') + reason);
+
+      if (notifier.update) {
+        notifier.notify();
+      }
     });
 
     // If selection is a remote prompt if new branch is to be created.
