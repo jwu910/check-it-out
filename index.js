@@ -92,10 +92,11 @@ if (!process.argv.slice(2).length) {
     // If selection is a remote prompt if new branch is to be created.
     if (gitRemote !== '') {
       const question = blessed.listtable({
-        align: 'center',
+        align: 'left',
         border: { type: 'line' },
         height: '20%',
         keys: true,
+        left: 2,
         style: {
           border: { fg: THEME_COLOR },
           cell: {
