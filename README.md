@@ -18,8 +18,9 @@ checkit
 
 | Commands | Description |
 | -------- | ------------ |
-|`j/k up/down`| Navigate the list |
-|`enter`| Select highlighted item |
+|`j/k, down/up`| Navigate the list |
+|`r`| Fetch, prune, and refresh list |
+|`l, enter`| Select highlighted item |
 |`q, C-c, esc`| Exit check-it-out |
 
 ### License

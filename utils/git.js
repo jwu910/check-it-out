@@ -16,6 +16,15 @@ async function checkoutBranch(branch, remote) {
   await execGit(args);
 }
 
+async function createBranch(branch) {
+  /*
+  Create branch
+  */
+  const args = ['checkout', '-b', branch];
+
+  await execGit(args);
+}
+
 async function currentBranch() {
   /*
   Return name of current branch.
@@ -103,6 +112,7 @@ async function getRemotes() {
 module.exports = {
   buildListArray: buildListArray,
   checkoutBranch: checkoutBranch,
+  createBranch: createBranch,
   currentBranch: currentBranch,
   fetchBranches: fetchBranches
 };
