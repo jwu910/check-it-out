@@ -73,7 +73,7 @@ if (!process.argv.slice(2).length) {
   table.focus();
 
   // Handle key presses
-  table.on('select', (val, key) => {
+  table.on('select', async (val, key) => {
     const branchInfo = val.content
       // .split('/([a-z]|[1-9])?\w+/gi')
       .replace(' ', ',')
@@ -82,15 +82,67 @@ if (!process.argv.slice(2).length) {
         return x.trim() !== 'local' ? x.trim() : '';
       });
 
-    const gitBranch = branchInfo[0];
-    const gitRemote = branchInfo[1];
+    const gitBranch = branchInfo[1];
+    const gitRemote = branchInfo[0];
 
     process.on('unhandledRejection', reason => {
       console.log(chalk.yellow('[LOG] ') + reason);
     });
 
-    git.checkoutBranch(gitRemote, gitBranch).then(screen.destroy);
-    // }
+    // If selection is a remote prompt if new branch is to be created.
+    if (gitRemote !== '') {
+      const question = blessed.listtable({
+        align: 'center',
+        border: { type: 'line' },
+        height: '20%',
+        keys: true,
+        style: {
+          border: { fg: THEME_COLOR },
+          cell: {
+            selected: {
+              bg: '#FFFFFF',
+              fg: '#272727'
+            }
+          },
+          header: {
+            fg: THEME_COLOR
+          },
+          label: {
+            fg: '#FFFFFF'
+          },
+          scrollbar: {
+            bg: THEME_COLOR
+          }
+        },
+        tags: true,
+        top: '30%',
+        vi: true,
+        width: 'shrink'
+      });
+
+      question.setData([
+        [`Create local branch named: ${gitBranch}?`],
+        ['Yes'],
+        ['No']
+      ]);
+
+      screen.append(question);
+      question.focus();
+      screen.render();
+
+      question.on('select', async (val, key) => {
+        if (val.content.trim() === 'Yes') {
+          await git
+            .checkoutBranch(gitBranch, gitRemote)
+            .then(git.createBranch(gitBranch))
+            .then(screen.destroy());
+        } else if (val.content.trim() === 'No') {
+          await git.checkoutBranch(gitBranch, gitRemote).then(screen.destroy());
+        }
+      });
+    } else {
+      await git.checkoutBranch(gitBranch, gitRemote).then(screen.destroy());
+    }
   });
 
   // Build list array
