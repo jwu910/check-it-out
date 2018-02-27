@@ -161,7 +161,7 @@ if (!process.argv.slice(2).length) {
     git.buildListArray().then(results => {
       const listData = results;
 
-      table.setData([['Remote', 'Branch Name'], ...listData]);
+      table.setData([['Remote', 'Branch Name', 'Path'], ...listData]);
 
       screen.render();
     });
