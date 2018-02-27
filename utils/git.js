@@ -82,16 +82,16 @@ function _formatRefs(output) {
 
   output.split('\n').forEach(line => {
     const currLine = line.split('/');
+    const isLocal = currLine[1] === 'heads' ? true : false;
+
+    const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
+    const currBranch = currLine[currLine.length - 1];
 
     if (currLine[currLine.length - 1] === 'HEAD') {
       return;
     }
 
-    if (currLine[1] === 'heads') {
-      retVal.push(['local', currLine[currLine.length - 1]]);
-    } else if (currLine[1] === 'remotes') {
-      retVal.push([currLine[2], currLine[currLine.length - 1]]);
-    }
+    retVal.push([currRemote, currBranch, currRemote + '/' + currBranch]);
   });
 
   return retVal;
