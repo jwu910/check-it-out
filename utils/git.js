@@ -91,7 +91,7 @@ function _formatRefs(output) {
       return;
     }
 
-    retVal.push([currRemote, currBranch, currRemote + '/' + currBranch]);
+    retVal.push([currRemote, currBranch, line]);
   });
 
   return retVal;
