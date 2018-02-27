@@ -68,7 +68,7 @@ async function fetchBranches() {
   /*
   Fetch and prune.
   */
-  const args = ['fetch', '-p'];
+  const args = ['fetch', '-pq'];
 
   await execGit(args);
 }
