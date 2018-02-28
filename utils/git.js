@@ -73,12 +73,16 @@ async function fetchBranches() {
   await execGit(args);
 }
 
-function _formatRefs(output) {
+async function _formatRefs(output) {
   /*
   Format output from getRemotes() and return an array of arrays containing
   formatted lines for the data table.
   */
   var retVal = [];
+
+  const selectedBranch = await currentBranch().then(selected => {
+    return selected.toString();
+  })
 
   output.split('\n').forEach(line => {
     const currLine = line.split('/');
@@ -87,11 +91,13 @@ function _formatRefs(output) {
     const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
     const currBranch = currLine[currLine.length - 1];
 
+    const selected = currBranch === selectedBranch ? '*' : ' ';
+
     if (currLine[currLine.length - 1] === 'HEAD') {
       return;
     }
 
-    retVal.push([currRemote, currBranch, line]);
+    retVal.push([selected, currRemote, currBranch, line]);
   });
 
   return retVal;
