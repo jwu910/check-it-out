@@ -26,13 +26,6 @@ if (!process.argv.slice(2).length) {
     warnings: true
   });
 
-  // Get name of current branch
-  git.currentBranch().then(result => {
-    const currBranchName = result;
-
-    table.setLabel('Check it out -- Current Branch: ' + currBranchName);
-  });
-
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
 
   screen.key(['r'], (ch, key) => {
