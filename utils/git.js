@@ -91,7 +91,7 @@ async function _formatRefs(output) {
     const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
     const currBranch = currLine[currLine.length - 1];
 
-    const selected = currBranch === selectedBranch ? '*' : ' ';
+    const selected = currBranch === selectedBranch  && isLocal ? '*' : ' ';
 
     if (currLine[currLine.length - 1] === 'HEAD') {
       return;
