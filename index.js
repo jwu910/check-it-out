@@ -68,20 +68,19 @@ if (!process.argv.slice(2).length) {
 
   screen.append(table);
 
+  table.setLabel('Check it out');
   table.focus();
 
   // Handle key presses
   table.on('select', async (val, key) => {
     const branchInfo = val.content
-      // .split('/([a-z]|[1-9])?\w+/gi')
-      .replace(' ', ',')
-      .split(',')
-      .map(x => {
-        return x.trim() !== 'local' ? x.trim() : '';
+      .split(/\s*\s/)
+      .map(column => {
+        return column === 'local' ? '' : column;
       });
 
-    const gitBranch = branchInfo[1];
-    const gitRemote = branchInfo[0];
+    const gitBranch = branchInfo[2];
+    const gitRemote = branchInfo[1];
 
     // TODO: Identify and handle unhandledRejections
     process.on('unhandledRejection', reason => {
@@ -125,7 +124,7 @@ if (!process.argv.slice(2).length) {
       });
 
       question.setData([
-        [`Create local branch named: ${gitBranch}?`],
+        ['Create local branch named: ' + chalk.white.bold(`${gitBranch}`) + '?'],
         ['Yes'],
         ['No']
       ]);
@@ -135,12 +134,14 @@ if (!process.argv.slice(2).length) {
       screen.render();
 
       question.on('select', async (val, key) => {
-        if (val.content.trim() === 'Yes') {
+        const answer = val.content.trim()
+
+        if (answer === 'Yes') {
           await git
             .checkoutBranch(gitBranch, gitRemote)
             .then(git.createBranch(gitBranch))
             .then(screen.destroy());
-        } else if (val.content.trim() === 'No') {
+        } else if (answer === 'No') {
           await git.checkoutBranch(gitBranch, gitRemote).then(screen.destroy());
         }
       });
@@ -154,7 +155,7 @@ if (!process.argv.slice(2).length) {
     git.buildListArray().then(results => {
       const listData = results;
 
-      table.setData([['Remote', 'Branch Name', 'Path'], ...listData]);
+      table.setData([['', 'Remote', 'Branch Name', 'Path'], ...listData]);
 
       screen.render();
     });
