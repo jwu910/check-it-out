@@ -33,8 +33,8 @@ if (!process.argv.slice(2).length) {
   };
 
   screen.key('?', toggleHelp);
-  screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
-  screen.key('r', (ch, key) => {
+  screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
+  screen.key('r', () => {
     table.clearItems();
 
     git.fetchBranches().then(() => refreshTable());
