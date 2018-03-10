@@ -19,11 +19,9 @@ const THEME_COLOR = '#FFA66D';
 if (!process.argv.slice(2).length) {
   const screen = blessed.screen({
     autoPadding: true,
-    debug: true,
     fullUnicode: true,
     smartCSR: true,
     title: 'Check It Out',
-    warnings: true
   });
 
   screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
