@@ -28,17 +28,8 @@ if (!process.argv.slice(2).length) {
   });
 
   const toggleHelp = () => {
-    // helpDialogue.show();
-    // Maybe set toggle help inside help utils and not in index.
-    // check for dialogue open, if dialogue open. hide if show, show if hidden.
-    var retVal = true;
-
-    if (helpDialogue.hidden) {
-      retVal = false;
-    }
-
-    helpDialogue.hidden = retVal;
-    screen.render()
+    helpDialogue.toggle();
+    screen.render();
   };
 
   screen.key('?', toggleHelp);
@@ -117,9 +108,9 @@ if (!process.argv.slice(2).length) {
 
   statusBar.append(statusHelpText);
 
-  table.append(statusBar);
+  screen.append(statusBar);
 
-  table.append(helpDialogue);
+  screen.append(helpDialogue);
   // Handle key presses
   table.on('select', async (val, key) => {
     const branchInfo = val.content
