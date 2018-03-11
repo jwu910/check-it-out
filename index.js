@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
+'use strict';
+
 const blessed = require('blessed');
 const chalk = require('chalk');
 const git = require('./utils/git');
 const pkg = require('./package.json');
 const program = require('commander');
 const updateNotifier = require('update-notifier');
+const help = require('./utils/helpText');
 
 // Checks for available update and returns an instance
 const notifier = updateNotifier({ pkg });
@@ -24,9 +27,14 @@ if (!process.argv.slice(2).length) {
     title: 'Check It Out',
   });
 
-  screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
+  const toggleHelp = () => {
+    helpDialogue.toggle();
+    screen.render();
+  };
 
-  screen.key(['r'], (ch, key) => {
+  screen.key('?', toggleHelp);
+  screen.key(['escape', 'q', 'C-c'], (ch, key) => process.exit(0));
+  screen.key('r', (ch, key) => {
     table.clearItems();
 
     git.fetchBranches().then(() => refreshTable());
@@ -36,7 +44,7 @@ if (!process.argv.slice(2).length) {
     align: 'left',
     border: { type: 'line' },
     height: '90%',
-    left: 1,
+    left: 0,
     keys: true,
     noCellBorders: true,
     scrollbar: true,
@@ -61,14 +69,48 @@ if (!process.argv.slice(2).length) {
     tags: true,
     top: 1,
     vi: true,
-    width: 'shrink'
+    width: '100%'
   });
 
   screen.append(table);
-
   table.setLabel('Check it out');
-  table.focus();
 
+  const statusBar = blessed.box({
+    border: { type: 'line' },
+    bottom: 0,
+    height: 3,
+    right: 0,
+    style: {
+      border: { fg: THEME_COLOR },
+    },
+    shrink: true,
+    width: 'shrink',
+  });
+
+  const statusHelpText = blessed.text({
+    content: 'Press "?" to show/hide help.',
+    right: 0,
+  });
+
+  const helpDialogue = blessed.box({
+    align: 'left',
+    border: { type: 'line' },
+    content: help.helpText(),
+    height: 'shrink',
+    hidden: true,
+    right: 0,
+    style: {
+      border: { fg: THEME_COLOR },
+    },
+    top: 0,
+    width: '50%',
+  });
+
+  statusBar.append(statusHelpText);
+
+  screen.append(statusBar);
+
+  screen.append(helpDialogue);
   // Handle key presses
   table.on('select', async (val, key) => {
     const branchInfo = val.content
@@ -147,6 +189,8 @@ if (!process.argv.slice(2).length) {
       await git.checkoutBranch(gitBranch, gitRemote).then(screen.destroy());
     }
   });
+
+  table.focus();
 
   // Build list array
   function refreshTable() {
