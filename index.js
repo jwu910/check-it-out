@@ -67,7 +67,7 @@ if (!process.argv.slice(2).length) {
       }
     },
     tags: true,
-    top: 1,
+    top: 0,
     vi: true,
     width: '100%'
   });
