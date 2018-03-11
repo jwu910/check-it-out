@@ -54,23 +54,23 @@ if (!process.argv.slice(2).length) {
       cell: {
         selected: {
           bg: '#FFFFFF',
-          fg: '#272727'
-        }
+          fg: '#272727',
+        },
       },
       header: {
-        fg: THEME_COLOR
+        fg: THEME_COLOR,
       },
       label: {
-        fg: '#FFFFFF'
+        fg: '#FFFFFF',
       },
       scrollbar: {
-        bg: THEME_COLOR
-      }
+        bg: THEME_COLOR,
+      },
     },
     tags: true,
     top: 0,
     vi: true,
-    width: '100%'
+    width: '100%',
   });
 
   screen.append(table);
@@ -115,11 +115,9 @@ if (!process.argv.slice(2).length) {
   screen.append(helpDialogue);
   // Handle key presses
   table.on('select', async (val, key) => {
-    const branchInfo = val.content
-      .split(/\s*\s/)
-      .map(column => {
-        return column === 'local' ? '' : column;
-      });
+    const branchInfo = val.content.split(/\s*\s/).map(column => {
+      return column === 'local' ? '' : column;
+    });
 
     const gitBranch = branchInfo[2];
     const gitRemote = branchInfo[1];
@@ -146,29 +144,33 @@ if (!process.argv.slice(2).length) {
           cell: {
             selected: {
               bg: '#FFFFFF',
-              fg: '#272727'
-            }
+              fg: '#272727',
+            },
           },
           header: {
-            fg: THEME_COLOR
+            fg: THEME_COLOR,
           },
           label: {
-            fg: '#FFFFFF'
+            fg: '#FFFFFF',
           },
           scrollbar: {
-            bg: THEME_COLOR
-          }
+            bg: THEME_COLOR,
+          },
         },
         tags: true,
         top: '30%',
         vi: true,
-        width: 'shrink'
+        width: 'shrink',
       });
 
       question.setData([
-        ['Create local branch named: ' + chalk.white.bold(`${gitBranch}`) + '?'],
+        [
+          'Create local branch named: ' +
+            chalk.white.bold(`${gitBranch}`) +
+            '?',
+        ],
         ['Yes'],
-        ['No']
+        ['No'],
       ]);
 
       screen.append(question);
@@ -176,7 +178,7 @@ if (!process.argv.slice(2).length) {
       screen.render();
 
       question.on('select', async (val, key) => {
-        const answer = val.content.trim()
+        const answer = val.content.trim();
 
         if (answer === 'Yes') {
           await git
