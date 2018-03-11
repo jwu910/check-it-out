@@ -110,8 +110,6 @@ async function getRemotes() {
   const args = ['for-each-ref', '--sort=refname', '--format=%(refname)'];
   const retVal = await execGit(args).then(_formatRefs);
 
-  await fetchBranches();
-
   return retVal;
 }
 
