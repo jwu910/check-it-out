@@ -102,7 +102,7 @@ if (!process.argv.slice(2).length) {
     style: {
       border: { fg: THEME_COLOR },
     },
-    top: 0,
+    bottom: 0,
     width: '50%',
   });
 
