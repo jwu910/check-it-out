@@ -4,13 +4,14 @@
 
 const blessed = require('blessed');
 const chalk = require('chalk');
-const git = require('./utils/git');
-const pkg = require('./package.json');
 const program = require('commander');
 const updateNotifier = require('update-notifier');
+
+const git = require('./utils/git');
 const help = require('./utils/helpText');
 
 // Checks for available update and returns an instance
+const pkg = require('./package.json');
 const notifier = updateNotifier({ pkg });
 
 program.version('0.3.1', '-v, --version');
