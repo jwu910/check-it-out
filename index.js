@@ -92,18 +92,19 @@ if (!process.argv.slice(2).length) {
     right: 0,
   });
 
-  const helpDialogue = blessed.box({
+  const helpDialogue = blessed.table({
     align: 'left',
     border: { type: 'line' },
-    content: help.helpText(),
+    data: help.helpText(),
     height: 'shrink',
     hidden: true,
+    noCellBorders: true,
     right: 0,
     style: {
       border: { fg: THEME_COLOR },
     },
     bottom: 0,
-    width: '50%',
+    width: 'shrink',
   });
 
   statusBar.append(statusHelpText);
