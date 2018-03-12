@@ -70,7 +70,7 @@ if (!process.argv.slice(2).length) {
     tags: true,
     top: 0,
     vi: true,
-    width: '100%',
+    width: 'shrink',
   });
 
   screen.append(table);
