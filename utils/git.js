@@ -45,7 +45,7 @@ function execGit(args) {
   return new Promise((resolve, reject) => {
     const gitResponse = spawn('git', args, {
       cwd: process.cwd(),
-      silent: true
+      silent: true,
     });
 
     var retVal = '';
@@ -82,7 +82,7 @@ async function _formatRefs(output) {
 
   const selectedBranch = await currentBranch().then(selected => {
     return selected.toString();
-  })
+  });
 
   output.split('\n').forEach(line => {
     const currLine = line.split('/');
@@ -91,7 +91,7 @@ async function _formatRefs(output) {
     const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
     const currBranch = currLine[currLine.length - 1];
 
-    const selected = currBranch === selectedBranch  && isLocal ? '*' : ' ';
+    const selected = currBranch === selectedBranch && isLocal ? '*' : ' ';
 
     if (currLine[currLine.length - 1] === 'HEAD') {
       return;
@@ -118,5 +118,5 @@ module.exports = {
   checkoutBranch: checkoutBranch,
   createBranch: createBranch,
   currentBranch: currentBranch,
-  fetchBranches: fetchBranches
+  fetchBranches: fetchBranches,
 };
