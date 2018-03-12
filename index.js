@@ -130,38 +130,38 @@ if (!process.argv.slice(2).length) {
       }
     });
 
-    // If selection is a remote prompt if new branch is to be created.
-    if (gitRemote !== '') {
-      const question = blessed.listtable({
-        align: 'left',
-        border: { type: 'line' },
-        height: '20%',
-        keys: true,
-        left: 2,
-        style: {
-          border: { fg: THEME_COLOR },
-          cell: {
-            selected: {
-              bg: '#FFFFFF',
-              fg: '#272727',
-            },
-          },
-          header: {
-            fg: THEME_COLOR,
-          },
-          label: {
-            fg: '#FFFFFF',
-          },
-          scrollbar: {
-            bg: THEME_COLOR,
+    const question = blessed.listtable({
+      align: 'left',
+      border: { type: 'line' },
+      height: '20%',
+      keys: true,
+      left: 2,
+      style: {
+        border: { fg: THEME_COLOR },
+        cell: {
+          selected: {
+            bg: '#FFFFFF',
+            fg: '#272727',
           },
         },
-        tags: true,
-        top: '30%',
-        vi: true,
-        width: 'shrink',
-      });
+        header: {
+          fg: THEME_COLOR,
+        },
+        label: {
+          fg: '#FFFFFF',
+        },
+        scrollbar: {
+          bg: THEME_COLOR,
+        },
+      },
+      tags: true,
+      top: '30%',
+      vi: true,
+      width: 'shrink',
+    });
 
+    // If selection is a remote, prompt if new branch is to be created.
+    if (gitRemote !== '') {
       question.setData([
         [
           'Create local branch named: ' +
