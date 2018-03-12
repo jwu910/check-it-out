@@ -14,7 +14,7 @@ const { THEME_COLOR } = require('./utils/theme');
 const pkg = require('./package.json');
 const notifier = updateNotifier({ pkg });
 
-program.version('0.3.1', '-v, --version');
+program.version('0.3.2', '-v, --version');
 
 program.parse(process.argv);
 
