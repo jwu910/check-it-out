@@ -9,6 +9,7 @@ const updateNotifier = require('update-notifier');
 
 const git = require('./utils/git');
 const help = require('./utils/helpText');
+const { THEME_COLOR } = require('./utils/theme');
 
 // Checks for available update and returns an instance
 const pkg = require('./package.json');
@@ -17,8 +18,6 @@ const notifier = updateNotifier({ pkg });
 program.version('0.3.1', '-v, --version');
 
 program.parse(process.argv);
-
-const THEME_COLOR = '#FFA66D';
 
 if (!process.argv.slice(2).length) {
   const screen = blessed.screen({

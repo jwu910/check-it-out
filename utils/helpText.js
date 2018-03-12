@@ -2,7 +2,6 @@ const chalk = require('chalk');
 
 const helpText = () => {
   const text = [
-    ['Hotkey', 'Description'],
     [chalk.bold('j/k, down/up'), 'Navigate the list'],
     [chalk.bold('r'), 'Fetch, prune, and refresh list'],
     [chalk.bold('l, enter'), 'Select highlighted item'],
