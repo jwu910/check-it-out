@@ -2,13 +2,12 @@
 
 'use strict';
 
-const blessed = require('blessed');
 const chalk = require('chalk');
 const program = require('commander');
 const updateNotifier = require('update-notifier');
 
 const git = require('./utils/git');
-const help = require('./utils/helpText');
+const dialogue = require('./utils/interface');
 const { THEME_COLOR } = require('./utils/theme');
 
 // Checks for available update and returns an instance
@@ -20,12 +19,13 @@ program.version('0.3.1', '-v, --version');
 program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
-  const screen = blessed.screen({
-    autoPadding: true,
-    fullUnicode: true,
-    smartCSR: true,
-    title: 'Check It Out',
-  });
+  const screen = dialogue.screen();
+
+  const branchTable = dialogue.branchTable();
+  const helpDialogue = dialogue.helpDialogue();
+  const question = dialogue.question();
+  const statusBar = dialogue.statusBar();
+  const statusHelpText = dialogue.statusHelpText();
 
   const toggleHelp = () => {
     helpDialogue.toggle();
@@ -35,77 +35,13 @@ if (!process.argv.slice(2).length) {
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
-    table.clearItems();
+    branchTable.clearItems();
 
     git.fetchBranches().then(() => refreshTable());
   });
 
-  const table = blessed.listtable({
-    align: 'left',
-    border: { type: 'line' },
-    height: '90%',
-    left: 0,
-    keys: true,
-    noCellBorders: true,
-    scrollbar: true,
-    style: {
-      border: { fg: THEME_COLOR },
-      cell: {
-        selected: {
-          bg: '#FFFFFF',
-          fg: '#272727',
-        },
-      },
-      header: {
-        fg: THEME_COLOR,
-      },
-      label: {
-        fg: '#FFFFFF',
-      },
-      scrollbar: {
-        bg: THEME_COLOR,
-      },
-    },
-    tags: true,
-    top: 0,
-    vi: true,
-    width: 'shrink',
-  });
-
-  screen.append(table);
-  table.setLabel('Check it out');
-
-  const statusBar = blessed.box({
-    border: { type: 'line' },
-    bottom: 0,
-    height: 3,
-    right: 0,
-    style: {
-      border: { fg: THEME_COLOR },
-    },
-    shrink: true,
-    width: 'shrink',
-  });
-
-  const statusHelpText = blessed.text({
-    content: 'Press "?" to show/hide help.',
-    right: 0,
-  });
-
-  const helpDialogue = blessed.table({
-    align: 'left',
-    border: { type: 'line' },
-    data: help.helpText(),
-    height: 'shrink',
-    hidden: true,
-    noCellBorders: true,
-    right: 0,
-    style: {
-      border: { fg: THEME_COLOR },
-    },
-    bottom: 0,
-    width: 'shrink',
-  });
+  screen.append(branchTable);
+  branchTable.setLabel('Check it out');
 
   statusBar.append(statusHelpText);
 
@@ -113,7 +49,7 @@ if (!process.argv.slice(2).length) {
 
   screen.append(helpDialogue);
   // Handle key presses
-  table.on('select', async (val, key) => {
+  branchTable.on('select', async (val, key) => {
     const branchInfo = val.content.split(/\s*\s/).map(column => {
       return column === 'local' ? '' : column;
     });
@@ -128,36 +64,6 @@ if (!process.argv.slice(2).length) {
       if (notifier.update) {
         notifier.notify();
       }
-    });
-
-    const question = blessed.listtable({
-      align: 'left',
-      border: { type: 'line' },
-      height: '20%',
-      keys: true,
-      left: 2,
-      style: {
-        border: { fg: THEME_COLOR },
-        cell: {
-          selected: {
-            bg: '#FFFFFF',
-            fg: '#272727',
-          },
-        },
-        header: {
-          fg: THEME_COLOR,
-        },
-        label: {
-          fg: '#FFFFFF',
-        },
-        scrollbar: {
-          bg: THEME_COLOR,
-        },
-      },
-      tags: true,
-      top: '30%',
-      vi: true,
-      width: 'shrink',
     });
 
     // If selection is a remote, prompt if new branch is to be created.
@@ -193,14 +99,14 @@ if (!process.argv.slice(2).length) {
     }
   });
 
-  table.focus();
+  branchTable.focus();
 
   // Build list array
   function refreshTable() {
     git.buildListArray().then(results => {
       const listData = results;
 
-      table.setData([['', 'Remote', 'Branch Name', 'Path'], ...listData]);
+      branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...listData]);
 
       screen.render();
     });
