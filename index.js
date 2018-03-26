@@ -3,15 +3,16 @@
 'use strict';
 
 const chalk = require('chalk');
+const path = require('path');
 const program = require('commander');
 const updateNotifier = require('update-notifier');
 
-const git = require('./utils/git');
-const dialogue = require('./utils/interface');
-const { THEME_COLOR } = require('./utils/theme');
+const git = require(path.resolve(__dirname, 'utils/git'));
+const dialogue = require(path.resolve(__dirname, 'utils/interface'));
+const { THEME_COLOR } = require(path.resolve(__dirname, 'utils/theme'));
 
 // Checks for available update and returns an instance
-const pkg = require('./package.json');
+const pkg = require(path.resolve(__dirname, 'package.json'));
 const notifier = updateNotifier({ pkg });
 
 program.version('0.3.2', '-v, --version');
