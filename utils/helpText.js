@@ -12,5 +12,5 @@ const helpText = () => {
 };
 
 module.exports = {
-  helpText: helpText,
+  helpText,
 };
