@@ -53,6 +53,11 @@ if (!process.argv.slice(2).length) {
   screen.append(helpDialogue);
 
   // Handle key presses
+
+  /**
+   * @todo: Handle select -- differenciate spacebar or enter
+   * @body: Set keys space, or enter to perform custom method. "select()" or "log()" or something. Select method will select, log will call git log
+   */
   branchTable.on('select', async (val, key) => {
     const branchInfo = val.content.split(/\s*\s/).map(column => {
       return column === 'local' ? '' : column;
@@ -61,7 +66,10 @@ if (!process.argv.slice(2).length) {
     const gitBranch = branchInfo[2];
     const gitRemote = branchInfo[1];
 
-    // TODO: Identify and handle unhandledRejections
+    /**
+     * @todo: Identify and handle unhandledRejections
+     * @body: Some errors are not handled and the following rejection is passed is the workaround
+     */
     process.on('unhandledRejection', reason => {
       console.log(chalk.yellow('[LOG] ') + reason);
 
