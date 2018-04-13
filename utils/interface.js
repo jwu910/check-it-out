@@ -7,14 +7,12 @@ const { THEME_COLOR } = require(path.resolve(__dirname, 'theme.json'));
 function branchTable() {
   const branchTable = blessed.listtable({
     align: 'left',
-    border: { type: 'line' },
-    height: '90%',
+    height: '100%',
     left: 0,
     keys: true,
     noCellBorders: true,
     scrollbar: true,
     style: {
-      border: { fg: THEME_COLOR },
       cell: {
         selected: {
           bg: '#FFFFFF',
@@ -113,8 +111,7 @@ function statusBar() {
     style: {
       border: { fg: THEME_COLOR },
     },
-    shrink: true,
-    width: 'shrink',
+    width: '100%',
   });
 
   return statusBar;
