@@ -18,7 +18,10 @@ const notifier = updateNotifier({ pkg });
 program.version('0.3.4', '-v, --version');
 
 program.parse(process.argv);
-
+/**
+ * @todo Clean up index.js code
+ * @body Code is messy and hard to read. Need to componentize code
+ */
 if (!process.argv.slice(2).length) {
   const screen = dialogue.screen();
 
