@@ -42,13 +42,16 @@ if (!process.argv.slice(2).length) {
   });
 
   screen.append(branchTable);
-  branchTable.setLabel('Check it out');
 
   statusBar.append(statusHelpText);
 
-  screen.append(statusBar);
+  process.on('SIGWINCH', () => {
+    screen.emit('resize');
+  });
 
+  screen.append(statusBar);
   screen.append(helpDialogue);
+
   // Handle key presses
   branchTable.on('select', async (val, key) => {
     const branchInfo = val.content.split(/\s*\s/).map(column => {
