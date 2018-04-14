@@ -42,6 +42,8 @@ if (!process.argv.slice(2).length) {
   });
 
   screen.append(branchTable);
+  screen.append(statusBar);
+  screen.append(helpDialogue);
 
   statusBar.append(statusHelpText);
 
@@ -49,8 +51,6 @@ if (!process.argv.slice(2).length) {
     screen.emit('resize');
   });
 
-  screen.append(statusBar);
-  screen.append(helpDialogue);
 
   // Handle key presses
 
