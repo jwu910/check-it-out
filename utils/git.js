@@ -40,9 +40,9 @@ async function doCreateBranch(branch) {
 async function getCurrentBranch() {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
-  const retVal = await execGit(args);
+  const currentBranch = await execGit(args);
 
-  return retVal;
+  return currentBranch;
 }
 
 /**
@@ -87,7 +87,7 @@ async function doFetchBranches() {
  * formatted lines for the data table.
  */
 async function formatRemoteBranches(output) {
-  var retVal = [];
+  var remoteBranchArray = [];
 
   const selectedBranch = await getCurrentBranch().then(selected => {
     return selected.toString();
@@ -106,22 +106,22 @@ async function formatRemoteBranches(output) {
       return;
     }
 
-    retVal.push([selected, currRemote, currBranch, line]);
+    remoteBranchArray.push([selected, currRemote, currBranch, line]);
   });
 
-  return retVal;
+  return remoteBranchArray;
 }
 
 /**
  * Get an array of each remote as an array item
  * @return {Array} Array of arrays.
  */
-async function getRefArray() {
+async function getRefs() {
   const args = ['for-each-ref', '--sort=-committerdate', '--format=%(refname)'];
 
-  const retVal = await execGit(args);
+  const refList = await execGit(args);
 
-  return retVal;
+  return refList;
 }
 
 /**
