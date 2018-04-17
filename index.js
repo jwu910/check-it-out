@@ -9,7 +9,6 @@ const updateNotifier = require('update-notifier');
 
 const git = require(path.resolve(__dirname, 'utils/git'));
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
-// const { THEME_COLOR } = require(path.resolve(__dirname, 'utils/theme'));
 
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, 'package.json'));
@@ -28,21 +27,24 @@ if (!process.argv.slice(2).length) {
   const statusBar = dialogue.statusBar();
   const statusHelpText = dialogue.statusHelpText();
 
+  var currentRemote = 'local';
+  var remoteList = [];
+
   const toggleHelp = () => {
     helpDialogue.toggle();
     screen.render();
   };
 
-/**
- * @todo: Build a keyMap object
- * @body: Add left and right functionality to change remote. Add getUniqueRemotes method here.
- */
+  /**
+   * @todo: Build a keyMap utility
+   * @body: Add left and right functionality to change remote. Add getUniqueRemotes method here.
+   */
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
     branchTable.clearItems();
 
-    git.doFetchBranches().then(() => refreshTable());
+    git.doFetchBranches().then(() => refreshTable(currentRemote));
   });
 
   screen.append(branchTable);
@@ -104,7 +106,9 @@ if (!process.argv.slice(2).length) {
             .then(git.doCreateBranch(gitBranch))
             .then(screen.destroy());
         } else if (answer === 'No') {
-          await git.doCheckoutBranch(gitBranch, gitRemote).then(screen.destroy());
+          await git
+            .doCheckoutBranch(gitBranch, gitRemote)
+            .then(screen.destroy());
         }
       });
     } else {
@@ -112,20 +116,91 @@ if (!process.argv.slice(2).length) {
     }
   });
 
+  branchTable.unkey('l', 'select');
+
+  branchTable.key(['left', 'h'], () => {
+    const prevRemote = getPrevRemote(currentRemote, remoteList);
+
+    currentRemote = prevRemote;
+    refreshTable(currentRemote);
+  });
+
+  branchTable.key(['right', 'l'], () => {
+    const nextRemote = getNextRemote(currentRemote, remoteList);
+
+    currentRemote = nextRemote;
+    refreshTable(currentRemote);
+  });
+
+  screen.key(['down', 'j'], () => {
+    console.log('down')
+    branchTable.move();
+  });
+  screen.key(['up', 'k'], () => {
+    console.log('up')
+    branchTable.move();
+  });
+
   branchTable.focus();
 
   /**
+   * Cycle to previous remote
+   *
+   * @param  currentRemote {String} Current displayed remote
+   * @param  remoteList {Array} Unique remotes for current project
+   * @return {String}
+   */
+  function getPrevRemote(currentRemote, remoteList) {
+    var retVal = [currentRemote];
+
+    var currIndex = remoteList.indexOf(currentRemote);
+
+    if (currIndex > 0) {
+      currIndex -= 1;
+    }
+
+    currentRemote = remoteList[currIndex];
+
+    return currentRemote;
+  }
+
+  /**
+   * Cycle to next remote
+   *
+   * @param  currentRemote {String} Current displayed remote
+   * @param  remoteList {Array} Unique remotes for current project
+   * @return {String}
+   */
+  function getNextRemote(currentRemote, remoteList) {
+    var retval = [currentRemote];
+
+    var currIndex = remoteList.indexOf(currentRemote);
+
+    if (currIndex < remoteList.length - 1) {
+      currIndex += 1;
+    }
+
+    currentRemote = remoteList[currIndex];
+
+    return currentRemote;
+  }
+
+  /**
    * Build array of branches for main interface
+   *
+   * @param {String} currentRemote Current displayed remote
    * @todo: buildListArray needs a variable
    * @body: Variable: [remote] optional, should be a string that matches one of the unique remotes in repo.
    */
-  function refreshTable() {
+  async function refreshTable(currentRemote) {
     // buildListArray('remote') need to add select functionality
-    git.buildListArray().then(results => {
+    git.buildListArray(currentRemote).then(results => {
       branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...results]);
 
       screen.render();
     });
+
+    remoteList = await git.buildRemoteList();
   }
 
   refreshTable();
