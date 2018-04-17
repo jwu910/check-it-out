@@ -1,15 +1,21 @@
 const path = require('path');
 const { spawn } = require('child_process');
 
-const {
-  buildRemotePayload,
-  getUniqueRemotes,
-  onlyUnique,
-} = require(path.resolve(__dirname, 'utils'));
+const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(__dirname, 'utils'));
 
 function buildListArray(remote = 'local') {
-  // getBranches(remote); pass in remote
   return getBranchesFrom(remote);
+}
+
+/**
+ * @return {Array} Array of unique remotes for tab options
+ */
+async function buildRemoteList() {
+  const remoteList = await getRefs()
+    .then(formatRemoteBranches)
+    .then(filterUniqueRemotes);
+
+  return remoteList;
 }
 
 /**
@@ -129,7 +135,9 @@ async function getRefs() {
  * @todo: Sort return items.
  */
 async function getBranchesFrom(remote) {
-  const refsArray = await getRefArray()
+  const remoteArray = await getRefs();
+
+  const refsArray = await getRefs()
     .then(formatRemoteBranches)
     .then(buildRemotePayload);
 
@@ -138,6 +146,7 @@ async function getBranchesFrom(remote) {
 
 module.exports = {
   buildListArray,
+  buildRemoteList,
   doCheckoutBranch,
   doCreateBranch,
   getCurrentBranch,
