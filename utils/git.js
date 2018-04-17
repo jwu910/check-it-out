@@ -5,8 +5,8 @@ function buildListArray(refs) {
 }
 
 async function checkoutBranch(branch, remote) {
-  /*
-  Pull branch information from selection and pass as args to execGit().
+  /**
+  * Pull branch information from selection and pass as args to execGit().
   */
   const branchPath =
     remote && remote !== 'local' ? [remote, branch].join('/') : branch;
@@ -17,8 +17,8 @@ async function checkoutBranch(branch, remote) {
 }
 
 async function createBranch(branch) {
-  /*
-  Create branch
+  /**
+  * Create branch
   */
   const args = ['checkout', '-b', branch];
 
@@ -26,8 +26,8 @@ async function createBranch(branch) {
 }
 
 async function currentBranch() {
-  /*
-  Return name of current branch.
+  /**
+  * Return name of current branch.
   */
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
@@ -37,10 +37,10 @@ async function currentBranch() {
 }
 
 function execGit(args) {
-  /*
-  Execute git command with passed arguments.
-  <args> is expected to be an array of strings.
-  Example: ['fetch', '-pv']
+  /**
+  * Execute git command with passed arguments.
+  * <args> is expected to be an array of strings.
+  * Example: ['fetch', '-pv']
   */
   return new Promise((resolve, reject) => {
     const gitResponse = spawn('git', args, {
