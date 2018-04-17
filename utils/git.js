@@ -1,7 +1,9 @@
 const { spawn } = require('child_process');
+const { onlyUnique } = require('./utils');
 
-function buildListArray(refs) {
-  return getRemotes();
+function buildListArray(remote = 'local') {
+  // getBranches(remote); pass in remote
+  return getBranchesFrom(remote);
 }
 
 async function checkoutBranch(branch, remote) {
@@ -64,20 +66,52 @@ function execGit(args) {
   });
 }
 
+/**
+* Call git fetch with a prune and quiet flag
+*/
 async function fetchBranches() {
-  /*
-  Fetch and prune.
-  */
   const args = ['fetch', '-pq'];
 
   await execGit(args);
 }
 
-async function _formatRefs(output) {
-  /*
-  Format output from getRemotes() and return an array of arrays containing
-  formatted lines for the data table.
-  */
+function getUniqueRemotes(output) {
+  var remoteList = [];
+
+  output.forEach(remote => {
+    remoteList.push(remote[1]);
+  });
+
+  remoteList = remoteList.filter(onlyUnique).sort();
+
+  return remoteList
+}
+
+/**
+* Function should build a separate array for each unique remote
+*/
+async function buildRemotePayload(output) {
+  var payload = {};
+
+  const remoteList = getUniqueRemotes(output);
+
+  remoteList.forEach(branch => {
+    payload[branch] = [];
+  });
+
+  output.forEach(remote => {
+    payload[remote[1]].push(remote);
+  });
+
+  return payload;
+}
+
+/**
+ * Format output from getBranchesFrom() and return an array of arrays containing
+ * formatted lines for the data table.
+ */
+async function formatRemoteBranches_(output) {
+
   var retVal = [];
 
   const selectedBranch = await currentBranch().then(selected => {
@@ -103,14 +137,27 @@ async function _formatRefs(output) {
   return retVal;
 }
 
-async function getRemotes() {
-  /*
-  Function call to get list of branch refs formatted by ref name.
-  */
-  const args = ['for-each-ref', '--sort=refname', '--format=%(refname)'];
-  const retVal = await execGit(args).then(_formatRefs);
+/**
+ * Get an array of each remote as an array item
+ * @return {Array} Array of arrays.
+ */
+async function getRefArray() {
+  const args = ['for-each-ref', '--sort=committer', '--format=%(refname)'];
+
+  const retVal = await execGit(args);
 
   return retVal;
+}
+
+/**
+* .Get all remotes from git repository and return an object
+*/
+async function getBranchesFrom(remote) {
+  const refsArray = await getRefArray()
+    .then(formatRemoteBranches_)
+    .then(buildRemotePayload);
+
+  return refsArray[remote];
 }
 
 module.exports = {
