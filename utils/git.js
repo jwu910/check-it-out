@@ -142,7 +142,7 @@ async function formatRemoteBranches_(output) {
  * @return {Array} Array of arrays.
  */
 async function getRefArray() {
-  const args = ['for-each-ref', '--sort=committer', '--format=%(refname)'];
+  const args = ['for-each-ref', '--sort=-committerdate', '--format=%(refname)'];
 
   const retVal = await execGit(args);
 
@@ -150,8 +150,9 @@ async function getRefArray() {
 }
 
 /**
-* .Get all remotes from git repository and return an object
-*/
+ * Get all remotes from git repository and return an object
+ * @todo: Sort return items.
+ */
 async function getBranchesFrom(remote) {
   const refsArray = await getRefArray()
     .then(formatRemoteBranches_)
