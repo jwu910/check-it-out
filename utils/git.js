@@ -1,15 +1,21 @@
+const path = require('path');
 const { spawn } = require('child_process');
-const { onlyUnique } = require('./utils');
+
+const {
+  buildRemotePayload,
+  getUniqueRemotes,
+  onlyUnique,
+} = require(path.resolve(__dirname, 'utils'));
 
 function buildListArray(remote = 'local') {
   // getBranches(remote); pass in remote
   return getBranchesFrom(remote);
 }
 
-async function checkoutBranch(branch, remote) {
-  /**
-  * Pull branch information from selection and pass as args to execGit().
-  */
+/**
+ * Pull branch information from selection and pass as args to execGit().
+ */
+async function doCheckoutBranch(branch, remote) {
   const branchPath =
     remote && remote !== 'local' ? [remote, branch].join('/') : branch;
 
@@ -18,19 +24,20 @@ async function checkoutBranch(branch, remote) {
   await execGit(args);
 }
 
-async function createBranch(branch) {
-  /**
-  * Create branch
-  */
+/**
+ * Call git to create create branch
+ *
+ */
+async function doCreateBranch(branch) {
   const args = ['checkout', '-b', branch];
 
   await execGit(args);
 }
 
-async function currentBranch() {
-  /**
-  * Return name of current branch.
-  */
+/**
+ * Return name of current branch.
+ */
+async function getCurrentBranch() {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
   const retVal = await execGit(args);
@@ -38,12 +45,12 @@ async function currentBranch() {
   return retVal;
 }
 
+/**
+ * Execute git command with passed arguments.
+ * <args> is expected to be an array of strings.
+ * Example: ['fetch', '-pv']
+ */
 function execGit(args) {
-  /**
-  * Execute git command with passed arguments.
-  * <args> is expected to be an array of strings.
-  * Example: ['fetch', '-pv']
-  */
   return new Promise((resolve, reject) => {
     const gitResponse = spawn('git', args, {
       cwd: process.cwd(),
@@ -67,54 +74,22 @@ function execGit(args) {
 }
 
 /**
-* Call git fetch with a prune and quiet flag
-*/
-async function fetchBranches() {
+ * Call git fetch with a prune and quiet flag
+ */
+async function doFetchBranches() {
   const args = ['fetch', '-pq'];
 
   await execGit(args);
-}
-
-function getUniqueRemotes(output) {
-  var remoteList = [];
-
-  output.forEach(remote => {
-    remoteList.push(remote[1]);
-  });
-
-  remoteList = remoteList.filter(onlyUnique).sort();
-
-  return remoteList
-}
-
-/**
-* Function should build a separate array for each unique remote
-*/
-async function buildRemotePayload(output) {
-  var payload = {};
-
-  const remoteList = getUniqueRemotes(output);
-
-  remoteList.forEach(branch => {
-    payload[branch] = [];
-  });
-
-  output.forEach(remote => {
-    payload[remote[1]].push(remote);
-  });
-
-  return payload;
 }
 
 /**
  * Format output from getBranchesFrom() and return an array of arrays containing
  * formatted lines for the data table.
  */
-async function formatRemoteBranches_(output) {
-
+async function formatRemoteBranches(output) {
   var retVal = [];
 
-  const selectedBranch = await currentBranch().then(selected => {
+  const selectedBranch = await getCurrentBranch().then(selected => {
     return selected.toString();
   });
 
@@ -155,7 +130,7 @@ async function getRefArray() {
  */
 async function getBranchesFrom(remote) {
   const refsArray = await getRefArray()
-    .then(formatRemoteBranches_)
+    .then(formatRemoteBranches)
     .then(buildRemotePayload);
 
   return refsArray[remote];
@@ -163,8 +138,8 @@ async function getBranchesFrom(remote) {
 
 module.exports = {
   buildListArray,
-  checkoutBranch,
-  createBranch,
-  currentBranch,
-  fetchBranches,
+  doCheckoutBranch,
+  doCreateBranch,
+  getCurrentBranch,
+  doFetchBranches,
 };
