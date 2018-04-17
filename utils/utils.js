@@ -4,7 +4,7 @@
 async function buildRemotePayload(output) {
   var payload = {};
 
-  const remoteList = getUniqueRemotes(output);
+  const remoteList = filterUniqueRemotes(output);
 
   remoteList.forEach(branch => {
     payload[branch] = [];
@@ -21,7 +21,7 @@ function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
 
-function getUniqueRemotes(output) {
+function filterUniqueRemotes(output) {
   var remoteList = [];
 
   output.forEach(remote => {
@@ -35,6 +35,6 @@ function getUniqueRemotes(output) {
 
 module.exports = {
   buildRemotePayload,
-  getUniqueRemotes,
+  filterUniqueRemotes,
   onlyUnique
 }
