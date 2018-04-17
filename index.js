@@ -33,6 +33,10 @@ if (!process.argv.slice(2).length) {
     screen.render();
   };
 
+/**
+ * @todo: Build a keyMap object
+ * @body: Add left and right functionality to change remote. Add getUniqueRemotes method here.
+ */
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
@@ -113,12 +117,15 @@ if (!process.argv.slice(2).length) {
 
   branchTable.focus();
 
-  // Build list array
+  /**
+   * Build array of branches for main interface
+   * @todo: buildListArray needs a variable
+   * @body: Variable: [remote] optional, should be a string that matches one of the unique remotes in repo.
+   */
   function refreshTable() {
+    // buildListArray('remote') need to add select functionality
     git.buildListArray().then(results => {
-      const listData = results;
-
-      branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...listData]);
+      branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...results]);
 
       screen.render();
     });
