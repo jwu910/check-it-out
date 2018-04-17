@@ -1,7 +1,10 @@
 const path = require('path');
 const { spawn } = require('child_process');
 
-const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(__dirname, 'utils'));
+const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
+  __dirname,
+  'utils',
+));
 
 function buildListArray(remote = 'local') {
   return getBranchesFrom(remote);

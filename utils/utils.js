@@ -30,11 +30,11 @@ function filterUniqueRemotes(output) {
 
   remoteList = remoteList.filter(onlyUnique).sort();
 
-  return remoteList
+  return remoteList;
 }
 
 module.exports = {
   buildRemotePayload,
   filterUniqueRemotes,
-  onlyUnique
-}
+  onlyUnique,
+};
