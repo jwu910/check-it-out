@@ -135,7 +135,7 @@ async function getRefs() {
 
 /**
  * Get all remotes from git repository and return an object
- * @todo: Sort return items.
+ * @param {String} remote Remote to list branches from
  */
 async function getBranchesFrom(remote) {
   const remoteArray = await getRefs();
