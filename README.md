@@ -42,8 +42,9 @@ checkit
 | Commands | Description |
 | -------- | ------------ |
 |`j/k, down/up`| Navigate the list |
+|`h/l, left/right`| Previous/Next remote |
 |`r`| Fetch, prune, and refresh list |
-|`l, enter`| Select highlighted item |
+|`enter`| Select highlighted item |
 |`q, C-c, esc`| Exit check-it-out |
 
 ## Contributing
