@@ -18,6 +18,10 @@ program.version('0.3.4', '-v, --version');
 
 program.parse(process.argv);
 
+if (notifier.update) {
+  notifier.notify();
+}
+
 if (!process.argv.slice(2).length) {
   const screen = dialogue.screen();
 
@@ -61,7 +65,7 @@ if (!process.argv.slice(2).length) {
    * @todo: Handle select -- differenciate spacebar or enter
    * @body: Set keys space, or enter to perform custom method. "select()" or "log()" or something. Select method will select, log will call git log
    */
-  branchTable.on('select', async (val, key) => {
+  branchTable.on('select', async val => {
     const branchInfo = val.content.split(/\s*\s/).map(column => {
       return column === 'local' ? '' : column;
     });
@@ -75,10 +79,6 @@ if (!process.argv.slice(2).length) {
      */
     process.on('unhandledRejection', reason => {
       console.log(chalk.yellow('[LOG] ') + reason);
-
-      if (notifier.update) {
-        notifier.notify();
-      }
     });
 
     // If selection is a remote, prompt if new branch is to be created.
@@ -116,29 +116,27 @@ if (!process.argv.slice(2).length) {
     }
   });
 
-  branchTable.unkey('l', 'select');
-
+  /**
+   * @todo: Build a keybind utility
+   */
   branchTable.key(['left', 'h'], () => {
-    const prevRemote = getPrevRemote(currentRemote, remoteList);
-
-    currentRemote = prevRemote;
-    refreshTable(currentRemote);
+    currentRemote = getPrevRemote(currentRemote, remoteList);
   });
 
   branchTable.key(['right', 'l'], () => {
-    const nextRemote = getNextRemote(currentRemote, remoteList);
-
-    currentRemote = nextRemote;
-    refreshTable(currentRemote);
+    currentRemote = getNextRemote(currentRemote, remoteList);
   });
 
-  screen.key(['down', 'j'], () => {
-    console.log('down')
-    branchTable.move();
+  branchTable.key('j', () => {
+    branchTable.down();
+
+    screen.render();
   });
-  screen.key(['up', 'k'], () => {
-    console.log('up')
-    branchTable.move();
+
+  branchTable.key('k', () => {
+    branchTable.up();
+
+    screen.render();
   });
 
   branchTable.focus();
@@ -151,8 +149,6 @@ if (!process.argv.slice(2).length) {
    * @return {String}
    */
   function getPrevRemote(currentRemote, remoteList) {
-    var retVal = [currentRemote];
-
     var currIndex = remoteList.indexOf(currentRemote);
 
     if (currIndex > 0) {
@@ -160,6 +156,8 @@ if (!process.argv.slice(2).length) {
     }
 
     currentRemote = remoteList[currIndex];
+
+    refreshTable(currentRemote);
 
     return currentRemote;
   }
@@ -172,8 +170,6 @@ if (!process.argv.slice(2).length) {
    * @return {String}
    */
   function getNextRemote(currentRemote, remoteList) {
-    var retval = [currentRemote];
-
     var currIndex = remoteList.indexOf(currentRemote);
 
     if (currIndex < remoteList.length - 1) {
@@ -181,6 +177,8 @@ if (!process.argv.slice(2).length) {
     }
 
     currentRemote = remoteList[currIndex];
+
+    refreshTable(currentRemote);
 
     return currentRemote;
   }

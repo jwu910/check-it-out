@@ -11,6 +11,7 @@ function branchTable() {
     left: 0,
     keys: true,
     noCellBorders: true,
+    scrollable: true,
     scrollbar: true,
     style: {
       cell: {
@@ -31,7 +32,7 @@ function branchTable() {
     },
     tags: true,
     top: 0,
-    vi: true,
+    vi: false,
     width: 'shrink',
   });
 
