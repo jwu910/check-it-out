@@ -14,7 +14,7 @@ const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const pkg = require(path.resolve(__dirname, 'package.json'));
 const notifier = updateNotifier({ pkg });
 
-program.version('0.3.4', '-v, --version');
+program.version('0.4.0', '-v, --version');
 
 program.parse(process.argv);
 
