@@ -94,6 +94,7 @@ async function doFetchBranches() {
 /**
  * Format output from getBranchesFrom() and return an array of arrays containing
  * formatted lines for the data table.
+ * @param {Array} output Array containing an array of branch information
  */
 async function formatRemoteBranches(output) {
   var remoteBranchArray = [];

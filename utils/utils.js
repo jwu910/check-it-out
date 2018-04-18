@@ -1,5 +1,8 @@
 /**
  * Function should build a separate array for each unique remote
+ *
+ * @param {Array} output Array containing an array of branch information
+ * @return {Object} Object with key-value pairs of remote-branchArray
  */
 async function buildRemotePayload(output) {
   var payload = {};
@@ -21,6 +24,12 @@ function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
 
+/**
+ * Find unique remotes in repository
+ *
+ * @param {Array} output Array containing an array of branch information
+ * @return {Array} Array containing a unique set of remotes for this repository
+ */
 function filterUniqueRemotes(output) {
   var remoteList = [];
 
