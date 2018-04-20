@@ -14,7 +14,7 @@ Please note we have a code of conduct, please follow it in all your interactions
     * Commit messages should follow the PROJECT-ISSUE MESSAGE convention. e.g. `CIO-60 Add missing contributing guidelines`
 
 3. Update README and with any necessary changes such as adding hot keys, updating instructions, fixing help text, etc.
-4. Reference the issue the PR aims to resolve using the hash tag at the beggining of your PR description. e.g. `Fixes #52`
+4. Reference the issue the PR aims to resolve using the hash tag at the beginning of your PR description. e.g. `Fixes #52`
 
 ## Code of Conduct
 

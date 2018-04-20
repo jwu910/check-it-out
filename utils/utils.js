@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 /**
  * Function should build a separate array for each unique remote
  *
@@ -33,17 +35,34 @@ function onlyUnique(value, index, self) {
 function filterUniqueRemotes(output) {
   var remoteList = [];
 
-  output.forEach(remote => {
-    remoteList.push(remote[1]);
-  });
+  output.forEach(remote => remoteList.push(remote[1]));
 
   remoteList = remoteList.filter(onlyUnique).sort();
 
   return remoteList;
 }
 
+/**
+ *  Get "tabs" for status bar highlighting current remote
+ *
+ * @param {Array} remoteList - Array of unique remotes
+ * @param {String} currentRemote - Name of current remote
+ *
+ * @return {Array} Copy of remoteList with currentRemote inverted with chalk
+ */
+function getRemoteTabs(remoteList, currentRemote) {
+  const focusedIndex = remoteList.indexOf(currentRemote);
+
+  const focusedRemoteList = remoteList.slice();
+
+  focusedRemoteList[focusedIndex] = chalk.inverse(currentRemote);
+
+  return focusedRemoteList.join(':');
+}
+
 module.exports = {
   buildRemotePayload,
   filterUniqueRemotes,
   onlyUnique,
+  getRemoteTabs,
 };

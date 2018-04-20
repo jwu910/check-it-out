@@ -9,12 +9,13 @@ const updateNotifier = require('update-notifier');
 
 const git = require(path.resolve(__dirname, 'utils/git'));
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
+const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
 
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, 'package.json'));
 const notifier = updateNotifier({ pkg });
 
-program.version('0.4.0', '-v, --version');
+program.version('0.4.1', '-v, --version');
 
 program.parse(process.argv);
 
@@ -26,6 +27,7 @@ if (!process.argv.slice(2).length) {
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
+  const statusBarText = dialogue.statusBarText();
   const helpDialogue = dialogue.helpDialogue();
   const question = dialogue.question();
   const statusBar = dialogue.statusBar();
@@ -55,6 +57,7 @@ if (!process.argv.slice(2).length) {
   screen.append(statusBar);
   screen.append(helpDialogue);
 
+  statusBar.append(statusBarText)
   statusBar.append(statusHelpText);
 
   process.on('SIGWINCH', () => {
@@ -187,19 +190,18 @@ if (!process.argv.slice(2).length) {
    * Build array of branches for main interface
    *
    * @param {String} currentRemote Current displayed remote
-   * @todo: buildListArray needs a variable
-   * @body: Variable: [remote] optional, should be a string that matches one of the unique remotes in repo.
    */
   async function refreshTable(currentRemote) {
-    // buildListArray('remote') need to add select functionality
-    git.buildListArray(currentRemote).then(results => {
-      branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...results]);
+    const results = await git.buildListArray(currentRemote);
 
-      screen.render();
-    });
+    branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...results]);
 
     remoteList = await git.buildRemoteList();
+
+    statusBarText.content = getRemoteTabs(remoteList, currentRemote);
+
+    screen.render();
   }
 
-  refreshTable();
-}
+  refreshTable(currentRemote);
+};
