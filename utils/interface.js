@@ -105,17 +105,23 @@ function screen() {
 
 function statusBar() {
   const statusBar = blessed.box({
-    border: { type: 'line' },
+    border: false,
     bottom: 0,
-    height: 3,
-    right: 0,
-    style: {
-      border: { fg: THEME_COLOR },
-    },
+    height: 1,
     width: '100%',
   });
 
   return statusBar;
+}
+
+function statusBarText() {
+  const statusBarText = blessed.text({
+    content: '',
+    left: 0,
+    bottom: 0,
+  });
+
+  return statusBarText;
 }
 
 function statusHelpText() {
@@ -129,6 +135,7 @@ function statusHelpText() {
 
 module.exports = {
   branchTable,
+  statusBarText,
   helpDialogue,
   question,
   screen,
