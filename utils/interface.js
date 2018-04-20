@@ -118,9 +118,8 @@ function statusBarText() {
   const statusBarText = blessed.text({
     content: '',
     left: 0,
-    right: 0,
     bottom: 0,
-  })
+  });
 
   return statusBarText;
 }
