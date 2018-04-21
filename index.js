@@ -65,16 +65,28 @@ if (!process.argv.slice(2).length) {
   });
 
   /**
-   * @todo: Handle select -- differenciate spacebar or enter
-   * @body: Set keys space, or enter to perform custom method. "select()" or "log()" or something. Select method will select, log will call git log
+   * Trim and remove whitespace from selected line.
+   *
+   * @param  {String} selectedLine String representation of selected line.
+   * @return {Array}               Array of selected line.
    */
-  branchTable.on('select', async val => {
-    const branchInfo = val.content.split(/\s*\s/).map(column => {
+  const parseSelection = (selectedLine) => {
+    const selection = selectedLine.split(/\s*\s/).map(column => {
       return column === 'local' ? '' : column;
     });
 
-    const gitBranch = branchInfo[2];
-    const gitRemote = branchInfo[1];
+    return selection;
+  };
+
+  /**
+   * @todo: Handle select -- differenciate spacebar or enter
+   * @body: Set keys space, or enter to perform custom method. "select()" or "log()" or something. Select method will select, log will call git log
+   */
+  branchTable.on('select', async (selectedLine) => {
+    const selection = parseSelection(selectedLine.content);
+
+    const gitBranch = selection[2];
+    const gitRemote = selection[1];
 
     /**
      * @todo: Identify and handle unhandledRejections
@@ -85,7 +97,7 @@ if (!process.argv.slice(2).length) {
     });
 
     // If selection is a remote, prompt if new branch is to be created.
-    if (gitRemote !== '') {
+    if (gitRemote) {
       question.setData([
         [
           'Create local branch named: ' +
