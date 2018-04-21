@@ -78,10 +78,6 @@ if (!process.argv.slice(2).length) {
     return selection;
   };
 
-  /**
-   * @todo: Handle select -- differenciate spacebar or enter
-   * @body: Set keys space, or enter to perform custom method. "select()" or "log()" or something. Select method will select, log will call git log
-   */
   branchTable.on('select', async (selectedLine) => {
     const selection = parseSelection(selectedLine.content);
 
