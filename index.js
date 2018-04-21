@@ -154,6 +154,27 @@ if (!process.argv.slice(2).length) {
     screen.render();
   });
 
+  branchTable.key('space', function() {
+    const selection = parseSelection(this.items[this.selected].content);
+
+    const gitBranch = selection[2];
+    const gitRemote = selection[1];
+
+    var args = []
+
+    if (gitRemote) {
+      args.push(gitRemote);
+    }
+
+    args.push(gitBranch)
+
+    if (args.length > 1) {
+      args = args.join('/');
+    }
+
+    screen.spawn('jack', [args]);
+  });
+
   branchTable.focus();
 
   /**
