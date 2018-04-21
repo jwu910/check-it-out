@@ -1,6 +1,6 @@
 {
   "name": "check-it-out",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Easy git checkout CLI tool.",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "blessed": "^0.1.81",
     "chalk": "^2.3.1",
     "commander": "^2.14.0",
+    "jack-cli": "^0.8.3",
     "update-notifier": "^2.3.0"
   }
 }

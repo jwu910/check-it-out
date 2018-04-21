@@ -15,7 +15,7 @@ const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
 const pkg = require(path.resolve(__dirname, 'package.json'));
 const notifier = updateNotifier({ pkg });
 
-program.version('0.4.1', '-v, --version');
+program.version('0.5.0', '-v, --version');
 
 program.parse(process.argv);
 
@@ -65,16 +65,24 @@ if (!process.argv.slice(2).length) {
   });
 
   /**
-   * @todo: Handle select -- differenciate spacebar or enter
-   * @body: Set keys space, or enter to perform custom method. "select()" or "log()" or something. Select method will select, log will call git log
+   * Trim and remove whitespace from selected line.
+   *
+   * @param  {String} selectedLine String representation of selected line.
+   * @return {Array}               Array of selected line.
    */
-  branchTable.on('select', async val => {
-    const branchInfo = val.content.split(/\s*\s/).map(column => {
+  const parseSelection = (selectedLine) => {
+    const selection = selectedLine.split(/\s*\s/).map(column => {
       return column === 'local' ? '' : column;
     });
 
-    const gitBranch = branchInfo[2];
-    const gitRemote = branchInfo[1];
+    return selection;
+  };
+
+  branchTable.on('select', async (selectedLine) => {
+    const selection = parseSelection(selectedLine.content);
+
+    const gitBranch = selection[2];
+    const gitRemote = selection[1];
 
     /**
      * @todo: Identify and handle unhandledRejections
@@ -85,7 +93,7 @@ if (!process.argv.slice(2).length) {
     });
 
     // If selection is a remote, prompt if new branch is to be created.
-    if (gitRemote !== '') {
+    if (gitRemote) {
       question.setData([
         [
           'Create local branch named: ' +
@@ -140,6 +148,27 @@ if (!process.argv.slice(2).length) {
     branchTable.up();
 
     screen.render();
+  });
+
+  branchTable.key('space', function() {
+    const selection = parseSelection(this.items[this.selected].content);
+
+    const gitBranch = selection[2];
+    const gitRemote = selection[1];
+
+    var args = []
+
+    if (gitRemote) {
+      args.push(gitRemote);
+    }
+
+    args.push(gitBranch)
+
+    if (args.length > 1) {
+      args = args.join('/');
+    }
+
+    screen.spawn('jack', [args]);
   });
 
   branchTable.focus();

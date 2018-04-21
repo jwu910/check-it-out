@@ -47,6 +47,7 @@ function helpDialogue() {
     height: 'shrink',
     hidden: true,
     noCellBorders: true,
+    padding: 1,
     right: 0,
     style: {
       border: { fg: THEME_COLOR },
@@ -62,7 +63,7 @@ function question() {
   const question = blessed.listtable({
     align: 'left',
     border: { type: 'line' },
-    height: '20%',
+    height: 5,
     keys: true,
     left: 2,
     style: {
