@@ -15,7 +15,7 @@ const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
 const pkg = require(path.resolve(__dirname, 'package.json'));
 const notifier = updateNotifier({ pkg });
 
-program.version('0.4.1', '-v, --version');
+program.version('0.5.0', '-v, --version');
 
 program.parse(process.argv);
 
