@@ -47,6 +47,7 @@ function helpDialogue() {
     height: 'shrink',
     hidden: true,
     noCellBorders: true,
+    padding: 1,
     right: 0,
     style: {
       border: { fg: THEME_COLOR },

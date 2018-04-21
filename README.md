@@ -45,6 +45,7 @@ checkit
 |`h/l, left/right`| Previous/Next remote |
 |`r`| Fetch, prune, and refresh list |
 |`enter`| Select highlighted item |
+|`space`| Interactive git log |
 |`q, C-c, esc`| Exit check-it-out |
 
 ## Contributing

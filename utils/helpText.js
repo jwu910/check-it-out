@@ -6,6 +6,7 @@ const helpText = () => {
     [chalk.bold('h/l, left/right'), 'Previous/Next remote'],
     [chalk.bold('r'), 'Fetch, prune, and refresh list'],
     [chalk.bold('enter'), 'Select highlighted item'],
+    [chalk.bold('space'), 'Interactive git log'],
     [chalk.bold('q, C-c, esc'), 'Exit check-it-out'],
   ];
 
