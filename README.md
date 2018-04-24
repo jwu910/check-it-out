@@ -43,10 +43,10 @@ checkit
 | -------- | ------------ |
 |`j/k, down/up`| Navigate the list |
 |`h/l, left/right`| Previous/Next remote |
-|`r`| Fetch, prune, and refresh list |
+|`r`| Refresh list with a fetch and prune |
 |`enter`| Select highlighted item |
-|`space`| Interactive git log |
-|`q, C-c, esc`| Exit check-it-out |
+|`space`| Git log |
+|`q, C-c, esc`| Quit |
 
 ## Contributing
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md)
