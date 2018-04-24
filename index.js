@@ -15,7 +15,7 @@ const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
 const pkg = require(path.resolve(__dirname, 'package.json'));
 const notifier = updateNotifier({ pkg });
 
-program.version('0.5.0', '-v, --version');
+program.version('0.6.0', '-v, --version');
 
 program.parse(process.argv);
 
@@ -57,7 +57,7 @@ if (!process.argv.slice(2).length) {
   screen.append(statusBar);
   screen.append(helpDialogue);
 
-  statusBar.append(statusBarText)
+  statusBar.append(statusBarText);
   statusBar.append(statusHelpText);
 
   process.on('SIGWINCH', () => {
@@ -70,7 +70,7 @@ if (!process.argv.slice(2).length) {
    * @param  {String} selectedLine String representation of selected line.
    * @return {Array}               Array of selected line.
    */
-  const parseSelection = (selectedLine) => {
+  const parseSelection = selectedLine => {
     const selection = selectedLine.split(/\s*\s/).map(column => {
       return column === 'local' ? '' : column;
     });
@@ -78,7 +78,7 @@ if (!process.argv.slice(2).length) {
     return selection;
   };
 
-  branchTable.on('select', async (selectedLine) => {
+  branchTable.on('select', async selectedLine => {
     const selection = parseSelection(selectedLine.content);
 
     const gitBranch = selection[2];
@@ -156,19 +156,19 @@ if (!process.argv.slice(2).length) {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    var args = []
+    var args = [];
 
     if (gitRemote) {
       args.push(gitRemote);
     }
 
-    args.push(gitBranch)
+    args.push(gitBranch);
 
     if (args.length > 1) {
       args = args.join('/');
     }
 
-    screen.spawn('jack', [args]);
+    screen.spawn('git', ['log', args, '--color=always']);
   });
 
   branchTable.focus();
@@ -233,4 +233,4 @@ if (!process.argv.slice(2).length) {
   }
 
   refreshTable(currentRemote);
-};
+}
