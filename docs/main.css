@@ -2,3 +2,58 @@
     margin: 0px;
     padding: 0px;
 }
+
+.container {
+    width: 100%;
+    border: 2px solid gray;
+}
+
+/* Header */
+header {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 375px;
+    border: 1px solid #979797;
+    background: radial-gradient(100% 50%, #E9A571 0%, #EE7C5A 82%);
+}
+
+#headline {
+    color: #FFFFFF;
+    font-size: 72px;
+    line-height: 101px;
+}
+
+#subheadline {
+    color: #916246;
+    font-size: 24px;
+    line-height: 33px;
+}
+
+#linkContainer {
+    width: 100%;
+    height: 56px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A6AEAEAE;
+}
+
+#npmpackage, #npmversion {
+    display: inline-block;
+    margin-left: 25px;
+    border-radius: 5px;
+
+}
+
+#npmpackage {
+    width: 200px;
+    height: 31px;
+}
+
+#npmversion {
+    width: 160px;
+    height: 31px;
+}
