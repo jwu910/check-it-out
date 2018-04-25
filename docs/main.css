@@ -118,29 +118,48 @@ a {
 }
 
 /* Installation */
-.installTitles {
+#installTitle, #linuxMacTitle, #usageTitle {
     margin-top: 50px;
     font-family: "Arial Black";
     font-size: 24px;
     color: #EE7C5B;
 }
 
+#sourceTitle {
+    margin-top: 5px;
+    font-family: "Arial Black";
+    font-size: 20px;
+    color: #EE7C5B;
+}
+
 .contents:nth-of-type(5) {
     margin-top: 20px;
-    border: 2px solid green;
 }
 
 pre {
-    margin-top: 10px;
     padding: 10px;
     background-color: #F6F8FA;
+    border-radius: 3px;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .contents:nth-of-type(6) {
+    margin-top: 10px;
+}
+
+.contents:nth-of-type(7) {
+    margin-top: 10px;
+}
+
+/* Linux/Mac */
+.contents:nth-of-type(9) {
     margin-top: 20px;
 }
 
+/* Usage */
+.contents:nth-of-type(10) {
+    margin-top: 20px;
+}
 
 
 
