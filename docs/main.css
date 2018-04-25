@@ -49,7 +49,6 @@ header {
 
 /* Main Content flexbox */
 .main {
-    border: 2px solid green;
     max-width: 640px;
     margin: 0 auto;
     padding: 50px 25px;
@@ -57,7 +56,6 @@ header {
 
 /* Info */
 .infoContainer {
-    border: 2px solid green;
     margin: 0 auto;
     margin-top: 55px;
     width: 35%;
