@@ -194,6 +194,46 @@ tr:nth-child(even) {
     background-color: #D5D5D5;
 }
 
+/* Footer */
+footer {
+    height: 160px;
+    text-align: center;
+    color: #ed9e6d;
+    background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
+}
+
+#contributing {
+    margin-top: 25px;
+    color: #ED9E6D;
+    padding: 10px 0px 10px 0px; 
+    font-size: 20px;
+    font-family: "Arial Black";
+}
+
+#license {
+    background: rgba(0,0,0,.10);
+    margin-top: 10px;
+    color: #ED9E6D;
+    font-size: 20px;
+    font-family: "Arial Black";
+    padding: 10px 0px 0px 0px;
+}
+
+.footercontent:nth-of-type(4) {
+    background: rgba(0,0,0,.10);
+    padding: 10px 0px 10px 0px;
+}
+
+footer a  {
+    color: white;
+}
+
+.footercontent {
+    color: #ED9E6D;
+    font-size: 18px;
+}
+
+
 
 
 
