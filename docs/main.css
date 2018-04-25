@@ -32,19 +32,19 @@ header {
     background-color: rgba(174,174,174,0.65);
 }
 
-#npmpackage, #npmversion {
-    display: inline-block;
-    margin-left: 25px;
+#npmpackage, #npmversion, .gh-btns {
     border-radius: 5px;
 }
+
 #npmpackage {
-    width: 200px;
-    height: 31px;
+    width: 160px;
+    height: 30px;
 }
 
 #npmversion {
-    width: 160px;
-    height: 31px;
+    margin-right: 55px;
+    width: 125px;
+    height: 30px;
 }
 
 /* Main Content flexbox */
@@ -90,13 +90,13 @@ header {
     color: #EE7C5B;
 }
 
-img:nth-of-type(1) {
+#nodelogo {
     padding: 10px 0px 0px 35px;
     width: 230px;
     height: 135px;
 }
 
-img:nth-of-type(2) {
+#gitlogo {
     padding: 10px 0px 0px 35px;
     width:300px;
     height: 125px;
