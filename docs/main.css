@@ -3,51 +3,40 @@
     padding: 0px;
 }
 
-.container {
-    width: 100%;
-    border: 2px solid gray;
-}
-
-/* Header */
+/* Header Content */
 header {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 375px;
+    text-align: center;
+    padding-top: 92px;
     border: 1px solid #979797;
     background: radial-gradient(100% 50%, #E9A571 0%, #EE7C5A 82%);
 }
 
 #headline {
+    font-family: "Arial Black";
     color: #FFFFFF;
     font-size: 72px;
     line-height: 101px;
 }
 
 #subheadline {
+    font-family: "Arial Black";
     color: #916246;
     font-size: 24px;
     line-height: 33px;
 }
 
-#linkContainer {
-    width: 100%;
-    height: 56px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #A6AEAEAE;
+.linkContainer {
+    margin-top: 92px;
+    display: block;
+    padding: 20px 0px 10px;
+    background-color: rgba(174,174,174,0.65);
 }
 
 #npmpackage, #npmversion {
     display: inline-block;
     margin-left: 25px;
     border-radius: 5px;
-
 }
-
 #npmpackage {
     width: 200px;
     height: 31px;
@@ -57,3 +46,62 @@ header {
     width: 160px;
     height: 31px;
 }
+
+/* Main Content flexbox */
+.main {
+    border: 2px solid green;
+    max-width: 740px;
+    margin: 0 auto 90px;
+    padding: 0 15px;
+}
+
+/* Info */
+.infoContainer {
+    border: 2px solid green;
+    margin: 0 auto;
+    margin-top: 55px;
+    width: 35%;
+}
+
+#infoTitle {
+    font-family: "Arial Black";
+    font-size: 24px;
+    color: #EE7C5B;
+}
+
+.infoContainer .contents {
+    font-family: "Arial";
+    font-size: 20px;
+    text-align: left;
+    line-height: 23px;
+}
+
+.infoContainer p:nth-of-type(1) {
+    margin-top: 30px;
+}
+
+.infoContainer p:nth-of-type(2) {
+    margin-top: 15px;
+}
+
+/* Require */
+.requireContainer {
+    border: 2px solid green;
+    margin: 0 auto;
+    margin-top: 55px;
+}
+
+#requireTitle {
+    font-family: "Arial Black";
+    font-size: 24px;
+    color: #EE7C5B;
+}
+
+.requireContainer img:nth-of-type(1) {
+    width: 215px;
+    height: 135px;
+}
+
+
+
+
