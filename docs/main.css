@@ -161,6 +161,38 @@ pre {
     margin-top: 20px;
 }
 
+table {
+    margin-top: 10px;
+    width: 100%;
+    border: 2px solid #979797;
+    border-collapse: collapse;
+}
+
+td {
+    border: 2px solid #979797;
+    font-size: 18px;
+    padding: 5px 0px 5px 5px;
+}
+
+th {
+    border: 2px solid #979797;
+    font-size: 18px;
+    text-align: left;
+    color: #EE7C58;
+    padding: 5px 0px 5px 5px;
+}
+
+.description {
+    font-family: "Arial Black";
+}
+
+.command {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+tr:nth-child(even) {
+    background-color: #D5D5D5;
+}
 
 
 
