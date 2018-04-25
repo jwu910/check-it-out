@@ -6,7 +6,7 @@
 /* Header Content */
 header {
     text-align: center;
-    padding-top: 92px;
+    padding-top: 95px;
     border: 1px solid #979797;
     background: radial-gradient(100% 50%, #E9A571 0%, #EE7C5A 82%);
 }
@@ -26,14 +26,18 @@ header {
 }
 
 .linkContainer {
+    min-width: 200px;
     margin-top: 92px;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px 0px 10px;
     background-color: rgba(174,174,174,0.65);
 }
 
 #npmpackage, #npmversion, .gh-btns {
     border-radius: 5px;
+    padding: 0px 5px;
 }
 
 #npmpackage {
@@ -42,7 +46,6 @@ header {
 }
 
 #npmversion {
-    margin-right: 55px;
     width: 125px;
     height: 30px;
 }
