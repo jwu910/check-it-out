@@ -6,7 +6,7 @@ const chalk = require('chalk');
  * @param {Array} output Array containing an array of branch information
  * @return {Object} Object with key-value pairs of remote-branchArray
  */
-async function buildRemotePayload(output) {
+function buildRemotePayload(output) {
   var payload = {};
 
   const remoteList = filterUniqueRemotes(output);
