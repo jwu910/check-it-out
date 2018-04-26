@@ -227,12 +227,27 @@ if (!process.argv.slice(2).length) {
    *
    * @param {String} currentRemote Current displayed remote
    */
-  async function refreshTable(currentRemote) {
-    const results = await git.buildListArray(currentRemote);
+  function refreshTable(currentRemote) {
+    const listArray = git.buildListArray(currentRemote);
 
-    branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...results]);
+    listArray.then((results) => {
+      const branchArray = results[currentRemote];
 
-    remoteList = await git.buildRemoteList();
+      branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...branchArray]);
+
+      screen.render();
+    },(error) => {
+      screen.destroy();
+
+      process.stderr.write('There was an error refreshing table: \n')
+      process.stderr.write(error);
+
+      process.exit(1);
+    });
+
+    git.buildRemoteList().then((results) => {
+      remoteList = results;
+    })
 
     statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
