@@ -6,15 +6,32 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
   'utils',
 ));
 
+/**
+ * Get all remotes from git repository and return an object
+ *
+ * @param {String} remote Remote to list branches from
+ */
 function buildListArray(remote = 'local') {
-  return getBranchesFrom(remote);
+  var refsArray = [];
+
+  const refs = getRefs();
+
+  refsArray = refs
+    .then(formatRemoteBranches)
+    .then(buildRemotePayload);
+
+  return refsArray;
 }
 
 /**
  * @return {Array} Array of unique remotes for tab options
  */
-async function buildRemoteList() {
-  const remoteList = await getRefs()
+function buildRemoteList() {
+  var remoteList = [];
+
+  const refs = getRefs();
+
+  remoteList = refs
     .then(formatRemoteBranches)
     .then(filterUniqueRemotes);
 
@@ -24,34 +41,34 @@ async function buildRemoteList() {
 /**
  * Pull branch information from selection and pass as args to execGit().
  */
-async function doCheckoutBranch(branch, remote) {
+function doCheckoutBranch(branch, remote) {
   const branchPath =
-    remote && remote !== 'local' ? [remote, branch].join('/') : branch;
+    remote && remote !== 'local'
+      ? [remote, branch].join('/')
+      : branch;
 
   const args = ['checkout', branchPath];
 
-  await execGit(args);
+  execGit(args);
 }
 
 /**
  * Call git to create create branch
  *
  */
-async function doCreateBranch(branch) {
+function doCreateBranch(branch) {
   const args = ['checkout', '-b', branch];
 
-  await execGit(args);
+  execGit(args);
 }
 
 /**
  * Return name of current branch.
  */
-async function getCurrentBranch() {
+function getCurrentBranch() {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
-  const currentBranch = await execGit(args);
-
-  return currentBranch;
+  return execGit(args);
 }
 
 /**
@@ -85,10 +102,10 @@ function execGit(args) {
 /**
  * Call git fetch with a prune and quiet flag
  */
-async function doFetchBranches() {
+function doFetchBranches() {
   const args = ['fetch', '-pq'];
 
-  await execGit(args);
+  return execGit(args);
 }
 
 /**
@@ -96,10 +113,10 @@ async function doFetchBranches() {
  * formatted lines for the data table.
  * @param {Array} output Array containing an array of branch information
  */
-async function formatRemoteBranches(output) {
+function formatRemoteBranches(output) {
   var remoteBranchArray = [];
 
-  const selectedBranch = await getCurrentBranch().then(selected => {
+  const selectedBranch = getCurrentBranch().then(selected => {
     return selected.toString();
   });
 
@@ -126,26 +143,10 @@ async function formatRemoteBranches(output) {
  * Get an array of each remote as an array item
  * @return {Array} Array of arrays.
  */
-async function getRefs() {
+function getRefs() {
   const args = ['for-each-ref', '--sort=-committerdate', '--format=%(refname)'];
 
-  const refList = await execGit(args);
-
-  return refList;
-}
-
-/**
- * Get all remotes from git repository and return an object
- * @param {String} remote Remote to list branches from
- */
-async function getBranchesFrom(remote) {
-  const remoteArray = await getRefs();
-
-  const refsArray = await getRefs()
-    .then(formatRemoteBranches)
-    .then(buildRemotePayload);
-
-  return refsArray[remote];
+  return execGit(args);
 }
 
 module.exports = {
