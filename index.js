@@ -230,8 +230,10 @@ if (!process.argv.slice(2).length) {
   function refreshTable(currentRemote) {
     const listArray = git.buildListArray(currentRemote);
 
+    var branchArray = [];
+
     listArray.then((results) => {
-      const branchArray = results[currentRemote];
+      branchArray = results[currentRemote];
 
       branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...branchArray]);
 
@@ -239,7 +241,7 @@ if (!process.argv.slice(2).length) {
     },(error) => {
       screen.destroy();
 
-      process.stderr.write('There was an error refreshing table: \n')
+      process.stderr.write('There was an error refreshing table: \n');
       process.stderr.write(error);
 
       process.exit(1);
