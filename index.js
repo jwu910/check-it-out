@@ -232,6 +232,14 @@ if (!process.argv.slice(2).length) {
 
     var branchArray = [];
 
+    git.buildRemoteList().then((results) => {
+      remoteList = results;
+
+      statusBarText.content = getRemoteTabs(remoteList, currentRemote);
+
+      screen.render();
+    });
+
     listArray.then((results) => {
       branchArray = results[currentRemote];
 
@@ -246,14 +254,6 @@ if (!process.argv.slice(2).length) {
 
       process.exit(1);
     });
-
-    git.buildRemoteList().then((results) => {
-      remoteList = results;
-    })
-
-    statusBarText.content = getRemoteTabs(remoteList, currentRemote);
-
-    screen.render();
   }
 
   refreshTable(currentRemote);
