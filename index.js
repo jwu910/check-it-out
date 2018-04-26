@@ -48,19 +48,21 @@ if (!process.argv.slice(2).length) {
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
-    git.doFetchBranches()
+    git
+      .doFetchBranches()
       .then(() => {
         branchTable.clearItems();
 
         refreshTable(currentRemote);
-      }).catch((error) => {
+      })
+      .catch(error => {
         screen.destroy();
 
         process.stderr.write('Cannot refresh fetch branches.');
         process.stderr.write(error);
 
         process.exit(1);
-      })
+      });
   });
 
   screen.append(branchTable);
@@ -94,44 +96,73 @@ if (!process.argv.slice(2).length) {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    // *
-    //  * @todo: Identify and handle unhandledRejections
-    //  * @body: Some errors are not handled and the following rejection is passed is the workaround
-
-    // process.on('unhandledRejection', reason => {
-    //   console.log(chalk.yellow('[LOG] ') + reason);
-    // });
+    question.setData([
+      ['Create local branch named: ' + chalk.white.bold(gitBranch) + '?'],
+      ['Yes'],
+      ['No'],
+    ]);
 
     // If selection is a remote, prompt if new branch is to be created.
-    if (gitRemote) {
-      question.setData([
-        [
-          'Create local branch named: ' +
-            chalk.white.bold(`${gitBranch}`) +
-            '?',
-        ],
-        ['Yes'],
-        ['No'],
-      ]);
+    git
+      .doCheckoutBranch(gitBranch, gitRemote)
+      .then(() => {
+        if (gitRemote) {
+          screen.append(question);
 
-      screen.append(question);
+          question.focus();
 
-      question.focus();
+          screen.render();
 
-      screen.render();
+          question.on('select', val => {
+            const answer = val.content.trim();
 
-      question.on('select', async (val, key) => {
-        const answer = val.content.trim();
+            if (answer === 'Yes') {
+              git
+                .doCreateBranch(gitBranch)
+                .then(() => {
+                  screen.destroy();
+                })
+                .catch(error => {
+                  screen.destroy();
 
-        if (answer === 'Yes') {
-          git.doCheckoutBranch(gitBranch, gitRemote)
-            .then(git.doCreateBranch(gitBranch))
-            .then(screen.destroy());
+                  process.stderr.write(
+                    chalk.bold.red('[Err] ') +
+                    'Unable checkout ' +
+                    chalk.yellow(gitBranch) +
+                    '\n'
+                  );
+                  process.stderr.write('\n', error);
+
+                  process.exit(1);
+                });
+            }
+          });
         }
+
+        screen.destroy();
+
+        process.stdout.write(
+          chalk.bold.green('[Success] ') +
+          'Checked out to ' +
+          chalk.yellow(gitBranch) +
+          '\n'
+        );
+
+        process.exit(0);
+      })
+      .catch(error => {
+        screen.destroy();
+
+        process.stderr.write(
+          chalk.bold.red('[Err] ') +
+          'Unable checkout ' +
+          chalk.yellow(gitBranch) +
+          '\n'
+        );
+        process.stderr.write(error);
+
+        process.exit(1);
       });
-    } else {
-      git.doCheckoutBranch(gitBranch, gitRemote).then(screen.destroy());
-    }
   });
 
   /**
@@ -232,7 +263,7 @@ if (!process.argv.slice(2).length) {
 
     var branchArray = [];
 
-    git.buildRemoteList().then((results) => {
+    git.buildRemoteList().then(results => {
       remoteList = results;
 
       statusBarText.content = getRemoteTabs(remoteList, currentRemote);
@@ -240,20 +271,26 @@ if (!process.argv.slice(2).length) {
       screen.render();
     });
 
-    listArray.then((results) => {
-      branchArray = results[currentRemote];
+    listArray.then(
+      results => {
+        branchArray = results[currentRemote];
 
-      branchTable.setData([['', 'Remote', 'Branch Name', 'Path'], ...branchArray]);
+        branchTable.setData([
+          ['', 'Remote', 'Branch Name', 'Path'],
+          ...branchArray,
+        ]);
 
-      screen.render();
-    },(error) => {
-      screen.destroy();
+        screen.render();
+      },
+      error => {
+        screen.destroy();
 
-      process.stderr.write('There was an error refreshing table: \n');
-      process.stderr.write(error);
+        process.stderr.write('There was an error refreshing table: \n');
+        process.stderr.write(error);
 
-      process.exit(1);
-    });
+        process.exit(1);
+      },
+    );
   }
 
   refreshTable(currentRemote);
