@@ -127,9 +127,9 @@ if (!process.argv.slice(2).length) {
 
                   process.stderr.write(
                     chalk.bold.red('[Err] ') +
-                    'Unable checkout ' +
-                    chalk.yellow(gitBranch) +
-                    '\n'
+                      'Unable checkout ' +
+                      chalk.yellow(gitBranch) +
+                      '\n',
                   );
                   process.stderr.write('\n', error);
 
@@ -143,9 +143,9 @@ if (!process.argv.slice(2).length) {
 
         process.stdout.write(
           chalk.bold.green('[Success] ') +
-          'Checked out to ' +
-          chalk.yellow(gitBranch) +
-          '\n'
+            'Checked out to ' +
+            chalk.yellow(gitBranch) +
+            '\n',
         );
 
         process.exit(0);
@@ -155,9 +155,9 @@ if (!process.argv.slice(2).length) {
 
         process.stderr.write(
           chalk.bold.red('[Err] ') +
-          'Unable checkout ' +
-          chalk.yellow(gitBranch) +
-          '\n'
+            'Unable checkout ' +
+            chalk.yellow(gitBranch) +
+            '\n',
         );
         process.stderr.write(error);
 

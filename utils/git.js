@@ -16,9 +16,7 @@ function buildListArray(remote = 'local') {
 
   const refs = getRefs();
 
-  refsArray = refs
-    .then(formatRemoteBranches)
-    .then(buildRemotePayload);
+  refsArray = refs.then(formatRemoteBranches).then(buildRemotePayload);
 
   return refsArray;
 }
@@ -31,9 +29,7 @@ function buildRemoteList() {
 
   const refs = getRefs();
 
-  remoteList = refs
-    .then(formatRemoteBranches)
-    .then(filterUniqueRemotes);
+  remoteList = refs.then(formatRemoteBranches).then(filterUniqueRemotes);
 
   return remoteList;
 }
@@ -43,9 +39,7 @@ function buildRemoteList() {
  */
 function doCheckoutBranch(branch, remote) {
   const branchPath =
-    remote && remote !== 'local'
-      ? [remote, branch].join('/')
-      : branch;
+    remote && remote !== 'local' ? [remote, branch].join('/') : branch;
 
   const args = ['checkout', branchPath];
 
