@@ -115,25 +115,22 @@ if (!process.argv.slice(2).length) {
       ]);
 
       screen.append(question);
+
       question.focus();
+
       screen.render();
 
       question.on('select', async (val, key) => {
         const answer = val.content.trim();
 
         if (answer === 'Yes') {
-          await git
-            .doCheckoutBranch(gitBranch, gitRemote)
+          git.doCheckoutBranch(gitBranch, gitRemote)
             .then(git.doCreateBranch(gitBranch))
-            .then(screen.destroy());
-        } else if (answer === 'No') {
-          await git
-            .doCheckoutBranch(gitBranch, gitRemote)
             .then(screen.destroy());
         }
       });
     } else {
-      await git.doCheckoutBranch(gitBranch, gitRemote).then(screen.destroy());
+      git.doCheckoutBranch(gitBranch, gitRemote).then(screen.destroy());
     }
   });
 
