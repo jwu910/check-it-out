@@ -49,7 +49,7 @@ function doCheckoutBranch(branch, remote) {
 
   const args = ['checkout', branchPath];
 
-  execGit(args);
+  return execGit(args);
 }
 
 /**
@@ -59,7 +59,7 @@ function doCheckoutBranch(branch, remote) {
 function doCreateBranch(branch) {
   const args = ['checkout', '-b', branch];
 
-  execGit(args);
+  return execGit(args);
 }
 
 /**
