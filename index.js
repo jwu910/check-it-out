@@ -48,9 +48,19 @@ if (!process.argv.slice(2).length) {
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
-    branchTable.clearItems();
+    git.doFetchBranches()
+      .then(() => {
+        branchTable.clearItems();
 
-    git.doFetchBranches().then(() => refreshTable(currentRemote));
+        refreshTable(currentRemote);
+      }).catch((error) => {
+        screen.destroy();
+
+        process.stderr.write('Cannot refresh fetch branches.');
+        process.stderr.write(error);
+
+        process.exit(1);
+      })
   });
 
   screen.append(branchTable);
@@ -78,19 +88,19 @@ if (!process.argv.slice(2).length) {
     return selection;
   };
 
-  branchTable.on('select', async selectedLine => {
+  branchTable.on('select', selectedLine => {
     const selection = parseSelection(selectedLine.content);
 
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    /**
-     * @todo: Identify and handle unhandledRejections
-     * @body: Some errors are not handled and the following rejection is passed is the workaround
-     */
-    process.on('unhandledRejection', reason => {
-      console.log(chalk.yellow('[LOG] ') + reason);
-    });
+    // *
+    //  * @todo: Identify and handle unhandledRejections
+    //  * @body: Some errors are not handled and the following rejection is passed is the workaround
+
+    // process.on('unhandledRejection', reason => {
+    //   console.log(chalk.yellow('[LOG] ') + reason);
+    // });
 
     // If selection is a remote, prompt if new branch is to be created.
     if (gitRemote) {
