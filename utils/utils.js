@@ -43,7 +43,7 @@ function filterUniqueRemotes(output) {
 }
 
 /**
- *  Get "tabs" for status bar highlighting current remote
+ * Get "tabs" for status bar highlighting current remote
  *
  * @param {Array} remoteList - Array of unique remotes
  * @param {String} currentRemote - Name of current remote

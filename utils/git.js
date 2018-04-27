@@ -36,6 +36,9 @@ function buildRemoteList() {
 
 /**
  * Pull branch information from selection and pass as args to execGit().
+ *
+ * Returns a promise that resolves when the user has successfully checked out
+ * target branch
  */
 function doCheckoutBranch(branch, remote) {
   const branchPath =
@@ -49,6 +52,7 @@ function doCheckoutBranch(branch, remote) {
 /**
  * Call git to create create branch
  *
+ * Returns a promise that resolves when a branch is successfully created.
  */
 function doCreateBranch(branch) {
   const args = ['checkout', '-b', branch];
@@ -58,6 +62,8 @@ function doCreateBranch(branch) {
 
 /**
  * Return name of current branch.
+ *
+ * Returns a promise that resolves to the current branch name.
  */
 function getCurrentBranch() {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
@@ -94,7 +100,9 @@ function execGit(args) {
 }
 
 /**
- * Call git fetch with a prune and quiet flag
+ * Call git fetch with a prune and quiet flag.
+ *
+ * Return a promise that resolves when a user successfully fetches.
  */
 function doFetchBranches() {
   const args = ['fetch', '-pq'];
@@ -105,6 +113,7 @@ function doFetchBranches() {
 /**
  * Format output from getBranchesFrom() and return an array of arrays containing
  * formatted lines for the data table.
+ *
  * @param {Array} output Array containing an array of branch information
  */
 function formatRemoteBranches(output) {
@@ -135,6 +144,7 @@ function formatRemoteBranches(output) {
 
 /**
  * Get an array of each remote as an array item
+ *
  * @return {Array} Array of arrays.
  */
 function getRefs() {
