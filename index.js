@@ -56,12 +56,7 @@ if (!process.argv.slice(2).length) {
         refreshTable(currentRemote);
       })
       .catch(error => {
-        screen.destroy();
-
-        process.stderr.write('Cannot refresh fetch branches.');
-        process.stderr.write(error);
-
-        process.exit(1);
+        handleError(error, currentRemote, 'fetch');
       });
   });
 
@@ -75,6 +70,26 @@ if (!process.argv.slice(2).length) {
   process.on('SIGWINCH', () => {
     screen.emit('resize');
   });
+
+  /**
+   * Handle errors and log to stderr
+   *
+   * @param {error} error Error message returned from promise.
+   */
+   const handleError = (error, branch, type) => {
+    screen.destroy();
+
+    process.stderr.write(
+      chalk.bold.red('[ERR] ') +
+        'Unable to ' +
+        type + ' ' +
+        chalk.yellow(branch) +
+        '\n',
+    );
+    process.stderr.write(error);
+
+    process.exit(1);
+   }
 
   /**
    * Trim and remove whitespace from selected line.
@@ -123,22 +138,12 @@ if (!process.argv.slice(2).length) {
                   screen.destroy();
                 })
                 .catch(error => {
-                  screen.destroy();
-
-                  process.stderr.write(
-                    chalk.bold.red('[Err] ') +
-                      'Unable checkout ' +
-                      chalk.yellow(gitBranch) +
-                      '\n',
-                  );
-                  process.stderr.write('\n', error);
-
-                  process.exit(1);
+                  handleError(error, gitBranch, 'create');
                 });
             }
           });
         }
-
+      }).then(() => {
         screen.destroy();
 
         process.stdout.write(
@@ -151,17 +156,7 @@ if (!process.argv.slice(2).length) {
         process.exit(0);
       })
       .catch(error => {
-        screen.destroy();
-
-        process.stderr.write(
-          chalk.bold.red('[Err] ') +
-            'Unable checkout ' +
-            chalk.yellow(gitBranch) +
-            '\n',
-        );
-        process.stderr.write(error);
-
-        process.exit(1);
+        handleError(error, gitBranch, 'checkout');
       });
   });
 
@@ -283,12 +278,7 @@ if (!process.argv.slice(2).length) {
         screen.render();
       },
       error => {
-        screen.destroy();
-
-        process.stderr.write('There was an error refreshing table: \n');
-        process.stderr.write(error);
-
-        process.exit(1);
+        handleError(error, currentRemote, 'fetch');
       },
     );
   }
