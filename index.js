@@ -33,6 +33,10 @@ if (!process.argv.slice(2).length) {
   const statusBar = dialogue.statusBar();
   const statusHelpText = dialogue.statusHelpText();
 
+  const CHECKOUT = 'CHECKOUT';
+  const CHECKED_OUT = 'CHECKED OUT';
+  const CREATED = 'CREATED';
+
   var currentRemote = 'local';
   var remoteList = [];
 
@@ -84,12 +88,12 @@ if (!process.argv.slice(2).length) {
       if (answer === 'Yes') {
         git
           .doCreateBranch(branch)
-          .then(({ success }) => handleSuccess(success, branch, 'Created'))
+          .then(({ success }) => handleSuccess(success, branch, CREATED))
           .catch(error => {
             handleError(error, branch, 'create');
           });
       } else {
-        handleSuccess('', branch, 'Created');
+        handleSuccess('', branch, CREATED);
       }
     });
   };
@@ -159,13 +163,13 @@ if (!process.argv.slice(2).length) {
         if (gitRemote) {
           handleDetatchedHead(gitBranch);
         } else {
-          handleSuccess(success, branch, 'Checkedout');
+          handleSuccess(success, branch, CHECKED_OUT);
         }
 
         process.exit(0);
       })
       .catch(error => {
-        handleError(error, gitBranch, 'checkout');
+        handleError(error, gitBranch, CHECKOUT);
       });
   });
 
