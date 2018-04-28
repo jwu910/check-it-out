@@ -71,25 +71,60 @@ if (!process.argv.slice(2).length) {
     screen.emit('resize');
   });
 
+  const handleDetatchedHead = branch => {
+    screen.append(question);
+
+    screen.render();
+
+    question.focus();
+
+    question.on('select', val => {
+      const answer = val.content.trim();
+
+      if (answer === 'Yes') {
+        git
+          .doCreateBranch(branch)
+          .then(({ success }) => handleSuccess(success, branch, 'Created'))
+          .catch(error => {
+            handleError(error, branch, 'create');
+          });
+      } else {
+        handleSuccess('', branch, 'Created');
+      }
+    });
+  };
+
   /**
    * Handle errors and log to stderr
    *
    * @param {error} error Error message returned from promise.
    */
-   const handleError = (error, branch, type) => {
+  const handleError = (error, branch, type) => {
     screen.destroy();
 
     process.stderr.write(
       chalk.bold.red('[ERR] ') +
         'Unable to ' +
-        type + ' ' +
+        type +
+        ' ' +
         chalk.yellow(branch) +
         '\n',
     );
     process.stderr.write(error);
 
     process.exit(1);
-   }
+  };
+
+  const handleSuccess = (success, branch, type) => {
+    screen.destroy();
+
+    process.stdout.write(
+      chalk.bold.green('[SUCCESS] ') + type + ' ' + chalk.yellow(branch) + '\n',
+    );
+    process.stdout.write(success);
+
+    process.exit(0);
+  };
 
   /**
    * Trim and remove whitespace from selected line.
@@ -120,38 +155,12 @@ if (!process.argv.slice(2).length) {
     // If selection is a remote, prompt if new branch is to be created.
     git
       .doCheckoutBranch(gitBranch, gitRemote)
-      .then(() => {
+      .then(({ success }) => {
         if (gitRemote) {
-          screen.append(question);
-
-          question.focus();
-
-          screen.render();
-
-          question.on('select', val => {
-            const answer = val.content.trim();
-
-            if (answer === 'Yes') {
-              git
-                .doCreateBranch(gitBranch)
-                .then(() => {
-                  screen.destroy();
-                })
-                .catch(error => {
-                  handleError(error, gitBranch, 'create');
-                });
-            }
-          });
+          handleDetatchedHead(gitBranch);
+        } else {
+          handleSuccess(success, branch, 'Checkedout');
         }
-      }).then(() => {
-        screen.destroy();
-
-        process.stdout.write(
-          chalk.bold.green('[Success] ') +
-            'Checked out to ' +
-            chalk.yellow(gitBranch) +
-            '\n',
-        );
 
         process.exit(0);
       })
