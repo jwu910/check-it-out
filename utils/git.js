@@ -146,7 +146,6 @@ module.exports = {
   buildListArray,
   buildRemoteList,
   doCheckoutBranch,
-  doCreateBranch,
   getCurrentBranch,
   doFetchBranches,
 };
