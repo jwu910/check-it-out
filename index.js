@@ -29,7 +29,6 @@ if (!process.argv.slice(2).length) {
   const branchTable = dialogue.branchTable();
   const statusBarText = dialogue.statusBarText();
   const helpDialogue = dialogue.helpDialogue();
-  const question = dialogue.question();
   const statusBar = dialogue.statusBar();
   const statusHelpText = dialogue.statusHelpText();
 
@@ -75,33 +74,6 @@ if (!process.argv.slice(2).length) {
   process.on('SIGWINCH', () => {
     screen.emit('resize');
   });
-
-  const handleDetatchedHead = branch => {
-    question.setData([
-      ['Create local branch named: ' + chalk.white.bold(gitBranch) + '?'],
-      ['Yes'],
-      ['No'],
-    ]);
-
-    screen.append(question);
-
-    screen.render();
-
-    question.focus();
-
-    question.on('select', val => {
-      const answer = val.content.trim();
-
-      if (answer === 'Yes') {
-        git
-          .doCreateBranch(branch)
-          .then(({ success }) => handleSuccess(success, branch, CREATED))
-          .catch(error => handleError(error, branch, CREATE));
-      } else {
-        handleSuccess('', branch, CREATED);
-      }
-    });
-  };
 
   /**
    * Handle errors and log to stderr
@@ -159,13 +131,7 @@ if (!process.argv.slice(2).length) {
     git
       .doCheckoutBranch(gitBranch, gitRemote)
       .then(({ success }) => {
-        if (gitRemote) {
-          handleDetatchedHead(gitBranch);
-        } else {
           handleSuccess(success, branch, CHECKED_OUT);
-        }
-
-        process.exit(0);
       })
       .catch(error => {
         handleError(error, gitBranch, CHECKOUT);

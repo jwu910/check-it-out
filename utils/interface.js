@@ -59,40 +59,6 @@ function helpDialogue() {
   return helpDialogue;
 }
 
-function question() {
-  const question = blessed.listtable({
-    align: 'left',
-    border: { type: 'line' },
-    height: 5,
-    keys: true,
-    left: 2,
-    style: {
-      border: { fg: THEME_COLOR },
-      cell: {
-        selected: {
-          bg: '#FFFFFF',
-          fg: '#272727',
-        },
-      },
-      header: {
-        fg: THEME_COLOR,
-      },
-      label: {
-        fg: '#FFFFFF',
-      },
-      scrollbar: {
-        bg: THEME_COLOR,
-      },
-    },
-    tags: true,
-    top: '30%',
-    vi: true,
-    width: 'shrink',
-  });
-
-  return question;
-}
-
 function screen() {
   const screen = blessed.screen({
     autoPadding: true,
@@ -138,7 +104,6 @@ module.exports = {
   branchTable,
   statusBarText,
   helpDialogue,
-  question,
   screen,
   statusBar,
   statusHelpText,

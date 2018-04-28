@@ -50,17 +50,6 @@ function doCheckoutBranch(branch, remote) {
 }
 
 /**
- * Call git to create create branch
- *
- * Returns a promise that resolves when a branch is successfully created.
- */
-function doCreateBranch(branch) {
-  const args = ['checkout', '-b', branch];
-
-  return execGit(args);
-}
-
-/**
  * Return name of current branch.
  *
  * Returns a promise that resolves to the current branch name.
