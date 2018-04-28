@@ -77,6 +77,12 @@ if (!process.argv.slice(2).length) {
   });
 
   const handleDetatchedHead = branch => {
+    question.setData([
+      ['Create local branch named: ' + chalk.white.bold(gitBranch) + '?'],
+      ['Yes'],
+      ['No'],
+    ]);
+
     screen.append(question);
 
     screen.render();
@@ -148,12 +154,6 @@ if (!process.argv.slice(2).length) {
 
     const gitBranch = selection[2];
     const gitRemote = selection[1];
-
-    question.setData([
-      ['Create local branch named: ' + chalk.white.bold(gitBranch) + '?'],
-      ['Yes'],
-      ['No'],
-    ]);
 
     // If selection is a remote, prompt if new branch is to be created.
     git
