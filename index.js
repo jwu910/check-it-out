@@ -35,6 +35,7 @@ if (!process.argv.slice(2).length) {
 
   const CHECKOUT = 'CHECKOUT';
   const CHECKED_OUT = 'CHECKED OUT';
+  const CREATE = 'CREATE';
   const CREATED = 'CREATED';
 
   var currentRemote = 'local';
@@ -89,9 +90,7 @@ if (!process.argv.slice(2).length) {
         git
           .doCreateBranch(branch)
           .then(({ success }) => handleSuccess(success, branch, CREATED))
-          .catch(error => {
-            handleError(error, branch, 'create');
-          });
+          .catch(error => handleError(error, branch, CREATE));
       } else {
         handleSuccess('', branch, CREATED);
       }
