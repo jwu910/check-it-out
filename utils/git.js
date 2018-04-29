@@ -43,7 +43,7 @@ function buildRemoteList() {
 function doCheckoutBranch(branch, remote) {
   var branchPath = '';
 
-  if (remote && remote !== 'local' || remote !== 'origin') {
+  if (remote && remote !== 'local' && remote !== 'origin') {
     branchPath = [remote, branch].join('/');
   } else {
     branchPath = branch;
