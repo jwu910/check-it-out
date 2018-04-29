@@ -41,8 +41,13 @@ function buildRemoteList() {
  * target branch
  */
 function doCheckoutBranch(branch, remote) {
-  const branchPath =
-    remote && remote !== 'local' ? [remote, branch].join('/') : branch;
+  var branchPath = '';
+
+  if (remote && remote !== 'local' || remote !== 'origin') {
+    branchPath = [remote, branch].join('/');
+  } else {
+    branchPath = branch;
+  }
 
   const args = ['checkout', branchPath];
 
