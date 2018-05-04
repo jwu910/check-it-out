@@ -234,6 +234,11 @@ footer a  {
     font-size: 18px;
 }
 
+/* Overflow for npm commands */
+pre {
+    overflow: auto;
+}
+
 
 
 
