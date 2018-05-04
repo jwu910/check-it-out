@@ -25,7 +25,7 @@ header {
     line-height: 33px;
 }
 
-.linkContainer {
+.link-container {
     min-width: 200px;
     margin-top: 92px;
     display: flex;
@@ -109,7 +109,7 @@ header {
     height: 125px;
 }
 
-.requireLinks {
+.require-links {
     font-family: "Arial";
     font-size: 24px;
 }
@@ -224,7 +224,7 @@ footer {
     padding: 10px 0px 0px 0px;
 }
 
-.footercontent:nth-of-type(4) {
+.footer-content:nth-of-type(4) {
     background: rgba(0,0,0,.10);
     padding: 10px 0px 10px 0px;
 }
@@ -233,7 +233,7 @@ footer a  {
     color: white;
 }
 
-.footercontent {
+.footer-content {
     color: #ED9E6D;
     font-size: 18px;
 }
