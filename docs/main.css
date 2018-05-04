@@ -201,7 +201,7 @@ tr:nth-child(even) {
 
 /* Footer */
 footer {
-    height: 160px;
+    height: 158px;
     text-align: center;
     color: #ed9e6d;
     background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
