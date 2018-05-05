@@ -5,66 +5,57 @@
 
 /* Header Content */
 header {
-    text-align: center;
-    padding-top: 95px;
-    border: 1px solid #979797;
     background: radial-gradient(100% 50%, #E9A571 0%, #EE7C5A 82%);
+    border: 1px solid #979797;
+    padding-top: 96px;
+    text-align: center;
 }
 
-#headline {
-    font-family: "Arial Black";
+.headline {
     color: #FFFFFF;
+    font-family: "Arial Black";
     font-size: 72px;
-    line-height: 101px;
 }
 
-#subheadline {
-    font-family: "Arial Black";
+.subheadline {
     color: #916246;
+    font-family: "Arial Black";
     font-size: 24px;
-    line-height: 33px;
 }
 
 .link-container {
-    min-width: 200px;
-    margin-top: 92px;
+    background-color: rgba(174,174,174,0.65);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 96px;
+    min-width: 200px;
     padding: 20px 0px 10px;
-    background-color: rgba(174,174,174,0.65);
 }
 
-#npmpackage, #npmversion {
+.npm-badges {
     border-radius: 5px;
-    padding: 0px 10px 0px 0px;
+    height: 30px;
+    width: 135px;
+    padding-right: 10px;
 }
+
 .gh-btns {
     border-radius: 5px;
-    padding: 0px 0px 0px 5px;
-}
-
-#npmpackage {
-    width: 160px;
-    height: 30px;
-}
-
-#npmversion {
-    width: 125px;
-    height: 30px;
+    padding-left: 5px;
 }
 
 /* Main Content flexbox */
 .main {
-    max-width: 640px;
     margin: 0 auto;
-    padding: 50px 25px;
+    max-width: 640px;
+    padding: 48px 24px;
 }
 
 /* Info */
 .infoContainer {
     margin: 0 auto;
-    margin-top: 55px;
+    margin-top: 56px;
     width: 35%;
 }
 
@@ -78,35 +69,35 @@ header {
     font-family: "Arial";
     font-size: 20px;
     text-align: left;
-    line-height: 23px;
+    line-height: 24px;
 }
 
 .contents:nth-of-type(1) {
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 .contents:nth-of-type(2) {
-    margin-top: 15px;
+    margin-top: 16px;
 }
 
 /* Require */
 #requireTitle {
-    margin-top: 50px;
+    color: #EE7C5B;
     font-family: "Arial Black";
     font-size: 24px;
-    color: #EE7C5B;
+    margin-top: 48px;
 }
 
 #nodelogo {
-    padding: 10px 0px 0px 35px;
-    width: 230px;
     height: 135px;
+    padding: 8px 0px 0px 32px;
+    width: 224px;
 }
 
 #gitlogo {
-    padding: 10px 0px 0px 35px;
-    width:300px;
     height: 125px;
+    padding: 8px 0px 0px 32px;
+    width: 296px;
 }
 
 .require-links {
@@ -115,7 +106,7 @@ header {
 }
 
 .main p:nth-of-type(3) {
-    padding: 15px 0px 0px 0px;
+    padding-top: 16px;
 }
 
 a {
@@ -123,51 +114,48 @@ a {
 }
 
 /* Installation */
-#installTitle, #linuxMacTitle, #usageTitle {
-    margin-top: 50px;
+#installTitle, #linuxMacTitle, #usageTitle, #sourceTitle {
+    margin-top: 48px;
     font-family: "Arial Black";
     font-size: 24px;
     color: #EE7C5B;
 }
 
-#sourceTitle {
-    margin-top: 5px;
-    font-family: "Arial Black";
-    font-size: 20px;
-    color: #EE7C5B;
-}
-
 .contents:nth-of-type(5) {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 pre {
-    padding: 10px;
+    padding: 8px;
     background-color: #F6F8FA;
     border-radius: 3px;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .contents:nth-of-type(6) {
-    margin-top: 10px;
+    margin-top: 16px;
 }
 
 .contents:nth-of-type(7) {
-    margin-top: 10px;
+    margin-top: 8px;
+}
+
+.contents:nth-of-type(8) {
+    margin-top:8px;
 }
 
 /* Linux/Mac */
 .contents:nth-of-type(9) {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 /* Usage */
 .contents:nth-of-type(10) {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 table {
-    margin-top: 10px;
+    margin-top: 16px;
     width: 100%;
     border: 2px solid #979797;
     border-collapse: collapse;
@@ -175,16 +163,16 @@ table {
 
 td {
     border: 2px solid #979797;
-    font-size: 18px;
-    padding: 5px 0px 5px 5px;
+    font-size: 16px;
+    padding: 8px 0px 8px 8px;
 }
 
 th {
     border: 2px solid #979797;
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
     color: #EE7C58;
-    padding: 5px 0px 5px 5px;
+    padding: 8px 0px 8px 8px;
 }
 
 .description {
@@ -201,32 +189,31 @@ tr:nth-child(even) {
 
 /* Footer */
 footer {
-    height: 158px;
-    text-align: center;
-    color: #ed9e6d;
     background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
+    color: #ed9e6d;
+    height: 154px;
+    text-align: center;
 }
 
 #contributing {
-    margin-top: 25px;
     color: #ED9E6D;
-    padding: 10px 0px 10px 0px; 
-    font-size: 20px;
     font-family: "Arial Black";
+    font-size: 20px;
+    margin-top: 32px;
+    padding: 8px 0px; 
 }
 
 #license {
     background: rgba(0,0,0,.10);
-    margin-top: 10px;
     color: #ED9E6D;
     font-size: 20px;
     font-family: "Arial Black";
-    padding: 10px 0px 0px 0px;
+    padding-top: 8px;
 }
 
 .footer-content:nth-of-type(4) {
     background: rgba(0,0,0,.10);
-    padding: 10px 0px 10px 0px;
+    padding: 8px 0px;
 }
 
 footer a  {
@@ -234,16 +221,12 @@ footer a  {
 }
 
 .footer-content {
-    color: #ED9E6D;
+    color: #ee7c5b;
     font-size: 18px;
+    padding: 8px 0px;
 }
 
 /* Overflow for npm commands */
 pre {
     overflow: auto;
 }
-
-
-
-
-
