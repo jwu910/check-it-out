@@ -114,13 +114,6 @@ a {
 }
 
 /* Installation */
-#installTitle, #linuxMacTitle, #usageTitle, #sourceTitle {
-    margin-top: 48px;
-    font-family: "Arial Black";
-    font-size: 24px;
-    color: #EE7C5B;
-}
-
 .contents:nth-of-type(5) {
     margin-top: 16px;
 }
@@ -190,7 +183,7 @@ tr:nth-child(even) {
 /* Footer */
 footer {
     background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
-    color: #ed9e6d;
+    color: #ED9E6D;
     height: 154px;
     text-align: center;
 }
@@ -221,7 +214,7 @@ footer a  {
 }
 
 .footer-content {
-    color: #ee7c5b;
+    color: #EE7C5B;
     font-size: 18px;
     padding: 8px 0px;
 }
@@ -229,4 +222,12 @@ footer a  {
 /* Overflow for npm commands */
 pre {
     overflow: auto;
+}
+
+/* All titles from .main section */
+.title {
+    margin-top: 48px;
+    font-family: "Arial Black";
+    font-size: 24px;
+    color: #EE7C5B;
 }
