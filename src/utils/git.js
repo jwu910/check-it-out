@@ -72,23 +72,26 @@ function getCurrentBranch() {
  */
 function execGit(args) {
   return new Promise((resolve, reject) => {
+    let dataString = '';
+    let errorString = '';
+
     const gitResponse = spawn('git', args, {
       cwd: process.cwd(),
       silent: true,
     });
 
-    var retVal = '';
+    gitResponse.stdout.setEncoding('utf8');
+    gitResponse.stderr.setEncoding('utf8');
 
-    gitResponse.stdout.on('data', data => {
-      retVal += data.toString();
-    });
+    gitResponse.stdout.on('data', (data) => dataString += data);
+    gitResponse.stderr.on('data', (data) => errorString += data);
 
-    gitResponse.stdout.on('close', () => {
-      resolve(retVal.trim());
-    });
-
-    gitResponse.stderr.on('data', stderr => {
-      reject(stderr.toString());
+    gitResponse.on('close', (code) => {
+      if (code === 0) {
+        resolve(dataString.trim());
+      } else {
+        reject(errorString.trim());
+      }
     });
   });
 }
