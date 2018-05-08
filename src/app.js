@@ -18,7 +18,13 @@ if (notifier.update) {
   notifier.notify();
 }
 
-export const start = () => {
+export const start = (args) => {
+  if (args[0] === '-v' || args[0] === '--version') {
+    process.stdout.write(pkg.version);
+
+    process.exit(0);
+  }
+
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
