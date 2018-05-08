@@ -12,7 +12,7 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
  * @param {String} remote Remote to list branches from
  */
 function buildListArray(remote = 'local') {
-  var refsArray = [];
+  let refsArray = [];
 
   const refs = getRefs();
 
@@ -25,7 +25,7 @@ function buildListArray(remote = 'local') {
  * @return {Array} Array of unique remotes for tab options
  */
 function buildRemoteList() {
-  var remoteList = [];
+  let remoteList = [];
 
   const refs = getRefs();
 
@@ -41,7 +41,7 @@ function buildRemoteList() {
  * target branch
  */
 function doCheckoutBranch(branch, remote) {
-  var branchPath = '';
+  let branchPath = '';
 
   if (remote && remote !== 'local' && remote !== 'origin') {
     branchPath = [remote, branch].join('/');
@@ -114,7 +114,7 @@ function doFetchBranches() {
  * @param {Array} output Array containing an array of branch information
  */
 function formatRemoteBranches(output) {
-  var remoteBranchArray = [];
+  let remoteBranchArray = [];
 
   const selectedBranch = getCurrentBranch().then(selected => {
     return selected.toString();

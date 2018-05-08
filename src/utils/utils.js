@@ -7,7 +7,7 @@ const chalk = require('chalk');
  * @return {Object} Object with key-value pairs of remote-branchArray
  */
 function buildRemotePayload(output) {
-  var payload = {};
+  let payload = {};
 
   const remoteList = filterUniqueRemotes(output);
 
@@ -33,7 +33,7 @@ function onlyUnique(value, index, self) {
  * @return {Array} Array containing a unique set of remotes for this repository
  */
 function filterUniqueRemotes(output) {
-  var remoteList = [];
+  let remoteList = [];
 
   output.forEach(remote => remoteList.push(remote[1]));
 

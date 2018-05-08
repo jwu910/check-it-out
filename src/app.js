@@ -38,8 +38,8 @@ export const start = (args) => {
   const CREATE = 'CREATE';
   const CREATED = 'CREATED';
 
-  var currentRemote = 'local';
-  var remoteList = [];
+  let currentRemote = 'local';
+  let remoteList = [];
 
   const toggleHelp = () => {
     helpDialogue.toggle();
@@ -168,7 +168,7 @@ export const start = (args) => {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    var args = [];
+    let args = [];
 
     if (gitRemote) {
       args.push(gitRemote);
@@ -193,7 +193,7 @@ export const start = (args) => {
    * @return {String}
    */
   function getPrevRemote(currentRemote, remoteList) {
-    var currIndex = remoteList.indexOf(currentRemote);
+    let currIndex = remoteList.indexOf(currentRemote);
 
     if (currIndex > 0) {
       currIndex -= 1;
@@ -214,7 +214,7 @@ export const start = (args) => {
    * @return {String}
    */
   function getNextRemote(currentRemote, remoteList) {
-    var currIndex = remoteList.indexOf(currentRemote);
+    let currIndex = remoteList.indexOf(currentRemote);
 
     if (currIndex < remoteList.length - 1) {
       currIndex += 1;
@@ -235,7 +235,7 @@ export const start = (args) => {
   function refreshTable(currentRemote) {
     const listArray = git.buildListArray(currentRemote);
 
-    var branchArray = [];
+    let branchArray = [];
 
     git.buildRemoteList().then(results => {
       remoteList = results;
