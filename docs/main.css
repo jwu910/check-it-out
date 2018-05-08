@@ -3,6 +3,38 @@
     padding: 0px;
 }
 
+/* Remove text decoration for all anchor elements */
+a {
+    text-decoration: none;
+}
+
+/* Overflow for npm commands */
+pre {
+    overflow: auto;
+    background-color: #F6F8FA;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 8px;
+}
+
+/* All .title contents from .main section */
+.title {
+    color: #EE7C5B;
+    font-family: "Arial Black";
+    font-size: 24px;
+    margin-top: 48px;
+}
+
+/* All .contents from .main section */
+.contents {
+    font-family: "Arial";
+    font-size: 20px;
+    line-height: 24px;
+    padding-top: 8px;
+    text-align: left;
+}
+
+
 /* Header Content */
 header {
     background: radial-gradient(100% 50%, #E9A571 0%, #EE7C5A 82%);
@@ -49,45 +81,19 @@ header {
 .main {
     margin: 0 auto;
     max-width: 640px;
-    padding: 48px 24px;
+    padding: 24px 24px;
 }
 
 /* Info */
-.infoContainer {
-    margin: 0 auto;
-    margin-top: 56px;
-    width: 35%;
-}
-
-#infoTitle {
-    font-family: "Arial Black";
-    font-size: 24px;
-    color: #EE7C5B;
-}
-
-.contents {
-    font-family: "Arial";
-    font-size: 20px;
-    text-align: left;
-    line-height: 24px;
-}
-
-.contents:nth-of-type(1) {
+.info-section .contents:nth-of-type(1) {
     margin-top: 32px;
 }
 
-.contents:nth-of-type(2) {
+.info-section .contents:nth-of-type(2) {
     margin-top: 16px;
 }
 
 /* Require */
-#requireTitle {
-    color: #EE7C5B;
-    font-family: "Arial Black";
-    font-size: 24px;
-    margin-top: 48px;
-}
-
 #nodelogo {
     height: 135px;
     padding: 8px 0px 0px 32px;
@@ -105,67 +111,23 @@ header {
     font-size: 24px;
 }
 
-.main p:nth-of-type(3) {
-    padding-top: 16px;
-}
-
-a {
-    text-decoration: none;
-}
-
 /* Installation */
-.contents:nth-of-type(5) {
-    margin-top: 16px;
-}
-
-pre {
-    padding: 8px;
-    background-color: #F6F8FA;
-    border-radius: 3px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.contents:nth-of-type(6) {
-    margin-top: 16px;
-}
-
-.contents:nth-of-type(7) {
-    margin-top: 8px;
-}
-
-.contents:nth-of-type(8) {
-    margin-top:8px;
-}
-
-/* Linux/Mac */
-.contents:nth-of-type(9) {
-    margin-top: 16px;
-}
-
-/* Usage */
-.contents:nth-of-type(10) {
-    margin-top: 16px;
-}
-
 table {
-    margin-top: 16px;
-    width: 100%;
     border: 2px solid #979797;
     border-collapse: collapse;
+    margin-top: 16px;
+    width: 100%;
 }
 
-td {
+td, th {
     border: 2px solid #979797;
     font-size: 16px;
     padding: 8px 0px 8px 8px;
+    text-align: left;
 }
 
 th {
-    border: 2px solid #979797;
-    font-size: 16px;
-    text-align: left;
     color: #EE7C58;
-    padding: 8px 0px 8px 8px;
 }
 
 .description {
@@ -184,29 +146,20 @@ tr:nth-child(even) {
 footer {
     background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
     color: #ED9E6D;
-    height: 154px;
+    height: 146px;
+    margin-top: 48px;
     text-align: center;
 }
 
-#contributing {
+.footer-title {
     color: #ED9E6D;
     font-family: "Arial Black";
     font-size: 20px;
-    margin-top: 32px;
     padding: 8px 0px; 
 }
 
-#license {
+.footer-shadow {
     background: rgba(0,0,0,.10);
-    color: #ED9E6D;
-    font-size: 20px;
-    font-family: "Arial Black";
-    padding-top: 8px;
-}
-
-.footer-content:nth-of-type(4) {
-    background: rgba(0,0,0,.10);
-    padding: 8px 0px;
 }
 
 footer a  {
@@ -216,18 +169,5 @@ footer a  {
 .footer-content {
     color: #EE7C5B;
     font-size: 18px;
-    padding: 8px 0px;
-}
-
-/* Overflow for npm commands */
-pre {
-    overflow: auto;
-}
-
-/* All titles from .main section */
-.title {
-    margin-top: 48px;
-    font-family: "Arial Black";
-    font-size: 24px;
-    color: #EE7C5B;
+    padding: 4px 0px;
 }
