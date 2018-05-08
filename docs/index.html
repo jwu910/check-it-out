@@ -22,34 +22,33 @@
     </header>
     <div class="main">
         <div class="info-section">
-            <h2 id="infoTitle"> What is Check It Out? </h2>
+            <h2 class="title"> What is Check It Out? </h2>
             <p class="contents"> Check it out, before you checkout. </p>
             <p class="contents"> Too many keystrokes just to checkout a branch? Tired of long branch names? Check it out gives you the interactive power to see your branches and check them out with fewer keystrokes </p>
         </div>
         <div class="require-section">
-            <h2 id="requireTitle"> Requirements </h2>
+            <h2 class="title"> Requirements </h2>
             <img src="./images/nodeicon.png" alt="node.js logo" id="nodelogo">
             <img src="./images/giticon.png" alt="git logo" id="gitlogo">
             <p class="require-links"><a href="https://nodejs.org/en/blog/release/v7.0.0/">Node >= v7.0 </a> - Required for async/await </p>
-            <p class="require-links"><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> - Required for core features
-            </p>
+            <p class="require-links"><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> - Required for core features </p>
         </div>
         <div class="install-section">
-            <h2 id="installTitle" class="title"> Installation </h2>
+            <h2 class="title"> Installation </h2>
             <p class="contents"> We're on <a href="https://www.npmjs.org/package/check-it-out">NPM!</a></p>
             <pre> npm install -g check-it-out </pre>
-            <h2 id="sourceTitle" class="title"> Installing from source </h2>
+            <h2 class="title"> Installing from source </h2>
             <p class="contents"> Fork or clone the repository </p>
             <pre> git clone https://github.com/jwu910/check-it-out.git </pre>
             <p class="contents"> Navigate to your repository and run </p>
             <pre> npm install </pre>
             <p class="contents"> Creat a symbolic link to your entry point </p>
-            <h2 id="linuxMacTitle" class="title"> Linux/Mac </h2>
+            <h2 class="title"> Linux/Mac </h2>
             <p class="contents"> Navigate to a desired destination directory currently in your pathway </p>
             <pre> ln -s /path/to/check-it-out/index.js checkit </pre>
         </div>
         <div class="usage-section">
-            <h2 id="usageTitle" class="title"> Usage </h2>
+            <h2 class="title"> Usage </h2>
             <p class="contents"> Run this command to list local and remote branches! </p>
             <pre> checkit </pre>
             <table>
@@ -85,10 +84,12 @@
         </div>
     </div>
     <footer>
-        <h2 id="contributing"> Contributing </h2>
+        <h2 id="contributing" class="footer-title"> Contributing </h2>
         <h2 class="footer-content"> Please refer to <a href="../CONTRIBUTING.md">Contributing Guidelines</a></h2>
-        <h2 id="license"> License </h2>
-        <h2 class="footer-content"> MIT @ <a href="https://www.npmjs.com/~jwu910"> Joshua Wu</a></h2>
+        <div class="footer-shadow">
+            <h2 id="license" class="footer-title"> License </h2>
+            <h2 class="footer-content"> MIT @ <a href="https://www.npmjs.com/~jwu910"> Joshua Wu</a></h2>
+        </div>
     </footer>
 </body>
 </html>
