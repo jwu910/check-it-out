@@ -75,22 +75,19 @@ function execGit(args) {
     let dataString = '';
     let errorString = '';
 
-    const gitResponse = spawn('git', args, {
-      cwd: process.cwd(),
-      silent: true,
-    });
+    const gitResponse = spawn('git', args);
 
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');
 
-    gitResponse.stdout.on('data', (data) => dataString += data);
-    gitResponse.stderr.on('data', (data) => errorString += data);
+    gitResponse.stdout.on('data', data => (dataString += data));
+    gitResponse.stderr.on('data', data => (errorString += data));
 
-    gitResponse.on('close', (code) => {
+    gitResponse.on('close', code => {
       if (code === 0) {
-        resolve(dataString.trim());
+        resolve(dataString.toString());
       } else {
-        reject(errorString.trim());
+        reject(errorString.toString());
       }
     });
   });
