@@ -6,7 +6,13 @@ const chalk = require('chalk');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const git = require(path.resolve(__dirname, 'utils/git'));
+const {
+  doCheckoutBranch,
+  doFetchBranches,
+  buildListArray,
+  buildRemoteList,
+} = require(path.resolve(__dirname, 'utils/git'));
+
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
 
@@ -53,8 +59,7 @@ export const start = (args) => {
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
-    git
-      .doFetchBranches()
+    doFetchBranches()
       .then(() => {
         branchTable.clearItems();
 
@@ -129,10 +134,9 @@ export const start = (args) => {
     const gitRemote = selection[1];
 
     // If selection is a remote, prompt if new branch is to be created.
-    git
-      .doCheckoutBranch(gitBranch, gitRemote)
-      .then(({ success }) => {
-          handleSuccess(success, branch, CHECKED_OUT);
+    return doCheckoutBranch(gitBranch, gitRemote)
+      .then(output => {
+        screen.destroy();
       })
       .catch(error => {
         handleError(error, gitBranch, CHECKOUT);
@@ -233,11 +237,11 @@ export const start = (args) => {
    * @param {String} currentRemote Current displayed remote
    */
   function refreshTable(currentRemote) {
-    const listArray = git.buildListArray(currentRemote);
+    const listArray = buildListArray(currentRemote);
 
     let branchArray = [];
 
-    git.buildRemoteList().then(results => {
+    buildRemoteList().then(results => {
       remoteList = results;
 
       statusBarText.content = getRemoteTabs(remoteList, currentRemote);
@@ -263,4 +267,4 @@ export const start = (args) => {
   }
 
   refreshTable(currentRemote);
-}
+};
