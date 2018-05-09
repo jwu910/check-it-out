@@ -24,7 +24,7 @@ if (notifier.update) {
   notifier.notify();
 }
 
-export const start = (args) => {
+export const start = args => {
   if (args[0] === '-v' || args[0] === '--version') {
     process.stdout.write(pkg.version);
 
@@ -97,20 +97,9 @@ export const start = (args) => {
         chalk.yellow(branch) +
         '\n',
     );
-    process.stderr.write(error);
+    process.stderr.write(error.toString());
 
     process.exit(1);
-  };
-
-  const handleSuccess = (success, branch, type) => {
-    screen.destroy();
-
-    process.stdout.write(
-      chalk.bold.green('[SUCCESS] ') + type + ' ' + chalk.yellow(branch) + '\n',
-    );
-    process.stdout.write(success);
-
-    process.exit(0);
   };
 
   /**
