@@ -137,9 +137,9 @@ function formatRemoteBranches(output) {
 }
 
 /**
- * Get an array of each remote as an array item
+ * Print all refs assicated with git repository.
  *
- * @return {Array} Array of arrays.
+ * @return {String} String list of each ref associated with repository.
  */
 function getRefs() {
   const args = ['for-each-ref', '--sort=-committerdate', '--format=%(refname)'];
