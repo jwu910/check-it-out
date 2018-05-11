@@ -2,10 +2,4 @@
 
 const app = require('./lib/app');
 
-if (process.stdin.isTTY) {
-  app.start(process.argv.slice(2));
-} else {
-  process.stderr.write('Error: Cannot pipe into Check It Out');
-
-  process.exit(1);
-}
+app.start(process.argv.slice(2));
