@@ -1,7 +1,3 @@
-#!/usr/bin/env node
-
-'use strict';
-
 const chalk = require('chalk');
 const path = require('path');
 const updateNotifier = require('update-notifier');
@@ -17,7 +13,7 @@ const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
 
 // Checks for available update and returns an instance
-const pkg = require(path.resolve('./package.json'));
+const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
 
 if (notifier.update) {
@@ -34,15 +30,10 @@ export const start = args => {
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
-  const statusBarText = dialogue.statusBarText();
   const helpDialogue = dialogue.helpDialogue();
   const statusBar = dialogue.statusBar();
+  const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
-
-  const CHECKOUT = 'CHECKOUT';
-  const CHECKED_OUT = 'CHECKED OUT';
-  const CREATE = 'CREATE';
-  const CREATED = 'CREATED';
 
   let currentRemote = 'local';
   let remoteList = [];
