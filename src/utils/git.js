@@ -10,13 +10,14 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
  * Get all remotes from git repository and return an object
  *
  * @param {String} remote Remote to list branches from
+ * @return {Array} Nested Arrays to be used for each branch row.
  */
 function buildListArray(remote = 'local') {
   let refsArray = [];
 
-  const refs = getRefs();
+  const refs = getRefsArray();
 
-  refsArray = refs.then(formatRemoteBranches).then(buildRemotePayload);
+  refsArray = refs.then(buildRemotePayload);
 
   return refsArray;
 }
@@ -27,9 +28,9 @@ function buildListArray(remote = 'local') {
 function buildRemoteList() {
   let remoteList = [];
 
-  const refs = getRefs();
+  const refs = getRefsArray();
 
-  remoteList = refs.then(formatRemoteBranches).then(filterUniqueRemotes);
+  remoteList = refs.then(filterUniqueRemotes);
 
   return remoteList;
 }

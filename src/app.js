@@ -55,6 +55,9 @@ export const start = args => {
         branchTable.clearItems();
 
         refreshTable(currentRemote);
+      },
+      () => {
+        refreshTable(currentRemote);
       })
       .catch(error => {
         handleError(error, currentRemote, 'fetch');
@@ -117,9 +120,13 @@ export const start = args => {
     return doCheckoutBranch(gitBranch, gitRemote)
       .then(output => {
         screen.destroy();
+
+        process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}`)
+
+        process.exit(0);
       })
       .catch(error => {
-        handleError(error, gitBranch, CHECKOUT);
+        handleError(error, gitBranch, 'checkout');
       });
   });
 
