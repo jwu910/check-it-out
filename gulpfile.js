@@ -7,9 +7,9 @@ gulp.task('build', function() {
     .src('src/**/*.js')
     .pipe(babel())
     .on('error', function (error) {
-      console.log(chalk.red.bold('Build failed.'));
-      console.log(error.fileName);
-      console.log(error.stack);
+      process.stderr.write(chalk.red.bold('Build failed.') + '\n');
+      process.stderr.write(error.fileName + '\n');
+      process.stderr.write(error.stack + '\n');
 
       this.emit('end');
     })
