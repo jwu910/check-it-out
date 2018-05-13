@@ -54,14 +54,16 @@ export const start = args => {
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
     doFetchBranches()
-      .then(() => {
-        branchTable.clearItems();
+      .then(
+        () => {
+          branchTable.clearItems();
 
-        refreshTable(currentRemote);
-      },
-      () => {
-        refreshTable(currentRemote);
-      })
+          refreshTable(currentRemote);
+        },
+        () => {
+          refreshTable(currentRemote);
+        },
+      )
       .catch(error => {
         screen.destroy();
 
@@ -105,7 +107,7 @@ export const start = args => {
       .then(output => {
         screen.destroy();
 
-        process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}\n`)
+        process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}\n`);
 
         process.exit(0);
       })
@@ -210,34 +212,36 @@ export const start = args => {
    * @param {String} currentRemote Current displayed remote
    */
   function refreshTable(currentRemote = 'local') {
-    buildListArray(currentRemote).then(branchArray => {
-      branchTable.setData([
-        ['', 'Remote', 'Branch Name', 'Path'],
-        ...branchArray,
-      ]);
+    buildListArray(currentRemote)
+      .then(branchArray => {
+        branchTable.setData([
+          ['', 'Remote', 'Branch Name', 'Path'],
+          ...branchArray,
+        ]);
 
-      screen.render();
-    })
-    .catch(err => {
-      screen.destroy();
+        screen.render();
+      })
+      .catch(err => {
+        screen.destroy();
 
-      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-      process.stderr.write(err + '\n');
-    });
+        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+        process.stderr.write(err + '\n');
+      });
 
-    buildRemoteList().then(data => {
-      remoteList = data;
+    buildRemoteList()
+      .then(data => {
+        remoteList = data;
 
-      statusBarText.content = getRemoteTabs(remoteList, currentRemote);
+        statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
-      screen.render();
-    })
-    .catch(err => {
-      screen.destroy();
+        screen.render();
+      })
+      .catch(err => {
+        screen.destroy();
 
-      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-      process.stderr.write(err + '\n');
-    });
+        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+        process.stderr.write(err + '\n');
+      });
   }
 
   refreshTable(currentRemote);

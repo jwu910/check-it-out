@@ -50,7 +50,7 @@ export function filterUniqueRemotes(output) {
  *
  * @return {Array} Copy of remoteList with currentRemote inverted with chalk
  */
-export function getRemoteTabs(remoteList = ['local'], currentRemote) {
+export function getRemoteTabs(remoteList, currentRemote) {
   const focusedIndex = remoteList.indexOf(currentRemote);
 
   const focusedRemoteList = remoteList.slice();
@@ -68,11 +68,11 @@ export function getRemoteTabs(remoteList = ['local'], currentRemote) {
 export const readError = (error, branch, type) => {
   process.stderr.write(
     chalk.bold.red('[ERR] ') +
-    'Unable to ' +
-    type +
-    ' ' +
-    chalk.yellow(branch) +
-    '\n',
+      'Unable to ' +
+      type +
+      ' ' +
+      chalk.yellow(branch) +
+      '\n',
   );
   process.stderr.write(error.toString());
 
