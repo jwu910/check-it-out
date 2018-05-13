@@ -6,7 +6,7 @@ const chalk = require('chalk');
  * @param {Array} output Array containing an array of branch information
  * @return {Object} Object with key-value pairs of remote-branchArray
  */
-function buildRemotePayload(output) {
+export function buildRemotePayload(output) {
   let payload = {};
 
   const remoteList = filterUniqueRemotes(output);
@@ -32,7 +32,7 @@ function onlyUnique(value, index, self) {
  * @param {Array} output Array containing an array of branch information
  * @return {Array} Array containing a unique set of remotes for this repository
  */
-function filterUniqueRemotes(output) {
+export function filterUniqueRemotes(output) {
   let remoteList = [];
 
   output.forEach(remote => remoteList.push(remote[1]));
@@ -50,7 +50,7 @@ function filterUniqueRemotes(output) {
  *
  * @return {Array} Copy of remoteList with currentRemote inverted with chalk
  */
-function getRemoteTabs(remoteList, currentRemote) {
+export function getRemoteTabs(remoteList = ['local'], currentRemote) {
   const focusedIndex = remoteList.indexOf(currentRemote);
 
   const focusedRemoteList = remoteList.slice();
@@ -60,9 +60,21 @@ function getRemoteTabs(remoteList, currentRemote) {
   return focusedRemoteList.join(':');
 }
 
-module.exports = {
-  buildRemotePayload,
-  filterUniqueRemotes,
-  onlyUnique,
-  getRemoteTabs,
+/**
+ * Handle errors and log to stderr
+ *
+ * @param {error} error Error message returned from promise.
+ */
+export const readError = (error, branch, type) => {
+  process.stderr.write(
+    chalk.bold.red('[ERR] ') +
+    'Unable to ' +
+    type +
+    ' ' +
+    chalk.yellow(branch) +
+    '\n',
+  );
+  process.stderr.write(error.toString());
+
+  process.exit(1);
 };
