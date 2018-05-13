@@ -209,34 +209,22 @@ export const start = args => {
    *
    * @param {String} currentRemote Current displayed remote
    */
-  function refreshTable(currentRemote) {
-    const listArray = buildListArray(currentRemote);
+  function refreshTable(currentRemote = 'local') {
+    buildListArray(currentRemote).then(branchArray => {
+      branchTable.setData([
+        ['', 'Remote', 'Branch Name', 'Path'],
+        ...branchArray,
+      ]);
 
-    let branchArray = [];
+      screen.render();
+    })
 
-    buildRemoteList().then(results => {
-      remoteList = results;
-
+    buildRemoteList().then(data => {
+      remoteList = data;
       statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
       screen.render();
     });
-
-    listArray.then(
-      results => {
-        branchArray = results[currentRemote];
-
-        branchTable.setData([
-          ['', 'Remote', 'Branch Name', 'Path'],
-          ...branchArray,
-        ]);
-
-        screen.render();
-      },
-      error => {
-        handleError(error, currentRemote, 'fetch');
-      },
-    );
   }
 
   refreshTable(currentRemote);

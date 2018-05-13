@@ -10,29 +10,45 @@ const { buildRemotePayload, filterUniqueRemotes, readError } = require(path.reso
  * Get all remotes from git repository and return an object
  *
  * @param {String} remote Remote to list branches from
- * @return {Array} Nested Arrays to be used for each branch row.
+ * @return {Object} Return payload object containing branches associated with each local.
  */
-function buildListArray(remote = 'local') {
-  let refsArray = [];
+export function buildListArray(remote = 'local') {
+  const refs = getRefs();
 
-  const refs = getRefsArray();
+  return refs
+    .then(data => {
+      return buildRemotePayload(data);
+    })
+    .then(payload => {
+      return payload[remote];
+    })
+    .catch(err => {
+      process.stderr.write(chalk.red.bold([ERROR]));
+      process.stderr.write(err);
 
-  refsArray = refs.then(buildRemotePayload);
-
-  return refsArray;
+      process.exit(1);
+    });
 }
 
 /**
  * @return {Array} Array of unique remotes for tab options
  */
-function buildRemoteList() {
-  let remoteList = [];
+export function buildRemoteList() {
+  const refs = getRefs();
 
-  const refs = getRefsArray();
+  return refs
+    .then(data => {
+      return filterUniqueRemotes(data);
+    })
+    .then(uniqueRemotes => {
+      return uniqueRemotes;
+    })
+    .catch(err => {
+      process.stderr.write(chalk.red.bold([ERROR]));
+      process.stderr.write(err);
 
-  remoteList = refs.then(filterUniqueRemotes);
-
-  return remoteList;
+      process.exit(1);
+    });
 }
 
 /**
@@ -109,33 +125,40 @@ export function doFetchBranches() {
  * Format output from getBranchesFrom() and return an array of arrays containing
  * formatted lines for the data table.
  *
- * @param {Array} output Array containing an array of branch information
+ * @param {String} output String list of each ref associated with repository
+ * @return {Array} Array containing an array of line items representing branch information
  */
-function formatRemoteBranches(output) {
+export function formatRemoteBranches(output) {
   let remoteBranchArray = [];
 
-  const selectedBranch = getCurrentBranch().then(selected => {
-    return selected.toString();
+  return getCurrentBranch().then(selectedBranch => {
+    const outputArray = output.trim().split('\n');
+
+    outputArray.forEach(line => {
+      let selected = '';
+
+      const currLine = line.split('/');
+
+      const currBranch = currLine[currLine.length - 1];
+
+      const isLocal = currLine[1] === 'heads';
+
+      const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
+
+      if (currLine[currLine.length - 1] === 'HEAD') {
+        return;
+      }
+
+      if (currBranch == selectedBranch) {
+        selected = '*';
+      }
+
+      remoteBranchArray.push([selected, currRemote, currBranch, line]);
+    });
+
+    return remoteBranchArray;
   });
-
-  output.split('\n').forEach(line => {
-    const currLine = line.split('/');
-    const isLocal = currLine[1] === 'heads' ? true : false;
-
-    const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
-    const currBranch = currLine[currLine.length - 1];
-
-    const selected = currBranch === selectedBranch && isLocal ? '*' : ' ';
-
-    if (currLine[currLine.length - 1] === 'HEAD') {
-      return;
-    }
-
-    remoteBranchArray.push([selected, currRemote, currBranch, line]);
-  });
-
-  return remoteBranchArray;
-}
+};
 
 /**
  * Print all refs assicated with git repository.
