@@ -60,8 +60,10 @@ export const start = args => {
 
           refreshTable(currentRemote);
         },
-        () => {
-          refreshTable(currentRemote);
+        err => {
+          screen.destroy();
+
+          readError(err, currentRemote, 'fetch');
         },
       )
       .catch(error => {
