@@ -3,14 +3,17 @@ const path = require('path');
 const updateNotifier = require('update-notifier');
 
 const {
-  doCheckoutBranch,
-  doFetchBranches,
   buildListArray,
   buildRemoteList,
+  doCheckoutBranch,
+  doFetchBranches,
 } = require(path.resolve(__dirname, 'utils/git'));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
-const { getRemoteTabs } = require(path.resolve(__dirname, 'utils/utils'));
+const { getRemoteTabs, readError } = require(path.resolve(
+  __dirname,
+  'utils/utils',
+));
 
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, '../package.json'));
@@ -60,7 +63,9 @@ export const start = args => {
         refreshTable(currentRemote);
       })
       .catch(error => {
-        handleError(error, currentRemote, 'fetch');
+        screen.destroy();
+
+        readError(error, currentRemote, 'fetch');
       });
   });
 
@@ -74,27 +79,6 @@ export const start = args => {
   process.on('SIGWINCH', () => {
     screen.emit('resize');
   });
-
-  /**
-   * Handle errors and log to stderr
-   *
-   * @param {error} error Error message returned from promise.
-   */
-  const handleError = (error, branch, type) => {
-    screen.destroy();
-
-    process.stderr.write(
-      chalk.bold.red('[ERR] ') +
-        'Unable to ' +
-        type +
-        ' ' +
-        chalk.yellow(branch) +
-        '\n',
-    );
-    process.stderr.write(error.toString());
-
-    process.exit(1);
-  };
 
   /**
    * Trim and remove whitespace from selected line.
@@ -121,12 +105,14 @@ export const start = args => {
       .then(output => {
         screen.destroy();
 
-        process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}`)
+        process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}\n`)
 
         process.exit(0);
       })
       .catch(error => {
-        handleError(error, gitBranch, 'checkout');
+        screen.destroy();
+
+        readError(error, gitBranch, 'checkout');
       });
   });
 
