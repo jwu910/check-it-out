@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "start": "node index.js"
+    "start": "node index.js",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
