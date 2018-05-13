@@ -4,7 +4,9 @@
   "description": "Easy git checkout CLI tool.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "build": "babel src -d lib",
+    "start": "node index.js",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -38,5 +40,13 @@
     "chalk": "^2.3.1",
     "commander": "^2.14.0",
     "update-notifier": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "prettier": "^1.12.1"
   }
 }
