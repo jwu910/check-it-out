@@ -218,12 +218,25 @@ export const start = args => {
 
       screen.render();
     })
+    .catch(err => {
+      screen.destroy();
+
+      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+      process.stderr.write(err + '\n');
+    });
 
     buildRemoteList().then(data => {
       remoteList = data;
+
       statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
       screen.render();
+    })
+    .catch(err => {
+      screen.destroy();
+
+      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+      process.stderr.write(err + '\n');
     });
   }
 

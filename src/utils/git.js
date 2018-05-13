@@ -1,10 +1,12 @@
+const chalk = require('chalk');
 const path = require('path');
 const { spawn } = require('child_process');
 
-const { buildRemotePayload, filterUniqueRemotes, readError } = require(path.resolve(
-  __dirname,
-  'utils',
-));
+const {
+  buildRemotePayload,
+  filterUniqueRemotes,
+  readError,
+} = require(path.resolve(__dirname, 'utils'));
 
 /**
  * Get all remotes from git repository and return an object
@@ -21,12 +23,6 @@ export function buildListArray(remote = 'local') {
     })
     .then(payload => {
       return payload[remote];
-    })
-    .catch(err => {
-      process.stderr.write(chalk.red.bold([ERROR]));
-      process.stderr.write(err);
-
-      process.exit(1);
     });
 }
 
@@ -42,12 +38,6 @@ export function buildRemoteList() {
     })
     .then(uniqueRemotes => {
       return uniqueRemotes;
-    })
-    .catch(err => {
-      process.stderr.write(chalk.red.bold([ERROR]));
-      process.stderr.write(err);
-
-      process.exit(1);
     });
 }
 
@@ -135,8 +125,6 @@ export function formatRemoteBranches(output) {
     const outputArray = output.trim().split('\n');
 
     outputArray.forEach(line => {
-      let selected = '';
-
       const currLine = line.split('/');
 
       const currBranch = currLine[currLine.length - 1];
@@ -145,12 +133,11 @@ export function formatRemoteBranches(output) {
 
       const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
 
+      const selected =
+        isLocal && currBranch === selectedBranch.trim() ? '*' : ' ';
+
       if (currLine[currLine.length - 1] === 'HEAD') {
         return;
-      }
-
-      if (currBranch == selectedBranch) {
-        selected = '*';
       }
 
       remoteBranchArray.push([selected, currRemote, currBranch, line]);
@@ -158,7 +145,7 @@ export function formatRemoteBranches(output) {
 
     return remoteBranchArray;
   });
-};
+}
 
 /**
  * Print all refs assicated with git repository.
