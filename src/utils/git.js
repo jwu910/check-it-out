@@ -1,7 +1,7 @@
 const path = require('path');
 const { spawn } = require('child_process');
 
-const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
+const { buildRemotePayload, filterUniqueRemotes, readError } = require(path.resolve(
   __dirname,
   'utils',
 ));
@@ -41,7 +41,7 @@ function buildRemoteList() {
  * Returns a promise that resolves when the user has successfully checked out
  * target branch
  */
-function doCheckoutBranch(branch, remote) {
+export function doCheckoutBranch(branch, remote) {
   let branchPath = '';
 
   if (remote && remote !== 'local' && remote !== 'origin') {
@@ -60,7 +60,7 @@ function doCheckoutBranch(branch, remote) {
  *
  * Returns a promise that resolves to the current branch name.
  */
-function getCurrentBranch() {
+export function getCurrentBranch() {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
   return execGit(args);
@@ -99,7 +99,7 @@ function execGit(args) {
  *
  * Return a promise that resolves when a user successfully fetches.
  */
-function doFetchBranches() {
+export function doFetchBranches() {
   const args = ['fetch', '-pq'];
 
   return execGit(args);
@@ -145,13 +145,7 @@ function formatRemoteBranches(output) {
 function getRefs() {
   const args = ['for-each-ref', '--sort=-committerdate', '--format=%(refname)'];
 
-  return execGit(args);
+  return execGit(args).then(data => {
+    return formatRemoteBranches(data);
+  });
 }
-
-module.exports = {
-  buildListArray,
-  buildRemoteList,
-  doCheckoutBranch,
-  getCurrentBranch,
-  doFetchBranches,
-};
