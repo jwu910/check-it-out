@@ -35,7 +35,7 @@ pre {
 
 /* Header Content */
 header {
-    background: radial-gradient(100% 50%, #E9A571 0%, #EE7C5A 82%);
+    background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
     border: 1px solid #979797;
     padding-top: 96px;
     text-align: center;
@@ -114,29 +114,9 @@ tr:nth-child(even) {
 /* Footer */
 /* Update footer height */
 footer {
-    background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
-    color: #ED9E6D;
+    background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
+    color: #916246;
     height: 140px;
     margin-top: 48px;
     text-align: center;
-}
-
-/* Update font-family for footer to match header */
-.footer-title {
-    color: #ED9E6D;
-    font-size: 20px;
-    padding: 8px 0px; 
-}
-
-.footer-shadow {
-    background: rgba(0,0,0,.10);
-}
-
-footer a  {
-    color: white;
-}
-
-.footer-content {
-    color: #EE7C5B;
-    font-size: 18px;
 }
