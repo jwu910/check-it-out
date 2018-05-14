@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: "Lato", sans-serif;
 }
 
 /* Remove text decoration for all anchor elements */
@@ -13,21 +14,18 @@ pre {
     overflow: auto;
     background-color: #F6F8FA;
     border-radius: 3px;
-    font-family: 'Courier New', Courier, monospace;
     padding: 8px;
 }
 
 /* All .title contents from .main section */
 .title {
     color: #EE7C5B;
-    font-family: "Arial Black";
     font-size: 24px;
     margin-top: 48px;
 }
 
 /* All .contents from .main section */
 .contents {
-    font-family: "Arial";
     font-size: 20px;
     line-height: 24px;
     padding-top: 8px;
@@ -45,13 +43,11 @@ header {
 
 .headline {
     color: #FFFFFF;
-    font-family: "Arial Black";
     font-size: 72px;
 }
 
 .subheadline {
     color: #916246;
-    font-family: "Arial Black";
     font-size: 24px;
 }
 
@@ -107,7 +103,6 @@ header {
 }
 
 .require-links {
-    font-family: "Arial";
     font-size: 24px;
 }
 
@@ -130,30 +125,23 @@ th {
     color: #EE7C58;
 }
 
-.description {
-    font-family: "Arial Black";
-}
-
-.command {
-    font-family: 'Courier New', Courier, monospace;
-}
-
 tr:nth-child(even) {
     background-color: #D5D5D5;
 }
 
 /* Footer */
+/* Update footer height */
 footer {
     background: radial-gradient(100% 50%, #E0C851 0%, #E93F33 82%);
     color: #ED9E6D;
-    height: 146px;
+    height: 140px;
     margin-top: 48px;
     text-align: center;
 }
 
+/* Update font-family for footer to match header */
 .footer-title {
     color: #ED9E6D;
-    font-family: "Arial Black";
     font-size: 20px;
     padding: 8px 0px; 
 }
@@ -169,5 +157,4 @@ footer a  {
 .footer-content {
     color: #EE7C5B;
     font-size: 18px;
-    padding: 4px 0px;
 }
