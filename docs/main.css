@@ -54,7 +54,6 @@ header {
 .link-container {
     background-color: rgba(174,174,174,0.65);
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     margin-top: 96px;
     min-width: 200px;
@@ -66,11 +65,6 @@ header {
     height: 30px;
     width: 135px;
     padding-right: 10px;
-}
-
-.gh-btns {
-    border-radius: 5px;
-    padding-left: 5px;
 }
 
 /* Main Content flexbox */
@@ -90,18 +84,6 @@ header {
 }
 
 /* Require */
-#nodelogo {
-    height: 135px;
-    padding: 8px 0px 0px 32px;
-    width: 224px;
-}
-
-#gitlogo {
-    height: 125px;
-    padding: 8px 0px 0px 32px;
-    width: 296px;
-}
-
 .require-links {
     font-size: 24px;
 }
