@@ -4,13 +4,6 @@
     padding: 0px;
 }
 
-body {
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 1408px;
-    margin: 0 auto;
-}
-
 /* Remove text decoration for all anchor elements */
 a {
     text-decoration: none;
@@ -47,6 +40,10 @@ pre {
 /* Header Content */
 header {
     background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 1408px;
+    min-width: 200px;
     border: 1px solid #979797;
     padding-top: 96px;
     text-align: center;
@@ -102,8 +99,6 @@ header {
 }
 
 /* Installation */
-
-/* REFACTOR ME PRETTY PREASE */
 .install-section .contents:nth-of-type(4) {
     line-height: normal;
     padding-top: 0px;
@@ -146,13 +141,23 @@ footer {
     color: #916246;
     margin-top: 48px;
     text-align: center;
+    width: 100%;
+}
+
+footer * {
+    font-weight: 900;
 }
 
 .contributors {
-    padding: 32px 0px;
+    padding: 24px 0px;
 }
 
 .license {
     background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
-    padding: 8px 0px;
+    padding: 4px 0px;
+}
+
+/* Remove blue hyperlink */
+.license a {
+    color: #916246;
 }
