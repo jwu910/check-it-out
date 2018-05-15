@@ -7,7 +7,7 @@
 body {
     box-sizing: border-box;
     min-width: 200px;
-    max-width: 1420px;
+    max-width: 1408px;
     margin: 0 auto;
 }
 
@@ -18,23 +18,27 @@ a {
 
 /* Overflow for npm commands */
 pre {
-    overflow: auto;
     background-color: #F6F8FA;
     border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    overflow: auto;
     padding: 8px;
 }
 
 /* All .title contents from .main section */
 .title {
+    /* Font-size 24 or 28 or ? */
     color: #EE7C5B;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 900;
     margin-top: 48px;
 }
 
 /* All .contents from .main section */
 .contents {
     font-size: 20px;
-    line-height: 24px;
+    line-height: 32px;
     padding-top: 8px;
     text-align: left;
 }
@@ -51,26 +55,28 @@ header {
 .headline {
     color: #FFFFFF;
     font-size: 72px;
+    font-weight: 900;
 }
 
 .subheadline {
     color: #916246;
     font-size: 24px;
+    font-weight: 900;
 }
 
 .link-container {
-    background-color: rgba(174,174,174,0.65);
+    background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
     display: flex;
     justify-content: center;
-    margin-top: 96px;
+    margin-top: 64px;
     min-width: 200px;
-    padding: 20px 0px 10px;
+    padding: 16px 0px 8px;
 }
 
 .npm-badges {
     border-radius: 5px;
     height: 30px;
-    width: 135px;
+    width: 152px;
     padding-right: 10px;
 }
 
@@ -78,14 +84,10 @@ header {
 .main {
     margin: 0 auto;
     max-width: 640px;
-    padding: 24px 24px;
+    padding: 0px 16px;
 }
 
 /* Info */
-.info-section .contents:nth-of-type(1) {
-    margin-top: 32px;
-}
-
 .info-section .contents:nth-of-type(2) {
     margin-top: 16px;
 }
@@ -95,7 +97,18 @@ header {
     font-size: 24px;
 }
 
+.require-section .require-links:nth-of-type(1) {
+    margin-top: 16px;
+}
+
 /* Installation */
+
+/* REFACTOR ME PRETTY PREASE */
+.install-section .contents:nth-of-type(4) {
+    line-height: normal;
+    padding-top: 0px;
+}
+
 table {
     border: 2px solid #979797;
     border-collapse: collapse;
@@ -105,13 +118,22 @@ table {
 
 td, th {
     border: 2px solid #979797;
-    font-size: 16px;
-    padding: 8px 0px 8px 8px;
+    font-size: 20px;
+    padding: 8px 0px 8px 16px;
     text-align: left;
+}
+
+.command {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.description {
+    font-weight: 700;
 }
 
 th {
     color: #EE7C58;
+    font-weight: 900;
 }
 
 tr:nth-child(even) {
@@ -119,11 +141,18 @@ tr:nth-child(even) {
 }
 
 /* Footer */
-/* Update footer height */
 footer {
     background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
     color: #916246;
-    height: 140px;
     margin-top: 48px;
     text-align: center;
+}
+
+.contributors {
+    padding: 32px 0px;
+}
+
+.license {
+    background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
+    padding: 8px 0px;
 }
