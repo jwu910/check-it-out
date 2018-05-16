@@ -6,6 +6,7 @@
 
 /* Remove text decoration for all anchor elements */
 a {
+    color: #EE7C5A;
     text-decoration: none;
 }
 
