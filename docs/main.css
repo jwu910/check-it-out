@@ -40,11 +40,11 @@ pre {
 /* Header Content */
 header {
     background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
-    box-sizing: border-box;
-    margin: 0 auto;
-    max-width: 1408px;
-    min-width: 200px;
     border: 1px solid #979797;
+    margin: 0 auto;
+    /* Common large screen breakpoint:1200px, small screen: 320px */
+    max-width: 1200px;
+    min-width: 320px;
     padding-top: 96px;
     text-align: center;
 }
@@ -63,11 +63,16 @@ header {
 
 .link-container {
     background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
-    display: flex;
-    justify-content: center;
+    text-align: center;
     margin-top: 64px;
-    min-width: 200px;
     padding: 16px 0px 8px;
+}
+
+/* Create space when npm-badges collapse to a column */
+@media only screen and (max-width: 350px) {
+    .npm-badges {
+        margin-top: 4px;
+    }
 }
 
 .npm-badges {
