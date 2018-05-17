@@ -39,6 +39,13 @@ Run this command to list local and remote branches!
 checkit
 ```
 
+![Check It Out Usage](./assets/images/checkit-usage.gif)
+
+Call git log on current highlighted branch with `[space]`
+
+![Quick Git Log!](./assets/images/checkit-log.gif)
+
+
 | Commands | Description |
 | -------- | ------------ |
 |`j/k, down/up`| Navigate the list |
