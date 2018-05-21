@@ -24,7 +24,8 @@
     "tool"
   ],
   "bin": {
-    "checkit": "index.js"
+    "checkit": "index.js",
+    "cio": "index.js"
   },
   "engines": {
     "node": ">=7"
