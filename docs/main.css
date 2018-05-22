@@ -37,6 +37,18 @@ pre {
     text-align: left;
 }
 
+/* Styling for code in .usage-section */
+code {
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
+    padding: 4px;
+}
+
+/* Set width for all gifs */
+img {
+    margin-top: 8px;
+    max-width: 100%;
+}
 
 /* Header Content */
 header {
