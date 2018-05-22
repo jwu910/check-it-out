@@ -7,7 +7,6 @@ const { THEME_COLOR } = require(path.resolve(__dirname, 'theme.json'));
 function branchTable() {
   const branchTable = blessed.listtable({
     align: 'left',
-    height: '100%',
     left: 0,
     keys: true,
     noCellBorders: true,
@@ -32,6 +31,7 @@ function branchTable() {
     },
     tags: true,
     top: 0,
+    bottom: 1,
     vi: false,
     width: 'shrink',
   });
