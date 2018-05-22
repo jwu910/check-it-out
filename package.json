@@ -1,6 +1,6 @@
 {
   "name": "check-it-out",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Easy git checkout CLI tool.",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,8 @@
     "tool"
   ],
   "bin": {
-    "checkit": "index.js"
+    "checkit": "index.js",
+    "cio": "index.js"
   },
   "engines": {
     "node": ">=7"
