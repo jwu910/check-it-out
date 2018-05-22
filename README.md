@@ -1,7 +1,9 @@
 # Check It Out
 ![Check It Out](./assets/images/checkit-intro.gif)
 
-[![npm version](https://badge.fury.io/js/check-it-out.svg)](https://badge.fury.io/js/check-it-out) [![GitHub version](https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg)](https://badge.fury.io/gh/jwu910%2Fcheck-it-out)
+![npm](https://img.shields.io/npm/dt/check-it-out.svg)
+![npm version](https://badge.fury.io/js/check-it-out.svg)
+![GitHub version](https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg)
 
 Check it out, before you checkout.
 
