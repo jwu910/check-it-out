@@ -64,9 +64,9 @@ header {
 
 .link-container {
     background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
-    text-align: center;
     margin-top: 64px;
     padding: 16px 0px 8px;
+    text-align: center;
 }
 
 /* Create space when npm-badges collapse to a column */
@@ -79,8 +79,8 @@ header {
 .npm-badges {
     border-radius: 5px;
     height: 30px;
-    width: 152px;
     padding-right: 10px;
+    width: 152px;
 }
 
 /* Main Content flexbox */
@@ -108,6 +108,11 @@ header {
 .install-section .contents:nth-of-type(4) {
     line-height: normal;
     padding-top: 0px;
+}
+
+.install-section h3 {
+    color: #EE7C5B;
+    margin-top: 16px;
 }
 
 table {
