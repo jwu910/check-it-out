@@ -33,8 +33,7 @@ export function buildRemoteList() {
   const refs = getRefs();
 
   return refs
-    .then(data => {
-      return filterUniqueRemotes(data);
+    .then(data => {return filterUniqueRemotes;(data);
     })
     .then(uniqueRemotes => {
       return uniqueRemotes;
