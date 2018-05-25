@@ -216,10 +216,7 @@ export const start = args => {
   function refreshTable(currentRemote = 'local') {
     buildListArray(currentRemote)
       .then(branchArray => {
-        branchTable.setData([
-          ['', 'Remote', 'Branch Name'],
-          ...branchArray,
-        ]);
+        branchTable.setData([['', 'Remote', 'Branch Name'], ...branchArray]);
 
         screen.render();
       })
