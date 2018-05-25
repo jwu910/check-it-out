@@ -6,7 +6,7 @@
 
 /* Remove text decoration for all anchor elements */
 a {
-    color: #EE7C5A;
+    color: #916246;;
     text-decoration: none;
 }
 
@@ -159,7 +159,7 @@ tr:nth-child(even) {
 }
 
 /* Footer */
-footer {
+.footer {
     background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
     color: #916246;
     margin-top: 48px;
@@ -167,7 +167,7 @@ footer {
     width: 100%;
 }
 
-footer * {
+.footer * {
     font-weight: 900;
 }
 
@@ -178,9 +178,4 @@ footer * {
 .license {
     background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
     padding: 4px 0px;
-}
-
-/* Remove blue hyperlink */
-.license a {
-    color: #916246;
 }
