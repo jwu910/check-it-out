@@ -217,7 +217,7 @@ export const start = args => {
     buildListArray(currentRemote)
       .then(branchArray => {
         branchTable.setData([
-          ['', 'Remote', 'Branch Name', 'Path'],
+          ['', 'Remote', 'Branch Name'],
           ...branchArray,
         ]);
 
