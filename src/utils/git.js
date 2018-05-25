@@ -140,7 +140,7 @@ export function formatRemoteBranches(output) {
         return;
       }
 
-      remoteBranchArray.push([selected, currRemote, currBranch, line]);
+      remoteBranchArray.push([selected, currRemote, currBranch]);
     });
 
     return remoteBranchArray;
@@ -153,7 +153,12 @@ export function formatRemoteBranches(output) {
  * @return {String} String list of each ref associated with repository.
  */
 function getRefs() {
-  const args = ['for-each-ref', '--sort=-committerdate', '--format=%(refname)'];
+  const args = [
+    'for-each-ref',
+    '--sort=-committerdate',
+    '--format=%(refname)',
+    '--count=500',
+  ];
 
   return execGit(args).then(data => {
     return formatRemoteBranches(data);
