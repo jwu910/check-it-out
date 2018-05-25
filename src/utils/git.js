@@ -33,7 +33,8 @@ export function buildRemoteList() {
   const refs = getRefs();
 
   return refs
-    .then(data => {return filterUniqueRemotes;(data);
+    .then(data => {
+      return filterUniqueRemotes(data);
     })
     .then(uniqueRemotes => {
       return uniqueRemotes;
@@ -139,7 +140,7 @@ export function formatRemoteBranches(output) {
         return;
       }
 
-      remoteBranchArray.push([selected, currRemote, currBranch, line]);
+      remoteBranchArray.push([selected, currRemote, currBranch]);
     });
 
     return remoteBranchArray;
