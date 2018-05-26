@@ -1,0 +1,166 @@
+* {
+    font-family: "Lato", sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: #916246;;
+    text-decoration: none;
+}
+
+pre {
+    background-color: #F6F8FA;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    overflow: auto;
+    padding: 8px;
+}
+
+.title {
+    color: #EE7C5B;
+    font-size: 28px;
+    font-weight: 900;
+    margin-top: 48px;
+}
+
+.contents {
+    font-size: 20px;
+    line-height: 32px;
+    padding-top: 8px;
+    text-align: left;
+}
+
+code {
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
+    padding: 4px;
+}
+
+img {
+    margin-top: 8px;
+    max-width: 100%;
+}
+
+header {
+    background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
+    border: 1px solid #979797;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 320px;
+    padding-top: 96px;
+    text-align: center;
+}
+
+.headline {
+    color: #FFFFFF;
+    font-size: 72px;
+    font-weight: 900;
+}
+
+.sub-headline {
+    color: #916246;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.link-container {
+    background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
+    margin-top: 64px;
+    padding: 16px 0px 8px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 350px) {
+    .npm-badges {
+        margin-top: 4px;
+    }
+}
+
+.npm-badges {
+    border-radius: 5px;
+    height: 30px;
+    padding-right: 10px;
+    width: 152px;
+}
+
+.main {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 0px 16px;
+}
+
+.info-section .contents:nth-of-type(2) {
+    margin-top: 16px;
+}
+
+.require-links {
+    font-size: 24px;
+}
+
+.require-section .require-links:nth-of-type(1) {
+    margin-top: 16px;
+}
+
+.install-section .contents:nth-of-type(4) {
+    line-height: normal;
+    padding-top: 0px;
+}
+
+.install-section h3 {
+    color: #EE7C5B;
+    margin-top: 16px;
+}
+
+table {
+    border: 2px solid #979797;
+    border-collapse: collapse;
+    margin-top: 16px;
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid #979797;
+    font-size: 20px;
+    padding: 8px 0px 8px 16px;
+    text-align: left;
+}
+
+.command {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.description {
+    font-weight: 700;
+}
+
+th {
+    color: #EE7C58;
+    font-weight: 900;
+}
+
+tr:nth-child(even) {
+    background-color: #D5D5D5;
+}
+
+.footer {
+    background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
+    color: #916246;
+    margin-top: 48px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer * {
+    font-weight: 900;
+}
+
+.contributors {
+    padding: 24px 0px;
+}
+
+.license {
+    background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
+    padding: 4px 0px;
+}
