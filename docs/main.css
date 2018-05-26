@@ -13,9 +13,9 @@ a {
 pre {
 	background-color: #F6F8FA;
 	border-radius: 8px;
-	font-family: 'Courier New', Courier, monospace;
+	font-family: 'Courier New', 'Courier', 'monospace';
 	font-size: 1em;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
 	overflow: auto;
 	padding: 12px;
 }
@@ -24,6 +24,7 @@ pre {
 	color: #EE7C5B;
 	font-size: 1.5em;
 	font-weight: 900;
+	margin-bottom: 16px;
 	margin-top: 48px;
 }
 
@@ -41,6 +42,7 @@ code {
 
 img {
 	margin-bottom: 8px;
+	max-width: 100%;
 }
 
 header {
@@ -107,7 +109,7 @@ header {
 
 .install-section h3 {
 	color: #EE7C5B;
-	margin-top: 16px;
+	margin-bottom: 8px;
 }
 
 table {
