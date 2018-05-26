@@ -1,5 +1,6 @@
 * {
 	font-family: 'Lato', sans-serif;
+	font-size: 1em;
 	margin: 0px;
 	padding: 0px;
 }
@@ -11,24 +12,24 @@ a {
 
 pre {
 	background-color: #F6F8FA;
-	border-radius: 3px;
+	border-radius: 8px;
 	font-family: 'Courier New', Courier, monospace;
-	font-size: 20px;
+	font-size: 1em;
+	margin-bottom: 8px;
 	overflow: auto;
-	padding: 8px;
+	padding: 12px;
 }
 
 .title {
 	color: #EE7C5B;
-	font-size: 28px;
+	font-size: 1.5em;
 	font-weight: 900;
 	margin-top: 48px;
 }
 
 .contents {
-	font-size: 20px;
-	line-height: 32px;
-	padding-top: 8px;
+	font-size: 1em;
+	padding-bottom: 8px;
 	text-align: left;
 }
 
@@ -39,15 +40,14 @@ code {
 }
 
 img {
-	margin-top: 8px;
-	max-width: 100%;
+	margin-bottom: 8px;
 }
 
 header {
 	background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
 	border: 1px solid #979797;
 	margin: 0 auto;
-	max-width: 1200px;
+	width: 100%;
 	min-width: 320px;
 	padding-top: 96px;
 	text-align: center;
@@ -55,13 +55,13 @@ header {
 
 .headline {
 	color: #FFFFFF;
-	font-size: 72px;
+	font-size: 4em;
 	font-weight: 900;
 }
 
 .sub-headline {
 	color: #916246;
-	font-size: 24px;
+	font-size: 1.7em;
 	font-weight: 900;
 }
 
@@ -79,10 +79,7 @@ header {
 }
 
 .npm-badges {
-	border-radius: 5px;
-	height: 30px;
-	padding-right: 10px;
-	width: 152px;
+	margin-right: 8px;
 }
 
 .main {
@@ -96,7 +93,7 @@ header {
 }
 
 .require-links {
-	font-size: 24px;
+	font-size: 1em;
 }
 
 .require-section .require-links:nth-of-type(1) {
@@ -123,7 +120,7 @@ table {
 td,
 th {
 	border: 2px solid #979797;
-	font-size: 20px;
+	font-size: 1em;
 	padding: 8px 0px 8px 16px;
 	text-align: left;
 }
@@ -148,20 +145,23 @@ tr:nth-child(even) {
 .footer {
 	background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
 	color: #916246;
+	font-weight: 900;
 	margin-top: 48px;
 	text-align: center;
 	width: 100%;
 }
 
-.footer * {
-	font-weight: 900;
+.footer a {
+	color: #FFF;
 }
 
 .contributors {
+	font-size: 1em;
 	padding: 24px 0px;
 }
 
 .license {
 	background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
+	font-size: 1em;
 	padding: 4px 0px;
 }
