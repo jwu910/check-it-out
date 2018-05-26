@@ -1,5 +1,5 @@
 # Check It Out
-![Check It Out](./assets/images/checkit-intro.gif)
+![Check It Out](docs/assets/images/checkit-intro.gif)
 
 ![npm](https://img.shields.io/npm/dt/check-it-out.svg)
 ![npm version](https://badge.fury.io/js/check-it-out.svg)
@@ -45,11 +45,11 @@ Run this command to list local and remote branches!
 checkit
 ```
 
-![Check It Out Usage](./assets/images/checkit-usage.gif)
+![Check It Out Usage](docs/assets/images/checkit-usage.gif)
 
 Call git log on current highlighted branch with `[space]`
 
-![Quick Git Log!](./assets/images/checkit-log.gif)
+![Quick Git Log!](docs/assets/images/checkit-log.gif)
 
 
 | Commands | Description |
