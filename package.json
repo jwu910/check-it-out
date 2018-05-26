@@ -1,6 +1,6 @@
 {
   "name": "check-it-out",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Easy git checkout CLI tool.",
   "main": "index.js",
   "scripts": {

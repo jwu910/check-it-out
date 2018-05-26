@@ -7,9 +7,7 @@
 
 Check it out, before you checkout.
 
-Change branches with a single command. Check It Out visualizes branches and remotes in your current project. Long Branch Names? Forget it!
-
-Fewer commands, fewer keystrokes, better productivity!
+Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
 
 ## Requirements
 [Node >= v6.0](https://nodejs.org/en/blog/release/v6.0.0/)
