@@ -66,3 +66,7 @@ Please refer to the [Contributing Guidelines](./CONTRIBUTING.md)
 
 ### License
 MIT @ [Joshua Wu](https://www.npmjs.com/~jwu910)
+
+## Contributors
+| [<img src="https://avatars2.githubusercontent.com/u/12107969?v=4&s=100">](https://github.com/jwu910) | [<img src="https://avatars1.githubusercontent.com/u/6403097?v=4&s=100">](https://github.com/drewbrokke) | [<img src="https://avatars3.githubusercontent.com/u/35710155?v=4&s=100">](https://github.com/jotchon) | [<img src="https://avatars1.githubusercontent.com/u/32409546?v=4&s=100">](https://github.com/casyjs) | [<img src="https://avatars0.githubusercontent.com/u/29239201?v=4&s=100">](https://github.com/bbenefield89) |
+|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
