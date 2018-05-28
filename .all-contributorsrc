@@ -1,0 +1,50 @@
+{
+  "projectName": "check-it-out",
+  "projectOwner": "jwu910",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 80,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "bbenefield89",
+      "name": "Brandon Benefield",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29239201?v=4",
+      "profile": "https://www.bbenefield.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "casyjs",
+      "name": "Aaron Casanova",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32409546?v=4",
+      "profile": "https://github.com/casyjs",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "drewbrokke",
+      "name": "Drew Brokke",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6403097?v=4",
+      "profile": "https://github.com/drewbrokke",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "jotchon",
+      "name": "Johanna Tchon",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/35710155?v=4",
+      "profile": "https://github.com/jotchon",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}
