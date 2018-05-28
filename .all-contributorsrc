@@ -1,0 +1,91 @@
+{
+  "projectName": "check-it-out",
+  "projectOwner": "jwu910",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 80,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "bbenefield89",
+      "name": "Brandon Benefield",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29239201?v=4",
+      "profile": "https://www.bbenefield.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "casyjs",
+      "name": "Aaron Casanova",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32409546?v=4",
+      "profile": "https://github.com/casyjs",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "drewbrokke",
+      "name": "Drew Brokke",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6403097?v=4",
+      "profile": "https://github.com/drewbrokke",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "jotchon",
+      "name": "Johanna Tchon",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/35710155?v=4",
+      "profile": "https://github.com/jotchon",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nellarro",
+      "name": "Jenell Pizarro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/18720522?v=4",
+      "profile": "https://www.jenellpizarro.com/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jwu910",
+      "name": "Joshua Wu",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12107969?v=4",
+      "profile": "http://www.linkedin.com/in/wujoshua",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "ideas",
+        "infra",
+        "review"
+      ]
+    },
+    {
+      "login": "rebeccahongsf",
+      "name": "Rebecca Hong",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/34019925?v=4",
+      "profile": "http://www.linkedin.com/in/rehong",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "jma26",
+      "name": "Jesse Ma",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/25625490?v=4",
+      "profile": "https://github.com/jma26",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}

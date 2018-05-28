@@ -64,5 +64,15 @@ Call git log on current highlighted branch with `[space]`
 ## Contributing
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md)
 
+## Contributors
+Many thanks to all those who have helped!
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars2.githubusercontent.com/u/12107969?v=4" width="80px;"/><br /><sub><b>Joshua Wu</b></sub>](http://www.linkedin.com/in/wujoshua)<br />[🐛](https://github.com/jwu910/check-it-out/issues?q=author%3Ajwu910 "Bug reports") [💻](https://github.com/jwu910/check-it-out/commits?author=jwu910 "Code") [📖](https://github.com/jwu910/check-it-out/commits?author=jwu910 "Documentation") [🤔](#ideas-jwu910 "Ideas, Planning, & Feedback") [🚇](#infra-jwu910 "Infrastructure (Hosting, Build-Tools, etc)") [👀](#review-jwu910 "Reviewed Pull Requests") | [<img src="https://avatars1.githubusercontent.com/u/6403097?v=4" width="80px;"/><br /><sub><b>Drew Brokke</b></sub>](https://github.com/drewbrokke)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=drewbrokke "Code") [🤔](#ideas-drewbrokke "Ideas, Planning, & Feedback") | [<img src="https://avatars1.githubusercontent.com/u/32409546?v=4" width="80px;"/><br /><sub><b>Aaron Casanova</b></sub>](https://github.com/casyjs)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=casyjs "Code") | [<img src="https://avatars3.githubusercontent.com/u/35710155?v=4" width="80px;"/><br /><sub><b>Johanna Tchon</b></sub>](https://github.com/jotchon)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=jotchon "Code") | [<img src="https://avatars1.githubusercontent.com/u/18720522?v=4" width="80px;"/><br /><sub><b>Jenell Pizarro</b></sub>](https://www.jenellpizarro.com/)<br />[📖](https://github.com/jwu910/check-it-out/commits?author=nellarro "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/29239201?v=4" width="80px;"/><br /><sub><b>Brandon Benefield</b></sub>](https://www.bbenefield.com)<br />[📖](https://github.com/jwu910/check-it-out/commits?author=bbenefield89 "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/34019925?v=4" width="80px;"/><br /><sub><b>Rebecca Hong</b></sub>](http://www.linkedin.com/in/rehong)<br />[🎨](#design-rebeccahongsf "Design") |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [<img src="https://avatars3.githubusercontent.com/u/25625490?v=4" width="80px;"/><br /><sub><b>Jesse Ma</b></sub>](https://github.com/jma26)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=jma26 "Code") |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ### License
 MIT @ [Joshua Wu](https://www.npmjs.com/~jwu910)
