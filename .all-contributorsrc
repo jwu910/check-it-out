@@ -54,6 +54,20 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jwu910",
+      "name": "Joshua Wu",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12107969?v=4",
+      "profile": "http://www.linkedin.com/in/wujoshua",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "ideas",
+        "infra",
+        "review"
+      ]
     }
   ]
 }
