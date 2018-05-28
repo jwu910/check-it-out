@@ -68,6 +68,24 @@
         "infra",
         "review"
       ]
+    },
+    {
+      "login": "rebeccahongsf",
+      "name": "Rebecca Hong",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/34019925?v=4",
+      "profile": "http://www.linkedin.com/in/rehong",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "jma26",
+      "name": "Jesse Ma",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/25625490?v=4",
+      "profile": "https://github.com/jma26",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
