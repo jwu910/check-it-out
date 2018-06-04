@@ -1,3 +1,10 @@
+/* Resize img for any browser size */
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
 * {
 	font-family: 'Lato', sans-serif;
 	font-size: 1em;
@@ -51,7 +58,6 @@ img {
 
 header {
 	background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
-	border: 1px solid #979797;
 	height: auto;
 	margin: 0 auto;
 	min-width: 320px;
