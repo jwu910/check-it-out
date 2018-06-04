@@ -20,6 +20,13 @@ pre {
 	padding: 12px;
 }
 
+/* Resize img for any browser size */
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
 .title {
 	color: #EE7C5B;
 	font-size: 1.5em;
@@ -40,7 +47,7 @@ code {
 	padding: 4px;
 }
 
-img {
+.github-button {
 	margin-bottom: 8px;
 	max-width: 100%;
 }
@@ -90,9 +97,7 @@ header {
 	padding: 0px 16px;
 }
 
-.info-section .contents:nth-of-type(2) {
-	margin-top: 16px;
-}
+c
 
 .require-links {
 	font-size: 1em;
@@ -111,6 +116,7 @@ header {
 	color: #EE7C5B;
 	margin-bottom: 8px;
 }
+
 
 table {
 	border: 2px solid #979797;
