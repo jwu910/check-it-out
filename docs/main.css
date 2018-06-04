@@ -9,17 +9,13 @@ img {
 * {
 	font-family: 'Lato', sans-serif;
 	font-size: 1em;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
 
 a {
 	color: #916246;
 	text-decoration: none;
-}
-
-p {
-	margin-bottom: 16px;
 }
 
 pre {
@@ -42,7 +38,7 @@ pre {
 
 .contents {
 	font-size: 1em;
-	margin-bottom: 8px;
+	padding-bottom: 8px;
 	text-align: left;
 }
 
@@ -60,38 +56,29 @@ img {
 header {
 	background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
 	border: 1px solid #979797;
-	height: auto;
 	margin: 0 auto;
-	min-width: 320px;
-	text-align: center;
 	width: 100%;
-}
-
-.bmc-text {
-	margin-bottom: 16px;
+	min-width: 320px;
+	padding-top: 96px;
+	text-align: center;
 }
 
 .headline {
 	color: #FFFFFF;
 	font-size: 4em;
 	font-weight: 900;
-	margin-top: 1.5em;
-}
-
-.shadow-bar {
-	background: rgba(128, 128, 128, 0.3);
-	padding-bottom: 16px;
-	padding-top: 16px;
 }
 
 .sub-headline {
 	color: #916246;
 	font-size: 1.7em;
 	font-weight: 900;
-	margin-bottom: 2em;
 }
 
 .link-container {
+	background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
+	margin-top: 64px;
+	padding: 16px 0px 8px;
 	text-align: center;
 }
 
@@ -108,7 +95,7 @@ header {
 .main {
 	margin: 0 auto;
 	max-width: 640px;
-	padding: 0 16px;
+	padding: 0px 16px;
 }
 
 .info-section .contents:nth-of-type(2) {
@@ -125,16 +112,12 @@ header {
 
 .install-section .contents:nth-of-type(4) {
 	line-height: normal;
-	padding-top: 0;
+	padding-top: 0px;
 }
 
 .install-section h3 {
 	color: #EE7C5B;
 	margin-bottom: 8px;
-}
-
-.section {
-	margin-bottom: 32px;
 }
 
 table {
@@ -148,7 +131,7 @@ td,
 th {
 	border: 2px solid #979797;
 	font-size: 1em;
-	padding: 8px 0 8px 16px;
+	padding: 8px 0px 8px 16px;
 	text-align: left;
 }
 
@@ -184,9 +167,11 @@ tr:nth-child(even) {
 
 .contributors {
 	font-size: 1em;
-	padding: 24px 0;
+	padding: 24px 0px;
 }
 
 .license {
+	background: linear-gradient(to right, #C67A5A, #C58B65, #C39D6F);
 	font-size: 1em;
+	padding: 4px 0px;
 }
