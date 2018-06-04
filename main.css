@@ -58,8 +58,6 @@ img {
 
 header {
 	background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
-	box-sizing: border-box;
-	border: 1px solid #979797;
 	height: auto;
 	margin: 0 auto;
 	min-width: 320px;
@@ -75,7 +73,7 @@ header {
 	color: #FFFFFF;
 	font-size: 4em;
 	font-weight: 900;
-	margin-top: 1.5em;
+	padding-top: 1.5em;
 }
 
 .shadow-bar {
