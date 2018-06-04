@@ -58,6 +58,8 @@ img {
 
 header {
 	background: linear-gradient(to right, #EE7C5A, #EC8C64, #E9A571);
+	box-sizing: border-box;
+	border: 1px solid #979797;
 	height: auto;
 	margin: 0 auto;
 	min-width: 320px;
