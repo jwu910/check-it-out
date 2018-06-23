@@ -4,7 +4,7 @@
   "description": "Easy git checkout CLI tool.",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "gulp build",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "start": "node index.js",

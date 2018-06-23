@@ -13,7 +13,7 @@ gulp.task('build', function() {
 
       this.emit('end');
     })
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function() {
