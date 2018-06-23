@@ -2,7 +2,18 @@ const blessed = require('blessed');
 const path = require('path');
 
 const help = require(path.resolve(__dirname, 'helpText'));
-const { THEME_COLOR } = require(path.resolve(__dirname, 'theme.json'));
+const { THEME_COLOR } = require(path.resolve(__dirname, '../../theme.json'));
+
+function loading() {
+  const loading = blessed.loading({
+    align: 'center',
+    width: 'shrink',
+    top: '0',
+    left: '0'
+  });
+
+  return loading;
+}
 
 function branchTable() {
   const branchTable = blessed.listtable({
@@ -102,6 +113,7 @@ function statusHelpText() {
 
 module.exports = {
   branchTable,
+  loading,
   statusBarText,
   helpDialogue,
   screen,

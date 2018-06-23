@@ -33,6 +33,7 @@ export const start = args => {
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
+  const loading = dialogue.loading();
   const helpDialogue = dialogue.helpDialogue();
   const statusBar = dialogue.statusBar();
   const statusBarText = dialogue.statusBarText();
@@ -233,6 +234,7 @@ export const start = args => {
 
         statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
+        loading.stop();
         screen.render();
       })
       .catch(err => {
@@ -242,6 +244,9 @@ export const start = args => {
         process.stderr.write(err + '\n');
       });
   }
+
+  screen.append(loading);
+  loading.load('Loading project references.');
 
   refreshTable(currentRemote);
 };
