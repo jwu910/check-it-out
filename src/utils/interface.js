@@ -2,7 +2,7 @@ const blessed = require('blessed');
 const path = require('path');
 
 const help = require(path.resolve(__dirname, 'helpText'));
-const { THEME_COLOR } = require(path.resolve(__dirname, 'theme.json'));
+const { THEME_COLOR } = require(path.resolve(__dirname, '../../theme.json'));
 
 function branchTable() {
   const branchTable = blessed.listtable({
