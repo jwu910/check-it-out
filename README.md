@@ -1,16 +1,33 @@
-# Check It Out
-![Check It Out](docs/assets/images/checkit-intro.gif)
+<p align="center">
+	<h1 align="center">Check It Out</h1>
+</p>
+<p align="center">
+	<img src="https://github.com/jwu910/check-it-out/raw/master/docs/assets/images/checkit-intro.gif">
+</p>
 
-![npm](https://img.shields.io/npm/dt/check-it-out.svg)
-![npm version](https://badge.fury.io/js/check-it-out.svg)
-![GitHub version](https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg)
+<p align="center">
+	<a href="https://www.npmjs.org/package/check-it-out">
+		<img alt="Downloads per week" height="18" src="https://img.shields.io/npm/dw/localeval.svg">
+	</a>
+	<a href="https://badge.fury.io/js/check-it-out">
+		<img alt="npm version" height="18" src="https://badge.fury.io/js/check-it-out.svg">
+	</a>
+	<a href="https://badge.fury.io/gh/jwu910%2Fcheck-it-out">
+		<img alt="GitHub version" height="18" src="https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg">
+	</a>
+	<a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20project%20on%20Github%20https://github.com/jwu910/check-it-out">
+		<img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
+	</a>
+</p>
+
+<hr/>
 
 Check it out, before you checkout.
 
 Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
 
 ## Requirements
-[Node >= v6.0](https://nodejs.org/en/blog/release/v6.0.0/)
+[Node >= v4.0](https://nodejs.org/en/blog/release/v4.0.0/)
 
 [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - Required for core features
 

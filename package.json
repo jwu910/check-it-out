@@ -30,7 +30,7 @@
     "cio": "index.js"
   },
   "engines": {
-    "node": ">=7"
+    "node": ">=4"
   },
   "author": "Joshua Wu",
   "license": "MIT",
