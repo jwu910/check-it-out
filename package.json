@@ -55,5 +55,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "prettier": "^1.12.1"
-  }
+  },
+  "prePublishOnly": "npm run build"
 }
