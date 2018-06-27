@@ -51,9 +51,9 @@ npm install
 Create a symbolic link to the entry point
 
 ###### Linux/Mac:
-Navigate to a desired destination directory currently in your path.
+In the repository directory run:
 ```
-ln -s /path/to/check-it-out/index.js checkit
+npm link
 ```
 
 ## Usage
