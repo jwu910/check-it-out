@@ -5,7 +5,8 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "theme.json"
   ],
   "main": "index.js",
   "scripts": {
