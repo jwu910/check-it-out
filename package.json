@@ -2,11 +2,17 @@
   "name": "check-it-out",
   "version": "0.7.9",
   "description": "Easy git checkout CLI tool.",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
+    "prepublishOnly": "npm run build",
     "start": "node index.js",
     "watch": "gulp watch"
   },
@@ -55,6 +61,5 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "prettier": "^1.12.1"
-  },
-  "prePublishOnly": "npm run build"
+  }
 }
