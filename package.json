@@ -8,11 +8,18 @@
     "README.md",
     "theme.json"
   ],
+  "lint-staged": {
+    "src/*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
+    "precommit": "lint-staged",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "watch": "gulp watch"
@@ -61,6 +68,7 @@
     "eslint": "^4.19.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
+    "lint-staged": "^7.2.0",
     "prettier": "^1.12.1"
   }
 }
