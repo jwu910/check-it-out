@@ -86,6 +86,29 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "kienD",
+      "name": "Kien Do",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16655146?v=4",
+      "profile": "https://github.com/kienD",
+      "contributions": [
+        "question",
+        "bug",
+        "ideas"
+      ]
+    },
+    {
+      "login": "vutran",
+      "name": "Vu Tran",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1088312?v=4",
+      "profile": "http://twitter.com/tranvu",
+      "contributions": [
+        "question",
+        "doc",
+        "ideas",
+        "talk"
+      ]
     }
   ]
 }
