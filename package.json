@@ -1,12 +1,19 @@
 {
   "name": "check-it-out",
-  "version": "0.7.9",
+  "version": "0.7.10",
   "description": "Easy git checkout CLI tool.",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "theme.json"
+  ],
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
+    "prepublishOnly": "npm run build",
     "start": "node index.js",
     "watch": "gulp watch"
   },
@@ -30,7 +37,7 @@
     "cio": "index.js"
   },
   "engines": {
-    "node": ">=7"
+    "node": ">=4"
   },
   "author": "Joshua Wu",
   "license": "MIT",
