@@ -9,7 +9,7 @@ function loading() {
     align: 'center',
     width: 'shrink',
     top: '0',
-    left: '0'
+    left: '0',
   });
 
   return loading;
