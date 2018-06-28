@@ -6,6 +6,9 @@
 </p>
 
 <p align="center">
+	<a href="https://travis-ci.org/jwu910/check-it-out">
+		<img src="https://travis-ci.org/jwu910/check-it-out.svg?branch=master">
+	</a>
 	<a href="https://www.npmjs.org/package/check-it-out">
 		<img alt="Downloads per week" height="18" src="https://img.shields.io/npm/dw/localeval.svg">
 	</a>
