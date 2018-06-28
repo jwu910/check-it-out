@@ -1,6 +1,6 @@
 {
   "name": "check-it-out",
-  "version": "0.7.10",
+  "version": "0.7.11",
   "description": "Easy git checkout CLI tool.",
   "files": ["dist", "LICENSE", "README.md", "theme.json"],
   "lint-staged": {
