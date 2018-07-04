@@ -1,6 +1,13 @@
 # .prettierrc
 bracketSpacing: true
 jsxBracketSameLine: false
+overrides:
+- files: "*.md"
+  options:
+    parser: markdown
+- files: "*.json"
+  options:
+    parser: json
 parser: babylon
 printWidth: 80
 semi: true
