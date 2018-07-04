@@ -10,5 +10,4 @@ node_js:
   - "5"
   - "4"
 script:
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then precise-commits --whitelist="src/**/*.js" --check-only; fi'
   - npm test
