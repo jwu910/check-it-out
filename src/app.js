@@ -121,9 +121,6 @@ export const start = args => {
       });
   });
 
-  /**
-   * @todo: Build a keybind utility
-   */
   branchTable.key(['left', 'h'], () => {
     currentRemote = getPrevRemote(currentRemote, remoteList);
   });
