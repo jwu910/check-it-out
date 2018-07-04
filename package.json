@@ -2,10 +2,19 @@
   "name": "check-it-out",
   "version": "0.7.11",
   "description": "Easy git checkout CLI tool.",
-  "files": ["dist", "LICENSE", "README.md", "theme.json"],
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "theme.json"
+  ],
   "lint-staged": {
-    "src/**/*.js": ["prettier --config .prettierrc --write", "git add"],
-    "*.json": ["prettier --config .prettierrc --write", "git add"]
+    "src/**/*.js": [
+      "prettier --config .prettierrc --write"
+    ],
+    "*.json": [
+      "prettier --config .prettierrc --write"
+    ]
   },
   "main": "index.js",
   "scripts": {
