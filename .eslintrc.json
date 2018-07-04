@@ -1,12 +1,15 @@
 {
-  "extends": ["prettier", "plugin:prettier/recommended"],
   "env": {
     "es6": true,
     "node": true
   },
+  "extends": ["plugin:prettier/recommended"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "error"
   }
 }
