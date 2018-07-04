@@ -2,18 +2,21 @@
   "name": "check-it-out",
   "version": "0.7.11",
   "description": "Easy git checkout CLI tool.",
-  "files": ["dist", "LICENSE", "README.md", "theme.json"],
-  "lint-staged": {
-    "src/**/*.js": ["prettier --config .prettierrc --write", "git add"],
-    "*.json": ["prettier --config .prettierrc --write", "git add"]
-  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "theme.json"
+  ],
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "lint:fix": "eslint ./ --fix",
-    "precommit": "lint-staged",
+    "lint:fix": "eslint --config .eslintrc.json ./ --fix",
+    "lint": "eslint --config .eslintrc.json ./",
+    "precise-commits": "precise-commits",
+    "precommit": "npm run precise-commits",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "test": "eslint ./",
@@ -66,8 +69,8 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.12.1",
+    "precise-commits": "^1.0.2",
+    "prettier": "^1.13.7",
     "prettier-eslint": "^8.8.2"
   }
 }

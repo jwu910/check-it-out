@@ -2,43 +2,37 @@ const chalk = require('chalk');
 const path = require('path');
 const { spawn } = require('child_process');
 
-const {
-  buildRemotePayload,
-  filterUniqueRemotes,
-  readError,
-} = require(path.resolve(__dirname, 'utils'));
+const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
+  __dirname,
+  'utils',
+));
 
 /**
- * Get all remotes from git repository and return an object
+ * Get references and parse through data to build branch array and remote list
  *
- * @param {String} remote Remote to list branches from
- * @return {Object} Return payload object containing branches associated with each local.
+ * @param {String} remote Current displayed remote
+ * @returns {String[]} payload and uniqueRemotes
  */
-export function buildListArray(remote = 'local') {
+export function getRefData(remote) {
   const refs = getRefs();
 
-  return refs
+  const payload = refs
     .then(data => {
       return buildRemotePayload(data);
     })
     .then(payload => {
       return payload[remote];
     });
-}
 
-/**
- * @return {Array} Array of unique remotes for tab options
- */
-export function buildRemoteList() {
-  const refs = getRefs();
-
-  return refs
+  const uniqueRemotes = refs
     .then(data => {
       return filterUniqueRemotes(data);
     })
     .then(uniqueRemotes => {
       return uniqueRemotes;
     });
+
+  return [payload, uniqueRemotes];
 }
 
 /**

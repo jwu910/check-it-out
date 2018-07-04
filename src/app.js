@@ -2,12 +2,10 @@ const chalk = require('chalk');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const {
-  buildListArray,
-  buildRemoteList,
-  doCheckoutBranch,
-  doFetchBranches,
-} = require(path.resolve(__dirname, 'utils/git'));
+const { doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
+  __dirname,
+  'utils/git',
+));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const { getRemoteTabs, readError } = require(path.resolve(
@@ -121,9 +119,6 @@ export const start = args => {
       });
   });
 
-  /**
-   * @todo: Build a keybind utility
-   */
   branchTable.key(['left', 'h'], () => {
     currentRemote = getPrevRemote(currentRemote, remoteList);
   });
@@ -215,9 +210,11 @@ export const start = args => {
    * @param {String} currentRemote Current displayed remote
    */
   function refreshTable(currentRemote = 'local') {
-    buildListArray(currentRemote)
-      .then(branchArray => {
-        branchTable.setData([['', 'Remote', 'Branch Name'], ...branchArray]);
+    const [branchArray, remoteListTabs] = getRefData(currentRemote);
+
+    branchArray
+      .then(data => {
+        branchTable.setData([['', 'Remote', 'Branch Name'], ...data]);
 
         screen.render();
       })
@@ -226,15 +223,16 @@ export const start = args => {
 
         process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
         process.stderr.write(err + '\n');
+
+        process.exit(1);
       });
 
-    buildRemoteList()
+    remoteListTabs
       .then(data => {
         remoteList = data;
 
         statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
-        loading.stop();
         screen.render();
       })
       .catch(err => {
@@ -242,7 +240,12 @@ export const start = args => {
 
         process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
         process.stderr.write(err + '\n');
+
+        process.exit(1);
       });
+
+    loading.stop();
+    screen.render();
   }
 
   screen.append(loading);
