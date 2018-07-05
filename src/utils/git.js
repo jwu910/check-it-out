@@ -118,19 +118,24 @@ export function formatRemoteBranches(output) {
   return getCurrentBranch().then(selectedBranch => {
     const outputArray = output.trim().split('\n');
 
-    outputArray.forEach(line => {
+    outputArray.map(line => {
       const currLine = line.split('/');
 
-      const currBranch = currLine[currLine.length - 1];
+      const currBranch =
+        currLine[1] === 'remotes'
+          ? currLine.slice(3).join('/')
+          : currLine.slice(2).join('/');
 
-      const isLocal = currLine[1] === 'heads';
-
-      const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
+      const currRemote = currLine[1] === 'remotes' ? currLine[2] : currLine[1];
 
       const selected =
-        isLocal && currBranch === selectedBranch.trim() ? '*' : ' ';
+        currLine[1] === 'heads' && currBranch === selectedBranch.trim()
+          ? '*'
+          : ' ';
 
       if (currLine[currLine.length - 1] === 'HEAD') {
+        return;
+      } else if (currLine[1] === 'stash') {
         return;
       }
 
