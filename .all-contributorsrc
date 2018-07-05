@@ -56,20 +56,6 @@
       ]
     },
     {
-      "login": "jwu910",
-      "name": "Joshua Wu",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/12107969?v=4",
-      "profile": "http://www.linkedin.com/in/wujoshua",
-      "contributions": [
-        "bug",
-        "code",
-        "doc",
-        "ideas",
-        "infra",
-        "review"
-      ]
-    },
-    {
       "login": "rebeccahongsf",
       "name": "Rebecca Hong",
       "avatar_url": "https://avatars2.githubusercontent.com/u/34019925?v=4",
@@ -107,6 +93,28 @@
         "question",
         "doc",
         "ideas",
+        "talk"
+      ]
+    },
+    {
+      "login": "rainrivas",
+      "name": "Efrain 'Rain' Rivas",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/12107963?v=4",
+      "profile": "https://github.com/rainrivas",
+      "contributions": [
+        "question",
+        "bug",
+        "example",
+        "infra"
+      ]
+    },
+    {
+      "login": "phuchle",
+      "name": "Phuc Le",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11803331?v=4",
+      "profile": "https://phuchle.com",
+      "contributions": [
+        "question",
         "talk"
       ]
     }

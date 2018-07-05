@@ -2,12 +2,10 @@ const chalk = require('chalk');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const {
-  buildListArray,
-  buildRemoteList,
-  doCheckoutBranch,
-  doFetchBranches,
-} = require(path.resolve(__dirname, 'utils/git'));
+const { doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
+  __dirname,
+  'utils/git',
+));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const { getRemoteTabs, readError } = require(path.resolve(
@@ -39,34 +37,52 @@ export const start = args => {
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
 
-  let currentRemote = 'local';
+  let branchPayload = {};
+  let currentRemote = 'heads';
   let remoteList = [];
+
+  const [branchData, remoteListTabs] = getRefData();
+
+  screen.append(loading);
+  loading.load(' Loading project references.');
+
+  Promise.all([branchData, remoteListTabs])
+    .then(data => {
+      branchPayload = data[0];
+
+      remoteList = data[1];
+
+      refreshTable(currentRemote);
+    })
+    .catch(err => {
+      screen.destroy();
+
+      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+      process.stderr.write(err + '\n');
+
+      process.exit(1);
+    });
 
   const toggleHelp = () => {
     helpDialogue.toggle();
     screen.render();
   };
 
-  /**
-   * @todo: Build a keyMap utility
-   * @body: Add left and right functionality to change remote. Add getUniqueRemotes method here.
-   */
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
+    branchTable.clearItems();
+
+    screen.append(loading);
+
+    loading.load(' Fetching refs.');
+
     doFetchBranches()
-      .then(
-        () => {
-          branchTable.clearItems();
+      .then(() => {
+        branchTable.clearItems();
 
-          refreshTable(currentRemote);
-        },
-        err => {
-          screen.destroy();
-
-          readError(err, currentRemote, 'fetch');
-        },
-      )
+        refreshTable(currentRemote);
+      })
       .catch(error => {
         screen.destroy();
 
@@ -93,7 +109,7 @@ export const start = args => {
    */
   const parseSelection = selectedLine => {
     const selection = selectedLine.split(/\s*\s/).map(column => {
-      return column === 'local' ? '' : column;
+      return column === 'heads' ? '' : column;
     });
 
     return selection;
@@ -121,9 +137,6 @@ export const start = args => {
       });
   });
 
-  /**
-   * @todo: Build a keybind utility
-   */
   branchTable.key(['left', 'h'], () => {
     currentRemote = getPrevRemote(currentRemote, remoteList);
   });
@@ -210,43 +223,19 @@ export const start = args => {
   }
 
   /**
-   * Build array of branches for main interface
+   * Update current screen with current remote
    *
    * @param {String} currentRemote Current displayed remote
    */
-  function refreshTable(currentRemote = 'local') {
-    buildListArray(currentRemote)
-      .then(branchArray => {
-        branchTable.setData([['', 'Remote', 'Branch Name'], ...branchArray]);
+  function refreshTable(currentRemote = 'heads') {
+    branchTable.setData([
+      ['', 'Remote', 'Branch Name'],
+      ...branchPayload[currentRemote],
+    ]);
 
-        screen.render();
-      })
-      .catch(err => {
-        screen.destroy();
+    statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
-        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-        process.stderr.write(err + '\n');
-      });
-
-    buildRemoteList()
-      .then(data => {
-        remoteList = data;
-
-        statusBarText.content = getRemoteTabs(remoteList, currentRemote);
-
-        loading.stop();
-        screen.render();
-      })
-      .catch(err => {
-        screen.destroy();
-
-        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-        process.stderr.write(err + '\n');
-      });
+    loading.stop();
+    screen.render();
   }
-
-  screen.append(loading);
-  loading.load('Loading project references.');
-
-  refreshTable(currentRemote);
 };

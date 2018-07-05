@@ -2,43 +2,37 @@ const chalk = require('chalk');
 const path = require('path');
 const { spawn } = require('child_process');
 
-const {
-  buildRemotePayload,
-  filterUniqueRemotes,
-  readError,
-} = require(path.resolve(__dirname, 'utils'));
+const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
+  __dirname,
+  'utils',
+));
 
 /**
- * Get all remotes from git repository and return an object
+ * Get references and parse through data to build branch array and remote list
  *
- * @param {String} remote Remote to list branches from
- * @return {Object} Return payload object containing branches associated with each local.
+ * @param {String} remote Current displayed remote
+ * @returns {String[]} payload and uniqueRemotes
  */
-export function buildListArray(remote = 'local') {
+export function getRefData() {
   const refs = getRefs();
 
-  return refs
+  const payload = refs
     .then(data => {
       return buildRemotePayload(data);
     })
     .then(payload => {
-      return payload[remote];
+      return payload;
     });
-}
 
-/**
- * @return {Array} Array of unique remotes for tab options
- */
-export function buildRemoteList() {
-  const refs = getRefs();
-
-  return refs
+  const uniqueRemotes = refs
     .then(data => {
       return filterUniqueRemotes(data);
     })
     .then(uniqueRemotes => {
       return uniqueRemotes;
     });
+
+  return [payload, uniqueRemotes];
 }
 
 /**
@@ -124,19 +118,24 @@ export function formatRemoteBranches(output) {
   return getCurrentBranch().then(selectedBranch => {
     const outputArray = output.trim().split('\n');
 
-    outputArray.forEach(line => {
+    outputArray.map(line => {
       const currLine = line.split('/');
 
-      const currBranch = currLine[currLine.length - 1];
+      const currBranch =
+        currLine[1] === 'remotes'
+          ? currLine.slice(3).join('/')
+          : currLine.slice(2).join('/');
 
-      const isLocal = currLine[1] === 'heads';
-
-      const currRemote = isLocal ? 'local' : currLine[currLine.length - 2];
+      const currRemote = currLine[1] === 'remotes' ? currLine[2] : currLine[1];
 
       const selected =
-        isLocal && currBranch === selectedBranch.trim() ? '*' : ' ';
+        currLine[1] === 'heads' && currBranch === selectedBranch.trim()
+          ? '*'
+          : ' ';
 
       if (currLine[currLine.length - 1] === 'HEAD') {
+        return;
+      } else if (currLine[1] === 'stash') {
         return;
       }
 
