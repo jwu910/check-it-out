@@ -38,7 +38,7 @@ export const start = args => {
   const statusHelpText = dialogue.statusHelpText();
 
   let branchPayload = {};
-  let currentRemote = 'local';
+  let currentRemote = 'heads';
   let remoteList = [];
 
   const [branchData, remoteListTabs] = getRefData();
@@ -109,7 +109,7 @@ export const start = args => {
    */
   const parseSelection = selectedLine => {
     const selection = selectedLine.split(/\s*\s/).map(column => {
-      return column === 'local' ? '' : column;
+      return column === 'heads' ? '' : column;
     });
 
     return selection;
@@ -227,7 +227,7 @@ export const start = args => {
    *
    * @param {String} currentRemote Current displayed remote
    */
-  function refreshTable(currentRemote = 'local') {
+  function refreshTable(currentRemote = 'heads') {
     branchTable.setData([
       ['', 'Remote', 'Branch Name'],
       ...branchPayload[currentRemote],
