@@ -37,34 +37,52 @@ export const start = args => {
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
 
+  let branchPayload = {};
   let currentRemote = 'local';
   let remoteList = [];
+
+  const [branchData, remoteListTabs] = getRefData();
+
+  screen.append(loading);
+  loading.load(' Loading project references.');
+
+  Promise.all([branchData, remoteListTabs])
+    .then(data => {
+      branchPayload = data[0];
+
+      remoteList = data[1];
+
+      refreshTable(currentRemote);
+    })
+    .catch(err => {
+      screen.destroy();
+
+      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+      process.stderr.write(err + '\n');
+
+      process.exit(1);
+    });
 
   const toggleHelp = () => {
     helpDialogue.toggle();
     screen.render();
   };
 
-  /**
-   * @todo: Build a keyMap utility
-   * @body: Add left and right functionality to change remote. Add getUniqueRemotes method here.
-   */
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('r', () => {
+    branchTable.clearItems();
+
+    screen.append(loading);
+
+    loading.load(' Fetching refs.');
+
     doFetchBranches()
-      .then(
-        () => {
-          branchTable.clearItems();
+      .then(() => {
+        branchTable.clearItems();
 
-          refreshTable(currentRemote);
-        },
-        err => {
-          screen.destroy();
-
-          readError(err, currentRemote, 'fetch');
-        },
-      )
+        refreshTable(currentRemote);
+      })
       .catch(error => {
         screen.destroy();
 
@@ -205,51 +223,19 @@ export const start = args => {
   }
 
   /**
-   * Build array of branches for main interface
+   * Update current screen with current remote
    *
    * @param {String} currentRemote Current displayed remote
    */
   function refreshTable(currentRemote = 'local') {
-    const [branchArray, remoteListTabs] = getRefData(currentRemote);
+    branchTable.setData([
+      ['', 'Remote', 'Branch Name'],
+      ...branchPayload[currentRemote],
+    ]);
 
-    branchArray
-      .then(data => {
-        branchTable.setData([['', 'Remote', 'Branch Name'], ...data]);
-
-        screen.render();
-      })
-      .catch(err => {
-        screen.destroy();
-
-        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-        process.stderr.write(err + '\n');
-
-        process.exit(1);
-      });
-
-    remoteListTabs
-      .then(data => {
-        remoteList = data;
-
-        statusBarText.content = getRemoteTabs(remoteList, currentRemote);
-
-        screen.render();
-      })
-      .catch(err => {
-        screen.destroy();
-
-        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-        process.stderr.write(err + '\n');
-
-        process.exit(1);
-      });
+    statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
     loading.stop();
     screen.render();
   }
-
-  screen.append(loading);
-  loading.load('Loading project references.');
-
-  refreshTable(currentRemote);
 };

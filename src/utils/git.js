@@ -13,7 +13,7 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
  * @param {String} remote Current displayed remote
  * @returns {String[]} payload and uniqueRemotes
  */
-export function getRefData(remote) {
+export function getRefData() {
   const refs = getRefs();
 
   const payload = refs
@@ -21,7 +21,7 @@ export function getRefData(remote) {
       return buildRemotePayload(data);
     })
     .then(payload => {
-      return payload[remote];
+      return payload;
     });
 
   const uniqueRemotes = refs
