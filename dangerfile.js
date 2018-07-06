@@ -1,27 +1,20 @@
-import { danger, fail, markdown, schedule, warn } from 'danger';
-import { compact, includes, uniq } from 'lodash';
+'use strict';
 
-// Setup
-const pr = danger.github.pr;
-const modified = danger.git.modified_files;
-const bodyAndTitle = (pr.body + pr.title).toLowerCase();
+const includes = require('lodash.includes');
 
-const trivialPR = bodyAndTitle.includes('#trivial');
+const { danger, fail, markdown, message, warn } = require('danger');
 
-const changelogChanges = includes(modified, 'CHANGELOG.md');
-if (modifiedAppFiles.length > 0 && !trivialPR && !changelogChanges) {
-  fail('No CHANGELOG added.');
+// Fails if the description is too short.
+if (!danger.github.pr.body || danger.github.pr.body.length < 10) {
+  fail(':grey_question: This pull request needs a description.');
 }
 
+// Warns if there are changes to package.json, and tags the team.
 const packageChanged = includes(danger.git.modified_files, 'package.json');
-const lockfileChanged = includes(
-  danger.git.modified_files,
-  'package-lock.json',
-);
-
-if (packageChanged && !lockfileChanged) {
-  const message =
-    'Changes were made to package.json, but not to package-lock.json';
-  const idea = 'Perhaps you need to run `npm install`?';
-  warn(`${message} - <i>${idea}</i>`);
+if (packageChanged) {
+  const title = ':lock: package.json';
+  const idea =
+    'Changes were made to package.json. ' +
+    'This will require a manual import by a Facebook employee.';
+  warn(`${title} - <i>${idea}</i>`);
 }
