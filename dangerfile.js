@@ -11,8 +11,10 @@ const jsModifiedFiles = danger.git.modified_files.filter(
 const hasAppChanges =
   jsModifiedFiles.filter(filepath => !filepath.endsWith('test.js')).length > 0;
 
+const prBodyMsg = danger.github.pr.body;
+
 // Fails if the description is too short.
-if (!danger.github.pr.body || danger.github.pr.body.length < 10) {
+if (!prBodyMsg || prBodyMsg.length < 8 || prBodyMsg.indexOf('Fixes #')) {
   fail(
     ':grey_question: This pull request needs a description. \n' +
       'Please include "Fixes #<ISSUE_NUMBER>". \n' +
@@ -45,7 +47,7 @@ if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
 }
 
 // Always ensure we assign someone, so that our Slackbot can do its work correctly
-if (pr.assignee === null) {
+if (danger.github.pr.assignee === null) {
   fail(
     'Please assign someone to merge this PR, and optionally include people who should review.',
   );
