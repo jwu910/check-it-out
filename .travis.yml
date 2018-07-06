@@ -7,9 +7,6 @@ node_js:
   - "lts/*"
   - "7"
   - "6"
-  - "5"
-  - "4"
 scripts:
-  - yarn install
   - npm test
   - yarn danger ci
