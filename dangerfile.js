@@ -20,15 +20,20 @@ if (!danger.github.pr.body || danger.github.pr.body.length < 10) {
   );
 }
 
-// Warns if there are changes to package.json, and tags the team.
-// const packageChanged = includes(danger.git.modified_files, 'package.json');
-// if (packageChanged) {
-//   const title = ':lock: package.json';
-//   const idea =
-//     'Changes were made to package.json. ' +
-//     'This will require a manual import by a Facebook employee.';
-//   warn(`${title} - <i>${idea}</i>`);
-// }
+// Warns if package lock was not updated.
+const packageChanged = includes(danger.git.modified_files, 'package.json');
+const lockfileChanged = includes(
+  danger.git.modified_files,
+  'package-lock.json',
+);
+if (packageChanged && !lockfileChanged) {
+  const message =
+    'Changes were made to package.json, but not to package-lock.json';
+  const idea =
+    'Perhaps you need to run `npm install`? \n' +
+    'Package Lock files can be commited with  the message `CIO-#<ISSUE_NUMBER> Autogenerate package-lock`';
+  warn(`${message} - <i>${idea}</i>`);
+}
 
 // Fail if there are app changes without a CHANGELOG
 if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
