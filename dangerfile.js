@@ -1,4 +1,4 @@
-const { message, warn, fail, markdown } = require('danger');
+import { contains, danger, warn, markdown } from 'danger';
 
 const hasChangelog = includes(danger.git.modified_files, 'CHANGELOG.md');
 const isTrivial = contains(
