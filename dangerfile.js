@@ -1,4 +1,5 @@
-import { contains, danger, warn, markdown } from 'danger';
+import { danger, warn, markdown } from 'danger';
+import { contains, includes } from 'lodash';
 
 const hasChangelog = includes(danger.git.modified_files, 'CHANGELOG.md');
 const isTrivial = contains(
