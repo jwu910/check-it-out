@@ -43,3 +43,10 @@ if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
     `Please include a CHANGELOG entry. You can find it at <a href='${changelogLink}'>CHANGELOG.md</a>`,
   );
 }
+
+// Always ensure we assign someone, so that our Slackbot can do its work correctly
+if (pr.assignee === null) {
+  fail(
+    'Please assign someone to merge this PR, and optionally include people who should review.',
+  );
+}
