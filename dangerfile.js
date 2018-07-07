@@ -16,6 +16,8 @@ const prBodyMsg = danger.github.pr.body;
 const titleRegex = /^([A-Z]{3,}-)([0-9]+)$/;
 const bodyRegex = /^Fixes #([0-9]+)/;
 
+message('Checked by Danger');
+
 // Fails if PR's title does not start with ticket abbreviation.
 if (!danger.github.pr.title.match(titleRegex)) {
   fail(
