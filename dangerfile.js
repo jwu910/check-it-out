@@ -13,8 +13,18 @@ const hasAppChanges =
 
 const prBodyMsg = danger.github.pr.body;
 
-// Fails if the description is too short.
-if (!prBodyMsg || prBodyMsg.length < 8 || prBodyMsg.indexOf('Fixes #')) {
+const titleRegex = /^([A-Z]{3,}-)([0-9]+)$/;
+const bodyRegex = /^Fixes #([0-9]+)/;
+
+// Fails if PR's title does not start with ticket abbreviation.
+if (!danger.github.pr.title.match(titleRegex)) {
+  fail(
+    ':grey_question: This pull request title should match the ticket format "CIO-1234"',
+  );
+}
+
+// Fails if the description does not contain regex.
+if (!prBodyMsg || prBodyMsg.length < 8 || prBodyMsg.match(bodyRegex)) {
   fail(
     ':grey_question: This pull request needs a description. \n' +
       'Please include "Fixes #<ISSUE_NUMBER>". \n' +
