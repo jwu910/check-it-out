@@ -13,9 +13,10 @@ const hasAppChanges =
 
 const prBodyMsg = danger.github.pr.body;
 
-const titleRegex = /^([A-Z]{3,}-)([0-9]+)$/;
-const bodyRegex = /^Fixes #([0-9]+)/;
+const titleRegex = '/^([A-Z]{3,}-)([0-9]+)/';
+const bodyRegex = '/^Fixes #([0-9]+)/';
 
+console.log(danger.github.pr);
 message('Checked by Danger');
 
 // Fails if PR's title does not start with ticket abbreviation.
