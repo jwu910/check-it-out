@@ -16,9 +16,6 @@ const prBodyMsg = danger.github.pr.body;
 const titleRegex = /^([A-Z]{3,}-)([0-9]+)/;
 const bodyRegex = /^Fixes #([0-9]+)/;
 
-console.log(danger.github.pr.title.match(titleRegex));
-message('Checked by Danger');
-
 // Fails if PR's title does not start with ticket abbreviation.
 if (!danger.github.pr.title.match(titleRegex)) {
   fail(
@@ -41,6 +38,7 @@ const lockfileChanged = includes(
   danger.git.modified_files,
   'package-lock.json',
 );
+
 if (packageChanged && !lockfileChanged) {
   const message =
     'Changes were made to package.json, but not to package-lock.json';
@@ -63,5 +61,14 @@ if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
 if (danger.github.pr.assignee === null) {
   fail(
     'Please assign someone to merge this PR, and optionally include people who should review.',
+  );
+}
+
+// Warns if file names were changed
+const renamedFiles = danger.git.renamed_files;
+
+if (renamedFiles) {
+  warn(
+    'Renamed files were found. Are you sure you want to rename these files?',
   );
 }
