@@ -13,8 +13,18 @@ const hasAppChanges =
 
 const prBodyMsg = danger.github.pr.body;
 
-// Fails if the description is too short.
-if (!prBodyMsg || prBodyMsg.length < 8 || prBodyMsg.indexOf('Fixes #')) {
+const titleRegex = /^([A-Z]{3,}-)([0-9]+)/;
+const bodyRegex = /^Fixes #([0-9]+)/;
+
+// Fails if PR's title does not start with ticket abbreviation.
+if (!danger.github.pr.title.match(titleRegex)) {
+  fail(
+    ':grey_question: This pull request title should match the ticket format "CIO-1234"',
+  );
+}
+
+// Fails if the description does not contain regex.
+if (!prBodyMsg || prBodyMsg.length < 8 || prBodyMsg.match(bodyRegex)) {
   fail(
     ':grey_question: This pull request needs a description. \n' +
       'Please include "Fixes #<ISSUE_NUMBER>". \n' +
@@ -28,6 +38,7 @@ const lockfileChanged = includes(
   danger.git.modified_files,
   'package-lock.json',
 );
+
 if (packageChanged && !lockfileChanged) {
   const message =
     'Changes were made to package.json, but not to package-lock.json';
@@ -50,5 +61,14 @@ if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
 if (danger.github.pr.assignee === null) {
   fail(
     'Please assign someone to merge this PR, and optionally include people who should review.',
+  );
+}
+
+// Warns if file names were changed
+const renamedFiles = danger.git.renamed_files;
+
+if (renamedFiles) {
+  warn(
+    'Renamed files were found. Are you sure you want to rename these files?',
   );
 }
