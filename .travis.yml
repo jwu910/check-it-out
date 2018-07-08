@@ -11,10 +11,10 @@ node_js:
   - "4"
 jobs:
   include:
+    - stage: compile
+    - stage: test
+      script: npm test
     - stage: danger
       script: yarn danger ci
       node_js:
       - "node"
-      - "lts/*"
-      - "7"
-      - "6"

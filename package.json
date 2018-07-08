@@ -11,6 +11,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
+    "compile": "gulp build && npm start -v",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "lint:fix": "eslint --config .eslintrc.json ./ --fix",
