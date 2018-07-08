@@ -16,6 +16,4 @@ jobs:
     - stage: test
       script: npm test
     - stage: danger
-      node_js:
-      - "node"
       script: yarn danger ci
