@@ -9,19 +9,11 @@ node_js:
   - "6"
   - "5"
   - "4"
+script:
+  - npm run build
+  - node index.js -v
 jobs:
   include:
-    - stage: build
-      node_js:
-      - "node"
-      - "lts/*"
-      - "7"
-      - "6"
-      - "5"
-      - "4"
-      script:
-        - npm run build
-        - node index.js -v
     - stage: danger
       node_js:
         - "node"
