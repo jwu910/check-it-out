@@ -24,7 +24,7 @@ if (!danger.github.pr.title.match(titleRegex)) {
 }
 
 // Fails if the description does not contain regex.
-if (!prBodyMsg || prBodyMsg.length < 8 || prBodyMsg.match(bodyRegex)) {
+if (!prBodyMsg || prBodyMsg.length < 8 || !prBodyMsg.match(bodyRegex)) {
   fail(
     ':grey_question: This pull request needs a description. \n' +
       'Please include "Fixes #<ISSUE_NUMBER>". \n' +

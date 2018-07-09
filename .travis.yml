@@ -7,6 +7,14 @@ node_js:
   - "lts/*"
   - "7"
   - "6"
+  - "5"
+  - "4"
 script:
-  - npm test
-  - yarn danger ci
+  - npm run build
+  - node index.js -v
+jobs:
+  include:
+    - stage: danger
+      node_js:
+        - "node"
+      script: yarn danger ci

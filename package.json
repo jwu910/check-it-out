@@ -19,7 +19,7 @@
     "precommit": "npm run precise-commits",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
-    "test": "eslint ./",
+    "test": "npm run lint",
     "watch": "gulp watch"
   },
   "repository": {
@@ -42,7 +42,7 @@
     "cio": "index.js"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=4"
   },
   "author": "Joshua Wu",
   "license": "MIT",
