@@ -12,9 +12,17 @@ node_js:
 jobs:
   include:
     - stage: build
+      node_js:
+      - "node"
+      - "lts/*"
+      - "7"
+      - "6"
+      - "5"
+      - "4"
       script:
         - npm run build
         - node index.js -v
     - stage: danger
-      if: node_js = node
+      node_js:
+        - "node"
       script: yarn danger ci
