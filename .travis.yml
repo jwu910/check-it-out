@@ -3,6 +3,7 @@ cache:
   directories:
     - "node_modules"
 node_js:
+  - "node"
   - "lts/*"
   - "7"
   - "6"
@@ -12,7 +13,5 @@ jobs:
   include:
     - stage: run
       script: npm start -v
-    - stage: test
-      script: npm test
     - stage: danger
       script: yarn danger ci
