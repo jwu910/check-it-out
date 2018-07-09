@@ -2,19 +2,21 @@ language: node_js
 cache:
   directories:
     - "node_modules"
-node_js:
-  - "node"
-  - "lts/*"
-  - "7"
-  - "6"
-  - "5"
-  - "4"
 jobs:
   include:
     - stage: test
+      node_js:
+        - "node"
+        - "lts/*"
+        - "7"
+        - "6"
+        - "5"
+        - "4"
       script:
         - npm run build
         - node index.js -v
         - npm test
     - stage: danger
+      node_js:
+        "node"
       script: yarn danger ci
