@@ -19,7 +19,7 @@
     "precommit": "npm run precise-commits",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
-    "test": "npm run start -v && eslint ./",
+    "test": "node index.js -v && eslint ./",
     "watch": "gulp watch"
   },
   "repository": {
