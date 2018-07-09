@@ -11,11 +11,10 @@ node_js:
   - "4"
 jobs:
   include:
-    - stage: test
+    - stage: build
       script:
         - npm run build
         - node index.js -v
-        - npm test
     - stage: danger
       if: node_js = node
       script: yarn danger ci
