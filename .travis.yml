@@ -11,5 +11,10 @@ node_js:
   - "4"
 jobs:
   include:
+    - stage: test
+      script:
+        - npm run build
+        - node index.js -v
+        - npm test
     - stage: danger
       script: yarn danger ci
