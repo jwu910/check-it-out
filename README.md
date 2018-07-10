@@ -81,6 +81,19 @@ Call git log on current highlighted branch with `[space]`
 |`space`| Git log |
 |`q, C-c, esc`| Quit |
 
+## Settings
+Configurable settings can be found at `~/.config/configstore/check-it-out.json`
+
+Options include:
+* gitLogArguments
+	* Type: String
+	* Default: `--color=always`
+	* Git Log argument to format output
+* themeColor
+	* Type: String
+	* Default: `#FFA66D`
+	* A hex color code to style Check It Out
+
 ## Contributing
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md)
 
