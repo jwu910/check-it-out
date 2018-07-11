@@ -2,7 +2,7 @@
 	<h1 align="center">Check It Out</h1>
 </p>
 <p align="center">
-	<img src="https://github.com/jwu910/check-it-out/raw/master/docs/assets/images/checkit-intro.gif">
+	<img src="docs/assets/images/checkit-intro.gif">
 </p>
 
 <p align="center">
