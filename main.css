@@ -24,6 +24,26 @@ pre {
 	padding: 12px;
 }
 
+kbd {
+	-moz-border-radius: 3px;
+	-moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #FFF inset;
+	-webkit-border-radius: 3px;
+	-webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #FFF inset;
+	background-color: #F7F7F7;
+	border-radius: 3px;
+	border: 1px solid #CCC;
+	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #FFF inset;
+	color: #333;
+	display: inline-block;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 11px;
+	line-height: 1.4;
+	margin: 0 0.1em;
+	padding: 0.1em 0.6em;
+	text-shadow: 0 1px 0 #FFF;
+	white-space: nowrap;
+}
+
 .title {
 	color: #EE7C5B;
 	font-size: 1.5em;
@@ -159,7 +179,7 @@ th {
 }
 
 tr:nth-child(even) {
-	background-color: #D5D5D5;
+	background-color: #E7E7E7;
 }
 
 .footer {
