@@ -5,8 +5,7 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md",
-    "theme.json"
+    "README.md"
   ],
   "main": "index.js",
   "scripts": {
@@ -53,6 +52,7 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^2.3.1",
+    "configstore": "^3.1.2",
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {

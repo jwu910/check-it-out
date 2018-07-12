@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const path = require('path');
 const updateNotifier = require('update-notifier');
+const Configstore = require('configstore');
 
 const { doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
   __dirname,
@@ -17,6 +18,9 @@ const { getRemoteTabs, readError } = require(path.resolve(
 const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
 
+const conf = new Configstore(pkg.name, { gitLogArguments: '--color=always' });
+const gitLogArguments = conf.get('gitLogArguments');
+
 if (notifier.update) {
   notifier.notify();
 }
@@ -24,7 +28,6 @@ if (notifier.update) {
 export const start = args => {
   if (args[0] === '-v' || args[0] === '--version') {
     process.stdout.write(pkg.version);
-
     process.exit(0);
   }
 
@@ -175,7 +178,7 @@ export const start = args => {
       args = args.join('/');
     }
 
-    screen.spawn('git', ['log', args, '--color=always']);
+    screen.spawn('git', ['log', args, gitLogArguments]);
   });
 
   branchTable.focus();
