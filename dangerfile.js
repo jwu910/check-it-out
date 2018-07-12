@@ -19,15 +19,16 @@ const bodyRegex = /^Fixes #([0-9]+)/;
 // Fails if PR's title does not start with ticket abbreviation.
 if (!danger.github.pr.title.match(titleRegex)) {
   fail(
-    ':grey_question: This pull request title should match the ticket format "CIO-1234"',
+    ':grey_question: This pull request title should start with the ticket format "CIO-1234" \n' +
+      'See <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md">Contributing Guidelines</a>',
   );
 }
 
 // Fails if the description does not contain regex.
 if (!prBodyMsg || prBodyMsg.length < 8 || !prBodyMsg.match(bodyRegex)) {
   fail(
-    ':grey_question: This pull request needs a description. \n' +
-      'Please include "Fixes #<ISSUE_NUMBER>". \n' +
+    ':grey_question: This pull request should begin with the issue number. \n' +
+      'Please include "Fixes #<ISSUE_NUMBER>" at the beginning of the description. \n' +
       'See <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md">Contributing Guidelines</a>',
   );
 }
@@ -52,8 +53,8 @@ if (packageChanged && !lockfileChanged) {
 if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
   const changelogLink =
     'https://github.com/jwu910/check-it-out/blob/master/CHANGELOG.md';
-  fail(
-    `Please include a CHANGELOG entry. You can find it at <a href='${changelogLink}'>CHANGELOG.md</a>`,
+  warn(
+    `Changes to app files were detected, did you forget a CHANGELOG entry? You can find it at <a href='${changelogLink}'>CHANGELOG.md</a>`,
   );
 }
 

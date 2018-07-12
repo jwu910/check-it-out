@@ -1,7 +1,7 @@
 const chalk = require('chalk');
+const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
-const Configstore = require('configstore');
 
 const { doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
   __dirname,
@@ -18,7 +18,10 @@ const { getRemoteTabs, readError } = require(path.resolve(
 const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
 
-const conf = new Configstore(pkg.name, { gitLogArguments: '--color=always' });
+const conf = new Configstore(pkg.name, {
+  gitLogArguments:
+    '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ',
+});
 const gitLogArguments = conf.get('gitLogArguments');
 
 if (notifier.update) {
