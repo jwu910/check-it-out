@@ -84,12 +84,12 @@ Call git log on current highlighted branch with <kbd>SPACE</kbd>
 
 | Commands | Description |
 | -------- | ------------ |
-|`j/k, down/up`| Navigate the list |
-|`h/l, left/right`| Previous/Next remote |
-|`r`| Refresh list with a fetch and prune |
-|`enter`| Select highlighted item |
-|`space`| Git log |
-|`q, C-c, esc`| Quit |
+|<kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd>| Navigate the list |
+|<kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd>| Previous/Next remote |
+|<kbd>r</kbd>| Refresh list with a fetch and prune |
+|<kbd>enter</kbd>| Select highlighted item |
+|<kbd>space</kbd>| Git log |
+|<kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>| Quit |
 
 ## Contributing
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contributing.
