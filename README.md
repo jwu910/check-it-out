@@ -77,7 +77,7 @@ cio
 
 ## Features
 
-Call git log on current highlighted branch with <kbd>SPACE</kbd>
+See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 
 ![Quick Git Log!](docs/assets/images/checkit-log.gif)
 
@@ -96,9 +96,9 @@ Configurable settings can be found at `~/.config/configstore/check-it-out.json`
 
 Options include:
 * gitLogArguments
-	* Type: String
-	* Default: `--color=always`
-	* Git Log argument to format output
+	* Type: Array
+	* Default: `['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']`
+	* Array of strings of valid git log arguments.
 * themeColor
 	* Type: String
 	* Default: `#FFA66D`
