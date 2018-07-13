@@ -130,7 +130,6 @@ export const start = args => {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    // If selection is a remote, prompt if new branch is to be created.
     return doCheckoutBranch(gitBranch, gitRemote)
       .then(output => {
         screen.destroy();
