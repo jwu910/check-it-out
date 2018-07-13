@@ -18,10 +18,13 @@ Each issue fixed should contain one bullet summarizing the work done.
 * [CIO-194](https://github.com/jwu910/check-it-out/issues/194) Added [Danger](https://danger.systems) to CIO.
 * [CIO-210](https://github.com/jwu910/check-it-out/issues/210) Added regex for Danger rules.
 * [CIO-213](https://github.com/jwu910/check-it-out/issues/213) Set up build stages for [TravisCI](https://travis-ci.org).
+* [CIO-153](https://github.com/jwu910/check-it-out/issues/153) Add code of conduct.
+* [CIO-217](https://github.com/jwu910/check-it-out/issues/217) Update readme regarding windows compatibility.
+* [CIO-206](https://github.com/jwu910/check-it-out/issues/206) Update gifs.
+* [CIO-221](https://github.com/jwu910/check-it-out/issues/221) Update readme with new `<kbd>` elements.
 * [CIO-102](https://github.com/jwu910/check-it-out/issues/102) Add configurable options for user.
 * [CIO-226](https://github.com/jwu910/check-it-out/issues/226) Change git log config from single string to array of strings. Breaks git log
 * [CIO-227](https://github.com/jwu910/check-it-out/issues/227) Update git log gif
-
 
 
 ## [[0.8.0]](https://github.com/jwu910/check-it-out/releases/tag/v0.8.0) - 2018-07-05
