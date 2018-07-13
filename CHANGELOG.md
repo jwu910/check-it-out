@@ -20,6 +20,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 * [CIO-213](https://github.com/jwu910/check-it-out/issues/213) Set up build stages for [TravisCI](https://travis-ci.org).
 * [CIO-102](https://github.com/jwu910/check-it-out/issues/102) Add configurable options for user.
 * [CIO-226](https://github.com/jwu910/check-it-out/issues/226) Change git log config from single string to array of strings. Breaks git log
+* [CIO-227](https://github.com/jwu910/check-it-out/issues/227) Update git log gif
 
 
 
