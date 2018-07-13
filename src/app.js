@@ -19,9 +19,12 @@ const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
 
 const conf = new Configstore(pkg.name, {
-  gitLogArguments:
+  gitLogArguments: [
+    '--color=always',
     '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ',
+  ],
 });
+
 const gitLogArguments = conf.get('gitLogArguments');
 
 if (notifier.update) {
@@ -181,7 +184,7 @@ export const start = args => {
       args = args.join('/');
     }
 
-    screen.spawn('git', ['log', args, gitLogArguments]);
+    screen.spawn('git', ['log', args, ...gitLogArguments]);
   });
 
   branchTable.focus();
