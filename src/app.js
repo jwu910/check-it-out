@@ -79,7 +79,7 @@ export const start = args => {
 
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
-  screen.key('r', () => {
+  screen.key('C-r', () => {
     branchTable.clearItems();
 
     screen.append(loading);
