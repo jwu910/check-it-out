@@ -5,7 +5,7 @@ const Configstore = require('configstore');
 const help = require(path.resolve(__dirname, 'helpText'));
 const pkg = require(path.resolve(__dirname, '../../package.json'));
 
-const conf = new Configstore(pkg.name, { themeColor: '#FFA66D' });
+const conf = new Configstore(pkg.name);
 const themeColor = conf.get('themeColor');
 
 function loading() {

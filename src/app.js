@@ -18,25 +18,29 @@ const { getRemoteTabs, readError } = require(path.resolve(
 const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
 
-const conf = new Configstore(pkg.name, {
+if (notifier.update) {
+  notifier.notify();
+}
+
+const defaultConfig = {
   gitLogArguments: [
     '--color=always',
     '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ',
   ],
-});
+  themeColor: '#FFA66D',
+};
 
-const gitLogArguments = conf.get('gitLogArguments');
-
-if (notifier.update) {
-  notifier.notify();
-}
+const conf = new Configstore(pkg.name, defaultConfig);
 
 export const start = args => {
   if (args[0] === '-v' || args[0] === '--version') {
     process.stdout.write(pkg.version);
     process.exit(0);
+  } else if (args[0] === '--reset-config') {
+    conf.all = defaultConfig;
   }
 
+  const gitLogArguments = conf.get('gitLogArguments');
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
