@@ -2,7 +2,7 @@
 	<h1 align="center">Check It Out</h1>
 </p>
 <p align="center">
-	<img src="docs/assets/images/checkit-intro.gif">
+	<img src="assets/images/checkit-intro.gif">
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@ Check it out, before you checkout.
 Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
 
 ## Requirements
-[Node >= v6.0](https://nodejs.org/en/blog/release/v6.0.0/)
+[Node >= v4.0](https://nodejs.org/en/blog/release/v4.0.0/)
 
 [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - Required for core features
 
@@ -73,13 +73,13 @@ or
 cio
 ```
 
-![Check It Out Usage](docs/assets/images/checkit-usage.gif)
+![Check It Out Usage](assets/images/checkit-usage.gif)
 
 ## Features
 
 See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 
-![Quick Git Log!](docs/assets/images/checkit-log.gif)
+![Quick Git Log!](assets/images/checkit-log.gif)
 
 
 | Commands | Description |
