@@ -11,26 +11,41 @@ const jsModifiedFiles = danger.git.modified_files.filter(
 const hasAppChanges =
   jsModifiedFiles.filter(filepath => !filepath.endsWith('test.js')).length > 0;
 
-const prBodyMsg = danger.github.pr.body;
+const pr = danger.github.pr;
+
+const prBodyMsg = pr.body;
+const prSender = pr.author.user.name;
+const prBaseBranch = pr.branch_for_base;
 
 const titleRegex = /^([A-Z]{3,}-)([0-9]+)/;
 const bodyRegex = /^Fixes #([0-9]+)/;
 
-// Fails if PR's title does not start with ticket abbreviation.
-if (!danger.github.pr.title.match(titleRegex)) {
-  fail(
-    ':grey_question: This pull request title should start with the ticket format "CIO-1234" \n' +
-      'See <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md">Contributing Guidelines</a>',
-  );
+// Always ensure we assign someone, so that our Slackbot can do its work correctly
+if (pr.assignee === null) {
+  fail('Please assign someone to merge this PR, and optionally include people who should review.');
 }
 
-// Fails if the description does not contain regex.
-if (!prBodyMsg || prBodyMsg.length < 8 || !prBodyMsg.match(bodyRegex)) {
-  fail(
-    ':grey_question: This pull request should begin with the issue number. \n' +
-      'Please include "Fixes #<ISSUE_NUMBER>" at the beginning of the description. \n' +
-      'See <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md">Contributing Guidelines</a>',
-  );
+if (prBaseBranch !== 'development' && prSender !== 'jwu910') {
+  fail(':skull: Sorry! Please send all pull requests against development!');
+}
+
+if (prBaseBranch !== 'master' && prSender !== 'jwu910') {
+  // Fails if PR's title does not start with ticket abbreviation.
+  if (!pr.title.match(titleRegex)) {
+    fail(
+      ':grey_question: This pull request title should start with the ticket format "CIO-1234" \n' +
+        'See <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md">Contributing Guidelines</a>',
+    );
+  }
+
+  // Fails if the description does not contain regex.
+  if (!prBodyMsg || prBodyMsg.length < 8 || !prBodyMsg.match(bodyRegex)) {
+    fail(
+      ':grey_question: This pull request should begin with the issue number. \n' +
+        'Please include "Fixes #<ISSUE_NUMBER>" at the beginning of the description. \n' +
+        'See <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md">Contributing Guidelines</a>',
+    );
+  }
 }
 
 // Warns if package lock was not updated.
@@ -55,13 +70,6 @@ if (!danger.git.modified_files.includes('CHANGELOG.md') && hasAppChanges) {
     'https://github.com/jwu910/check-it-out/blob/master/CHANGELOG.md';
   warn(
     `Changes to app files were detected, did you forget a CHANGELOG entry? You can find it at <a href='${changelogLink}'>CHANGELOG.md</a>`,
-  );
-}
-
-// Always ensure we assign someone, so that our Slackbot can do its work correctly
-if (danger.github.pr.assignee === null) {
-  fail(
-    'Please assign someone to merge this PR, and optionally include people who should review.',
   );
 }
 
