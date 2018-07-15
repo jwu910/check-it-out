@@ -14,7 +14,7 @@ const hasAppChanges =
 const pr = danger.github.pr;
 
 const prBodyMsg = pr.body;
-const prSender = pr.author.user.name;
+const prSender = pr.pr_author;
 const prBaseBranch = pr.branch_for_base;
 
 const titleRegex = /^([A-Z]{3,}-)([0-9]+)/;
