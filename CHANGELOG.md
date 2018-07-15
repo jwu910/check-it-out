@@ -27,6 +27,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 * [CIO-227](https://github.com/jwu910/check-it-out/issues/227) Update git log gif
 * [CIO-212](https://github.com/jwu910/check-it-out/issues/212) Change refresh hotkey from <kbd>r</kbd> to <kbd>Ctrl</kbd>+<kbd>r</kbd>
 * [CIO-230](https://github.com/jwu910/check-it-out/issues/230) Add case for flag `--reset-config` to reset Check It Out to defaults
+* [CIO-205](https://github.com/jwu910/check-it-out/issues/205) Update table header name.
 
 
 ## [[0.8.0]](https://github.com/jwu910/check-it-out/releases/tag/v0.8.0) - 2018-07-05
