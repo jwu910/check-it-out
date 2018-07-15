@@ -81,6 +81,7 @@
 			<p> Run this command to list local and remote branches! </p>
 			<pre> checkit </pre>
 			<img alt="Using Check It Out" src="assets/images/checkit-usage.gif" />
+			<h2> Features </h2>
 			<p> Call git log on current highlighted branch with <kbd>space</kbd></p>
 			<img alt="Git log gif animation" src="assets/images/checkit-log.gif" />
 			<table>
@@ -113,6 +114,27 @@
 					<td> Quit </td>
 				</tr>
 			</table>
+
+			<h2>Settings</h2>
+			<p>Git log argument validation is planned, but not finished. Currently, if the git log fails, <kbd>space</kbd> should not crash the app, but the process should not spawn at all.</p>
+			<p>Configurable settings can be found at <pre>~/.config/configstore/check-it-out.json</pre></p>
+			<p>Options Include:</p>
+			<ul>
+				<li>gitLogArguments
+					<ul>
+						<li>Type: Array</li>
+						<li>Default: ['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']</li>
+						<li>Array of strings of valid git log arguments.</li>
+					</ul>
+				</li>
+				<li>themeColor
+					<ul>
+						<li>Type: String</li>
+						<li>Default: #FFA66D</li>
+						<li>A hex color code to style Check It Out</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 
 		<div class="contribute-section section">
