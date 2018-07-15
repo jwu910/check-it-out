@@ -241,7 +241,7 @@ export const start = args => {
    */
   function refreshTable(currentRemote = 'heads') {
     branchTable.setData([
-      ['', 'Remote', 'Branch Name'],
+      ['', 'Remote', 'Ref Name'],
       ...branchPayload[currentRemote],
     ]);
 
