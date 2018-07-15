@@ -106,6 +106,12 @@ Options include:
 	* Default: `#FFA66D`
 	* A hex color code to style Check It Out
 
+To reset Check It Out to its original configurations listed above, start with the flag `--reset-config`:
+
+```
+checkit --reset-config
+```
+
 ## Contributing
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contributing.
 
