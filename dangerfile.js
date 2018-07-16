@@ -14,7 +14,7 @@ const hasAppChanges =
 const pr = danger.github.pr;
 
 const prBodyMsg = pr.body;
-const prSender = pr.author.user.name;
+const prSender = pr.author;
 console.log('AUTHOR IS ', pr.author);
 const prBaseBranch = danger.github.branch_for_base;
 
