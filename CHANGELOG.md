@@ -14,20 +14,30 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
-* [CIO-207](https://github.com/jwu910/check-it-out/issues/207) Changed homepage url in package json.
+
+
+## [[0.9.0]](https://github.com/jwu910/check-it-out/releases/tag/v0.9.0) - 2018-07-16
+### Notes
+
+### Added
+* [CIO-102](https://github.com/jwu910/check-it-out/issues/102) Add configurable options for user.
+* [CIO-153](https://github.com/jwu910/check-it-out/issues/153) Add code of conduct.
 * [CIO-194](https://github.com/jwu910/check-it-out/issues/194) Added [Danger](https://danger.systems) to CIO.
 * [CIO-210](https://github.com/jwu910/check-it-out/issues/210) Added regex for Danger rules.
 * [CIO-213](https://github.com/jwu910/check-it-out/issues/213) Set up build stages for [TravisCI](https://travis-ci.org).
-* [CIO-153](https://github.com/jwu910/check-it-out/issues/153) Add code of conduct.
-* [CIO-217](https://github.com/jwu910/check-it-out/issues/217) Update readme regarding windows compatibility.
+* [CIO-230](https://github.com/jwu910/check-it-out/issues/230) Add case for flag `--reset-config` to reset Check It Out to defaults
+
+### Changed
+* [CIO-205](https://github.com/jwu910/check-it-out/issues/205) Update table header name.
 * [CIO-206](https://github.com/jwu910/check-it-out/issues/206) Update gifs.
+* [CIO-207](https://github.com/jwu910/check-it-out/issues/207) Changed homepage url in package json.
+* [CIO-212](https://github.com/jwu910/check-it-out/issues/212) Change refresh hotkey from <kbd>r</kbd> to <kbd>Ctrl</kbd>+<kbd>r</kbd>
+* [CIO-217](https://github.com/jwu910/check-it-out/issues/217) Update readme regarding windows compatibility.
 * [CIO-221](https://github.com/jwu910/check-it-out/issues/221) Update readme with new `<kbd>` elements.
-* [CIO-102](https://github.com/jwu910/check-it-out/issues/102) Add configurable options for user.
 * [CIO-226](https://github.com/jwu910/check-it-out/issues/226) Change git log config from single string to array of strings. Breaks git log
 * [CIO-227](https://github.com/jwu910/check-it-out/issues/227) Update git log gif
-* [CIO-212](https://github.com/jwu910/check-it-out/issues/212) Change refresh hotkey from <kbd>r</kbd> to <kbd>Ctrl</kbd>+<kbd>r</kbd>
-* [CIO-230](https://github.com/jwu910/check-it-out/issues/230) Add case for flag `--reset-config` to reset Check It Out to defaults
-* [CIO-205](https://github.com/jwu910/check-it-out/issues/205) Update table header name.
+
+### Fixed
 * [CIO-235](https://github.com/jwu910/check-it-out/issues/235) Change Dangerfile. PR to master will fail.
 
 
