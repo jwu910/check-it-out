@@ -2,7 +2,7 @@
 	<h1 align="center">Check It Out</h1>
 </p>
 <p align="center">
-	<img src="https://github.com/jwu910/check-it-out/raw/master/docs/assets/images/checkit-intro.gif">
+	<img src="docs/assets/images/checkit-intro.gif">
 </p>
 
 <p align="center">
@@ -30,9 +30,12 @@ Check it out, before you checkout.
 Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
 
 ## Requirements
-[Node >= v4.0](https://nodejs.org/en/blog/release/v4.0.0/)
+[Node >= v6.0](https://nodejs.org/en/blog/release/v6.0.0/)
 
 [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - Required for core features
+
+## Compatability
+Check It Out currently has known issues with Windows. Some users have reported it working while others have reported that it does not. It is built and tested mostly in an Arch Linux environment with some user testing on MacOS and other Linux distributions. We're currently looking for help figuring out why Check It Out is unstable on Windows. See [CIO-128](https://github.com/jwu910/check-it-out/issues/128)
 
 ## Installation
 We're on [NPM!](https://www.npmjs.org/package/check-it-out)
@@ -40,7 +43,7 @@ We're on [NPM!](https://www.npmjs.org/package/check-it-out)
 npm install -g check-it-out
 ```
 
-#### Installing from source
+### Installing from source
 [Fork](https://github.com/jwu910/check-it-out#fork-destination-box) or clone the repository
 ```
 git clone https://github.com/jwu910/check-it-out.git
@@ -53,36 +56,66 @@ npm install
 
 Create a symbolic link to the entry point
 
-###### Linux/Mac:
 In the repository directory run:
 ```
 npm link
 ```
 
 ## Usage
-Run this command to list local and remote branches!
+To get started, just run:
 ```
 checkit
 ```
 
+or
+
+```
+cio
+```
+
 ![Check It Out Usage](docs/assets/images/checkit-usage.gif)
 
-Call git log on current highlighted branch with `[space]`
+## Features
+
+See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 
 ![Quick Git Log!](docs/assets/images/checkit-log.gif)
 
 
 | Commands | Description |
 | -------- | ------------ |
-|`j/k, down/up`| Navigate the list |
-|`h/l, left/right`| Previous/Next remote |
-|`r`| Refresh list with a fetch and prune |
-|`enter`| Select highlighted item |
-|`space`| Git log |
-|`q, C-c, esc`| Quit |
+|<kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd>| Navigate the list |
+|<kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd>| Previous/Next remote |
+|<kbd>Ctrl</kbd>+<kbd>r</kbd>| Refresh list with a fetch and prune |
+|<kbd>enter</kbd>| Select highlighted item |
+|<kbd>space</kbd>| Git log |
+|<kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>| Quit |
+
+## Settings
+Git log argument validation is planned, but not finished. Currently, if the git log fails, <kbd>space</kbd> should not crash the app, but the process should not spawn at all.
+
+Configurable settings can be found at `~/.config/configstore/check-it-out.json`
+
+Options include:
+* gitLogArguments
+	* Type: Array
+	* Default: `['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']`
+	* Array of strings of valid git log arguments.
+* themeColor
+	* Type: String
+	* Default: `#FFA66D`
+	* A hex color code to style Check It Out
+
+To reset Check It Out to its original configurations listed above, start with the flag `--reset-config`:
+
+```
+checkit --reset-config
+```
 
 ## Contributing
-Please refer to the [Contributing Guidelines](./CONTRIBUTING.md)
+Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contributing.
+
+See the rest of our [issues](https://github.com/jwu910/check-it-out/issues)
 
 ## Contributors
 Many thanks to all those who have helped!
@@ -91,7 +124,7 @@ Many thanks to all those who have helped!
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/29239201?v=4" width="80px;"/><br /><sub><b>Brandon Benefield</b></sub>](https://www.bbenefield.com)<br />[📖](https://github.com/jwu910/check-it-out/commits?author=bbenefield89 "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/32409546?v=4" width="80px;"/><br /><sub><b>Aaron Casanova</b></sub>](https://github.com/casyjs)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=casyjs "Code") | [<img src="https://avatars1.githubusercontent.com/u/6403097?v=4" width="80px;"/><br /><sub><b>Drew Brokke</b></sub>](https://github.com/drewbrokke)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=drewbrokke "Code") [🤔](#ideas-drewbrokke "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/35710155?v=4" width="80px;"/><br /><sub><b>Johanna Tchon</b></sub>](https://github.com/jotchon)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=jotchon "Code") | [<img src="https://avatars1.githubusercontent.com/u/18720522?v=4" width="80px;"/><br /><sub><b>Jenell Pizarro</b></sub>](https://www.jenellpizarro.com/)<br />[📖](https://github.com/jwu910/check-it-out/commits?author=nellarro "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/34019925?v=4" width="80px;"/><br /><sub><b>Rebecca Hong</b></sub>](http://www.linkedin.com/in/rehong)<br />[🎨](#design-rebeccahongsf "Design") | [<img src="https://avatars3.githubusercontent.com/u/25625490?v=4" width="80px;"/><br /><sub><b>Jesse Ma</b></sub>](https://github.com/jma26)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=jma26 "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [<img src="https://avatars2.githubusercontent.com/u/16655146?v=4" width="80px;"/><br /><sub><b>Kien Do</b></sub>](https://github.com/kienD)<br />[💬](#question-kienD "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3AkienD "Bug reports") [🤔](#ideas-kienD "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/1088312?v=4" width="80px;"/><br /><sub><b>Vu Tran</b></sub>](http://twitter.com/tranvu)<br />[💬](#question-vutran "Answering Questions") [📖](https://github.com/jwu910/check-it-out/commits?author=vutran "Documentation") [🤔](#ideas-vutran "Ideas, Planning, & Feedback") [📢](#talk-vutran "Talks") | [<img src="https://avatars3.githubusercontent.com/u/12107963?v=4" width="80px;"/><br /><sub><b>Efrain 'Rain' Rivas</b></sub>](https://github.com/rainrivas)<br />[💬](#question-rainrivas "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3Arainrivas "Bug reports") [💡](#example-rainrivas "Examples") [🚇](#infra-rainrivas "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/11803331?v=4" width="80px;"/><br /><sub><b>Phuc Le</b></sub>](https://phuchle.com)<br />[💬](#question-phuchle "Answering Questions") [📢](#talk-phuchle "Talks") |
+| [<img src="https://avatars2.githubusercontent.com/u/16655146?v=4" width="80px;"/><br /><sub><b>Kien Do</b></sub>](https://github.com/kienD)<br />[💬](#question-kienD "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3AkienD "Bug reports") [🤔](#ideas-kienD "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/1088312?v=4" width="80px;"/><br /><sub><b>Vu Tran</b></sub>](http://twitter.com/tranvu)<br />[💬](#question-vutran "Answering Questions") [📖](https://github.com/jwu910/check-it-out/commits?author=vutran "Documentation") [🤔](#ideas-vutran "Ideas, Planning, & Feedback") [📢](#talk-vutran "Talks") | [<img src="https://avatars3.githubusercontent.com/u/12107963?v=4" width="80px;"/><br /><sub><b>Efrain 'Rain' Rivas</b></sub>](https://github.com/rainrivas)<br />[💬](#question-rainrivas "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3Arainrivas "Bug reports") [💡](#example-rainrivas "Examples") [🚇](#infra-rainrivas "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/11803331?v=4" width="80px;"/><br /><sub><b>Phuc Le</b></sub>](https://phuchle.com)<br />[💬](#question-phuchle "Answering Questions") [📢](#talk-phuchle "Talks") | [<img src="https://avatars0.githubusercontent.com/u/9248355?v=4" width="80px;"/><br /><sub><b>Can Cellek</b></sub>](http://www.cancellek.com)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=excalith "Code") [📖](https://github.com/jwu910/check-it-out/commits?author=excalith "Documentation") |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ### License
