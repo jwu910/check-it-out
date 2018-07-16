@@ -11,9 +11,29 @@ Each issue fixed should contain one bullet summarizing the work done.
 * [CIO-###](https://github.com/jwu910/check-it-out/issues/###) Description of work done
 ```
 
+### Release Template
+```
+## [[###]](https://github.com/jwu910/check-it-out/releases/tag/v###) - YYYY-MM-DD
+### Notes
+
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+```
+
+
+
 <hr />
 
 ## [Unreleased]
+
+
+## [[0.9.1]](https://github.com/jwu910/check-it-out/releases/tag/v0.9.1) - 2018-07-16
+### Notes
+Found some documentation issues. Had to update readme image paths. Currently NPM does not have a way to update the readme on npmjs.org without publishing a patch. If I am wrong, please let me know. Thanks everyone!
 
 
 ## [[0.9.0]](https://github.com/jwu910/check-it-out/releases/tag/v0.9.0) - 2018-07-16
