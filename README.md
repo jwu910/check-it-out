@@ -2,7 +2,7 @@
 	<h1 align="center">Check It Out</h1>
 </p>
 <p align="center">
-	<img src="docs/assets/images/checkit-intro.gif">
+	<img src="assets/images/checkit-intro.gif">
 </p>
 
 <p align="center">
@@ -73,13 +73,13 @@ or
 cio
 ```
 
-![Check It Out Usage](docs/assets/images/checkit-usage.gif)
+![Check It Out Usage](assets/images/checkit-usage.gif)
 
 ## Features
 
 See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 
-![Quick Git Log!](docs/assets/images/checkit-log.gif)
+![Quick Git Log!](assets/images/checkit-log.gif)
 
 
 | Commands | Description |
