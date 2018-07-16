@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
@@ -21,13 +22,25 @@ if (notifier.update) {
   notifier.notify();
 }
 
+const defaultConfig = {
+  gitLogArguments: [
+    '--color=always',
+    '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ',
+  ],
+  themeColor: '#FFA66D',
+};
+
+const conf = new Configstore(pkg.name, defaultConfig);
+
 export const start = args => {
   if (args[0] === '-v' || args[0] === '--version') {
     process.stdout.write(pkg.version);
-
     process.exit(0);
+  } else if (args[0] === '--reset-config') {
+    conf.all = defaultConfig;
   }
 
+  const gitLogArguments = conf.get('gitLogArguments');
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
@@ -70,7 +83,7 @@ export const start = args => {
 
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
-  screen.key('r', () => {
+  screen.key('C-r', () => {
     branchTable.clearItems();
 
     screen.append(loading);
@@ -121,7 +134,6 @@ export const start = args => {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    // If selection is a remote, prompt if new branch is to be created.
     return doCheckoutBranch(gitBranch, gitRemote)
       .then(output => {
         screen.destroy();
@@ -175,7 +187,7 @@ export const start = args => {
       args = args.join('/');
     }
 
-    screen.spawn('git', ['log', args, '--color=always']);
+    screen.spawn('git', ['log', args, ...gitLogArguments]);
   });
 
   branchTable.focus();
@@ -229,7 +241,7 @@ export const start = args => {
    */
   function refreshTable(currentRemote = 'heads') {
     branchTable.setData([
-      ['', 'Remote', 'Branch Name'],
+      ['', 'Remote', 'Ref Name'],
       ...branchPayload[currentRemote],
     ]);
 

@@ -1,12 +1,11 @@
 {
   "name": "check-it-out",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Easy git checkout CLI tool.",
   "files": [
     "dist",
     "LICENSE",
-    "README.md",
-    "theme.json"
+    "README.md"
   ],
   "main": "index.js",
   "scripts": {
@@ -19,7 +18,7 @@
     "precommit": "npm run precise-commits",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
-    "test": "eslint ./",
+    "test": "npm run lint",
     "watch": "gulp watch"
   },
   "repository": {
@@ -49,10 +48,11 @@
   "bugs": {
     "url": "https://github.com/jwu910/check-it-out/issues"
   },
-  "homepage": "https://github.com/jwu910/check-it-out#readme",
+  "homepage": "https://checkit.club",
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^2.3.1",
+    "configstore": "^3.1.2",
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {
@@ -63,12 +63,14 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "danger": "^3.7.19",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "husky": "^0.14.3",
+    "lodash": "^4.17.10",
     "precise-commits": "^1.0.2",
     "prettier": "^1.13.7",
     "prettier-eslint": "^8.8.2"

@@ -1,8 +1,12 @@
 const blessed = require('blessed');
 const path = require('path');
+const Configstore = require('configstore');
 
 const help = require(path.resolve(__dirname, 'helpText'));
-const { THEME_COLOR } = require(path.resolve(__dirname, '../../theme.json'));
+const pkg = require(path.resolve(__dirname, '../../package.json'));
+
+const conf = new Configstore(pkg.name);
+const themeColor = conf.get('themeColor');
 
 function loading() {
   const loading = blessed.loading({
@@ -31,13 +35,13 @@ function branchTable() {
         },
       },
       header: {
-        fg: THEME_COLOR,
+        fg: themeColor,
       },
       label: {
         fg: '#FFFFFF',
       },
       scrollbar: {
-        bg: THEME_COLOR,
+        bg: themeColor,
       },
     },
     tags: true,
@@ -61,7 +65,7 @@ function helpDialogue() {
     padding: 1,
     right: 0,
     style: {
-      border: { fg: THEME_COLOR },
+      border: { fg: themeColor },
     },
     bottom: 0,
     width: 'shrink',
