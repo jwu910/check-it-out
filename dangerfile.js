@@ -15,7 +15,8 @@ const pr = danger.github.pr;
 
 const prBodyMsg = pr.body;
 const prSender = pr.author;
-console.log('AUTHOR IS ', pr.author);
+console.log('PR IS ', pr);
+console.log('danger.github is ', danger.github);
 const prBaseBranch = danger.github.branch_for_base;
 
 const titleRegex = /^([A-Z]{3,}-)([0-9]+)/;
