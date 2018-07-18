@@ -1,6 +1,11 @@
 const chalk = require('chalk');
+const Configstore = require('configstore');
 const path = require('path');
 const { spawn } = require('child_process');
+
+const pkg = require(path.resolve(__dirname, '../../package.json'));
+
+const conf = new Configstore(pkg.name);
 
 const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
   __dirname,
@@ -87,6 +92,13 @@ const execGit = args => {
     gitResponse.on('close', code => {
       if (code === 0) {
         resolve(dataString.toString());
+      } else if (errorString.toString().includes('unknown field name')) {
+        reject(
+          errorString.toString() +
+            'Unable to resolve git call. \n' +
+            'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
+            chalk.bold('--reset-config'),
+        );
       } else {
         reject(errorString.toString());
       }
@@ -154,7 +166,7 @@ export const formatRemoteBranches = output => {
 const getRefs = () => {
   const args = [
     'for-each-ref',
-    '--sort=-committerdate',
+    `--sort=${conf.get('sort')}`,
     '--format=%(refname)',
     '--count=500',
   ];

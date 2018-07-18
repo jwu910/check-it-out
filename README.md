@@ -101,6 +101,10 @@ Options include:
 	* Type: Array
 	* Default: `['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']`
 	* Array of strings of valid git log arguments.
+* sort
+	* Type: String
+	* Default: -committerdate
+	* Sort references by latest commit date. Value must be a valid sort key or Check It Out will break on start.
 * themeColor
 	* Type: String
 	* Default: `#FFA66D`
