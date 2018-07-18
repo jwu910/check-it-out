@@ -199,7 +199,7 @@ export const start = args => {
    * @param  remoteList {Array} Unique remotes for current project
    * @return {String}
    */
-  function getPrevRemote(currentRemote, remoteList) {
+  const getPrevRemote = (currentRemote, remoteList) => {
     let currIndex = remoteList.indexOf(currentRemote);
 
     if (currIndex > 0) {
@@ -211,7 +211,7 @@ export const start = args => {
     refreshTable(currentRemote);
 
     return currentRemote;
-  }
+  };
 
   /**
    * Cycle to next remote
@@ -220,7 +220,7 @@ export const start = args => {
    * @param  remoteList {Array} Unique remotes for current project
    * @return {String}
    */
-  function getNextRemote(currentRemote, remoteList) {
+  const getNextRemote = (currentRemote, remoteList) => {
     let currIndex = remoteList.indexOf(currentRemote);
 
     if (currIndex < remoteList.length - 1) {
@@ -232,14 +232,14 @@ export const start = args => {
     refreshTable(currentRemote);
 
     return currentRemote;
-  }
+  };
 
   /**
    * Update current screen with current remote
    *
    * @param {String} currentRemote Current displayed remote
    */
-  function refreshTable(currentRemote = 'heads') {
+  const refreshTable = (currentRemote = 'heads') => {
     branchTable.setData([
       ['', 'Remote', 'Ref Name'],
       ...branchPayload[currentRemote],
@@ -249,5 +249,5 @@ export const start = args => {
 
     loading.stop();
     screen.render();
-  }
+  };
 };

@@ -29,6 +29,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* [CIO-198](https://github.com/jwu910/check-it-out/issues/198) Change function declarations to const
 
 
 ## [[0.9.1]](https://github.com/jwu910/check-it-out/releases/tag/v0.9.1) - 2018-07-16
