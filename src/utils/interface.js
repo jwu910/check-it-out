@@ -8,7 +8,7 @@ const pkg = require(path.resolve(__dirname, '../../package.json'));
 const conf = new Configstore(pkg.name);
 const themeColor = conf.get('themeColor');
 
-function loading() {
+export const loading = () => {
   const loading = blessed.loading({
     align: 'center',
     width: 'shrink',
@@ -17,9 +17,9 @@ function loading() {
   });
 
   return loading;
-}
+};
 
-function branchTable() {
+export const branchTable = () => {
   const branchTable = blessed.listtable({
     align: 'left',
     left: 0,
@@ -52,9 +52,9 @@ function branchTable() {
   });
 
   return branchTable;
-}
+};
 
-function helpDialogue() {
+export const helpDialogue = () => {
   const helpDialogue = blessed.table({
     align: 'left',
     border: { type: 'line' },
@@ -72,9 +72,9 @@ function helpDialogue() {
   });
 
   return helpDialogue;
-}
+};
 
-function screen() {
+export const screen = () => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
@@ -83,9 +83,9 @@ function screen() {
   });
 
   return screen;
-}
+};
 
-function statusBar() {
+export const statusBar = () => {
   const statusBar = blessed.box({
     border: false,
     bottom: 0,
@@ -94,9 +94,9 @@ function statusBar() {
   });
 
   return statusBar;
-}
+};
 
-function statusBarText() {
+export const statusBarText = () => {
   const statusBarText = blessed.text({
     content: '',
     left: 0,
@@ -104,23 +104,13 @@ function statusBarText() {
   });
 
   return statusBarText;
-}
+};
 
-function statusHelpText() {
+export const statusHelpText = () => {
   const statusHelpText = blessed.text({
     content: 'Press "?" to show/hide help.',
     right: 0,
   });
 
   return statusHelpText;
-}
-
-module.exports = {
-  branchTable,
-  loading,
-  statusBarText,
-  helpDialogue,
-  screen,
-  statusBar,
-  statusHelpText,
 };

@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 
-const helpText = () => {
+export const helpText = () => {
   const text = [
     [chalk.bold('j/k, ▼/▲'), 'Navigate the list'],
     [chalk.bold('h/l, ◀/▶'), 'Previous/Next remote'],
@@ -11,8 +11,4 @@ const helpText = () => {
   ];
 
   return text;
-};
-
-module.exports = {
-  helpText,
 };
