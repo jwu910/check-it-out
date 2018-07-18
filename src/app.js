@@ -27,6 +27,7 @@ const defaultConfig = {
     '--color=always',
     '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ',
   ],
+  sort: '-committerdate',
   themeColor: '#FFA66D',
 };
 
