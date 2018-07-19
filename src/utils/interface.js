@@ -24,6 +24,7 @@ export const branchTable = () => {
     align: 'left',
     left: 0,
     keys: true,
+    right: 0,
     noCellBorders: true,
     scrollable: true,
     scrollbar: true,
