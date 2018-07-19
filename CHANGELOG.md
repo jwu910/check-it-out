@@ -31,6 +31,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [Unreleased]
 * [CIO-198](https://github.com/jwu910/check-it-out/issues/198) Change function declarations to const
 * [CIO-203](https://github.com/jwu910/check-it-out/issues/203) Add configuration for sort date option
+* [CIO-120](https://github.com/jwu910/check-it-out/issues/120) Fix table width to show scrollbar
 
 
 ## [[0.9.1]](https://github.com/jwu910/check-it-out/releases/tag/v0.9.1) - 2018-07-16
