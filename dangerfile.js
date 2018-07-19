@@ -22,7 +22,9 @@ const bodyRegex = /^Fixes #([0-9]+)/;
 
 // Always ensure we assign someone, so that our Slackbot can do its work correctly
 if (pr.assignee === null) {
-  fail('Please assign someone to merge this PR, and optionally include people who should review.');
+  fail(
+    'Please assign someone to merge this PR, and optionally include people who should review.',
+  );
 }
 
 if (prBaseBranch !== 'development' && prSender !== 'jwu910') {
