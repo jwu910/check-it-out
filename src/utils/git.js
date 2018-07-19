@@ -1,6 +1,11 @@
 const chalk = require('chalk');
+const Configstore = require('configstore');
 const path = require('path');
 const { spawn } = require('child_process');
+
+const pkg = require(path.resolve(__dirname, '../../package.json'));
+
+const conf = new Configstore(pkg.name);
 
 const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
   __dirname,
@@ -13,7 +18,7 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
  * @param {String} remote Current displayed remote
  * @returns {String[]} payload and uniqueRemotes
  */
-export function getRefData() {
+export const getRefData = () => {
   const refs = getRefs();
 
   const payload = refs
@@ -33,7 +38,7 @@ export function getRefData() {
     });
 
   return [payload, uniqueRemotes];
-}
+};
 
 /**
  * Pull branch information from selection and pass as args to execGit().
@@ -41,7 +46,7 @@ export function getRefData() {
  * Returns a promise that resolves when the user has successfully checked out
  * target branch
  */
-export function doCheckoutBranch(branch, remote) {
+export const doCheckoutBranch = (branch, remote) => {
   let branchPath = '';
 
   if (remote && remote !== 'local' && remote !== 'origin') {
@@ -53,25 +58,25 @@ export function doCheckoutBranch(branch, remote) {
   const args = ['checkout', branchPath];
 
   return execGit(args);
-}
+};
 
 /**
  * Return name of current branch.
  *
  * Returns a promise that resolves to the current branch name.
  */
-export function getCurrentBranch() {
+export const getCurrentBranch = () => {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
   return execGit(args);
-}
+};
 
 /**
  * Execute git command with passed arguments.
  * <args> is expected to be an array of strings.
  * Example: ['fetch', '-pv']
  */
-function execGit(args) {
+const execGit = args => {
   return new Promise((resolve, reject) => {
     let dataString = '';
     let errorString = '';
@@ -87,23 +92,30 @@ function execGit(args) {
     gitResponse.on('close', code => {
       if (code === 0) {
         resolve(dataString.toString());
+      } else if (errorString.toString().includes('unknown field name')) {
+        reject(
+          errorString.toString() +
+            'Unable to resolve git call. \n' +
+            'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
+            chalk.bold('--reset-config'),
+        );
       } else {
         reject(errorString.toString());
       }
     });
   });
-}
+};
 
 /**
  * Call git fetch with a prune and quiet flag.
  *
  * Return a promise that resolves when a user successfully fetches.
  */
-export function doFetchBranches() {
+export const doFetchBranches = () => {
   const args = ['fetch', '-pq'];
 
   return execGit(args);
-}
+};
 
 /**
  * Format output from getBranchesFrom() and return an array of arrays containing
@@ -112,7 +124,7 @@ export function doFetchBranches() {
  * @param {String} output String list of each ref associated with repository
  * @return {Array} Array containing an array of line items representing branch information
  */
-export function formatRemoteBranches(output) {
+export const formatRemoteBranches = output => {
   let remoteBranchArray = [];
 
   return getCurrentBranch().then(selectedBranch => {
@@ -144,17 +156,17 @@ export function formatRemoteBranches(output) {
 
     return remoteBranchArray;
   });
-}
+};
 
 /**
  * Print all refs assicated with git repository.
  *
  * @return {String} String list of each ref associated with repository.
  */
-function getRefs() {
+const getRefs = () => {
   const args = [
     'for-each-ref',
-    '--sort=-committerdate',
+    `--sort=${conf.get('sort')}`,
     '--format=%(refname)',
     '--count=500',
   ];
@@ -162,4 +174,4 @@ function getRefs() {
   return execGit(args).then(data => {
     return formatRemoteBranches(data);
   });
-}
+};

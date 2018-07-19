@@ -6,7 +6,7 @@ const chalk = require('chalk');
  * @param {Array} output Array containing an array of branch information
  * @return {Object} Object with key-value pairs of remote-branchArray
  */
-export function buildRemotePayload(output) {
+export const buildRemotePayload = output => {
   let payload = {};
 
   const remoteList = filterUniqueRemotes(output);
@@ -20,11 +20,11 @@ export function buildRemotePayload(output) {
   });
 
   return payload;
-}
+};
 
-function onlyUnique(value, index, self) {
+const onlyUnique = (value, index, self) => {
   return self.indexOf(value) === index;
-}
+};
 
 /**
  * Find unique remotes in repository
@@ -32,7 +32,7 @@ function onlyUnique(value, index, self) {
  * @param {Array} output Array containing an array of branch information
  * @return {Array} Array containing a unique set of remotes for this repository
  */
-export function filterUniqueRemotes(output) {
+export const filterUniqueRemotes = output => {
   let remoteList = [];
 
   output.forEach(remote => remoteList.push(remote[1]));
@@ -40,7 +40,7 @@ export function filterUniqueRemotes(output) {
   remoteList = remoteList.filter(onlyUnique).sort();
 
   return remoteList;
-}
+};
 
 /**
  * Get "tabs" for status bar highlighting current remote
@@ -50,7 +50,7 @@ export function filterUniqueRemotes(output) {
  *
  * @return {Array} Copy of remoteList with currentRemote inverted with chalk
  */
-export function getRemoteTabs(remoteList, currentRemote) {
+export const getRemoteTabs = (remoteList, currentRemote) => {
   const focusedIndex = remoteList.indexOf(currentRemote);
 
   const focusedRemoteList = remoteList.slice();
@@ -58,7 +58,7 @@ export function getRemoteTabs(remoteList, currentRemote) {
   focusedRemoteList[focusedIndex] = chalk.inverse(currentRemote);
 
   return focusedRemoteList.join(':');
-}
+};
 
 /**
  * Handle errors and log to stderr
