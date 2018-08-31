@@ -1,8 +1,7 @@
 <p align="center">
-	<h1 align="center">Check It Out</h1>
-</p>
-<p align="center">
-	<img src="assets/images/checkit-intro.gif">
+	<a href="https://checkit.club" alt="Check It Out webpage">
+		<img src="assets/logo-type.svg" alt="Check It Out Logo" width="500" />
+	</a>
 </p>
 
 <p align="center">
@@ -24,6 +23,7 @@
 </p>
 
 <hr/>
+<img src="assets/images/checkit-intro.gif">
 
 Check it out, before you checkout.
 
@@ -128,8 +128,13 @@ Many thanks to all those who have helped!
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/29239201?v=4" width="80px;"/><br /><sub><b>Brandon Benefield</b></sub>](https://www.bbenefield.com)<br />[📖](https://github.com/jwu910/check-it-out/commits?author=bbenefield89 "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/32409546?v=4" width="80px;"/><br /><sub><b>Aaron Casanova</b></sub>](https://github.com/casyjs)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=casyjs "Code") | [<img src="https://avatars1.githubusercontent.com/u/6403097?v=4" width="80px;"/><br /><sub><b>Drew Brokke</b></sub>](https://github.com/drewbrokke)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=drewbrokke "Code") [🤔](#ideas-drewbrokke "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/35710155?v=4" width="80px;"/><br /><sub><b>Johanna Tchon</b></sub>](https://github.com/jotchon)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=jotchon "Code") | [<img src="https://avatars1.githubusercontent.com/u/18720522?v=4" width="80px;"/><br /><sub><b>Jenell Pizarro</b></sub>](https://www.jenellpizarro.com/)<br />[📖](https://github.com/jwu910/check-it-out/commits?author=nellarro "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/34019925?v=4" width="80px;"/><br /><sub><b>Rebecca Hong</b></sub>](http://www.linkedin.com/in/rehong)<br />[🎨](#design-rebeccahongsf "Design") | [<img src="https://avatars3.githubusercontent.com/u/25625490?v=4" width="80px;"/><br /><sub><b>Jesse Ma</b></sub>](https://github.com/jma26)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=jma26 "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [<img src="https://avatars2.githubusercontent.com/u/16655146?v=4" width="80px;"/><br /><sub><b>Kien Do</b></sub>](https://github.com/kienD)<br />[💬](#question-kienD "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3AkienD "Bug reports") [🤔](#ideas-kienD "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/1088312?v=4" width="80px;"/><br /><sub><b>Vu Tran</b></sub>](http://twitter.com/tranvu)<br />[💬](#question-vutran "Answering Questions") [📖](https://github.com/jwu910/check-it-out/commits?author=vutran "Documentation") [🤔](#ideas-vutran "Ideas, Planning, & Feedback") [📢](#talk-vutran "Talks") | [<img src="https://avatars3.githubusercontent.com/u/12107963?v=4" width="80px;"/><br /><sub><b>Efrain 'Rain' Rivas</b></sub>](https://github.com/rainrivas)<br />[💬](#question-rainrivas "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3Arainrivas "Bug reports") [💡](#example-rainrivas "Examples") [🚇](#infra-rainrivas "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/11803331?v=4" width="80px;"/><br /><sub><b>Phuc Le</b></sub>](https://phuchle.com)<br />[💬](#question-phuchle "Answering Questions") [📢](#talk-phuchle "Talks") | [<img src="https://avatars0.githubusercontent.com/u/9248355?v=4" width="80px;"/><br /><sub><b>Can Cellek</b></sub>](http://www.cancellek.com)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=excalith "Code") [📖](https://github.com/jwu910/check-it-out/commits?author=excalith "Documentation") |
+| [<img src="https://avatars2.githubusercontent.com/u/16655146?v=4" width="80px;"/><br /><sub><b>Kien Do</b></sub>](https://github.com/kienD)<br />[💬](#question-kienD "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3AkienD "Bug reports") [🤔](#ideas-kienD "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/1088312?v=4" width="80px;"/><br /><sub><b>Vu Tran</b></sub>](http://twitter.com/tranvu)<br />[💬](#question-vutran "Answering Questions") [📖](https://github.com/jwu910/check-it-out/commits?author=vutran "Documentation") [🤔](#ideas-vutran "Ideas, Planning, & Feedback") [📢](#talk-vutran "Talks") | [<img src="https://avatars3.githubusercontent.com/u/12107963?v=4" width="80px;"/><br /><sub><b>Efrain 'Rain' Rivas</b></sub>](https://github.com/rainrivas)<br />[💬](#question-rainrivas "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3Arainrivas "Bug reports") [💡](#example-rainrivas "Examples") [🚇](#infra-rainrivas "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/11803331?v=4" width="80px;"/><br /><sub><b>Phuc Le</b></sub>](https://phuchle.com)<br />[💬](#question-phuchle "Answering Questions") [📢](#talk-phuchle "Talks") | [<img src="https://avatars0.githubusercontent.com/u/9248355?v=4" width="80px;"/><br /><sub><b>Can Cellek</b></sub>](http://www.cancellek.com)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=excalith "Code") [📖](https://github.com/jwu910/check-it-out/commits?author=excalith "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/2171796?v=4" width="80px;"/><br /><sub><b>Aras Atasaygin</b></sub>](https://github.com/arasatasaygin)<br />[🎨](#design-arasatasaygin "Design") |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+### Acknowledgements
+Thanks to [@kiend](https://github.com/kiend) for the inspiration and motivation to finish this project. [Check This Out](https://github.com/kiend/check-this-out).
+
+Logo Design by [@arasatasaygin](https://github.com/arasatasaygin) [@openlogos](http://openlogos.org)
 
 ### License
 MIT @ [Joshua Wu](https://www.npmjs.com/~jwu910)

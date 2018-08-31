@@ -28,6 +28,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+* [CIO-244](https://github.com/jwu910/check-it-out/issues/244) Add logo and theme palette from openlogo contest
 
 
 ## [[0.9.2]](https://github.com/jwu910/check-it-out/releases/tag/v0.9.2) - 2018-07-19
