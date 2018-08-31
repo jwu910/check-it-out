@@ -1,5 +1,7 @@
 <p align="center">
-	<img src="assets/logo-text.svg" alt="Check It Out Logo" />
+	<a href="https://checkit.club" alt="Check It Out webpage">
+		<img src="assets/logo-type.svg" alt="Check It Out Logo" />
+	</a>
 </p>
 <p align="center">
 	<img src="assets/images/checkit-intro.gif">
@@ -130,6 +132,11 @@ Many thanks to all those who have helped!
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | [<img src="https://avatars2.githubusercontent.com/u/16655146?v=4" width="80px;"/><br /><sub><b>Kien Do</b></sub>](https://github.com/kienD)<br />[💬](#question-kienD "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3AkienD "Bug reports") [🤔](#ideas-kienD "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/1088312?v=4" width="80px;"/><br /><sub><b>Vu Tran</b></sub>](http://twitter.com/tranvu)<br />[💬](#question-vutran "Answering Questions") [📖](https://github.com/jwu910/check-it-out/commits?author=vutran "Documentation") [🤔](#ideas-vutran "Ideas, Planning, & Feedback") [📢](#talk-vutran "Talks") | [<img src="https://avatars3.githubusercontent.com/u/12107963?v=4" width="80px;"/><br /><sub><b>Efrain 'Rain' Rivas</b></sub>](https://github.com/rainrivas)<br />[💬](#question-rainrivas "Answering Questions") [🐛](https://github.com/jwu910/check-it-out/issues?q=author%3Arainrivas "Bug reports") [💡](#example-rainrivas "Examples") [🚇](#infra-rainrivas "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/11803331?v=4" width="80px;"/><br /><sub><b>Phuc Le</b></sub>](https://phuchle.com)<br />[💬](#question-phuchle "Answering Questions") [📢](#talk-phuchle "Talks") | [<img src="https://avatars0.githubusercontent.com/u/9248355?v=4" width="80px;"/><br /><sub><b>Can Cellek</b></sub>](http://www.cancellek.com)<br />[💻](https://github.com/jwu910/check-it-out/commits?author=excalith "Code") [📖](https://github.com/jwu910/check-it-out/commits?author=excalith "Documentation") |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+### Acknowledgements
+Thanks to [@kiend](https://github.com/kiend) for the inspiration and motivation to finish this project. [Check This Out](https://github.com/kiend/check-this-out).
+
+Logo Design by [@arasatasaygin](https://github.com/arasatasaygin) [@openlogos](http://openlogos.org)
 
 ### License
 MIT @ [Joshua Wu](https://www.npmjs.com/~jwu910)
