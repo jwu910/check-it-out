@@ -1,10 +1,7 @@
 <p align="center">
 	<a href="https://checkit.club" alt="Check It Out webpage">
-		<img src="assets/logo-type.svg" alt="Check It Out Logo" style="width: 500px" />
+		<img src="assets/logo-type.svg" alt="Check It Out Logo" width="500" />
 	</a>
-</p>
-<p align="center">
-	<img src="assets/images/checkit-intro.gif">
 </p>
 
 <p align="center">
@@ -26,6 +23,7 @@
 </p>
 
 <hr/>
+<img src="assets/images/checkit-intro.gif">
 
 Check it out, before you checkout.
 
