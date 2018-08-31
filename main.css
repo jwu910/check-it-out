@@ -9,8 +9,13 @@
 	--color-border-neutral: #979797;
 }
 
+@font-face {
+	font-family: Alegreya-sans;
+	src: url(assets/fonts/AlegreyaSans-Regular.otf);
+}
+
 * {
-	font-family: 'Lato', sans-serif;
+	font-family: 'Alegreya-sans', sans-serif;
 	font-size: 1em;
 }
 
