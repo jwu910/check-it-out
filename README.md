@@ -1,5 +1,5 @@
 <p align="center">
-	<h1 align="center">Check It Out</h1>
+	<img src="assets/logo-text.svg" alt="Check It Out Logo" />
 </p>
 <p align="center">
 	<img src="assets/images/checkit-intro.gif">
