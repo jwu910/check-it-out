@@ -1,12 +1,12 @@
 :root {
-	--color-bg-code: rgba(136, 158, 168, .3);
-	--color-bg-base: #889EA8;
-	--color-action: #7C4350;
 	--color-action-secondary: #EEC900;
+	--color-action: #7C4350;
+	--color-bg-base: #889EA8;
+	--color-bg-code: rgba(136, 158, 168, .3);
+	--color-border-neutral: #979797;
 	--color-font-base: #231F20;
 	--color-font-secondary: #686566;
 	--color-off-white: #EBEBEB;
-	--color-border-neutral: #979797;
 }
 
 @font-face {
@@ -47,6 +47,7 @@ p {
 pre {
 	background-color: var(--color-bg-code);
 	border-radius: 8px;
+	color: var(--color-action);
 	font-family: 'Courier New', 'Courier', 'monospace';
 	font-size: 1em;
 	margin-bottom: 12px;
