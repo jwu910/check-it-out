@@ -55,10 +55,13 @@ export const start = args => {
   let currentRemote = 'heads';
   let remoteList = [];
 
-  const [branchData, remoteListTabs] = getRefData();
-
   screen.append(loading);
-  loading.load(' Loading project references.');
+
+  loading.load(' Building project reference lists');
+
+  screen.render();
+
+  const [branchData, remoteListTabs] = getRefData();
 
   Promise.all([branchData, remoteListTabs])
     .then(data => {
@@ -89,7 +92,9 @@ export const start = args => {
 
     screen.append(loading);
 
-    loading.load(' Fetching refs.');
+    loading.load(' Fetching refs...');
+
+    screen.render();
 
     doFetchBranches()
       .then(() => {
@@ -135,8 +140,18 @@ export const start = args => {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
+    branchTable.clearItems();
+
+    screen.append(loading);
+
+    loading.load(` Checking out ${gitBranch}...`);
+
+    screen.render();
+
     return doCheckoutBranch(gitBranch, gitRemote)
       .then(output => {
+        loading.stop();
+
         screen.destroy();
 
         process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}\n`);
