@@ -27,6 +27,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* [CIO-252](https://github.com/jwu910/check-it-out/issues/252) Update logo url
 
 
 ## [[1.0.0]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.0) - 2017-09-10
