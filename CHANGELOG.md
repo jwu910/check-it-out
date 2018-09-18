@@ -29,6 +29,10 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [Unreleased]
 
 
+## [[1.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.1) - 2018-09-17
+* [CIO-252](https://github.com/jwu910/check-it-out/issues/252) Update logo url
+
+
 ## [[1.0.0]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.0) - 2017-09-10
 ### Notes
 Minor bug fix and add CIO logo.

@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="https://checkit.club" alt="Check It Out webpage">
-		<img src="assets/logo-type.svg" alt="Check It Out Logo" width="500" />
+		<img src="https://cdn.rawgit.com/jwu910/check-it-out/7adf00b2/assets/logo-type.svg" alt="Check It Out Logo" width="500" />
 	</a>
 </p>
 
