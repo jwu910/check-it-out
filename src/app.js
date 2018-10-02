@@ -276,7 +276,6 @@ export const start = args => {
     statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
     loading.stop();
-    
     screen.render();
   };
 };

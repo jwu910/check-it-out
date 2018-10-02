@@ -80,7 +80,6 @@ export const screen = () => {
     autoPadding: true,
     fullUnicode: true,
     smartCSR: true,
-    ignoreLocked: ['escape', 'q', 'C-c'],
     title: 'Check It Out',
   });
 
