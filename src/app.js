@@ -1,11 +1,9 @@
-import { killYoungestChild } from './utils/git';
-
 const chalk = require('chalk');
 const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const { doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
+const { killYoungestChild, doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
   __dirname,
   'utils/git',
 ));
