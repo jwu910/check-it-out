@@ -12,6 +12,16 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
   'utils',
 ));
 
+const children = [];
+
+/**
+ * Kill the most recently created child process
+ * Used to force exit from loading box 
+ */
+export const killYoungestChild = () => {
+  process.kill(children[children.length].pid);
+};
+
 /**
  * Get references and parse through data to build branch array and remote list
  *
@@ -81,7 +91,8 @@ const execGit = args => {
     let dataString = '';
     let errorString = '';
 
-    const gitResponse = spawn('git', args);
+    const gitResponse = spawn('git', args, { detached: true });
+    children.push(gitResponse);
 
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');

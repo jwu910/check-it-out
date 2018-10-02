@@ -85,6 +85,12 @@ export const start = args => {
     screen.render();
   };
 
+  loading.key(['escape', 'q', 'C-c'], () => {
+    killYoungestChild();
+
+    loading.stop();
+  });
+
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
   screen.key('C-r', () => {
@@ -264,6 +270,7 @@ export const start = args => {
     statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
     loading.stop();
+    
     screen.render();
   };
 };

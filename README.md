@@ -5,9 +5,6 @@
 </p>
 
 <p align="center">
-	<a href="https://www.firsttimersonly.com/">
-		<img alt="first-timers-only" height="18" src="https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)">
-	</a>
 	<a href="https://travis-ci.org/jwu910/check-it-out">
 		<img alt="Build Status" height="18" src="https://travis-ci.org/jwu910/check-it-out.svg?branch=master">
 	</a>
