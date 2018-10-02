@@ -11,6 +11,9 @@
 	<a href="https://www.npmjs.org/package/check-it-out">
 		<img alt="Downloads per week" height="18" src="https://img.shields.io/npm/dw/localeval.svg">
 	</a>
+	<a href="https://www.firsttimersonly.com">
+		<img alt="first-timers-only" height="18" src="https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square">
+	</a>
 	<a href="https://badge.fury.io/js/check-it-out">
 		<img alt="npm version" height="18" src="https://badge.fury.io/js/check-it-out.svg">
 	</a>
