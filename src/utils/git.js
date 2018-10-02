@@ -16,10 +16,10 @@ const children = [];
 
 /**
  * Kill the most recently created child process
- * Used to force exit from loading box 
+ * Used to force exit from loading box
  */
 export const killYoungestChild = () => {
-  process.kill(children[children.length].pid);
+  process.kill(children[children.length - 1].pid);
 };
 
 /**
@@ -100,15 +100,17 @@ const execGit = args => {
     gitResponse.stdout.on('data', data => (dataString += data));
     gitResponse.stderr.on('data', data => (errorString += data));
 
-    gitResponse.on('close', code => {
+    gitResponse.on('close', (code, signal) => {
       if (code === 0) {
         resolve(dataString.toString());
+      } else if (signal === 'SIGTERM') {
+        reject(signal);
       } else if (errorString.toString().includes('unknown field name')) {
         reject(
           errorString.toString() +
             'Unable to resolve git call. \n' +
             'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
-            chalk.bold('--reset-config'),
+            chalk.bold('--reset-config')
         );
       } else {
         reject(errorString.toString());

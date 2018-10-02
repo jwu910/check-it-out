@@ -1,3 +1,5 @@
+import { killYoungestChild } from './utils/git';
+
 const chalk = require('chalk');
 const Configstore = require('configstore');
 const path = require('path');
@@ -85,14 +87,14 @@ export const start = args => {
     screen.render();
   };
 
-  loading.key(['escape', 'q', 'C-c'], () => {
-    killYoungestChild();
-
-    loading.stop();
-  });
-
   screen.key('?', toggleHelp);
-  screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
+  screen.key(['escape', 'q', 'C-c'], () => {
+    if (screen.lockKeys) {
+      killYoungestChild();
+    } else {
+      process.exit(0);
+    }
+  });
   screen.key('C-r', () => {
     branchTable.clearItems();
 
@@ -104,14 +106,16 @@ export const start = args => {
 
     doFetchBranches()
       .then(() => {
-        branchTable.clearItems();
-
         refreshTable(currentRemote);
       })
       .catch(error => {
-        screen.destroy();
+        if (error !== 'SIGTERM') {
+          screen.destroy();
 
-        readError(error, currentRemote, 'fetch');
+          readError(error, currentRemote, 'fetch');
+        } else {
+          refreshTable(currentRemote);
+        }
       });
   });
 
@@ -165,9 +169,13 @@ export const start = args => {
         process.exit(0);
       })
       .catch(error => {
-        screen.destroy();
+        if (error !== 'SIGTERM') {
+          screen.destroy();
 
-        readError(error, gitBranch, 'checkout');
+          readError(error, gitBranch, 'checkout');
+        } else {
+          refreshTable(currentRemote);
+        }
       });
   });
 
