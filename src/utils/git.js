@@ -91,7 +91,8 @@ const execGit = args => {
     let dataString = '';
     let errorString = '';
 
-    const gitResponse = spawn('git', args);
+    const gitResponse = spawn('git', args, { detached: true });
+    children.push(gitResponse);
 
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');
