@@ -79,6 +79,7 @@ export const screen = () => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
+    ignoreLocked: ['escape', 'q', 'C-c'],
     smartCSR: true,
     title: 'Check It Out',
   });
