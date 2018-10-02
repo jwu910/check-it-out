@@ -1,3 +1,4 @@
+Fixes #{issue}
 <!--- Provide a general summary of your changes in the Title above and include issue # -->
 
 ## Description
