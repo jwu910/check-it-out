@@ -21,7 +21,6 @@
     "start": "node index.js",
     "test": "npm run lint",
     "watch": "gulp watch"
-
   },
   "repository": {
     "type": "git",
