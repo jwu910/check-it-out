@@ -91,7 +91,7 @@ const execGit = args => {
     let dataString = '';
     let errorString = '';
 
-    const gitResponse = spawn('git', args, { detached: true });
+    const gitResponse = spawn('git', args);
     processList.push(gitResponse);
 
     gitResponse.stdout.setEncoding('utf8');
@@ -110,7 +110,7 @@ const execGit = args => {
           errorString.toString() +
             'Unable to resolve git call. \n' +
             'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
-            chalk.bold('--reset-config')
+            chalk.bold('--reset-config'),
         );
       } else {
         reject(errorString.toString());
