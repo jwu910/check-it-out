@@ -3,7 +3,7 @@ const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const { killYoungestChild, doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
+const { stopLatestProcess, doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
   __dirname,
   'utils/git',
 ));
@@ -88,7 +88,7 @@ export const start = args => {
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => {
     if (screen.lockKeys) {
-      killYoungestChild();
+      stopLatestProcess();
     } else {
       process.exit(0);
     }
