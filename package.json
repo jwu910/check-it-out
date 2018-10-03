@@ -19,7 +19,8 @@
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "test": "npm run lint",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "format": "prettier --write **/*.js"
   },
   "repository": {
     "type": "git",
