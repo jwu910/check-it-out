@@ -12,6 +12,7 @@
     "build": "gulp build",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
+    "format": "prettier --write \"**/*.js\"",
     "lint:fix": "eslint --config .eslintrc.json ./ --fix",
     "lint": "eslint --config .eslintrc.json ./",
     "precise-commits": "precise-commits",
