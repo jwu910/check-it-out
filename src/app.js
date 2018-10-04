@@ -3,7 +3,7 @@ const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const { stopLatestProcess, doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
+const { closeGitResponse, doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
   __dirname,
   'utils/git',
 ));
@@ -74,10 +74,17 @@ export const start = args => {
     .catch(err => {
       screen.destroy();
 
-      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-      process.stderr.write(err + '\n');
+      if (err === 'SIGTERM') {
+        process.stdout.write(chalk.white.bold('[INFO]'));
+        process.stdout.write('Checkitout closed before initial load completed \n');
 
-      process.exit(1);
+        process.exit(0);
+      } else {
+        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+        process.stderr.write(err + '\n');
+  
+        process.exit(1);
+      }
     });
 
   const toggleHelp = () => {
@@ -88,7 +95,7 @@ export const start = args => {
   screen.key('?', toggleHelp);
   screen.key(['escape', 'q', 'C-c'], () => {
     if (screen.lockKeys) {
-      stopLatestProcess();
+      closeGitResponse();
     } else {
       process.exit(0);
     }
@@ -104,12 +111,14 @@ export const start = args => {
 
     doFetchBranches()
       .then(() => {
+        branchTable.clearItems();
+
         refreshTable(currentRemote);
       })
       .catch(error => {
         if (error !== 'SIGTERM') {
           screen.destroy();
-
+  
           readError(error, currentRemote, 'fetch');
         } else {
           refreshTable(currentRemote);

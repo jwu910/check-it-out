@@ -12,14 +12,14 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
   'utils',
 ));
 
-const processList = [];
+let gitResponse;
 
 /**
  * Kill the most recently created child process
  * Used to force exit from loading box
  */
-export const stopLatestProcess = () => {
-  processList[0].kill();
+export const closeGitResponse = () => {
+  gitResponse.kill();
 };
 
 /**
@@ -91,8 +91,7 @@ const execGit = args => {
     let dataString = '';
     let errorString = '';
 
-    const gitResponse = spawn('git', args);
-    processList.push(gitResponse);
+    gitResponse = spawn('git', args);
 
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');
@@ -100,7 +99,7 @@ const execGit = args => {
     gitResponse.stdout.on('data', data => (dataString += data));
     gitResponse.stderr.on('data', data => (errorString += data));
 
-    gitResponse.on('close', (code, signal) => {
+    gitResponse.on('exit', (code, signal) => {
       if (code === 0) {
         resolve(dataString.toString());
       } else if (signal === 'SIGTERM') {
