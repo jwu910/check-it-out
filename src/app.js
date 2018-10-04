@@ -3,10 +3,12 @@ const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const { closeGitResponse, doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
-  __dirname,
-  'utils/git',
-));
+const {
+  closeGitResponse,
+  doCheckoutBranch,
+  doFetchBranches,
+  getRefData,
+} = require(path.resolve(__dirname, 'utils/git'));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const { getRemoteTabs, readError } = require(path.resolve(
@@ -75,14 +77,16 @@ export const start = args => {
       screen.destroy();
 
       if (err === 'SIGTERM') {
-        process.stdout.write(chalk.white.bold('[INFO]'));
-        process.stdout.write('Checkitout closed before initial load completed \n');
+        process.stdout.write(chalk.white.bold('[INFO]') + '\n');
+        process.stdout.write(
+          'Checkitout closed before initial load completed \n',
+        );
 
         process.exit(0);
       } else {
         process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
         process.stderr.write(err + '\n');
-  
+
         process.exit(1);
       }
     });
@@ -118,7 +122,7 @@ export const start = args => {
       .catch(error => {
         if (error !== 'SIGTERM') {
           screen.destroy();
-  
+
           readError(error, currentRemote, 'fetch');
         } else {
           refreshTable(currentRemote);
