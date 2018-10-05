@@ -29,6 +29,19 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [Unreleased]
 
 
+## [[1.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.2) - 2018-10-05
+### Notes
+Added CIO to some issue aggregating sites. Pretty neat! Started utilizing [hactoberfest](https://hacktoberfest.digitalocean.com/) tags as well as [first-timers-only](https://www.firsttimersonly.com/) tags to get some of the lighter issues some visibility.
+
+### Added
+* [CIO-259](https://github.com/jwu910/check-it-out/issues/259) User can now terminate loading states with escape hotkeys (q, esc, C-c)
+* [CIO-260](https://github.com/jwu910/check-it-out/issues/260) Add first-timers-only badge to readme
+
+### Changed
+* [CIO-268](https://github.com/jwu910/check-it-out/issues/268) Add pull request template
+* [CIO-271](https://github.com/jwu910/check-it-out/issues/271) Add 'format' to npm scripts to invoke [prettier](https://prettier.io)
+
+
 ## [[1.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.1) - 2018-09-17
 * [CIO-252](https://github.com/jwu910/check-it-out/issues/252) Update logo url
 

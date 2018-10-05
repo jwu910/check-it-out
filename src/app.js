@@ -3,10 +3,12 @@ const Configstore = require('configstore');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 
-const { doCheckoutBranch, doFetchBranches, getRefData } = require(path.resolve(
-  __dirname,
-  'utils/git',
-));
+const {
+  closeGitResponse,
+  doCheckoutBranch,
+  doFetchBranches,
+  getRefData,
+} = require(path.resolve(__dirname, 'utils/git'));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
 const { getRemoteTabs, readError } = require(path.resolve(
@@ -74,10 +76,19 @@ export const start = args => {
     .catch(err => {
       screen.destroy();
 
-      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-      process.stderr.write(err + '\n');
+      if (err === 'SIGTERM') {
+        process.stdout.write(chalk.white.bold('[INFO]') + '\n');
+        process.stdout.write(
+          'Checkitout closed before initial load completed \n',
+        );
 
-      process.exit(1);
+        process.exit(0);
+      } else {
+        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+        process.stderr.write(err + '\n');
+
+        process.exit(1);
+      }
     });
 
   const toggleHelp = () => {
@@ -86,7 +97,13 @@ export const start = args => {
   };
 
   screen.key('?', toggleHelp);
-  screen.key(['escape', 'q', 'C-c'], () => process.exit(0));
+  screen.key(['escape', 'q', 'C-c'], () => {
+    if (screen.lockKeys) {
+      closeGitResponse();
+    } else {
+      process.exit(0);
+    }
+  });
   screen.key('C-r', () => {
     branchTable.clearItems();
 
@@ -103,9 +120,13 @@ export const start = args => {
         refreshTable(currentRemote);
       })
       .catch(error => {
-        screen.destroy();
+        if (error !== 'SIGTERM') {
+          screen.destroy();
 
-        readError(error, currentRemote, 'fetch');
+          readError(error, currentRemote, 'fetch');
+        } else {
+          refreshTable(currentRemote);
+        }
       });
   });
 
@@ -159,9 +180,13 @@ export const start = args => {
         process.exit(0);
       })
       .catch(error => {
-        screen.destroy();
+        if (error !== 'SIGTERM') {
+          screen.destroy();
 
-        readError(error, gitBranch, 'checkout');
+          readError(error, gitBranch, 'checkout');
+        } else {
+          refreshTable(currentRemote);
+        }
       });
   });
 
