@@ -27,6 +27,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* [CIO-259](https://github.com/jwu910/check-it-out/issues/259) User can now terminate loading states with escape hotkeys (q, esc, C-c)
 
 
 ## [[1.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.1) - 2018-09-17

@@ -12,6 +12,16 @@ const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
   'utils',
 ));
 
+let gitResponse;
+
+/**
+ * Kill the most recently created child process
+ * Used to force exit from loading box
+ */
+export const closeGitResponse = () => {
+  gitResponse.kill();
+};
+
 /**
  * Get references and parse through data to build branch array and remote list
  *
@@ -81,7 +91,7 @@ const execGit = args => {
     let dataString = '';
     let errorString = '';
 
-    const gitResponse = spawn('git', args);
+    gitResponse = spawn('git', args);
 
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');
@@ -89,9 +99,11 @@ const execGit = args => {
     gitResponse.stdout.on('data', data => (dataString += data));
     gitResponse.stderr.on('data', data => (errorString += data));
 
-    gitResponse.on('close', code => {
+    gitResponse.on('exit', (code, signal) => {
       if (code === 0) {
         resolve(dataString.toString());
+      } else if (signal === 'SIGTERM') {
+        reject(signal);
       } else if (errorString.toString().includes('unknown field name')) {
         reject(
           errorString.toString() +
