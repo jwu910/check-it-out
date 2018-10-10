@@ -1,11 +1,10 @@
 {
 	"presets": [
-		["env", {
+		["@babel/env", {
 			"targets": {
 				"node": "4"
-			},
-			"useBuiltIns": true
+			}
 		}]
 	],
-	"plugins": ["transform-object-rest-spread"]
+	"plugins": ["@babel/plugin-syntax-object-rest-spread"]
 }
