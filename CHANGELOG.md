@@ -27,6 +27,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* [CIO-281](https://github.com/jwu910/check-it-out/issues/281) Update babel depencies to remove security vulnerability
 
 
 ## [[1.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.2) - 2018-10-05
