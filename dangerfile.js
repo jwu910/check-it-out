@@ -1,8 +1,6 @@
-'use strict';
-
 const includes = require('lodash.includes');
 
-const { danger, fail, markdown, message, warn } = require('danger');
+const { danger, fail, warn } = require('danger');
 
 const jsModifiedFiles = danger.git.modified_files.filter(
   path => path.startsWith('src') && path.endsWith('js'),
