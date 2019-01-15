@@ -81,7 +81,6 @@ export const screen = () => {
     fullUnicode: true,
     ignoreLocked: ['escape', 'q', 'C-c'],
     smartCSR: true,
-    title: 'Check It Out',
   });
 
   return screen;
