@@ -28,6 +28,8 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 * [CIO-281](https://github.com/jwu910/check-it-out/issues/281) Update multiple dependencies to resolve vulnerabilities
+* [CIO-296](https://github.com/jwu910/check-it-out/issues/296) Remove screen
+  title property from interface
 
 
 ## [[1.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.2) - 2018-10-05
