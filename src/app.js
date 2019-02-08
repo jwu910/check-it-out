@@ -11,7 +11,7 @@ const {
 } = require(path.resolve(__dirname, 'utils/git'));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
-const { getRemoteTabs, readError } = require(path.resolve(
+const { getRemoteTabs, exitWithError, notifyMessage } = require(path.resolve(
   __dirname,
   'utils/utils',
 ));
@@ -47,10 +47,10 @@ export const start = args => {
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
-  const loading = dialogue.loading();
+  const loadDialogue = dialogue.loading();
+  const messageCenter = dialogue.messageCenter();
   const helpDialogue = dialogue.helpDialogue();
 
-  const message = dialogue.message();
   const statusBarContainer = dialogue.statusBarContainer();
   const statusBar = dialogue.statusBar();
   const statusBarText = dialogue.statusBarText();
@@ -60,9 +60,9 @@ export const start = args => {
   let currentRemote = 'heads';
   let remoteList = [];
 
-  screen.append(loading);
+  screen.append(loadDialogue);
 
-  loading.load(' Building project reference lists');
+  loadDialogue.load(' Building project reference lists');
 
   screen.render();
 
@@ -75,6 +75,8 @@ export const start = args => {
       remoteList = data[1];
 
       refreshTable(currentRemote);
+
+      notifyMessage(messageCenter, 'log', 'Loaded successfully');
     })
     .catch(err => {
       screen.destroy();
@@ -103,6 +105,8 @@ export const start = args => {
   screen.key(['escape', 'q', 'C-c'], () => {
     if (screen.lockKeys) {
       closeGitResponse();
+
+      notifyMessage(messageCenter, 'log', 'Cancelled git process');
     } else {
       process.exit(0);
     }
@@ -110,11 +114,11 @@ export const start = args => {
   screen.key('C-r', () => {
     branchTable.clearItems();
 
-    screen.append(loading);
+    screen.append(loadDialogue);
 
-    loading.load(' Fetching refs...');
+    loadDialogue.load(' Fetching refs...');
 
-    screen.render();
+    notifyMessage(messageCenter, 'log', 'Fetching');
 
     doFetchBranches()
       .then(() => {
@@ -123,13 +127,11 @@ export const start = args => {
         refreshTable(currentRemote);
       })
       .catch(error => {
-        if (error !== 'SIGTERM') {
-          screen.destroy();
+        loadDialogue.stop();
 
-          readError(error, currentRemote, 'fetch');
-        } else {
-          refreshTable(currentRemote);
-        }
+        refreshTable(currentRemote);
+
+        notifyMessage(messageCenter, 'error', error, 5);
       });
   });
 
@@ -139,12 +141,15 @@ export const start = args => {
   statusBar.append(statusBarText);
   statusBar.append(statusHelpText);
 
-  statusBarContainer.append(message);
+  statusBarContainer.append(messageCenter);
   statusBarContainer.append(statusBar);
+  statusBarContainer.append(messageCenter);
   statusBarContainer.append(helpDialogue);
 
   process.on('SIGWINCH', () => {
     screen.emit('resize');
+
+    notifyMessage(messageCenter, 'log', 'Resizing');
   });
 
   /**
@@ -169,15 +174,15 @@ export const start = args => {
 
     branchTable.clearItems();
 
-    screen.append(loading);
+    screen.append(loadDialogue);
 
-    loading.load(` Checking out ${gitBranch}...`);
+    loadDialogue.load(` Checking out ${gitBranch}...`);
 
     screen.render();
 
     return doCheckoutBranch(gitBranch, gitRemote)
       .then(output => {
-        loading.stop();
+        loadDialogue.stop();
 
         screen.destroy();
 
@@ -189,11 +194,11 @@ export const start = args => {
         if (error !== 'SIGTERM') {
           screen.destroy();
 
-          readError(error, gitBranch, 'checkout');
+          exitWithError(error, gitBranch, 'checkout');
         } else {
           refreshTable(currentRemote);
 
-          message.error('Unable to checkout', error);
+          notifyMessage(messageCenter, 'error', error);
         }
       });
   });
@@ -296,10 +301,10 @@ export const start = args => {
 
     statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
-    loading.stop();
+    loadDialogue.stop();
 
     screen.render();
 
-    message.log('Screen refreshed', 0.5);
+    notifyMessage(messageCenter, 'log', 'Screen refreshed');
   };
 };

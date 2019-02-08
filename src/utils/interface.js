@@ -47,7 +47,7 @@ export const branchTable = () => {
     },
     tags: true,
     top: 0,
-    bottom: 1,
+    bottom: 8,
     vi: false,
     width: 'shrink',
   });
@@ -75,16 +75,15 @@ export const helpDialogue = () => {
   return helpDialogue;
 };
 
-export const message = () => {
-  const message = blessed.message({
-    align: 'center',
+export const messageCenter = () => {
+  const messageCenter = blessed.log({
     border: false,
-    bottom: 1,
-    height: 1,
-    width: '90%',
+    bottom: 2,
+    height: 5,
+    width: '100%',
   });
 
-  return message;
+  return messageCenter;
 };
 
 export const screen = () => {
