@@ -11,7 +11,7 @@ const {
 } = require(path.resolve(__dirname, 'utils/git'));
 
 const dialogue = require(path.resolve(__dirname, 'utils/interface'));
-const { getRemoteTabs, readError } = require(path.resolve(
+const { getRemoteTabs, exitWithError } = require(path.resolve(
   __dirname,
   'utils/utils',
 ));
@@ -126,7 +126,7 @@ export const start = args => {
         if (error !== 'SIGTERM') {
           screen.destroy();
 
-          readError(error, currentRemote, 'fetch');
+          exitWithError(error, currentRemote, 'fetch');
         } else {
           refreshTable(currentRemote);
         }
@@ -189,7 +189,7 @@ export const start = args => {
         if (error !== 'SIGTERM') {
           screen.destroy();
 
-          readError(error, gitBranch, 'checkout');
+          exitWithError(error, gitBranch, 'checkout');
         } else {
           refreshTable(currentRemote);
 

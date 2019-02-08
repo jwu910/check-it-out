@@ -65,7 +65,7 @@ export const getRemoteTabs = (remoteList, currentRemote) => {
  *
  * @param {error} error Error message returned from promise.
  */
-export const readError = (error, branch, type) => {
+export const exitWithError = (error, branch, type) => {
   process.stderr.write(
     chalk.bold.red('[ERR] ') +
       'Unable to ' +
