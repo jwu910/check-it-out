@@ -29,6 +29,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [Unreleased]
 * CIO-0 Add CODEOWNERS
 * [CIO-277](https://github.com/jwu910/check-it-out/issues/277) Add status bar container interface
+* [CIO-280](https://github.com/jwu910/check-it-out/issues/280) Add message center and replace message interface
 * [CIO-281](https://github.com/jwu910/check-it-out/issues/281) Update multiple dependencies to resolve vulnerabilities
 * [CIO-296](https://github.com/jwu910/check-it-out/issues/296) Remove screen title property from interface
 
