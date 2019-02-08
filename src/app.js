@@ -49,6 +49,9 @@ export const start = args => {
   const branchTable = dialogue.branchTable();
   const loading = dialogue.loading();
   const helpDialogue = dialogue.helpDialogue();
+
+  const message = dialogue.message();
+  const statusBarContainer = dialogue.statusBarContainer();
   const statusBar = dialogue.statusBar();
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
@@ -131,11 +134,14 @@ export const start = args => {
   });
 
   screen.append(branchTable);
-  screen.append(statusBar);
-  screen.append(helpDialogue);
+  screen.append(statusBarContainer);
 
   statusBar.append(statusBarText);
   statusBar.append(statusHelpText);
+
+  statusBarContainer.append(message);
+  statusBarContainer.append(statusBar);
+  statusBarContainer.append(helpDialogue);
 
   process.on('SIGWINCH', () => {
     screen.emit('resize');
@@ -186,6 +192,8 @@ export const start = args => {
           readError(error, gitBranch, 'checkout');
         } else {
           refreshTable(currentRemote);
+
+          message.error('Unable to checkout', error);
         }
       });
   });
@@ -289,6 +297,9 @@ export const start = args => {
     statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
     loading.stop();
+
     screen.render();
+
+    message.log('Screen refreshed', 0.5);
   };
 };

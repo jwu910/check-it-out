@@ -75,6 +75,18 @@ export const helpDialogue = () => {
   return helpDialogue;
 };
 
+export const message = () => {
+  const message = blessed.message({
+    align: 'center',
+    border: false,
+    bottom: 1,
+    height: 1,
+    width: '90%',
+  });
+
+  return message;
+};
+
 export const screen = () => {
   const screen = blessed.screen({
     autoPadding: true,
@@ -84,6 +96,17 @@ export const screen = () => {
   });
 
   return screen;
+};
+
+export const statusBarContainer = () => {
+  const statusBarContainer = blessed.box({
+    border: false,
+    bottom: 0,
+    height: 3,
+    width: '100%',
+  });
+
+  return statusBarContainer;
 };
 
 export const statusBar = () => {
@@ -100,8 +123,8 @@ export const statusBar = () => {
 export const statusBarText = () => {
   const statusBarText = blessed.text({
     content: '',
-    left: 0,
     bottom: 0,
+    left: 0,
   });
 
   return statusBarText;
@@ -109,8 +132,9 @@ export const statusBarText = () => {
 
 export const statusHelpText = () => {
   const statusHelpText = blessed.text({
+    bottom: 0,
     content: 'Press "?" to show/hide help.',
-    right: 0,
+    right: 2,
   });
 
   return statusHelpText;
