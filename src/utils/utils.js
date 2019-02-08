@@ -86,10 +86,6 @@ export const exitWithError = (error, branch, type) => {
  * @param {type} string Message type.
  */
 
-export const notifyMessage = (logger, type, message, duration) => {
-  if (type === 'error') {
-    return logger.error(message, duration);
-  } else {
-    return logger.log(message, duration);
-  }
+export const notifyMessage = (logger, type = 'log', message) => {
+  logger.log(`[${type}] ${message}`);
 };

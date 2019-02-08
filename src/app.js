@@ -48,9 +48,9 @@ export const start = args => {
 
   const branchTable = dialogue.branchTable();
   const loadDialogue = dialogue.loading();
+  const messageCenter = dialogue.messageCenter();
   const helpDialogue = dialogue.helpDialogue();
 
-  const messageDialogue = dialogue.message();
   const statusBarContainer = dialogue.statusBarContainer();
   const statusBar = dialogue.statusBar();
   const statusBarText = dialogue.statusBarText();
@@ -76,7 +76,7 @@ export const start = args => {
 
       refreshTable(currentRemote);
 
-      notifyMessage(messageDialogue, 'log', 'Loaded successfully');
+      notifyMessage(messageCenter, 'log', 'Loaded successfully');
     })
     .catch(err => {
       screen.destroy();
@@ -106,7 +106,7 @@ export const start = args => {
     if (screen.lockKeys) {
       closeGitResponse();
 
-      notifyMessage(messageDialogue, 'log', 'Cancelled git process');
+      notifyMessage(messageCenter, 'log', 'Cancelled git process');
     } else {
       process.exit(0);
     }
@@ -118,9 +118,7 @@ export const start = args => {
 
     loadDialogue.load(' Fetching refs...');
 
-    screen.render();
-
-    notifyMessage(messageDialogue, 'log', 'Fetching');
+    notifyMessage(messageCenter, 'log', 'Fetching');
 
     doFetchBranches()
       .then(() => {
@@ -129,15 +127,11 @@ export const start = args => {
         refreshTable(currentRemote);
       })
       .catch(error => {
-        if (error !== 'SIGTERM') {
-          screen.destroy();
+        loadDialogue.stop();
 
-          exitWithError(error, currentRemote, 'fetch');
-        } else {
-          refreshTable(currentRemote);
+        refreshTable(currentRemote);
 
-          notifyMessage(messageDialogue, 'error', error);
-        }
+        notifyMessage(messageCenter, 'error', error, 5);
       });
   });
 
@@ -147,14 +141,15 @@ export const start = args => {
   statusBar.append(statusBarText);
   statusBar.append(statusHelpText);
 
-  statusBarContainer.append(messageDialogue);
+  statusBarContainer.append(messageCenter);
   statusBarContainer.append(statusBar);
+  statusBarContainer.append(messageCenter);
   statusBarContainer.append(helpDialogue);
 
   process.on('SIGWINCH', () => {
     screen.emit('resize');
 
-    notifyMessage(messageDialogue, 'log', 'Resizing');
+    notifyMessage(messageCenter, 'log', 'Resizing');
   });
 
   /**
@@ -203,7 +198,7 @@ export const start = args => {
         } else {
           refreshTable(currentRemote);
 
-          notifyMessage(messageDialogue, 'error', error);
+          notifyMessage(messageCenter, 'error', error);
         }
       });
   });
@@ -310,6 +305,6 @@ export const start = args => {
 
     screen.render();
 
-    messageDialogue.log('Screen refreshed', 0.1);
+    notifyMessage(messageCenter, 'log', 'Screen refreshed');
   };
 };
