@@ -61,11 +61,11 @@ export const getRemoteTabs = (remoteList, currentRemote) => {
 };
 
 /**
- * Handle errors and log to stderr
+ * Handle errors and log to stderr - Exit application
  *
  * @param {error} error Error message returned from promise.
  */
-export const readError = (error, branch, type) => {
+export const exitWithError = (error, branch, type) => {
   process.stderr.write(
     chalk.bold.red('[ERR] ') +
       'Unable to ' +
@@ -77,4 +77,15 @@ export const readError = (error, branch, type) => {
   process.stderr.write(error.toString());
 
   process.exit(1);
+};
+
+/**
+ * Accept message as argument, return message in status bar message logger
+ *
+ * @param {message} string String to use as message.
+ * @param {type} string Message type.
+ */
+
+export const notifyMessage = (logger, type = 'log', message) => {
+  logger.log(`[${type}] ${message}`);
 };

@@ -47,7 +47,7 @@ export const branchTable = () => {
     },
     tags: true,
     top: 0,
-    bottom: 1,
+    bottom: 8,
     vi: false,
     width: 'shrink',
   });
@@ -75,16 +75,37 @@ export const helpDialogue = () => {
   return helpDialogue;
 };
 
+export const messageCenter = () => {
+  const messageCenter = blessed.log({
+    border: false,
+    bottom: 2,
+    height: 5,
+    width: '100%',
+  });
+
+  return messageCenter;
+};
+
 export const screen = () => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
     ignoreLocked: ['escape', 'q', 'C-c'],
     smartCSR: true,
-    title: 'Check It Out',
   });
 
   return screen;
+};
+
+export const statusBarContainer = () => {
+  const statusBarContainer = blessed.box({
+    border: false,
+    bottom: 0,
+    height: 3,
+    width: '100%',
+  });
+
+  return statusBarContainer;
 };
 
 export const statusBar = () => {
@@ -101,8 +122,8 @@ export const statusBar = () => {
 export const statusBarText = () => {
   const statusBarText = blessed.text({
     content: '',
-    left: 0,
     bottom: 0,
+    left: 0,
   });
 
   return statusBarText;
@@ -110,8 +131,9 @@ export const statusBarText = () => {
 
 export const statusHelpText = () => {
   const statusHelpText = blessed.text({
+    bottom: 0,
     content: 'Press "?" to show/hide help.',
-    right: 0,
+    right: 2,
   });
 
   return statusHelpText;

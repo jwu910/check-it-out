@@ -1,6 +1,6 @@
 {
   "name": "check-it-out",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Easy git checkout CLI tool.",
   "files": [
     "dist",
@@ -42,7 +42,7 @@
     "cio": "index.js"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "author": "Joshua Wu",
   "license": "MIT",
@@ -57,20 +57,20 @@
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.3.1",
     "all-contributors-cli": "^4.11.2",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "danger": "^3.7.19",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
-    "husky": "^0.14.3",
+    "eslint": "^5.7.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "husky": "^1.1.2",
     "lodash": "^4.17.10",
     "precise-commits": "^1.0.2",
     "prettier": "^1.13.7",

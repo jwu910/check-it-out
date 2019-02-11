@@ -156,6 +156,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ahlaw",
+      "name": "ahlaw",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/25109478?v=4",
+      "profile": "https://github.com/ahlaw",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "supasheva",
+      "name": "Kwadwo Busumtwi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/10486306?v=4",
+      "profile": "https://github.com/supasheva",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "devkant",
+      "name": "Dev Kant K Chouhan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32243035?v=4",
+      "profile": "https://github.com/devkant",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }

@@ -29,6 +29,24 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [Unreleased]
 
 
+## [[2.0.0]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.0) - 2019-02-11
+### Notes
+This release fixes github-flagged security issues, adds in a message center to help log some CIO activity, and sets up the codebase for some future features.
+Unfortunately with this release, we'll be losing support for node 4 and node 5 due to a bump in major versions of Babel.
+Looking forward to 2.1.0, we can expect to see the ability to filter branches.
+
+### Added
+* CIO-0 Add CODEOWNERS
+* [CIO-277](https://github.com/jwu910/check-it-out/issues/277) Add status bar container interface
+* [CIO-280](https://github.com/jwu910/check-it-out/issues/280) Add message center and replace message interface
+
+### Removed
+* [CIO-296](https://github.com/jwu910/check-it-out/issues/296) Remove screen title property from interface
+
+### Security
+* [CIO-281](https://github.com/jwu910/check-it-out/issues/281) Update multiple dependencies to resolve vulnerabilities
+
+
 ## [[1.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v1.0.2) - 2018-10-05
 ### Notes
 Added CIO to some issue aggregating sites. Pretty neat! Started utilizing [hactoberfest](https://hacktoberfest.digitalocean.com/) tags as well as [first-timers-only](https://www.firsttimersonly.com/) tags to get some of the lighter issues some visibility.
