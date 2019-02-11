@@ -32,6 +32,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [[2.0.0]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.0) - 2019-02-11
 ### Notes
 This release fixes github-flagged security issues, adds in a message center to help log some CIO activity, and sets up the codebase for some future features.
+Unfortunately with this release, we'll be losing support for node 4 and node 5 due to a bump in major versions of Babel.
 Looking forward to 2.1.0, we can expect to see the ability to filter branches.
 
 ### Added
