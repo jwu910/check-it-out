@@ -27,6 +27,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* CIO-0 Update project configs relating to update-notifier and dependabot
 * [CIO-257](https://github.com/jwu910/check-it-out/issues/257) Fix append order to address missing load screen bug
 
 
