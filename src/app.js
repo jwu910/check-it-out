@@ -73,7 +73,8 @@ export const start = args => {
       branchPayload = data[0];
 
       remoteList = data[1];
-
+      screen.append(branchTable);
+      screen.append(statusBarContainer);
       refreshTable(currentRemote);
 
       notifyMessage(messageCenter, 'log', 'Loaded successfully');
@@ -134,9 +135,6 @@ export const start = args => {
         notifyMessage(messageCenter, 'error', error, 5);
       });
   });
-
-  screen.append(branchTable);
-  screen.append(statusBarContainer);
 
   statusBar.append(statusBarText);
   statusBar.append(statusHelpText);
