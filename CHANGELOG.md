@@ -27,6 +27,8 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* [CIO-257](https://github.com/jwu910/check-it-out/issues/257) Adding Table and Statusbar container only on promise resolution which is returned from fetching git refs.
+
 
 
 ## [[2.0.0]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.0) - 2019-02-11
