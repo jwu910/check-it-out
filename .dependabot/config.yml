@@ -4,4 +4,7 @@ update_configs:
     directory: "/"
     target_branch: "development"
     update_schedule: "live"
-    default_assignees: ["@jwu910"]
+    default_assignees:
+    - jwu910
+    default_reviewers:
+    - jwu910
