@@ -60,6 +60,17 @@ export const start = args => {
   let currentRemote = 'heads';
   let remoteList = [];
 
+  screen.append(branchTable);
+  screen.append(statusBarContainer);
+
+  statusBar.append(statusBarText);
+  statusBar.append(statusHelpText);
+
+  statusBarContainer.append(messageCenter);
+  statusBarContainer.append(statusBar);
+  statusBarContainer.append(messageCenter);
+  statusBarContainer.append(helpDialogue);
+
   screen.append(loadDialogue);
 
   loadDialogue.load(' Building project reference lists');
@@ -114,8 +125,6 @@ export const start = args => {
   screen.key('C-r', () => {
     branchTable.clearItems();
 
-    screen.append(loadDialogue);
-
     loadDialogue.load(' Fetching refs...');
 
     notifyMessage(messageCenter, 'log', 'Fetching');
@@ -134,17 +143,6 @@ export const start = args => {
         notifyMessage(messageCenter, 'error', error, 5);
       });
   });
-
-  screen.append(branchTable);
-  screen.append(statusBarContainer);
-
-  statusBar.append(statusBarText);
-  statusBar.append(statusHelpText);
-
-  statusBarContainer.append(messageCenter);
-  statusBarContainer.append(statusBar);
-  statusBarContainer.append(messageCenter);
-  statusBarContainer.append(helpDialogue);
 
   process.on('SIGWINCH', () => {
     screen.emit('resize');
@@ -173,8 +171,6 @@ export const start = args => {
     const gitRemote = selection[1];
 
     branchTable.clearItems();
-
-    screen.append(loadDialogue);
 
     loadDialogue.load(` Checking out ${gitBranch}...`);
 
