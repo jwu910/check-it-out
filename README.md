@@ -20,6 +20,9 @@
 	<a href="https://badge.fury.io/gh/jwu910%2Fcheck-it-out">
 		<img alt="GitHub version" height="18" src="https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg">
 	</a>
+	<a href="https://lgtm.com/projects/g/jwu910/check-it-out/alerts/">
+		<img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/jwu910/check-it-out.svg?logo=lgtm&logoWidth=18"/>
+	</a>
 	<a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20project%20on%20Github%20https://github.com/jwu910/check-it-out">
 		<img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
 	</a>
