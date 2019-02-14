@@ -21,7 +21,20 @@ const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
 
 if (notifier.update) {
-  notifier.notify();
+  const notifierMessage = `\
+  New ${chalk.yellow(notifier.update.type)} version of ${
+    notifier.update.name
+  } available ${chalk.red(notifier.update.current)} ➜  ${chalk.green(
+    notifier.update.latest,
+  )}\
+  \n${chalk.yellow('Changelog:')} ${chalk.blue(
+    `https://github.com/jwu910/check-it-out/releases/tag/v${
+      notifier.update.latest
+    }`,
+  )}\
+  \nRun ${chalk.green('npm i -g check-it-out')} to update!`;
+
+  notifier.notify({ message: notifierMessage });
 }
 
 const defaultConfig = {
@@ -59,6 +72,17 @@ export const start = args => {
   let branchPayload = {};
   let currentRemote = 'heads';
   let remoteList = [];
+
+  screen.append(branchTable);
+  screen.append(statusBarContainer);
+
+  statusBar.append(statusBarText);
+  statusBar.append(statusHelpText);
+
+  statusBarContainer.append(messageCenter);
+  statusBarContainer.append(statusBar);
+  statusBarContainer.append(messageCenter);
+  statusBarContainer.append(helpDialogue);
 
   screen.append(loadDialogue);
 
@@ -114,8 +138,6 @@ export const start = args => {
   screen.key('C-r', () => {
     branchTable.clearItems();
 
-    screen.append(loadDialogue);
-
     loadDialogue.load(' Fetching refs...');
 
     notifyMessage(messageCenter, 'log', 'Fetching');
@@ -134,17 +156,6 @@ export const start = args => {
         notifyMessage(messageCenter, 'error', error, 5);
       });
   });
-
-  screen.append(branchTable);
-  screen.append(statusBarContainer);
-
-  statusBar.append(statusBarText);
-  statusBar.append(statusHelpText);
-
-  statusBarContainer.append(messageCenter);
-  statusBarContainer.append(statusBar);
-  statusBarContainer.append(messageCenter);
-  statusBarContainer.append(helpDialogue);
 
   process.on('SIGWINCH', () => {
     screen.emit('resize');
@@ -173,8 +184,6 @@ export const start = args => {
     const gitRemote = selection[1];
 
     branchTable.clearItems();
-
-    screen.append(loadDialogue);
 
     loadDialogue.load(` Checking out ${gitBranch}...`);
 
