@@ -27,7 +27,16 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+
+
+## [[2.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.1) - 2019-02-14
+### Notes
+Patch release to fix a minor bug where loading screen disappears on larger projects
+
+### Added
 * CIO-0 Update project configs relating to update-notifier and dependabot
+
+### Fixed
 * [CIO-257](https://github.com/jwu910/check-it-out/issues/257) Fix append order to address missing load screen bug
 
 
