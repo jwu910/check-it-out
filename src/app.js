@@ -86,6 +86,7 @@ export const start = args => {
       remoteList = data[1];
 
       refreshTable(currentRemote);
+
       notifyMessage(messageCenter, 'log', 'Loaded successfully');
     })
     .catch(err => {
