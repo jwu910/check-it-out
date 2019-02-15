@@ -10,6 +10,7 @@ node_js:
 script:
   - npm run build
   - node index.js -v
+  - npm test
 jobs:
   include:
     - stage: danger
