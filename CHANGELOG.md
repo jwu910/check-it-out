@@ -28,6 +28,8 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+### Fixed
+* [CIO-312](https://github.com/jwu910/check-it-out/issues/312) Fix similar code block 
 
 ## [[2.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.1) - 2019-02-14
 ### Notes
