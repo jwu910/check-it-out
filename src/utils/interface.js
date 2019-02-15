@@ -77,7 +77,6 @@ export const helpDialogue = () => {
 
 export const messageCenter = () => {
   const messageCenter = blessed.log({
-    border: false,
     bottom: 2,
     height: 5,
     width: '100%',
@@ -99,8 +98,6 @@ export const screen = () => {
 
 export const statusBarContainer = () => {
   const statusBarContainer = blessed.box({
-    border: false,
-    bottom: 0,
     height: 3,
     width: '100%',
   });
@@ -110,8 +107,6 @@ export const statusBarContainer = () => {
 
 export const statusBar = () => {
   const statusBar = blessed.box({
-    border: false,
-    bottom: 0,
     height: 1,
     width: '100%',
   });
