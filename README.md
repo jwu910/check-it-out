@@ -6,28 +6,28 @@
 
 <p align="center">
 	<a href="https://www.firsttimersonly.com/">
-		<img alt="first-timers-only" height="18" src="https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)">
+		<img alt="first-timers-only" src="https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)">
 	</a>
 	<a href="https://travis-ci.org/jwu910/check-it-out">
-		<img alt="Build Status" height="18" src="https://travis-ci.org/jwu910/check-it-out.svg?branch=master">
+		<img alt="Build Status" src="https://travis-ci.org/jwu910/check-it-out.svg?branch=master">
 	</a>
 	<a href="https://www.npmjs.org/package/check-it-out">
-		<img alt="Downloads per week" height="18" src="https://img.shields.io/npm/dw/localeval.svg">
+		<img alt="Downloads per week" src="https://img.shields.io/npm/dw/localeval.svg">
 	</a>
 	<a href="https://badge.fury.io/js/check-it-out">
-		<img alt="npm version" height="18" src="https://badge.fury.io/js/check-it-out.svg">
+		<img alt="npm version" src="https://badge.fury.io/js/check-it-out.svg">
 	</a>
 	<a href="https://badge.fury.io/gh/jwu910%2Fcheck-it-out">
-		<img alt="GitHub version" height="18" src="https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg">
+		<img alt="GitHub version" src="https://badge.fury.io/gh/jwu910%2Fcheck-it-out.svg">
 	</a>
 	<a href="https://lgtm.com/projects/g/jwu910/check-it-out/alerts/">
 		<img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/jwu910/check-it-out.svg?logo=lgtm&logoWidth=18"/>
 	</a>
-	<a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20project%20on%20Github%20https://github.com/jwu910/check-it-out">
-		<img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
-	</a>
 	<a href="https://codeclimate.com/github/jwu910/check-it-out/maintainability">
-		<img src="https://api.codeclimate.com/v1/badges/e2d8564876becd663ff9/maintainability">
+		<img alt="Code Climate Score" src="https://api.codeclimate.com/v1/badges/e2d8564876becd663ff9/maintainability">
+	</a>
+	<a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20project%20on%20Github%20https://github.com/jwu910/check-it-out">
+		<img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
 	</a>
 </p>
 
@@ -70,6 +70,23 @@ In the repository directory run:
 npm link
 ```
 
+## Local development
+From your repository directory run
+```
+npm run build
+```
+
+To start the application you can run
+```
+node index.js
+```
+or
+```
+npm start
+```
+
+If you want to test your local build in other repositories, you can use `npm link` which will let you run your local build files with the `cio` or `checkit` aliases.
+
 ## Usage
 To get started, just run:
 ```
@@ -91,14 +108,14 @@ See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 ![Quick Git Log!](assets/images/checkit-log.gif)
 
 
-| Commands | Description |
-| -------- | ------------ |
-|<kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd>| Navigate the list |
-|<kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd>| Previous/Next remote |
-|<kbd>Ctrl</kbd>+<kbd>r</kbd>| Refresh list with a fetch and prune |
-|<kbd>enter</kbd>| Select highlighted item |
-|<kbd>space</kbd>| Git log |
-|<kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>| Quit |
+| Commands                                                         | Description                         |
+| ---------------------------------------------------------------- | ----------------------------------- |
+| <kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd> | Navigate the list                   |
+| <kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd> | Previous/Next remote                |
+| <kbd>Ctrl</kbd>+<kbd>r</kbd>                                     | Refresh list with a fetch and prune |
+| <kbd>enter</kbd>                                                 | Select highlighted item             |
+| <kbd>space</kbd>                                                 | Git log                             |
+| <kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>       | Quit                                |
 
 ## Settings
 Git log argument validation is planned, but not finished. Currently, if the git log fails, <kbd>space</kbd> should not crash the app, but the process should not spawn at all.
@@ -131,7 +148,7 @@ Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contribu
 See the rest of our [issues](https://github.com/jwu910/check-it-out/issues)
 
 ## Contributors
-Many thanks to all those who have helped!
+This project wouldn't have been possible with the help so many contributors both in and out of the source code. I look forward to working with you as this project continues to evolve and improve.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
