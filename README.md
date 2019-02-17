@@ -131,7 +131,7 @@ Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contribu
 See the rest of our [issues](https://github.com/jwu910/check-it-out/issues)
 
 ## Contributors
-Many thanks to all those who have helped!
+This project wouldn't have been possible with the help so many contributors both in and out of the source code. I look forward to working with you as this project continues to evolve and improve.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
