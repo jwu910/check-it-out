@@ -4,11 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Notes Template
+## Sending a PR?
+Summarize your code changes in a single line and use the Issue Template below to generate the changelog entry to reference the ticket that was worked on. Keep it simple, keep it sweet.
+
+### Issue Template
 Each issue fixed should contain one bullet summarizing the work done.
 
 ```
-* [CIO-###](https://github.com/jwu910/check-it-out/issues/###) Description of work done
+* [CIO-###](https://github.com/jwu910/check-it-out/issues/###) Short description of work done
 ```
 
 ### Release Template
@@ -27,9 +30,12 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
+* CIO-0 Clean up documentation
+* [CIO-312](https://github.com/jwu910/check-it-out/issues/312) Fix similar code block
 
-### Fixed
-* [CIO-312](https://github.com/jwu910/check-it-out/issues/312) Fix similar code block 
+
+
+<hr />
 
 ## [[2.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.1) - 2019-02-14
 ### Notes
