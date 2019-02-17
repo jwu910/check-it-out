@@ -70,6 +70,23 @@ In the repository directory run:
 npm link
 ```
 
+## Local development
+From your repository directory run
+```
+npm run build
+```
+
+To start the application you can run
+```
+node index.js
+```
+or
+```
+npm start
+```
+
+If you want to test your local build in other repositories, you can use `npm link` which will let you run your local build files with the `cio` or `checkit` aliases.
+
 ## Usage
 To get started, just run:
 ```
