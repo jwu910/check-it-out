@@ -26,6 +26,9 @@
 	<a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20project%20on%20Github%20https://github.com/jwu910/check-it-out">
 		<img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
 	</a>
+	<a href="https://codeclimate.com/github/jwu910/check-it-out/maintainability">
+		<img src="https://api.codeclimate.com/v1/badges/e2d8564876becd663ff9/maintainability">
+	</a>
 </p>
 
 <hr/>
