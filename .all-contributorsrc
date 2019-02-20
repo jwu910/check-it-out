@@ -192,6 +192,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "celesterobinson",
+      "name": "Céleste Robinson",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/25116037?v=4",
+      "profile": "https://twitter.com/cececodes",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "sog01",
+      "name": "Juliardi عبدالله",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/40876952?v=4",
+      "profile": "https://abdullah-dev.tech",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Lorsen",
+      "name": "Omar Roa",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6044039?v=4",
+      "profile": "https://github.com/Lorsen",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }

@@ -8,6 +8,11 @@ const pkg = require(path.resolve(__dirname, '../../package.json'));
 const conf = new Configstore(pkg.name);
 const themeColor = conf.get('themeColor');
 
+const baseStyles = {
+  border: false,
+  width: '100%',
+};
+
 export const loading = () => {
   const loading = blessed.loading({
     align: 'center',
@@ -77,10 +82,9 @@ export const helpDialogue = () => {
 
 export const messageCenter = () => {
   const messageCenter = blessed.log({
-    border: false,
+    ...baseStyles,
     bottom: 2,
     height: 5,
-    width: '100%',
   });
 
   return messageCenter;
@@ -99,10 +103,9 @@ export const screen = () => {
 
 export const statusBarContainer = () => {
   const statusBarContainer = blessed.box({
-    border: false,
+    ...baseStyles,
     bottom: 0,
     height: 3,
-    width: '100%',
   });
 
   return statusBarContainer;
@@ -110,10 +113,9 @@ export const statusBarContainer = () => {
 
 export const statusBar = () => {
   const statusBar = blessed.box({
-    border: false,
+    ...baseStyles,
     bottom: 0,
     height: 1,
-    width: '100%',
   });
 
   return statusBar;
