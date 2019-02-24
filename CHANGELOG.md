@@ -57,6 +57,7 @@ Minor updates and documentation
 ### Fixed
 
 - [CIO-312](https://github.com/jwu910/check-it-out/issues/312) Fix similar code block
+- [CIO-313](https://github.com/jwu910/check-it-out/issues/313) Fix similar code in utils/git.js 
 
 <hr />
 
