@@ -30,24 +30,16 @@ export const closeGitResponse = () => {
  */
 export const getRefData = () => {
   const refs = getRefs();
-
-  const payload = refs
-    .then(data => {
-      return buildRemotePayload(data);
-    })
-    .then(payload => {
-      return payload;
-    });
-
-  const uniqueRemotes = refs
-    .then(data => {
-      return filterUniqueRemotes(data);
-    })
-    .then(uniqueRemotes => {
-      return uniqueRemotes;
-    });
-
-  return [payload, uniqueRemotes];
+  const fns = [buildRemotePayload, filterUniqueRemotes];
+  return fns.map(fn => {
+    return refs
+      .then(data => {
+        return fn(data);
+      })
+      .then(result => {
+        return result;
+      });
+  });
 };
 
 /**
