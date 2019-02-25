@@ -40,6 +40,8 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+- [CIO-313](https://github.com/jwu910/check-it-out/issues/313) Fix similar code in utils/git.js 
+
 <hr />
 
 ## [[2.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.2) - 2019-02-20
@@ -57,7 +59,6 @@ Minor updates and documentation
 ### Fixed
 
 - [CIO-312](https://github.com/jwu910/check-it-out/issues/312) Fix similar code block
-- [CIO-313](https://github.com/jwu910/check-it-out/issues/313) Fix similar code in utils/git.js 
 
 <hr />
 
