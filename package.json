@@ -53,7 +53,7 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^2.3.1",
-    "configstore": "^3.1.2",
+    "configstore": "^4.0.0",
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {
