@@ -40,6 +40,8 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+- [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
+
 <hr />
 
 ## [[2.0.3]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.3) - 2019-02-25
