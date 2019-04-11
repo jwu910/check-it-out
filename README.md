@@ -30,7 +30,7 @@
 		<img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
 	</a>
 </p>
-
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/white_img.png)](https://www.buymeacoffee.com/jwu910)
 <hr/>
 <img src="assets/images/checkit-intro.gif">
 
