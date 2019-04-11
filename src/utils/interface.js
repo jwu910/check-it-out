@@ -1,14 +1,35 @@
 const blessed = require('blessed');
 const path = require('path');
+const Configstore = require('configstore');
 
 const help = require(path.resolve(__dirname, 'helpText'));
-const { THEME_COLOR } = require(path.resolve(__dirname, 'theme.json'));
+const pkg = require(path.resolve(__dirname, '../../package.json'));
 
-function branchTable() {
+const conf = new Configstore(pkg.name);
+const themeColor = conf.get('themeColor');
+
+const baseStyles = {
+  border: false,
+  width: '100%',
+};
+
+export const loading = () => {
+  const loading = blessed.loading({
+    align: 'center',
+    width: 'shrink',
+    top: '0',
+    left: '0',
+  });
+
+  return loading;
+};
+
+export const branchTable = () => {
   const branchTable = blessed.listtable({
     align: 'left',
     left: 0,
     keys: true,
+    right: 0,
     noCellBorders: true,
     scrollable: true,
     scrollbar: true,
@@ -20,26 +41,26 @@ function branchTable() {
         },
       },
       header: {
-        fg: THEME_COLOR,
+        fg: themeColor,
       },
       label: {
         fg: '#FFFFFF',
       },
       scrollbar: {
-        bg: THEME_COLOR,
+        bg: themeColor,
       },
     },
     tags: true,
     top: 0,
-    bottom: 1,
+    bottom: 8,
     vi: false,
     width: 'shrink',
   });
 
   return branchTable;
-}
+};
 
-function helpDialogue() {
+export const helpDialogue = () => {
   const helpDialogue = blessed.table({
     align: 'left',
     border: { type: 'line' },
@@ -50,61 +71,72 @@ function helpDialogue() {
     padding: 1,
     right: 0,
     style: {
-      border: { fg: THEME_COLOR },
+      border: { fg: themeColor },
     },
     bottom: 0,
     width: 'shrink',
   });
 
   return helpDialogue;
-}
+};
 
-function screen() {
+export const messageCenter = () => {
+  const messageCenter = blessed.log({
+    ...baseStyles,
+    bottom: 2,
+    height: 5,
+  });
+
+  return messageCenter;
+};
+
+export const screen = () => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
+    ignoreLocked: ['escape', 'q', 'C-c'],
     smartCSR: true,
-    title: 'Check It Out',
   });
 
   return screen;
-}
+};
 
-function statusBar() {
+export const statusBarContainer = () => {
+  const statusBarContainer = blessed.box({
+    ...baseStyles,
+    bottom: 0,
+    height: 3,
+  });
+
+  return statusBarContainer;
+};
+
+export const statusBar = () => {
   const statusBar = blessed.box({
-    border: false,
+    ...baseStyles,
     bottom: 0,
     height: 1,
-    width: '100%',
   });
 
   return statusBar;
-}
+};
 
-function statusBarText() {
+export const statusBarText = () => {
   const statusBarText = blessed.text({
     content: '',
-    left: 0,
     bottom: 0,
+    left: 0,
   });
 
   return statusBarText;
-}
+};
 
-function statusHelpText() {
+export const statusHelpText = () => {
   const statusHelpText = blessed.text({
+    bottom: 0,
     content: 'Press "?" to show/hide help.',
-    right: 0,
+    right: 2,
   });
 
   return statusHelpText;
-}
-
-module.exports = {
-  branchTable,
-  statusBarText,
-  helpDialogue,
-  screen,
-  statusBar,
-  statusHelpText,
 };
