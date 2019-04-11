@@ -31,7 +31,7 @@
 	</a>
 </p>
 
-<a href="https://www.buymeacoffee.com/jwu910" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;box-shadow: 5px 10px #888888 !important;" ></a>
+<a href="https://www.buymeacoffee.com/jwu910" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" alt="Buy Me A Coffee" style="height: auto !important; width: auto !important; box-shadow: 5px 10px 8px #888888 !important;" ></a>
 
 <hr/>
 <img src="assets/images/checkit-intro.gif">
