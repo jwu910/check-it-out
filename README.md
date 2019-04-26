@@ -34,11 +34,11 @@
 	</a>
 </p>
 
-<p>
-	<a href="https://www.buymeacoffee.com/jwu910" style="box-shadow: 10px 5px 5px #A9A9A9 !important;">
+<div style="box-shadow: 10px 5px 5px #A9A9A9 !important;">
+	<a href="https://www.buymeacoffee.com/jwu910">
 		<img alt="Buy Me A Coffee" src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" style="height: auto !important; width: auto !important;" />
 	</a>
-</p>
+</div>
 
 <hr/>
 <img src="assets/images/checkit-intro.gif">
