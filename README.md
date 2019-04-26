@@ -36,7 +36,7 @@
 
 <p>
 	<a href="https://www.buymeacoffee.com/jwu910">
-		<img alt="Buy Me A Coffee" src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" style="height: auto !important; width: auto !important; box-shadow: 10px 5px 5px #A9A9A9;" />
+		<img alt="Buy Me A Coffee" src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" style="box-shadow: 10px 5px 5px #A9A9A9 !important; height: auto !important; width: auto !important;" />
 	</a>
 </p>
 
