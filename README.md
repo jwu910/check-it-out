@@ -34,9 +34,9 @@
 	</a>
 </p>
 
-<div style="box-shadow: 10px 5px 5px #A9A9A9 !important;">
+<div>
 	<a href="https://www.buymeacoffee.com/jwu910">
-		<img alt="Buy Me A Coffee" src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" style="height: auto !important; width: auto !important;" />
+		<img alt="Buy Me A Coffee" src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" style="height: auto !important; width: auto !important;" />
 	</a>
 </div>
 
