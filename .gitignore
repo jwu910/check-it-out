@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 README.html
 dist/
 node_modules/
 npm-debug.log
 .env
+=======
+dist/
+node_modules/
+>>>>>>> 03c63656aa5eca717c8a737a4d23bfa357de18cc
