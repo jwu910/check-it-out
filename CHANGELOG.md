@@ -40,9 +40,39 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
-- [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
-
 <hr />
+
+## [[2.0.4]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.4) - 2019-06-07
+
+### Notes
+
+Minor patch changes, been sitting around too long, sorry
+
+### Added
+
+- [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
+- [CIO-369](https://github.com/jwu910/check-it-out/issues/369) Add buy me a coffee badge
+
+### Fixed
+
+- [CIO-372](https://github.com/jwu910/check-it-out/issues/372) Fix buy me a coffee badge
+
+### Security
+
+- CIO-0 npm audit fix
+- CIO-0 Update dependabot dependencies to check secruity updates only
+- [CIO-325](https://github.com/jwu910/check-it-out/issues/325) Bump prettier from 1.13.7 to 1.16.4 (#325)
+- [CIO-331](https://github.com/jwu910/check-it-out/issues/331) Bump @babel/cli from 7.1.2 to 7.2.3 (#331)
+- CIO-0 Bump @babel/polyfill from 7.0.0 to 7.2.5
+- CIO-0 Bump @babel/preset-env from 7.3.1 to 7.4.2
+- CIO-0 Bump all-contributors-cli from 6.1.1 to 6.1.2
+- CIO-0 Bump chalk from 2.4.1 to 2.4.2
+- CIO-0 Bump eslint from 5.7.0 to 5.15.3
+- CIO-0 Bump husky from 1.1.2 to 1.3.1
+- CIO-0 Bump update-notifier from 2.3.0 to 2.5.0
+- CIO-0 Short description of work done
+- CIO-0 Short description of work done
+- CIO-0 Short description of work done
 
 ## [[2.0.3]](https://github.com/jwu910/check-it-out/releases/tag/v2.0.3) - 2019-02-25
 
