@@ -41,6 +41,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 ## [Unreleased]
 
 - [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
+- [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs
 
 <hr />
 
