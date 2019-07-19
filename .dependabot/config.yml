@@ -4,7 +4,6 @@ update_configs:
     directory: "/"
     default_labels:
       - "security"
-      - "dependencies"
     target_branch: "development"
     update_schedule: "live"
     default_assignees:

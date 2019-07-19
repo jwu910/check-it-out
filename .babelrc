@@ -3,8 +3,7 @@
 		["@babel/env", {
 			"targets": {
 				"node": "6"
-			},
-			"useBuiltIns": "entry"
+			}
 		}]
 	],
 	"plugins": ["@babel/plugin-syntax-object-rest-spread"]
