@@ -1,12 +1,13 @@
 :root {
-	--color-hyperlink: #7FC6A4;
-	--color-footer: #0B132B;
+	--color-hyperlink: #1BC4A9;
+	--color-footer: #081315;
 	--color-bg-base: #5D737E;
 	--color-bg-code: rgba(136, 158, 168, 0.3);
 	--color-border-neutral: #979797;
 	--color-font-base: #FFFFFF;
-	--color-font-secondary: #686566;
-	--color-bg: #1C2541;
+	--color-font-secondary: #2c3a43;
+	--color-bg: #17202b;
+	--color-bg-2: #212a31;
 }
 
 @font-face {
@@ -29,6 +30,10 @@ body {
 	background-color: var(--color-bg);
 	margin: 0;
 	padding: 0;
+}
+
+header {
+	background-color: var(--color-bg-2);
 }
 
 h1,
