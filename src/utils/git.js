@@ -3,11 +3,16 @@ import Configstore from 'configstore';
 import path from 'path';
 import { spawn } from 'child_process';
 
+/**
+ * @typedef {import('../app').Ref} Ref
+ * @typedef {import('../app').Remote} Remote
+ */
+
 const pkg = require(path.resolve(__dirname, '../../package.json'));
 
 const conf = new Configstore(pkg.name);
 
-import { buildRemotePayload, filterUniqueRemotes } from './utils';
+import { buildRemotePayload } from './utils';
 
 let gitResponse;
 
@@ -22,12 +27,12 @@ export const closeGitResponse = () => {
 /**
  * Get references and parse through data to build branch array and remote list
  *
- * @returns {Promise<[String[][], String[]]>} payload and uniqueRemotes
+ * @returns {Promise<Remote[]>} payload and uniqueRemotes
  */
 export const getRefData = async () => {
   const refs = await getRefs();
 
-  return [buildRemotePayload(refs), filterUniqueRemotes(refs)];
+  return buildRemotePayload(refs);
 };
 
 /**
@@ -114,7 +119,7 @@ export const doFetchBranches = () => {
  * formatted lines for the data table.
  *
  * @param {String} output String list of each ref associated with repository
- * @return {Promise<String[][]>} Array containing an array of line items representing branch information
+ * @return {Promise<Array<Ref>>} Array containing an array of line items representing branch information
  */
 export const formatRemoteBranches = async output => {
   let remoteBranchArray = [];
@@ -123,7 +128,7 @@ export const formatRemoteBranches = async output => {
 
   const outputArray = output.trim().split('\n');
 
-  outputArray.map(line => {
+  outputArray.map((line, index) => {
     const currLine = line.split('/');
 
     const currBranch =
@@ -133,10 +138,10 @@ export const formatRemoteBranches = async output => {
 
     const currRemote = currLine[1] === 'remotes' ? currLine[2] : currLine[1];
 
-    const selected =
-      currLine[1] === 'heads' && currBranch === selectedBranch.trim()
-        ? '*'
-        : ' ';
+    const active =
+      currLine[1] === 'heads' && currBranch === selectedBranch.trim();
+
+    const selected = active ? '*' : ' ';
 
     if (currLine[currLine.length - 1] === 'HEAD') {
       return;
@@ -144,7 +149,12 @@ export const formatRemoteBranches = async output => {
       return;
     }
 
-    remoteBranchArray.push([selected, currRemote, currBranch]);
+    remoteBranchArray.push({
+      active,
+      id: index,
+      name: currBranch,
+      remoteName: currRemote,
+    });
   });
 
   return remoteBranchArray;
@@ -153,7 +163,7 @@ export const formatRemoteBranches = async output => {
 /**
  * Print all refs assicated with git repository.
  *
- * @return {Promise<String[][]>} String list of each ref associated with repository.
+ * @return {Promise<Ref[]>} String list of each ref associated with repository.
  */
 const getRefs = async () => {
   const args = [

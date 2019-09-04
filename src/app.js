@@ -13,6 +13,11 @@ import {
 import * as dialogue from './utils/interface';
 import { getRemoteTabs, exitWithError, notifyMessage } from './utils/utils';
 
+/**
+ * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
+ * @typedef {{name: string, refs: Ref[]}} Remote
+ */
+
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, '../package.json'));
 const notifier = updateNotifier({ pkg });
@@ -66,7 +71,8 @@ export const start = async args => {
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
 
-  let branchPayload = {};
+  /** @type {Remote[]} */
+  let branchPayload = [];
   let currentRemote = 'heads';
   let remoteList = [];
 
@@ -266,10 +272,15 @@ export const start = async args => {
    * @param {String} currentRemote Current displayed remote
    */
   const refreshTable = (currentRemote = 'heads') => {
-    branchTable.setData([
-      ['', 'Remote', 'Ref Name'],
-      ...branchPayload[currentRemote],
+    const remote = branchPayload.find(remote => remote.name === currentRemote);
+
+    const tableData = remote.refs.map(ref => [
+      ref.active ? '*' : ' ',
+      ref.remoteName,
+      ref.name,
     ]);
+
+    branchTable.setData([['', 'Remote', 'Ref Name'], ...tableData]);
 
     statusBarText.content = getRemoteTabs(remoteList, currentRemote);
 
@@ -281,7 +292,9 @@ export const start = async args => {
   };
 
   try {
-    [branchPayload, remoteList] = await getRefData();
+    branchPayload = await getRefData();
+
+    remoteList = branchPayload.map(remote => remote.name);
 
     refreshTable(currentRemote);
 
