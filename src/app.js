@@ -1,20 +1,17 @@
-const chalk = require('chalk');
-const Configstore = require('configstore');
-const path = require('path');
-const updateNotifier = require('update-notifier');
+import chalk from 'chalk';
+import Configstore from 'configstore';
+import path from 'path';
+import updateNotifier from 'update-notifier';
 
-const {
+import {
   closeGitResponse,
   doCheckoutBranch,
   doFetchBranches,
   getRefData,
-} = require(path.resolve(__dirname, 'utils/git'));
+} from './utils/git';
 
-const dialogue = require(path.resolve(__dirname, 'utils/interface'));
-const { getRemoteTabs, exitWithError, notifyMessage } = require(path.resolve(
-  __dirname,
-  'utils/utils',
-));
+import * as dialogue from './utils/interface';
+import { getRemoteTabs, exitWithError, notifyMessage } from './utils/utils';
 
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, '../package.json'));
