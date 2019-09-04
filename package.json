@@ -9,7 +9,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "npx babel src --extensions .js --out-dir dist --verbose",
+    "build": "babel src --extensions .js --out-dir dist --verbose",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "cz": "git cz",
@@ -21,7 +21,7 @@
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "test": "npm run lint",
-    "watch": "npx babel src --extensions .js --out-dir dist --verbose --watch"
+    "watch": "babel src --extensions .js --out-dir dist --verbose --watch"
   },
   "repository": {
     "type": "git",
