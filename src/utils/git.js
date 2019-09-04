@@ -28,18 +28,10 @@ export const closeGitResponse = () => {
  * @param {String} remote Current displayed remote
  * @returns {String[]} payload and uniqueRemotes
  */
-export const getRefData = () => {
-  const refs = getRefs();
-  const fns = [buildRemotePayload, filterUniqueRemotes];
-  return fns.map(fn => {
-    return refs
-      .then(data => {
-        return fn(data);
-      })
-      .then(result => {
-        return result;
-      });
-  });
+export const getRefData = async () => {
+  const refs = await getRefs();
+
+  return [buildRemotePayload(refs), filterUniqueRemotes(refs)];
 };
 
 /**
@@ -128,38 +120,38 @@ export const doFetchBranches = () => {
  * @param {String} output String list of each ref associated with repository
  * @return {Array} Array containing an array of line items representing branch information
  */
-export const formatRemoteBranches = output => {
+export const formatRemoteBranches = async output => {
   let remoteBranchArray = [];
 
-  return getCurrentBranch().then(selectedBranch => {
-    const outputArray = output.trim().split('\n');
+  const selectedBranch = await getCurrentBranch();
 
-    outputArray.map(line => {
-      const currLine = line.split('/');
+  const outputArray = output.trim().split('\n');
 
-      const currBranch =
-        currLine[1] === 'remotes'
-          ? currLine.slice(3).join('/')
-          : currLine.slice(2).join('/');
+  outputArray.map(line => {
+    const currLine = line.split('/');
 
-      const currRemote = currLine[1] === 'remotes' ? currLine[2] : currLine[1];
+    const currBranch =
+      currLine[1] === 'remotes'
+        ? currLine.slice(3).join('/')
+        : currLine.slice(2).join('/');
 
-      const selected =
-        currLine[1] === 'heads' && currBranch === selectedBranch.trim()
-          ? '*'
-          : ' ';
+    const currRemote = currLine[1] === 'remotes' ? currLine[2] : currLine[1];
 
-      if (currLine[currLine.length - 1] === 'HEAD') {
-        return;
-      } else if (currLine[1] === 'stash') {
-        return;
-      }
+    const selected =
+      currLine[1] === 'heads' && currBranch === selectedBranch.trim()
+        ? '*'
+        : ' ';
 
-      remoteBranchArray.push([selected, currRemote, currBranch]);
-    });
+    if (currLine[currLine.length - 1] === 'HEAD') {
+      return;
+    } else if (currLine[1] === 'stash') {
+      return;
+    }
 
-    return remoteBranchArray;
+    remoteBranchArray.push([selected, currRemote, currBranch]);
   });
+
+  return remoteBranchArray;
 };
 
 /**
@@ -167,7 +159,7 @@ export const formatRemoteBranches = output => {
  *
  * @return {String} String list of each ref associated with repository.
  */
-const getRefs = () => {
+const getRefs = async () => {
   const args = [
     'for-each-ref',
     `--sort=${conf.get('sort')}`,
@@ -175,7 +167,5 @@ const getRefs = () => {
     '--count=500',
   ];
 
-  return execGit(args).then(data => {
-    return formatRemoteBranches(data);
-  });
+  return formatRemoteBranches(await execGit(args));
 };
