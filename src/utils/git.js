@@ -22,8 +22,7 @@ export const closeGitResponse = () => {
 /**
  * Get references and parse through data to build branch array and remote list
  *
- * @param {String} remote Current displayed remote
- * @returns {String[]} payload and uniqueRemotes
+ * @returns {Promise<[String[][], String[]]>} payload and uniqueRemotes
  */
 export const getRefData = async () => {
   const refs = await getRefs();
@@ -115,7 +114,7 @@ export const doFetchBranches = () => {
  * formatted lines for the data table.
  *
  * @param {String} output String list of each ref associated with repository
- * @return {Array} Array containing an array of line items representing branch information
+ * @return {Promise<String[][]>} Array containing an array of line items representing branch information
  */
 export const formatRemoteBranches = async output => {
   let remoteBranchArray = [];
@@ -154,7 +153,7 @@ export const formatRemoteBranches = async output => {
 /**
  * Print all refs assicated with git repository.
  *
- * @return {String} String list of each ref associated with repository.
+ * @return {Promise<String[][]>} String list of each ref associated with repository.
  */
 const getRefs = async () => {
   const args = [

@@ -120,7 +120,7 @@ export const start = async args => {
 
       refreshTable(currentRemote);
 
-      notifyMessage(messageCenter, 'error', error, 5);
+      notifyMessage(messageCenter, 'error', error);
     }
   });
 
@@ -188,13 +188,13 @@ export const start = async args => {
   });
 
   branchTable.key('j', () => {
-    branchTable.down();
+    branchTable.down(1);
 
     screen.render();
   });
 
   branchTable.key('k', () => {
-    branchTable.up();
+    branchTable.up(1);
 
     screen.render();
   });
@@ -213,11 +213,7 @@ export const start = async args => {
 
     args.push(gitBranch);
 
-    if (args.length > 1) {
-      args = args.join('/');
-    }
-
-    screen.spawn('git', ['log', args, ...gitLogArguments]);
+    screen.spawn('git', ['log', args.join('/'), ...gitLogArguments]);
   });
 
   branchTable.focus();
