@@ -16,6 +16,7 @@ import { getRemoteTabs, exitWithError, notifyMessage } from './utils/utils';
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
  * @typedef {{name: string, refs: Ref[]}} Remote
+ * @typedef {{branchPayload: Remote[], currentRemote: string, remoteList: string[]}} State
  */
 
 // Checks for available update and returns an instance
@@ -71,10 +72,12 @@ export const start = async args => {
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
 
-  /** @type {Remote[]} */
-  let branchPayload = [];
-  let currentRemote = 'heads';
-  let remoteList = [];
+  /** @type {State} */
+  const state = {
+    branchPayload: [],
+    currentRemote: 'heads',
+    remoteList: [],
+  };
 
   screen.append(branchTable);
   screen.append(statusBarContainer);
@@ -120,11 +123,11 @@ export const start = async args => {
 
       branchTable.clearItems();
 
-      refreshTable(currentRemote);
+      refreshTable(state.currentRemote);
     } catch (error) {
       loadDialogue.stop();
 
-      refreshTable(currentRemote);
+      refreshTable(state.currentRemote);
 
       notifyMessage(messageCenter, 'error', error);
     }
@@ -178,7 +181,7 @@ export const start = async args => {
 
         exitWithError(error, gitBranch, 'checkout');
       } else {
-        refreshTable(currentRemote);
+        refreshTable(state.currentRemote);
 
         notifyMessage(messageCenter, 'error', error);
       }
@@ -186,11 +189,11 @@ export const start = async args => {
   });
 
   branchTable.key(['left', 'h'], () => {
-    currentRemote = getPrevRemote(currentRemote, remoteList);
+    state.currentRemote = getPrevRemote(state.currentRemote, state.remoteList);
   });
 
   branchTable.key(['right', 'l'], () => {
-    currentRemote = getNextRemote(currentRemote, remoteList);
+    state.currentRemote = getNextRemote(state.currentRemote, state.remoteList);
   });
 
   branchTable.key('j', () => {
@@ -272,7 +275,9 @@ export const start = async args => {
    * @param {String} currentRemote Current displayed remote
    */
   const refreshTable = (currentRemote = 'heads') => {
-    const remote = branchPayload.find(remote => remote.name === currentRemote);
+    const remote = state.branchPayload.find(
+      remote => remote.name === currentRemote,
+    );
 
     const tableData = remote.refs.map(ref => [
       ref.active ? '*' : ' ',
@@ -282,7 +287,7 @@ export const start = async args => {
 
     branchTable.setData([['', 'Remote', 'Ref Name'], ...tableData]);
 
-    statusBarText.content = getRemoteTabs(remoteList, currentRemote);
+    statusBarText.content = getRemoteTabs(state.remoteList, currentRemote);
 
     loadDialogue.stop();
 
@@ -292,11 +297,11 @@ export const start = async args => {
   };
 
   try {
-    branchPayload = await getRefData();
+    state.branchPayload = await getRefData();
 
-    remoteList = branchPayload.map(remote => remote.name);
+    state.remoteList = state.branchPayload.map(remote => remote.name);
 
-    refreshTable(currentRemote);
+    refreshTable(state.currentRemote);
 
     notifyMessage(messageCenter, 'log', 'Loaded successfully');
   } catch (err) {
