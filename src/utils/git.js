@@ -1,16 +1,13 @@
-const chalk = require('chalk');
-const Configstore = require('configstore');
-const path = require('path');
-const { spawn } = require('child_process');
+import chalk from 'chalk';
+import Configstore from 'configstore';
+import path from 'path';
+import { spawn } from 'child_process';
 
 const pkg = require(path.resolve(__dirname, '../../package.json'));
 
 const conf = new Configstore(pkg.name);
 
-const { buildRemotePayload, filterUniqueRemotes } = require(path.resolve(
-  __dirname,
-  'utils',
-));
+import { buildRemotePayload, filterUniqueRemotes } from './utils';
 
 let gitResponse;
 

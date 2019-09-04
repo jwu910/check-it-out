@@ -1,8 +1,8 @@
-const blessed = require('blessed');
-const path = require('path');
-const Configstore = require('configstore');
+import blessed from 'blessed';
+import path from 'path';
+import Configstore from 'configstore';
 
-const help = require(path.resolve(__dirname, 'helpText'));
+import * as help from './helpText';
 const pkg = require(path.resolve(__dirname, '../../package.json'));
 
 const conf = new Configstore(pkg.name);
