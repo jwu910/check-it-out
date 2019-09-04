@@ -48,7 +48,7 @@ const defaultConfig = {
 
 const conf = new Configstore(pkg.name, defaultConfig);
 
-export const start = args => {
+export const start = async args => {
   if (args[0] === '-v' || args[0] === '--version') {
     process.stdout.write(pkg.version);
     process.exit(0);
@@ -90,36 +90,6 @@ export const start = args => {
 
   screen.render();
 
-  const [branchData, remoteListTabs] = getRefData();
-
-  Promise.all([branchData, remoteListTabs])
-    .then(data => {
-      branchPayload = data[0];
-
-      remoteList = data[1];
-
-      refreshTable(currentRemote);
-
-      notifyMessage(messageCenter, 'log', 'Loaded successfully');
-    })
-    .catch(err => {
-      screen.destroy();
-
-      if (err === 'SIGTERM') {
-        process.stdout.write(chalk.white.bold('[INFO]') + '\n');
-        process.stdout.write(
-          'Checkitout closed before initial load completed \n',
-        );
-
-        process.exit(0);
-      } else {
-        process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
-        process.stderr.write(err + '\n');
-
-        process.exit(1);
-      }
-    });
-
   const toggleHelp = () => {
     helpDialogue.toggle();
     screen.render();
@@ -135,26 +105,26 @@ export const start = args => {
       process.exit(0);
     }
   });
-  screen.key('C-r', () => {
+  screen.key('C-r', async () => {
     branchTable.clearItems();
 
     loadDialogue.load(' Fetching refs...');
 
     notifyMessage(messageCenter, 'log', 'Fetching');
 
-    doFetchBranches()
-      .then(() => {
-        branchTable.clearItems();
+    try {
+      await doFetchBranches();
 
-        refreshTable(currentRemote);
-      })
-      .catch(error => {
-        loadDialogue.stop();
+      branchTable.clearItems();
 
-        refreshTable(currentRemote);
+      refreshTable(currentRemote);
+    } catch (error) {
+      loadDialogue.stop();
 
-        notifyMessage(messageCenter, 'error', error, 5);
-      });
+      refreshTable(currentRemote);
+
+      notifyMessage(messageCenter, 'error', error, 5);
+    }
   });
 
   process.on('SIGWINCH', () => {
@@ -177,7 +147,7 @@ export const start = args => {
     return selection;
   };
 
-  branchTable.on('select', selectedLine => {
+  branchTable.on('select', async selectedLine => {
     const selection = parseSelection(selectedLine.content);
 
     const gitBranch = selection[2];
@@ -189,27 +159,27 @@ export const start = args => {
 
     screen.render();
 
-    return doCheckoutBranch(gitBranch, gitRemote)
-      .then(output => {
-        loadDialogue.stop();
+    try {
+      await doCheckoutBranch(gitBranch, gitRemote);
 
+      loadDialogue.stop();
+
+      screen.destroy();
+
+      process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}\n`);
+
+      process.exit(0);
+    } catch (error) {
+      if (error !== 'SIGTERM') {
         screen.destroy();
 
-        process.stdout.write(`Checked out to ${chalk.bold(gitBranch)}\n`);
+        exitWithError(error, gitBranch, 'checkout');
+      } else {
+        refreshTable(currentRemote);
 
-        process.exit(0);
-      })
-      .catch(error => {
-        if (error !== 'SIGTERM') {
-          screen.destroy();
-
-          exitWithError(error, gitBranch, 'checkout');
-        } else {
-          refreshTable(currentRemote);
-
-          notifyMessage(messageCenter, 'error', error);
-        }
-      });
+        notifyMessage(messageCenter, 'error', error);
+      }
+    }
   });
 
   branchTable.key(['left', 'h'], () => {
@@ -316,4 +286,28 @@ export const start = args => {
 
     notifyMessage(messageCenter, 'log', 'Screen refreshed');
   };
+
+  try {
+    [branchPayload, remoteList] = await getRefData();
+
+    refreshTable(currentRemote);
+
+    notifyMessage(messageCenter, 'log', 'Loaded successfully');
+  } catch (err) {
+    screen.destroy();
+
+    if (err === 'SIGTERM') {
+      process.stdout.write(chalk.white.bold('[INFO]') + '\n');
+      process.stdout.write(
+        'Checkitout closed before initial load completed \n',
+      );
+
+      process.exit(0);
+    } else {
+      process.stderr.write(chalk.red.bold('[ERROR]') + '\n');
+      process.stderr.write(err + '\n');
+
+      process.exit(1);
+    }
+  }
 };
