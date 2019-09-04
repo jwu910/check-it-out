@@ -1,45 +1,32 @@
 import chalk from 'chalk';
 
 /**
- * Function should build a separate array for each unique remote
- *
- * @param {Array} output Array containing an array of branch information
- * @return {Object} Object with key-value pairs of remote-branchArray
+ * @typedef {import('../app').Ref} Ref
+ * @typedef {import('../app').Remote} Remote
  */
-export const buildRemotePayload = output => {
-  let payload = {};
-
-  const remoteList = filterUniqueRemotes(output);
-
-  remoteList.forEach(branch => {
-    payload[branch] = [];
-  });
-
-  output.forEach(remote => {
-    payload[remote[1]].push(remote);
-  });
-
-  return payload;
-};
-
-const onlyUnique = (value, index, self) => {
-  return self.indexOf(value) === index;
-};
 
 /**
- * Find unique remotes in repository
+ * Function should build a separate array for each unique remote
  *
- * @param {Array} output Array containing an array of branch information
- * @return {String[]} Array containing a unique set of remotes for this repository
+ * @param {Ref[]} refs Array containing an array of branch information
+ * @return {Remote[]} Object with key-value pairs of remote-branchArray
  */
-export const filterUniqueRemotes = output => {
-  let remoteList = [];
+export const buildRemotePayload = refs => {
+  const remotes = [];
 
-  output.forEach(remote => remoteList.push(remote[1]));
+  for (const ref of refs) {
+    let remote = remotes.find(remote => remote.name === ref.remoteName);
 
-  remoteList = remoteList.filter(onlyUnique).sort();
+    if (remote === undefined) {
+      remote = { name: ref.remoteName, refs: [] };
 
-  return remoteList;
+      remotes.push(remote);
+    }
+
+    remote.refs.push(ref);
+  }
+
+  return remotes;
 };
 
 /**
