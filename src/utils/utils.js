@@ -30,24 +30,6 @@ export const buildRemotePayload = refs => {
 };
 
 /**
- * Get "tabs" for status bar highlighting current remote
- *
- * @param {Array} remoteList - Array of unique remotes
- * @param {String} currentRemote - Name of current remote
- *
- * @return {String} Copy of remoteList with currentRemote inverted with chalk
- */
-export const getRemoteTabs = (remoteList, currentRemote) => {
-  const focusedIndex = remoteList.indexOf(currentRemote);
-
-  const focusedRemoteList = remoteList.slice();
-
-  focusedRemoteList[focusedIndex] = chalk.inverse(currentRemote);
-
-  return focusedRemoteList.join(':');
-};
-
-/**
  * Handle errors and log to stderr - Exit application
  *
  * @param {Error} error Error message returned from promise.
