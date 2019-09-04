@@ -30,7 +30,7 @@ const onlyUnique = (value, index, self) => {
  * Find unique remotes in repository
  *
  * @param {Array} output Array containing an array of branch information
- * @return {Array} Array containing a unique set of remotes for this repository
+ * @return {String[]} Array containing a unique set of remotes for this repository
  */
 export const filterUniqueRemotes = output => {
   let remoteList = [];
@@ -48,7 +48,7 @@ export const filterUniqueRemotes = output => {
  * @param {Array} remoteList - Array of unique remotes
  * @param {String} currentRemote - Name of current remote
  *
- * @return {Array} Copy of remoteList with currentRemote inverted with chalk
+ * @return {String} Copy of remoteList with currentRemote inverted with chalk
  */
 export const getRemoteTabs = (remoteList, currentRemote) => {
   const focusedIndex = remoteList.indexOf(currentRemote);
@@ -63,7 +63,7 @@ export const getRemoteTabs = (remoteList, currentRemote) => {
 /**
  * Handle errors and log to stderr - Exit application
  *
- * @param {error} error Error message returned from promise.
+ * @param {Error} error Error message returned from promise.
  */
 export const exitWithError = (error, branch, type) => {
   process.stderr.write(
@@ -82,8 +82,9 @@ export const exitWithError = (error, branch, type) => {
 /**
  * Accept message as argument, return message in status bar message logger
  *
- * @param {message} string String to use as message.
- * @param {type} string Message type.
+ * @param {Object} logger The logger object.
+ * @param {String} type Message type.
+ * @param {String} message String to use as message.
  */
 
 export const notifyMessage = (logger, type = 'log', message) => {

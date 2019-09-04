@@ -1,3 +1,4 @@
+// @ts-nocheck
 import blessed from 'blessed';
 import path from 'path';
 import Configstore from 'configstore';
