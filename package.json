@@ -9,7 +9,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
+    "build": "npx babel src --extensions .js --out-dir dist --verbose",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "cz": "git cz",
@@ -21,7 +21,7 @@
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "test": "npm run lint",
-    "watch": "gulp watch"
+    "watch": "npx babel src --extensions .js --out-dir dist --verbose --watch"
   },
   "repository": {
     "type": "git",
@@ -70,8 +70,6 @@
     "eslint": "^5.7.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "gulp": "^4.0.0",
-    "gulp-babel": "^8.0.0",
     "husky": "^1.1.2",
     "lodash": "^4.17.10",
     "precise-commits": "^1.0.2",
