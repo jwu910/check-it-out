@@ -11,7 +11,6 @@ import {
 } from './utils/git';
 
 import * as dialogue from './utils/interface';
-import { exitWithError } from './utils/utils';
 
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
@@ -185,7 +184,15 @@ export const start = async args => {
       if (error !== 'SIGTERM') {
         screen.destroy();
 
-        exitWithError(error, gitBranch, 'checkout');
+        process.stderr.write(
+          chalk.bold.red('[ERR] ') +
+            'Unable to checkout ' +
+            chalk.yellow(gitBranch) +
+            '\n' +
+            error.toString(),
+        );
+
+        process.exit(1);
       } else {
         refreshTable();
 
