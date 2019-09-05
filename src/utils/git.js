@@ -12,8 +12,6 @@ const pkg = require(path.resolve(__dirname, '../../package.json'));
 
 const conf = new Configstore(pkg.name);
 
-import { buildRemotePayload } from './utils';
-
 let gitResponse;
 
 /**
@@ -32,7 +30,21 @@ export const closeGitResponse = () => {
 export const getRefData = async () => {
   const refs = await getRefs();
 
-  return buildRemotePayload(refs);
+  const remotes = [];
+
+  for (const ref of refs) {
+    let remote = remotes.find(remote => remote.name === ref.remoteName);
+
+    if (remote === undefined) {
+      remote = { name: ref.remoteName, refs: [] };
+
+      remotes.push(remote);
+    }
+
+    remote.refs.push(ref);
+  }
+
+  return remotes;
 };
 
 /**
