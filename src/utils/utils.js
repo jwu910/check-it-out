@@ -47,15 +47,3 @@ export const exitWithError = (error, branch, type) => {
 
   process.exit(1);
 };
-
-/**
- * Accept message as argument, return message in status bar message logger
- *
- * @param {Object} logger The logger object.
- * @param {String} type Message type.
- * @param {String} message String to use as message.
- */
-
-export const notifyMessage = (logger, type = 'log', message) => {
-  logger.log(`[${type}] ${message}`);
-};
