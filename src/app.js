@@ -15,7 +15,7 @@ import * as dialogue from './utils/interface';
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
  * @typedef {{name: string, refs: Ref[]}} Remote
- * @typedef {{currentRemoteIndex: number, remotes: Remote[] }} State
+ * @typedef {{currentRemoteIndex: number, getCurrentRemote(): Remote, remotes: Remote[] }} State
  */
 
 // Checks for available update and returns an instance
@@ -74,6 +74,9 @@ export const start = async args => {
   /** @type {State} */
   const state = {
     currentRemoteIndex: 0,
+    getCurrentRemote() {
+      return this.remotes[this.currentRemoteIndex];
+    },
     remotes: [],
   };
 
@@ -251,7 +254,7 @@ export const start = async args => {
    * Update current screen with current remote
    */
   const refreshTable = () => {
-    const remote = state.remotes[state.currentRemoteIndex];
+    const remote = state.getCurrentRemote();
 
     const tableData = remote.refs.map(ref => [
       ref.active ? '*' : ' ',
