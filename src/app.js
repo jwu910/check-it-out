@@ -11,7 +11,7 @@ import {
 } from './utils/git';
 
 import * as dialogue from './utils/interface';
-import { exitWithError, notifyMessage } from './utils/utils';
+import { exitWithError } from './utils/utils';
 
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
@@ -78,6 +78,13 @@ export const start = async args => {
     remotes: [],
   };
 
+  const getLogger = prefix => message => {
+    messageCenter.log(`[${prefix}] ${message}`);
+  };
+
+  const logMessage = getLogger('log');
+  const logError = getLogger('error');
+
   screen.append(branchTable);
   screen.append(statusBarContainer);
 
@@ -105,7 +112,7 @@ export const start = async args => {
     if (screen.lockKeys) {
       closeGitResponse();
 
-      notifyMessage(messageCenter, 'log', 'Cancelled git process');
+      logMessage('Cancelled git process');
     } else {
       process.exit(0);
     }
@@ -115,7 +122,7 @@ export const start = async args => {
 
     loadDialogue.load(' Fetching refs...');
 
-    notifyMessage(messageCenter, 'log', 'Fetching');
+    logMessage('Fetching');
 
     try {
       await doFetchBranches();
@@ -128,14 +135,14 @@ export const start = async args => {
 
       refreshTable();
 
-      notifyMessage(messageCenter, 'error', error);
+      logError(error);
     }
   });
 
   process.on('SIGWINCH', () => {
     screen.emit('resize');
 
-    notifyMessage(messageCenter, 'log', 'Resizing');
+    logMessage('Resizing');
   });
 
   /**
@@ -182,7 +189,7 @@ export const start = async args => {
       } else {
         refreshTable();
 
-        notifyMessage(messageCenter, 'error', error);
+        logError(error);
       }
     }
   });
@@ -263,7 +270,7 @@ export const start = async args => {
 
     screen.render();
 
-    notifyMessage(messageCenter, 'log', 'Screen refreshed');
+    logMessage('Screen refreshed');
   };
 
   try {
@@ -275,7 +282,7 @@ export const start = async args => {
 
     refreshTable();
 
-    notifyMessage(messageCenter, 'log', 'Loaded successfully');
+    logMessage('Loaded successfully');
   } catch (err) {
     screen.destroy();
 
