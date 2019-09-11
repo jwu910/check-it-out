@@ -157,6 +157,33 @@ export const start = async args => {
     }
   });
 
+  function getPrompt(label, cb) {
+    const input = dialogue.input(label, '', cb);
+
+    screen.append(input);
+
+    input.show();
+    input.focus();
+
+    screen.render();
+  }
+
+  screen.key('&', () => {
+    getPrompt('Filter term:', value => {
+      state.filter = value;
+
+      refreshTable();
+    });
+  });
+
+  screen.key('/', () => {
+    getPrompt('Search term:', value => {
+      state.search = value;
+
+      refreshTable();
+    });
+  });
+
   process.on('SIGWINCH', () => {
     screen.emit('resize');
 
