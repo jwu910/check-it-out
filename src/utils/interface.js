@@ -81,6 +81,35 @@ export const helpDialogue = () => {
   return helpDialogue;
 };
 
+export const input = (label, startingValue, cb) => {
+  const input = blessed.textarea({
+    border: { fg: 3, type: 'line' },
+    bottom: 0,
+    height: 3,
+    inputOnFocus: true,
+    label,
+    left: 0,
+    name: 'searchInput',
+    padding: {
+      left: 1,
+    },
+    right: 0,
+    value: startingValue,
+    width: '100%',
+  });
+
+  input.onceKey('enter', () => {
+    cb(input.value.trim());
+    input.submit();
+  });
+  input.on('action', () => {
+    input.destroy();
+    input.screen.render();
+  });
+
+  return input;
+};
+
 export const messageCenter = () => {
   const messageCenter = blessed.log({
     ...baseStyles,
@@ -95,7 +124,7 @@ export const screen = () => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
-    ignoreLocked: ['escape', 'q', 'C-c'],
+    ignoreLocked: ['C-c'],
     smartCSR: true,
   });
 
