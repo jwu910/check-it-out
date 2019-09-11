@@ -15,7 +15,15 @@ import * as dialogue from './utils/interface';
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
  * @typedef {{name: string, refs: Ref[]}} Remote
- * @typedef {{currentRemoteIndex: number, getCurrentRemote(): Remote, remotes: Remote[] }} State
+ *
+ * @typedef {object} State
+ * @property {number} currentRemoteIndex
+ * @property {string} filter
+ * @property {Remote[]} remotes
+ * @property {string} search
+ * @property {() => Remote} getCurrentRemote
+ * @property {() => RegExp} getFilterRegex
+ * @property {() => RegExp} getSearchRegex
  */
 
 // Checks for available update and returns an instance
@@ -74,9 +82,17 @@ export const start = async args => {
   /** @type {State} */
   const state = {
     currentRemoteIndex: 0,
+    filter: '',
     getCurrentRemote() {
       return this.remotes[this.currentRemoteIndex];
     },
+    getFilterRegex() {
+      return new RegExp(this.filter, 'gi');
+    },
+    getSearchRegex() {
+      return new RegExp(this.search, 'gi');
+    },
+    search: '',
     remotes: [],
   };
 
@@ -256,11 +272,13 @@ export const start = async args => {
   const refreshTable = () => {
     const remote = state.getCurrentRemote();
 
-    const tableData = remote.refs.map(ref => [
-      ref.active ? '*' : ' ',
-      ref.remoteName,
-      ref.name,
-    ]);
+    const tableData = remote.refs
+      .filter(ref => ref.name.search(state.getFilterRegex()) !== -1)
+      .map(ref => [
+        ref.active ? '*' : ' ',
+        ref.remoteName,
+        ref.name.replace(state.getSearchRegex(), match => chalk.inverse(match)),
+      ]);
 
     branchTable.setData([['', 'Remote', 'Ref Name'], ...tableData]);
 
