@@ -46,6 +46,7 @@ Each issue fixed should contain one bullet summarizing the work done.
 - [CIO-166](https://github.com/jwu910/check-it-out/issues/166) Add feature for search and filter - users now able to use the `/` and `&` key's to refine their branches displayed
 - [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
 - [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs
+- [CIO-452](https://github.com/jwu910/check-it-out/issues/452) Replace backslashes in search input with double backslash to escape. Add logging messages for search terms
 
 <hr />
 
