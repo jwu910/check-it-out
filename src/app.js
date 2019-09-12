@@ -24,6 +24,7 @@ import * as dialogue from './utils/interface';
  * @property {() => Remote} getCurrentRemote
  * @property {() => RegExp} getFilterRegex
  * @property {() => RegExp} getSearchRegex
+ * @property {() => number[]} getSearchHits
  */
 
 // Checks for available update and returns an instance
@@ -91,6 +92,24 @@ export const start = async args => {
     },
     getSearchRegex() {
       return new RegExp(this.search, 'gi');
+    },
+    getSearchHits() {
+      if (!this.search) {
+        return [];
+      }
+
+      const remote = this.getCurrentRemote();
+
+      return remote.refs
+        .filter(ref => ref.name.search(this.getFilterRegex()) !== -1)
+        .map((ref, index) => {
+          if (ref.name.search(this.getSearchRegex()) !== -1) {
+            return index + 1;
+          }
+
+          return NaN;
+        })
+        .filter(index => !isNaN(index));
     },
     search: '',
     remotes: [],
@@ -272,6 +291,32 @@ export const start = async args => {
     branchTable.up(1);
 
     screen.render();
+  });
+
+  branchTable.key('n', () => {
+    // @ts-ignore
+    const currentRefIndex = branchTable.selected;
+    const searchHits = state.getSearchHits();
+
+    const filteredHits = searchHits.filter(n => n > currentRefIndex);
+
+    if (filteredHits.length) {
+      branchTable.select(filteredHits[0]);
+      screen.render();
+    }
+  });
+
+  branchTable.key('S-n', () => {
+    // @ts-ignore
+    const currentRefIndex = branchTable.selected;
+    const searchHits = state.getSearchHits();
+
+    const filteredHits = searchHits.filter(n => n < currentRefIndex);
+
+    if (filteredHits.length) {
+      branchTable.select(filteredHits[filteredHits.length - 1]);
+      screen.render();
+    }
   });
 
   branchTable.key('space', function() {
