@@ -117,14 +117,18 @@ See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 ![Quick Git Log!](assets/images/checkit-log.gif)
 
 
-| Commands                                                         | Description                         |
-| ---------------------------------------------------------------- | ----------------------------------- |
-| <kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd> | Navigate the list                   |
-| <kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd> | Previous/Next remote                |
-| <kbd>Ctrl</kbd>+<kbd>r</kbd>                                     | Refresh list with a fetch and prune |
-| <kbd>enter</kbd>                                                 | Select highlighted item             |
-| <kbd>space</kbd>                                                 | Git log                             |
-| <kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>       | Quit                                |
+| Commands                                                         | Description                                         |
+| ---------------------------------------------------------------- | --------------------------------------------------- |
+| <kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd> | Navigate the list                                   |
+| <kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd> | Previous/Next remote                                |
+| <kbd>Ctrl</kbd>+<kbd>r</kbd>                                     | Refresh list with a fetch and prune                 |
+| <kbd>enter</kbd>                                                 | Select highlighted item                             |
+| <kbd>space</kbd>                                                 | Git log                                             |
+| <kbd>&</kbd>                                                     | Filter lines - enter blank search to show all lines |
+| <kbd>/</kbd>                                                     | Search Lines                                        |
+| <kbd>n</kbd>                                                     | Jump to next search result                          |
+| <kbd>N</kbd>                                                     | Jump to previous search result                      |
+| <kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>       | Quit                                                |
 
 ## Settings
 Git log argument validation is planned, but not finished. Currently, if the git log fails, <kbd>space</kbd> should not crash the app, but the process should not spawn at all.
