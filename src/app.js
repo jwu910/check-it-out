@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import Configstore from 'configstore';
 import path from 'path';
+import stripAnsi from 'strip-ansi';
 import updateNotifier from 'update-notifier';
 
 import {
@@ -216,9 +217,11 @@ export const start = async args => {
    * @return {Array}               Array of selected line.
    */
   const parseSelection = selectedLine => {
-    const selection = selectedLine.split(/\s*\s/).map(column => {
-      return column === 'heads' ? '' : column;
-    });
+    const selection = stripAnsi(selectedLine)
+      .split(/\s*\s/)
+      .map(column => {
+        return column === 'heads' ? '' : column;
+      });
 
     return selection;
   };
