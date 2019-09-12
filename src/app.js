@@ -192,6 +192,8 @@ export const start = async args => {
     getPrompt('Filter term:', value => {
       state.filter = value;
 
+      logMessage(`Filtering by term: ${value}`);
+
       refreshTable();
     });
   });
@@ -199,6 +201,8 @@ export const start = async args => {
   screen.key('/', () => {
     getPrompt('Search term:', value => {
       state.search = value;
+
+      logMessage(`Searching by term: ${value}`);
 
       refreshTable();
     });

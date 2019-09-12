@@ -99,7 +99,7 @@ export const input = (label, startingValue, cb) => {
   });
 
   input.onceKey('enter', () => {
-    cb(input.value.trim());
+    cb(input.value.trim().replace(/\\/g, '\\\\'));
     input.submit();
   });
   input.on('action', () => {
