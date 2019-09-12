@@ -40,6 +40,10 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+- [CIO-0] Update dependencies with NPM audit
+- [CIO-0] Move away from Promises in source code in lieu of async/await
+- [CIO-0] Add more type definition documenation in the source code to help make the codebase easier to read
+- [CIO-166](https://github.com/jwu910/check-it-out/issues/166) Add feature for search and filter - users now able to use the `/` and `&` key's to refine their branches displayed
 - [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
 - [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs
 
