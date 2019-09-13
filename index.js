@@ -2,4 +2,7 @@
 
 const app = require('./dist/app');
 
-app.start(process.argv.slice(2));
+app.start(process.argv.slice(2)).catch(error => {
+  console.error(error);
+  process.exit(1);
+});
