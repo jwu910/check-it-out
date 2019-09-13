@@ -12,20 +12,11 @@ import {
 } from './utils/git';
 
 import * as dialogue from './utils/interface';
+import { getState } from './utils/state';
 
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
  * @typedef {{name: string, refs: Ref[]}} Remote
- *
- * @typedef {object} State
- * @property {number} currentRemoteIndex
- * @property {string} filter
- * @property {Remote[]} remotes
- * @property {string} search
- * @property {() => Remote} getCurrentRemote
- * @property {() => RegExp} getFilterRegex
- * @property {() => RegExp} getSearchRegex
- * @property {() => number[]} getSearchHits
  */
 
 // Checks for available update and returns an instance
@@ -81,47 +72,19 @@ export const start = async args => {
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
 
-  /** @type {State} */
-  const state = {
-    currentRemoteIndex: 0,
-    filter: '',
-    getCurrentRemote() {
-      return this.remotes[this.currentRemoteIndex];
+  const logger = {
+    error(message) {
+      this.message(chalk.bold.red('error'), message);
     },
-    getFilterRegex() {
-      return new RegExp(this.filter, 'gi');
+    log(message) {
+      this.message('log', message);
     },
-    getSearchRegex() {
-      return new RegExp(this.search, 'gi');
+    message(prefix, message) {
+      messageCenter.log(`[${prefix}] ${message}`);
     },
-    getSearchHits() {
-      if (!this.search) {
-        return [];
-      }
-
-      const remote = this.getCurrentRemote();
-
-      return remote.refs
-        .filter(ref => ref.name.search(this.getFilterRegex()) !== -1)
-        .map((ref, index) => {
-          if (ref.name.search(this.getSearchRegex()) !== -1) {
-            return index + 1;
-          }
-
-          return NaN;
-        })
-        .filter(index => !isNaN(index));
-    },
-    search: '',
-    remotes: [],
   };
 
-  const getLogger = prefix => message => {
-    messageCenter.log(`[${prefix}] ${message}`);
-  };
-
-  const logMessage = getLogger('log');
-  const logError = getLogger('error');
+  const state = getState(logger);
 
   screen.append(branchTable);
   screen.append(statusBarContainer);
@@ -150,7 +113,7 @@ export const start = async args => {
     if (screen.lockKeys) {
       closeGitResponse();
 
-      logMessage('Cancelled git process');
+      logger.log('Cancelled git process');
     } else {
       process.exit(0);
     }
@@ -160,7 +123,7 @@ export const start = async args => {
 
     loadDialogue.load(' Fetching refs...');
 
-    logMessage('Fetching');
+    logger.log('Fetching');
 
     try {
       await doFetchBranches();
@@ -173,7 +136,7 @@ export const start = async args => {
 
       refreshTable();
 
-      logError(error);
+      logger.error(error);
     }
   });
 
@@ -190,7 +153,7 @@ export const start = async args => {
 
   screen.key('&', () => {
     getPrompt('Filter term:', value => {
-      state.filter = value;
+      state.setFilter(value);
 
       refreshTable();
     });
@@ -198,7 +161,7 @@ export const start = async args => {
 
   screen.key('/', () => {
     getPrompt('Search term:', value => {
-      state.search = value;
+      state.setSearch(value);
 
       refreshTable();
     });
@@ -207,7 +170,7 @@ export const start = async args => {
   process.on('SIGWINCH', () => {
     screen.emit('resize');
 
-    logMessage('Resizing');
+    logger.log('Resizing');
   });
 
   /**
@@ -264,21 +227,20 @@ export const start = async args => {
       } else {
         refreshTable();
 
-        logError(error);
+        logger.error(error);
       }
     }
   });
 
   branchTable.key(['left', 'h'], () => {
-    state.currentRemoteIndex = Math.max(state.currentRemoteIndex - 1, 0);
+    state.setCurrentRemoteIndex(Math.max(state.currentRemoteIndex - 1, 0));
 
     refreshTable();
   });
 
   branchTable.key(['right', 'l'], () => {
-    state.currentRemoteIndex = Math.min(
-      state.currentRemoteIndex + 1,
-      state.remotes.length - 1,
+    state.setCurrentRemoteIndex(
+      Math.min(state.currentRemoteIndex + 1, state.remotes.length - 1),
     );
 
     refreshTable();
@@ -299,9 +261,7 @@ export const start = async args => {
   branchTable.key('n', () => {
     // @ts-ignore
     const currentRefIndex = branchTable.selected;
-    const searchHits = state.getSearchHits();
-
-    const filteredHits = searchHits.filter(n => n > currentRefIndex);
+    const filteredHits = state.searchHits.filter(n => n > currentRefIndex);
 
     if (filteredHits.length) {
       branchTable.select(filteredHits[0]);
@@ -312,9 +272,7 @@ export const start = async args => {
   branchTable.key('S-n', () => {
     // @ts-ignore
     const currentRefIndex = branchTable.selected;
-    const searchHits = state.getSearchHits();
-
-    const filteredHits = searchHits.filter(n => n < currentRefIndex);
+    const filteredHits = state.searchHits.filter(n => n < currentRefIndex);
 
     if (filteredHits.length) {
       branchTable.select(filteredHits[filteredHits.length - 1]);
@@ -345,14 +303,12 @@ export const start = async args => {
    * Update current screen with current remote
    */
   const refreshTable = () => {
-    const remote = state.getCurrentRemote();
-
-    const tableData = remote.refs
-      .filter(ref => ref.name.search(state.getFilterRegex()) !== -1)
+    const tableData = state.currentRemote.refs
+      .filter(ref => ref.name.search(state.filterRegex) !== -1)
       .map(ref => [
         ref.active ? '*' : ' ',
         ref.remoteName,
-        ref.name.replace(state.getSearchRegex(), match => chalk.inverse(match)),
+        ref.name.replace(state.searchRegex, match => chalk.inverse(match)),
       ]);
 
     branchTable.setData([['', 'Remote', 'Ref Name'], ...tableData]);
@@ -373,19 +329,19 @@ export const start = async args => {
 
     screen.render();
 
-    logMessage('Screen refreshed');
+    logger.log('Screen refreshed');
   };
 
   try {
-    state.remotes = await getRefData();
+    state.setRemotes(await getRefData());
 
-    state.currentRemoteIndex = state.remotes.findIndex(
-      remote => remote.name === 'heads',
+    state.setCurrentRemoteIndex(
+      state.remotes.findIndex(remote => remote.name === 'heads'),
     );
 
     refreshTable();
 
-    logMessage('Loaded successfully');
+    logger.log('Loaded successfully');
   } catch (err) {
     screen.destroy();
 
