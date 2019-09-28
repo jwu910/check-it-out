@@ -1,8 +1,8 @@
 :root {
-	--color-hyperlink: #1BC4A9;
-	--color-footer: #081315;
-	--color-bg-base: #5D737E;
-	--color-bg-code: rgba(136, 158, 168, 0.3);
+	--color-action: #7C4350;
+	--color-action-secondary: #EEC900;
+	--color-bg-base: #889EA8;
+	--color-bg-code: rgba(136, 158, 168, .3);
 	--color-border-neutral: #979797;
 	--color-font-base: #FFFFFF;
 	--color-font-secondary: #2c3a43;
@@ -21,9 +21,14 @@
 }
 
 a {
-	color: var(--color-hyperlink);
+	color: var(--color-action);
 	text-decoration: none;
 	font-weight: bold;
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
 }
 
 body {
@@ -188,7 +193,7 @@ footer {
 }
 
 footer a {
-	color: var(--color-hyperlink);
+	color: var(--color-action-secondary);
 }
 
 .contributors {
