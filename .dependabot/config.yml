@@ -4,8 +4,8 @@ update_configs:
     directory: "/"
     default_labels:
       - "security"
-    target_branch: "development"
-    update_schedule: "live"
+    target_branch: "master"
+    update_schedule: "monthly"
     default_assignees:
       - "@jwu910"
     default_reviewers:
