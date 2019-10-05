@@ -34,7 +34,8 @@
       "profile": "https://github.com/drewbrokke",
       "contributions": [
         "code",
-        "ideas"
+        "ideas",
+        "maintenance"
       ]
     },
     {
@@ -229,5 +230,6 @@
         "code"
       ]
     }
-  ]
+  ],
+  "contributorsPerLine": 7
 }
