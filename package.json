@@ -10,8 +10,6 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --extensions .js --out-dir dist --verbose",
-    "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate",
     "cz": "git cz",
     "format": "prettier --write \"**/*.js\"",
     "lint:fix": "eslint --config .eslintrc.json ./ --fix",
@@ -64,7 +62,6 @@
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.3.1",
-    "all-contributors-cli": "^6.0.0",
     "babel-eslint": "^8.2.5",
     "cz-conventional-changelog": "^2.1.0",
     "danger": "^3.7.19",
