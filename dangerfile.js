@@ -6,6 +6,7 @@ const modified = danger.git.modified_files;
 const bodyAndTitle = (pr.body + pr.title).toLowerCase();
 
 const trivialPR = bodyAndTitle.includes('#trivial');
+const filesOnly = (file: string) => file.endsWith('/');
 
 const touchedFiles = modified
   .concat(danger.git.created_files)
