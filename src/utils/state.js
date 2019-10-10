@@ -11,9 +11,7 @@ export const getState = logger => {
   const stateObject = {
     currentRemoteIndex: 0,
     currentRemote: null,
-    filter: '',
     filterRegex: defaultFilterRegex,
-    search: '',
     searchHits: [],
     searchRegex: defaultSearchRegex,
     remotes: [],
@@ -30,11 +28,6 @@ export const getState = logger => {
       return stateObject.currentRemoteIndex;
     },
 
-    /** @type {string} */
-    get filter() {
-      return stateObject.filter;
-    },
-
     /** @type {RegExp} */
     get filterRegex() {
       return stateObject.filterRegex;
@@ -43,11 +36,6 @@ export const getState = logger => {
     /** @type {Remote[]} */
     get remotes() {
       return stateObject.remotes;
-    },
-
-    /** @type {string} */
-    get search() {
-      return stateObject.search;
     },
 
     /** @type {number[]} */
@@ -68,8 +56,6 @@ export const getState = logger => {
 
     /** @type {(string) => void} */
     setFilter(newFilter) {
-      stateObject.filter = newFilter;
-
       try {
         stateObject.filterRegex = new RegExp(newFilter, 'gi');
       } catch (error) {
@@ -81,8 +67,6 @@ export const getState = logger => {
 
     /** @type {(string) => void} */
     setSearch(newSearch) {
-      stateObject.search = newSearch;
-
       try {
         stateObject.searchRegex = new RegExp(newSearch, 'gi');
       } catch (error) {
