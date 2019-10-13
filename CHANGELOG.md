@@ -40,19 +40,44 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
-- [CIO-0] Update dependencies with NPM audit
-- [CIO-0] Move away from Promises in source code in lieu of async/await
+
+<hr />
+
+## [[3.0.0]](https://github.com/jwu910/check-it-out/releases/tag/v3.0.0) - 2019-10-13
+
+### Notes
+
+Received some amazing help from @drewbrokke cleaning up a ton of old spaghetti code and really diving in to the importance of typing with me. With his help, we're finally able to add a popularly requested feature to search and filter our branches.
+
+Head over to the [README](https://github.com/jwu910/check-it-out/blob/master/README.md) to take a look at the new feature. This new feature is being released as a major change because we are now developing and testing on latest LTS versions of node only and not checking for compatibility with older versions of Node. I hope this doesn't affect too many people, but if there are some changes we can add in to help with the compatibility, I encourage issues be opened--and I would be happy to discuss and review any PRs.
+
+### Added
+
 - [CIO-0] Add more type definition documenation in the source code to help make the codebase easier to read
-- [CIO-0] Refactor app for better readability and future development - Introduce typing with ts compatible documentation
-- [CIO-0] Update danger rules - bump danger version
-- [CIO-0] Removed all-contributors dependency, opted for bot integration instead
 - [CIO-166](https://github.com/jwu910/check-it-out/issues/166) Add feature for search and filter - users now able to use the `/` and `&` key's to refine their branches displayed
-- [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
 - [CIO-369](https://github.com/jwu910/check-it-out/issues/369) Add Coffee badge to readme
-- [CIO-372](https://github.com/jwu910/check-it-out/issues/372) Fix broken link on Coffee badge
+
+### Changed
+
+- [CIO-0] Update danger rules - bump danger version
+- [CIO-0] Refactor app for better readability and future development - Introduce typing with ts compatible documentation
+- [CIO-0] Move away from Promises in source code in lieu of async/await
+- [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
 - [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs - No longer testing compatibility for node 6 and 7 on travis
-- [CIO-452](https://github.com/jwu910/check-it-out/issues/452) Fix bug on search pattern regex
 - [CIO-454](https://github.com/jwu910/check-it-out/issues/454) Develop against master
+
+### Removed
+
+- [CIO-0] Removed all-contributors dependency, opted for bot integration instead
+
+### Fixed
+
+- [CIO-372](https://github.com/jwu910/check-it-out/issues/372) Fix broken link on Coffee badge
+- [CIO-452](https://github.com/jwu910/check-it-out/issues/452) Fix bug on search pattern regex
+
+### Security
+
+- [CIO-0] Update dependencies with NPM audit
 
 <hr />
 
