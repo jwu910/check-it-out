@@ -1,6 +1,6 @@
 {
   "name": "check-it-out",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "Easy git checkout CLI tool.",
   "files": [
     "dist",
