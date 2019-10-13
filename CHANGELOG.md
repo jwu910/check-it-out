@@ -43,9 +43,15 @@ Each issue fixed should contain one bullet summarizing the work done.
 - [CIO-0] Update dependencies with NPM audit
 - [CIO-0] Move away from Promises in source code in lieu of async/await
 - [CIO-0] Add more type definition documenation in the source code to help make the codebase easier to read
+- [CIO-0] Refactor app for better readability and future development - Introduce typing with ts compatible documentation
+- [CIO-0] Update danger rules - bump danger version
+- [CIO-0] Removed all-contributors dependency, opted for bot integration instead
 - [CIO-166](https://github.com/jwu910/check-it-out/issues/166) Add feature for search and filter - users now able to use the `/` and `&` key's to refine their branches displayed
 - [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
-- [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs
+- [CIO-369](https://github.com/jwu910/check-it-out/issues/369) Add Coffee badge to readme
+- [CIO-372](https://github.com/jwu910/check-it-out/issues/372) Fix broken link on Coffee badge
+- [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs - No longer testing compatibility for node 6 and 7 on travis
+- [CIO-452](https://github.com/jwu910/check-it-out/issues/452) Fix bug on search pattern regex
 - [CIO-454](https://github.com/jwu910/check-it-out/issues/454) Develop against master
 
 <hr />
