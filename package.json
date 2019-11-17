@@ -10,7 +10,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --extensions .js --out-dir dist --verbose",
-    "cz": "git cz",
+    "cz": "npx git-cz",
     "format": "prettier --write \"**/*.js\"",
     "lint:fix": "eslint --config .eslintrc.json ./ --fix",
     "lint": "eslint --config .eslintrc.json ./",
