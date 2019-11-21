@@ -40,6 +40,12 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+## [[3.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v3.0.1) - 2019-11-20
+
+### Security
+
+- [CIO-0] Dependabot secruity bump
+- [CIO-0] Update npm script to use npx for commitizen style commits
 
 <hr />
 
