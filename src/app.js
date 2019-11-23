@@ -53,7 +53,7 @@ const conf = new Configstore(pkg.name, defaultConfig);
 
 export const start = async args => {
   if (args[0] === '-v' || args[0] === '--version') {
-    process.stdout.write(pkg.version);
+    process.stdout.write(pkg.version + '\n');
     process.exit(0);
   } else if (args[0] === '--reset-config') {
     conf.all = defaultConfig;
