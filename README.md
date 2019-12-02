@@ -166,7 +166,8 @@ See the rest of our [issues](https://github.com/jwu910/check-it-out/issues)
 This project wouldn't have been possible with the help so many contributors both in and out of the source code. I look forward to working with you as this project continues to evolve and improve.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
     <td align="center"><a href="https://www.bbenefield.com"><img src="https://avatars0.githubusercontent.com/u/29239201?v=4" width="80px;" alt="Brandon Benefield"/><br /><sub><b>Brandon Benefield</b></sub></a><br /><a href="https://github.com/jwu910/check-it-out/commits?author=bbenefield89" title="Documentation">📖</a></td>
@@ -198,9 +199,12 @@ This project wouldn't have been possible with the help so many contributors both
   <tr>
     <td align="center"><a href="https://github.com/Lorsen"><img src="https://avatars1.githubusercontent.com/u/6044039?v=4" width="80px;" alt="Omar Roa"/><br /><sub><b>Omar Roa</b></sub></a><br /><a href="https://github.com/jwu910/check-it-out/commits?author=Lorsen" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/rn2293"><img src="https://avatars2.githubusercontent.com/u/33823673?v=4" width="80px;" alt="Rachana "/><br /><sub><b>Rachana </b></sub></a><br /><a href="https://github.com/jwu910/check-it-out/commits?author=rn2293" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/aksappy"><img src="https://avatars1.githubusercontent.com/u/4348461?v=4" width="80px;" alt="aksappy"/><br /><sub><b>aksappy</b></sub></a><br /><a href="https://github.com/jwu910/check-it-out/issues?q=author%3Aaksappy" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ### Acknowledgements
