@@ -15,7 +15,6 @@
     "lint:fix": "eslint --config .eslintrc.json ./ --fix",
     "lint": "eslint --config .eslintrc.json ./",
     "precise-commits": "precise-commits",
-    "precommit": "npm run precise-commits",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "test": "npm run lint",
@@ -77,6 +76,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precise-commits"
     }
   }
 }
