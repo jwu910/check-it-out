@@ -39,8 +39,16 @@ Each issue fixed should contain one bullet summarizing the work done.
 <hr />
 
 ## [Unreleased]
-- [CIO-465](https://github.com/jwu910/check-it-out/pull/465) Fix missing line break on app version log @aksappy
 
+## [[3.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v3.0.2) - 2020-01-31
+
+### Notes
+
+Minor patch to fix version text
+
+### Fixed
+
+- [CIO-465](https://github.com/jwu910/check-it-out/pull/465) Fix missing line break on app version log @aksappy
 
 ## [[3.0.1]](https://github.com/jwu910/check-it-out/releases/tag/v3.0.1) - 2019-11-20
 
