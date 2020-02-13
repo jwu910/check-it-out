@@ -40,6 +40,8 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+-   [CIO-459](https://github.com/jwu910/check-it-out/issues/459) Add hotkey to copy highlighted item to clipobard @mahendraHegde
+
 ## [[3.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v3.0.2) - 2020-01-31
 
 ### Notes
