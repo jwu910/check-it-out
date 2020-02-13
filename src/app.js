@@ -3,6 +3,7 @@ import Configstore from 'configstore';
 import path from 'path';
 import stripAnsi from 'strip-ansi';
 import updateNotifier from 'update-notifier';
+import { write as copyToClipBoard } from 'clipboardy';
 
 import {
   closeGitResponse,
@@ -295,6 +296,17 @@ export const start = async args => {
     args.push(gitBranch);
 
     screen.spawn('git', ['log', args.join('/'), ...gitLogArguments]);
+  });
+
+  branchTable.key('y', async function() {
+    const selection = parseSelection(this.items[this.selected].content);
+    const gitBranch = selection[2];
+    try {
+      await copyToClipBoard(gitBranch);
+      logger.log(`"${gitBranch}" copied to clipboard`);
+    } catch (error) {
+      logger.error(`Unable to copy : ${JSON.stringify(error)}`);
+    }
   });
 
   branchTable.focus();
