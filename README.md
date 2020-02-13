@@ -123,6 +123,7 @@ See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 | <kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd> | Previous/Next remote                                |
 | <kbd>Ctrl</kbd>+<kbd>r</kbd>                                     | Refresh list with a fetch and prune                 |
 | <kbd>enter</kbd>                                                 | Select highlighted item                             |
+| <kbd>y</kbd>                                                     | Copy highlighted item                               |
 | <kbd>space</kbd>                                                 | Git log                                             |
 | <kbd>&</kbd>                                                     | Filter lines - enter blank search to show all lines |
 | <kbd>/</kbd>                                                     | Search Lines                                        |
