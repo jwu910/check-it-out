@@ -6,6 +6,7 @@ export const helpText = () => {
     [chalk.bold('h/l, ◀/▶'), 'Previous/Next remote'],
     [chalk.bold('C-r'), 'Refresh with a fetch and prune'],
     [chalk.bold('enter'), 'Select highlighted item'],
+    [chalk.bold('y'), 'Copy highlighted item'],
     [chalk.bold('space'), 'Git log'],
     [chalk.bold('&'), 'Filter lines - enter blank search to show all lines'],
     [chalk.bold('/'), 'Search lines'],
