@@ -182,7 +182,7 @@ const getRefs = async () => {
     'for-each-ref',
     `--sort=${conf.get('sort')}`,
     '--format=%(refname)',
-    '--count=500',
+    `--count=${conf.get('refCount')}`,
   ];
 
   return formatRemoteBranches(await execGit(args));
