@@ -40,7 +40,15 @@ Each issue fixed should contain one bullet summarizing the work done.
 
 ## [Unreleased]
 
+-   [CIO-470](https://github.com/jwu910/check-it-out/issues/470) Add help text for copy command @mahendraHegde
+
+## [[3.1.0]](https://github.com/jwu910/check-it-out/releases/tag/v3.1.0) - 2020-02-13
+
+### Added
+
 -   [CIO-459](https://github.com/jwu910/check-it-out/issues/459) Add hotkey to copy highlighted item to clipobard @mahendraHegde
+
+<hr />
 
 ## [[3.0.2]](https://github.com/jwu910/check-it-out/releases/tag/v3.0.2) - 2020-01-31
 
