@@ -54,13 +54,14 @@ const defaultConfig = {
 const conf = new Configstore(pkg.name, defaultConfig);
 
 export const start = async args => {
+  let refCount;
   if (args[0] === '-v' || args[0] === '--version') {
     process.stdout.write(pkg.version + '\n');
     process.exit(0);
   } else if (args[0] === '--reset-config') {
     conf.all = defaultConfig;
   } else if (args[0] === '--count' && args[1]) {
-    conf.set('refCount', parseInt(args[1]));
+    refCount = args[1];
   }
 
   const gitLogArguments = conf.get('gitLogArguments');
@@ -318,7 +319,7 @@ export const start = async args => {
    * Update current screen with current remote
    */
   const refreshTable = () => {
-    const tableData = ((state.currentRemote && state.currentRemote.refs) || [])
+    const tableData = state.currentRemote.refs
       .filter(ref => ref.name.search(state.filterRegex) !== -1)
       .map(ref => [
         ref.active ? '*' : ' ',
@@ -348,7 +349,7 @@ export const start = async args => {
   };
 
   try {
-    state.setRemotes(await getRefData());
+    state.setRemotes(await getRefData(refCount));
 
     state.setCurrentRemoteIndex(
       state.remotes.findIndex(remote => remote.name === 'heads'),

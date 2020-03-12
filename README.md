@@ -151,16 +151,8 @@ Options include:
 	* A hex color code to style Check It Out
 * refCount
 	* Type: Number
-	* Default: `500`
+	* Default: `--count 500`
 	* Total number of references to show.
-
-To set `refCount` , start with the flag `--count`
-
-```
-checkit --count 20
-		OR
-checkit --count=20
-```
 
 To reset Check It Out to its original configurations listed above, start with the flag `--reset-config`:
 

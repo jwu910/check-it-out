@@ -27,8 +27,8 @@ export const closeGitResponse = () => {
  *
  * @returns {Promise<Remote[]>} payload and uniqueRemotes
  */
-export const getRefData = async () => {
-  const refs = await getRefs();
+export const getRefData = async refCount => {
+  const refs = await getRefs(refCount);
 
   const remotes = [];
 
@@ -177,12 +177,13 @@ export const formatRemoteBranches = async output => {
  *
  * @return {Promise<Ref[]>} String list of each ref associated with repository.
  */
-const getRefs = async () => {
+const getRefs = async refCount => {
+  refCount = refCount ? refCount : conf.get('refCount');
   const args = [
     'for-each-ref',
     `--sort=${conf.get('sort')}`,
     '--format=%(refname)',
-    `--count=${conf.get('refCount')}`,
+    `--count=${refCount}`,
   ];
 
   return formatRemoteBranches(await execGit(args));
