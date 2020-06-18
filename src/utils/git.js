@@ -22,30 +22,8 @@ export const closeGitResponse = () => {
   gitResponse.kill();
 };
 
-/**
- * Get references and parse through data to build branch array and remote list
- *
- * @returns {Promise<Remote[]>} payload and uniqueRemotes
- */
-export const getRefData = async () => {
-  const refs = await getRefs();
-
-  const remotes = [];
-
-  for (const ref of refs) {
-    let remote = remotes.find(remote => remote.name === ref.remoteName);
-
-    if (remote === undefined) {
-      remote = { name: ref.remoteName, refs: [] };
-
-      remotes.push(remote);
-    }
-
-    remote.refs.push(ref);
-  }
-
-  return remotes;
-};
+export const getHeadRefData = async () => getRefData(await getHeadRefs());
+export const getRemoteRefData = async () => getRefData(await getRemoteRefs());
 
 /**
  * Pull branch information from selection and pass as args to execGit().
@@ -76,6 +54,29 @@ export const getCurrentBranch = () => {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
   return execGit(args);
+};
+
+/**
+ * Get references and parse through data to build branch array and remote list
+ *
+ * @returns {Promise<Remote[]>} payload and uniqueRemotes
+ */
+const getRefData = async refs => {
+  const remotes = [];
+
+  for (const ref of refs) {
+    let remote = remotes.find(remote => remote.name === ref.remoteName);
+
+    if (remote === undefined) {
+      remote = { name: ref.remoteName, refs: [] };
+
+      remotes.push(remote);
+    }
+
+    remote.refs.push(ref);
+  }
+
+  return remotes;
 };
 
 /**
@@ -173,16 +174,28 @@ export const formatRemoteBranches = async output => {
 };
 
 /**
- * Print all refs assicated with git repository.
+ * Print head refs assicated with git repository.
  *
- * @return {Promise<Ref[]>} String list of each ref associated with repository.
+ * @return {Promise<Ref[]>} String list of each head ref associated with repository.
  */
-const getRefs = async () => {
+const getHeadRefs = async () => {
+  const args = ['branch', `--sort=${conf.get('sort')}`, '--format=%(refname)'];
+
+  return formatRemoteBranches(await execGit(args));
+};
+
+/**
+ * Print remote refs assicated with git repository.
+ *
+ * @return {Promise<Ref[]>} String list of each remote ref associated with repository.
+ */
+const getRemoteRefs = async () => {
   const args = [
     'for-each-ref',
     `--sort=${conf.get('sort')}`,
     '--format=%(refname)',
-    '--count=500',
+    'refs/remotes',
+    'refs/tags',
   ];
 
   return formatRemoteBranches(await execGit(args));

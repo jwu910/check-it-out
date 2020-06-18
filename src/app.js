@@ -9,7 +9,8 @@ import {
   closeGitResponse,
   doCheckoutBranch,
   doFetchBranches,
-  getRefData,
+  getHeadRefData,
+  getRemoteRefData,
 } from './utils/git';
 
 import * as dialogue from './utils/interface';
@@ -237,6 +238,7 @@ export const start = async args => {
     state.setCurrentRemoteIndex(Math.max(state.currentRemoteIndex - 1, 0));
 
     refreshTable();
+    refreshTabs();
   });
 
   branchTable.key(['right', 'l'], () => {
@@ -245,6 +247,7 @@ export const start = async args => {
     );
 
     refreshTable();
+    refreshTabs();
   });
 
   branchTable.key('j', () => {
@@ -325,6 +328,14 @@ export const start = async args => {
 
     branchTable.setData([['', 'Remote', 'Ref Name'], ...tableData]);
 
+    loadDialogue.stop();
+
+    screen.render();
+
+    logger.log('Screen refreshed');
+  };
+
+  const refreshTabs = () => {
     const tabNames = state.remotes.map((remote, index) => {
       let name = remote.name;
 
@@ -337,15 +348,13 @@ export const start = async args => {
 
     statusBarText.content = tabNames.join(':');
 
-    loadDialogue.stop();
-
     screen.render();
-
-    logger.log('Screen refreshed');
   };
 
   try {
-    state.setRemotes(await getRefData());
+    let mark = Date.now();
+
+    state.setRemotes(await getHeadRefData());
 
     state.setCurrentRemoteIndex(
       state.remotes.findIndex(remote => remote.name === 'heads'),
@@ -353,7 +362,15 @@ export const start = async args => {
 
     refreshTable();
 
-    logger.log('Loaded successfully');
+    logger.log(`Loaded local branches in ${Date.now() - mark}ms`);
+
+    mark = Date.now();
+
+    state.setRemotes([...state.remotes, ...(await getRemoteRefData())]);
+
+    refreshTabs();
+
+    logger.log(`Loaded remote branches in ${Date.now() - mark}ms`);
   } catch (err) {
     screen.destroy();
 
