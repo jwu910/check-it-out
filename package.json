@@ -17,7 +17,8 @@
     "precise-commits": "precise-commits",
     "prepublishOnly": "npm run build",
     "start": "node index.js",
-    "test": "npm run lint",
+    "test": "mocha --timeout=20000 --bail --exit --recursive ./test/**/*.spec.js",
+    "test:coverage": "nyc --reporter html --reporter text mocha --timeout=20000 --bail --exit --recursive ./test/**/*.spec.js",
     "watch": "babel src --extensions .js --out-dir dist --verbose --watch"
   },
   "repository": {
@@ -70,6 +71,8 @@
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.2",
     "lodash": "^4.17.15",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
     "precise-commits": "^1.0.2",
     "prettier": "^1.13.7",
     "prettier-eslint": "^8.8.2"
