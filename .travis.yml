@@ -9,6 +9,7 @@ script:
   - npm run build
   - node index.js -v
   - npm test
+  - npm run lint
 jobs:
   include:
     - stage: danger
