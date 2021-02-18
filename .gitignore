@@ -3,6 +3,5 @@ dist/
 node_modules/
 npm-debug.log
 .env
-.vscode/
 coverage/
 .nyc_output/
