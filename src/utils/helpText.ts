@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export const helpText = () => {
+export const helpText = (): Array<Array<string>> => {
   const text = [
     [chalk.bold('j/k, ▼/▲'), 'Navigate the list'],
     [chalk.bold('h/l, ◀/▶'), 'Previous/Next remote'],
