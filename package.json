@@ -18,6 +18,7 @@
     "prepublishOnly": "npm run build",
     "start": "node index.js",
     "test": "npm run lint",
+    "tsc": "tsc",
     "watch": "babel src --extensions .js --out-dir dist --verbose --watch"
   },
   "repository": {
