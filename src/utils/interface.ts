@@ -1,5 +1,5 @@
-// @ts-nocheck
-import blessed from 'blessed';
+// import { Widgets } from '@types/blessed';
+import blessed, { Widgets } from 'blessed';
 import path from 'path';
 import Configstore from 'configstore';
 
@@ -10,11 +10,11 @@ const conf = new Configstore(pkg.name);
 const themeColor = conf.get('themeColor');
 
 const baseStyles = {
-  border: false,
+  border: undefined,
   width: '100%',
 };
 
-export const loading = () => {
+export const loading = (): Widgets.LoadingElement => {
   const loading = blessed.loading({
     align: 'center',
     width: 'shrink',
@@ -25,7 +25,7 @@ export const loading = () => {
   return loading;
 };
 
-export const branchTable = () => {
+export const branchTable = (): Widgets.ListTableElement => {
   const branchTable = blessed.listtable({
     align: 'left',
     left: 0,
@@ -33,7 +33,9 @@ export const branchTable = () => {
     right: 0,
     noCellBorders: true,
     scrollable: true,
-    scrollbar: true,
+    scrollbar: {
+      style: { bg: themeColor },
+    },
     style: {
       cell: {
         selected: {
@@ -43,12 +45,6 @@ export const branchTable = () => {
       },
       header: {
         fg: themeColor,
-      },
-      label: {
-        fg: '#FFFFFF',
-      },
-      scrollbar: {
-        bg: themeColor,
       },
     },
     tags: true,
@@ -61,7 +57,7 @@ export const branchTable = () => {
   return branchTable;
 };
 
-export const helpDialogue = () => {
+export const helpDialogue = (): Widgets.TableElement => {
   const helpDialogue = blessed.table({
     align: 'left',
     border: { type: 'line' },
@@ -81,7 +77,7 @@ export const helpDialogue = () => {
   return helpDialogue;
 };
 
-export const input = (label, startingValue, cb) => {
+export const input = (label: string, startingValue: string, cb: Function) => {
   const input = blessed.textarea({
     border: { fg: 3, type: 'line' },
     bottom: 0,
@@ -110,7 +106,7 @@ export const input = (label, startingValue, cb) => {
   return input;
 };
 
-export const messageCenter = () => {
+export const messageCenter = (): Widgets.Log => {
   const messageCenter = blessed.log({
     ...baseStyles,
     bottom: 2,
@@ -120,7 +116,7 @@ export const messageCenter = () => {
   return messageCenter;
 };
 
-export const screen = () => {
+export const screen = (): Widgets.Screen => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
@@ -131,7 +127,7 @@ export const screen = () => {
   return screen;
 };
 
-export const statusBarContainer = () => {
+export const statusBarContainer = (): Widgets.BoxElement => {
   const statusBarContainer = blessed.box({
     ...baseStyles,
     bottom: 0,
@@ -141,7 +137,7 @@ export const statusBarContainer = () => {
   return statusBarContainer;
 };
 
-export const statusBar = () => {
+export const statusBar = (): Widgets.BoxElement => {
   const statusBar = blessed.box({
     ...baseStyles,
     bottom: 0,
@@ -151,7 +147,7 @@ export const statusBar = () => {
   return statusBar;
 };
 
-export const statusBarText = () => {
+export const statusBarText = (): Widgets.TextElement => {
   const statusBarText = blessed.text({
     content: '',
     bottom: 0,
@@ -161,7 +157,7 @@ export const statusBarText = () => {
   return statusBarText;
 };
 
-export const statusHelpText = () => {
+export const statusHelpText = (): Widgets.TextElement => {
   const statusHelpText = blessed.text({
     bottom: 0,
     content: 'Press "?" to show/hide help.',
