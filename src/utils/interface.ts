@@ -1,4 +1,3 @@
-// import { Widgets } from '@types/blessed';
 import blessed, { Widgets } from 'blessed';
 import path from 'path';
 import Configstore from 'configstore';
