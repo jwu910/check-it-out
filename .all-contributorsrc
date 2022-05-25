@@ -248,6 +248,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "a-camarillo",
+      "name": "Anthony Camarillo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58638902?v=4",
+      "profile": "https://github.com/a-camarillo",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
