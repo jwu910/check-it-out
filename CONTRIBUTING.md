@@ -12,14 +12,14 @@ To initiate a commit, stage your changes and run `git cz` if you have commitizen
 
 ## Pull Request Process
 
-1.  Before submitting a PR, check the issues to make sure that the current fix has not been resolved/closed and be sure your code contains the latest code from master.
+1.  Before submitting a PR, check the issues to make sure that the current fix has not been resolved/closed and be sure your code contains the latest code from main.
 2.  Naming conventions:
 
     - Branch names should follow the PROJECT-ISSUE convention with an optional short description. e.g. `CIO-60-contributing-guidelines`
 
 3.  Update README and with any necessary changes such as adding hot keys, updating instructions, fixing help text, etc.
 4.  Reference the issue the PR aims to resolve using the hash tag at the beginning of your PR description. e.g. `Fixes #52`
-5.  Please send any pull requests to **master** branch.
+5.  Please send any pull requests to **main** branch.
 
 ## Code of Conduct
 
