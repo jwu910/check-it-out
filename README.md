@@ -159,7 +159,7 @@ checkit --reset-config
 ## Contributing
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contributing.
 
-:rotating_light: *Recent change!* In the past I asked to send pull requests to my development branch, but that is being changed. I will be dropping the `development` branch and keeping just `master` as the default branch. Please take note if you are looking to submit a PR. Thanks!
+:rotating_light: *Recent change!* In the past I asked to send pull requests to my development branch, but that is being changed. I will be dropping the `development` branch and keeping just `main` as the default branch. Please take note if you are looking to submit a PR. Thanks!
 
 See the rest of our [issues](https://github.com/jwu910/check-it-out/issues)
 
