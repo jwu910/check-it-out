@@ -12,7 +12,7 @@
 		<img alt="first-timers-only" src="https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)">
 	</a>
 	<a href="https://travis-ci.org/jwu910/check-it-out">
-		<img alt="Build Status" src="https://travis-ci.org/jwu910/check-it-out.svg?branch=master">
+		<img alt="Build Status" src="https://travis-ci.org/jwu910/check-it-out.svg?branch=main">
 	</a>
 	<a href="https://www.npmjs.org/package/check-it-out">
 		<img alt="Downloads per week" src="https://img.shields.io/npm/dw/localeval.svg">
