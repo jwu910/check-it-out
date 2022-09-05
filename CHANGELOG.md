@@ -75,7 +75,7 @@ Minor patch to fix version text
 
 Received some amazing help from @drewbrokke cleaning up a ton of old spaghetti code and really diving in to the importance of typing with me. With his help, we're finally able to add a popularly requested feature to search and filter our branches.
 
-Head over to the [README](https://github.com/jwu910/check-it-out/blob/master/README.md) to take a look at the new feature. This new feature is being released as a major change because we are now developing and testing on latest LTS versions of node only and not checking for compatibility with older versions of Node. I hope this doesn't affect too many people, but if there are some changes we can add in to help with the compatibility, I encourage issues be opened--and I would be happy to discuss and review any PRs.
+Head over to the [README](https://github.com/jwu910/check-it-out/blob/main/README.md) to take a look at the new feature. This new feature is being released as a major change because we are now developing and testing on latest LTS versions of node only and not checking for compatibility with older versions of Node. I hope this doesn't affect too many people, but if there are some changes we can add in to help with the compatibility, I encourage issues be opened--and I would be happy to discuss and review any PRs.
 
 ### Added
 
@@ -90,7 +90,7 @@ Head over to the [README](https://github.com/jwu910/check-it-out/blob/master/REA
 -   [CIO-0] Move away from Promises in source code in lieu of async/await
 -   [CIO-315](https://github.com/jwu910/check-it-out/issues/315) Make CIO commitizen friendly
 -   [CIO-413](https://github.com/jwu910/check-it-out/issues/413) Update dependabot configs - No longer testing compatibility for node 6 and 7 on travis
--   [CIO-454](https://github.com/jwu910/check-it-out/issues/454) Develop against master
+-   [CIO-454](https://github.com/jwu910/check-it-out/issues/454) Develop against main
 
 ### Removed
 
@@ -207,7 +207,7 @@ Added CIO to some issue aggregating sites. Pretty neat! Started utilizing [hacto
 
 Minor bug fix and add CIO logo.
 
-Roadmap: Add gh-page source code back into master branch and use (probably) gatsby for their templating abilities to hopefully streamline updating the readme -> gh-page conversion.
+Roadmap: Add gh-page source code back into main branch and use (probably) gatsby for their templating abilities to hopefully streamline updating the readme -> gh-page conversion.
 
 ### Added
 
@@ -273,7 +273,7 @@ Found some documentation issues. Had to update readme image paths. Currently NPM
 
 ### Fixed
 
--   [CIO-235](https://github.com/jwu910/check-it-out/issues/235) Change Dangerfile. PR to master will fail.
+-   [CIO-235](https://github.com/jwu910/check-it-out/issues/235) Change Dangerfile. PR to main will fail.
 
 <hr />
 
