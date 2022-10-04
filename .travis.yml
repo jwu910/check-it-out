@@ -9,9 +9,3 @@ script:
   - npm run build
   - node index.js -v
   - npm test
-jobs:
-  include:
-    - stage: danger
-      node_js:
-        - "node"
-      script: yarn danger ci
