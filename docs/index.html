@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120234143-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-120234143-1');
+	</script>
+
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-M73DX5G');</script>
+	<!-- End Google Tag Manager -->
+
+	<meta charset="UTF-8">
+	<meta content="initial-scale=1.0, width=device-width" name="viewport">
+	<meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+	<!-- Primary Metatags -->
+	<title> Check It Out - An Node.js Git Checkout CLI tool </title>
+	<meta name="keywords" content="nodejs, open source, git, github, checkout, git log, git checkout, tool, CLI, command line, command line interface, node, javascript, npm" />
+	<meta name="title" content="Check It Out">
+	<meta name="author" content="Joshua Wu">
+	<meta name="keywords" content="nodejs, open source, git, github, checkout, git log, git checkout, tool, CLI, command line, command line interface, node, javascript, npm" />
+	<meta name="description" content="Easily browse your git branches with this interactive cli.">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://checkit.club/">
+	<meta property="og:title" content="Check It Out">
+	<meta property="og:description" content="Easily browse your git branches with this interactive cli.">
+	<meta property="og:image" content="/assets/images/logo.png">
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://checkit.club/">
+	<meta property="twitter:title" content="Check It Out">
+	<meta property="twitter:description" content="Easily browse your git branches with this interactive cli.">
+	<meta property="twitter:image" content="/assets/images/logo.png">
+
+	<!-- Other  -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" />
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#7a7a7a">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<link href="./main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<!-- Fork Ribbon -->
+	<a href="https://github.com/jwu910/check-it-out/fork"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M73DX5G"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+	<!-- End Google Tag Manager (noscript) -->
+	<header>
+		<img src="assets/logo/logo-type.svg" alt="Check It Out Logo" />
+		<div class="link-container shadow-bar">
+			<a class="github-button" href="https://github.com/jwu910/check-it-out" data-size="large" data-show-count="true" aria-label="Star jwu910/check-it-out on GitHub">Star</a>
+			<a class="github-button" href="https://github.com/jwu910/check-it-out/fork" data-size="large" data-show-count="true" aria-label="Fork jwu910/check-it-out on GitHub">Fork</a>
+		</div>
+	</header>
+
+	<div class="main">
+		<div class="info-section section">
+			<h2> What is Check It Out? </h2>
+			<img alt="Check It Out Intro Gif" src="assets/images/checkit-intro.gif" />
+			<p>
+				Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
+			</p>
+		</div>
+
+		<div class="require-section section">
+			<h2> Requirements </h2>
+			<p>
+			<a href="https://nodejs.org/en/blog/release/v6.0.0/">Node >= v6.0 </a>
+			<br />
+			<a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> - Required for core features
+			</p>
+		</div>
+
+		<div class="section">
+			<h2>Compatibility</h2>
+			<p>Check It Out currently has known issues with Windows. Some users have reported it working while others have reported that it does not. It is built and tested mostly in an Arch Linux environment with some user testing on MacOS and other Linux distributions. We're currently looking for help figuring out why Check It Out is unstable on Windows. See <a href="https://github.com/jwu910/check-it-out/issues/128">CIO-128</a></p>
+		</div>
+
+		<div class="section">
+			<h2> Installation </h2>
+			<p> We're on <a href="https://www.npmjs.org/package/check-it-out">NPM!</a></p>
+			<pre> npm install -g check-it-out </pre>
+			<h3> Installing from source </h2>
+			<p> Fork or clone the repository </p>
+			<pre> git clone https://github.com/jwu910/check-it-out.git </pre>
+			<p> Navigate to your repository and run </p>
+			<pre> npm install </pre>
+			<p> Creat a symbolic link to your entry point </p>
+			<h3> Linux/Mac </h3>
+			<p> In the repository directory run: </p>
+			<pre> npm link </pre>
+		</div>
+
+		<div class="usage-section section">
+			<h2> Usage </h2>
+			<p> Run this command to list local and remote branches! </p>
+			<pre> checkit </pre>
+			<img alt="Using Check It Out" src="assets/images/checkit-usage.gif" />
+			<h2> Features </h2>
+			<p> Call git log on current highlighted branch with <kbd>space</kbd></p>
+			<img alt="Git log gif animation" src="assets/images/checkit-log.gif" />
+			<table>
+				<tr>
+					<th> Command </th>
+					<th> Description </th>
+				</tr>
+				<tr>
+					<td><kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd></td>
+					<td> Navigate the list </td>
+				</tr>
+				<tr>
+					<td><kbd>h</kbd>/<kbd>l</kbd>, <kbd>&#9668;</kbd>/<kbd>&#9658;</kbd></td>
+					<td> Previous/Next remote </td>
+				</tr>
+				<tr>
+					<td><kbd>Ctrl</kbd>+<kbd>r</kbd></td>
+					<td> Refresh list with a fetch and prune </td>
+				</tr>
+				<tr>
+					<td><kbd>enter</kbd></td>
+					<td> Select highlighted item </td>
+				</tr>
+				<tr>
+					<td><kbd>space</kbd></td>
+					<td> Git log </td>
+				</tr>
+				<tr>
+					<td><kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd></td>
+					<td> Quit </td>
+				</tr>
+			</table>
+
+			<h2>Settings</h2>
+			<p>Git log argument validation is planned, but not finished. Currently, if the git log fails, <kbd>space</kbd> should not crash the app, but the process should not spawn at all.</p>
+			<p>Configurable settings can be found at <pre>~/.config/configstore/check-it-out.json</pre></p>
+			<p>Options Include:</p>
+			<ul>
+				<li>gitLogArguments
+					<ul>
+						<li>Type: Array</li>
+						<li>Default: ['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']</li>
+						<li>Array of strings of valid git log arguments.</li>
+					</ul>
+				</li>
+				<li>sort
+					<ul>
+						<li>Type: String</li>
+						<li>Default: -committerdate</li>
+						<li>Sort references by latest commit date. Value must be a valid sort key or Check It Out will break on start.</li>
+					</ul>
+				</li>
+				<li>themeColor
+					<ul>
+						<li>Type: String</li>
+						<li>Default: #FFA66D</li>
+						<li>A hex color code to style Check It Out</li>
+					</ul>
+				</li>
+			</ul>
+			<p>To reset Check It Out to its original configurations listed above, start with the flag --reset-config:</p>
+			<pre>checkit --reset-config</pre>
+		</div>
+
+		<div class="contribute-section section">
+			<h2> Contributing </h2>
+			<p> Please refer to <a href="https://github.com/jwu910/check-it-out/blob/master/CONTRIBUTING.md"> Contributing Guidelines.</a></p>
+		</div>
+
+		<div class="buy-me-a-coffee section">
+			<h2> Support </h2>
+			<p class="bmc-text">
+				If you love Check It Out, please let me know by adding a <strong><a href="https://github.com/jwu910/check-it-out/">star</a></strong> to my project and sharing with your friends and colleagues.
+				<br />
+				<br />
+				Thank you so much for visiting! Please take a second to consider supporting my current and future projects by buying me a coffee!
+			</p>
+			<style>
+				.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}
+			</style>
+
+			<link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" />
+
+			<a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/jwu910">
+				<img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee" />
+				<span style="margin-left:5px">Buy me a coffee</span>
+			</a>
+		</div>
+	</div>
+
+	<footer>
+		<p class="shadow-bar">Check It Out is under the MIT license
+			<br />
+			Developed by <a href="https://www.github.com/jwu910">Joshua Wu</a> &#169; 2020
+		</p>
+		<p class="contributors">
+		  Site designed and coded with ❤️ by <a href="https://github.com/rebeccahongsf">@rebeccahongsf</a> & <a href="https://github.com/jma26">@jma26</a>
+		  <br>
+		  Logo design by <a href="http://openlogos.org/" >@arasatasaygin</a>
+		</p>
+	</footer>
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
