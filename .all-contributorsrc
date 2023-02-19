@@ -267,6 +267,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "Jimmy-Vu",
+      "name": "Jimmy Vu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88172055?v=4",
+      "profile": "http://jimmyvu.co",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
