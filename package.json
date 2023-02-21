@@ -9,15 +9,15 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "babel src --extensions .js --out-dir dist --verbose && npm run tsc",
+    "build": "npm run tsc",
     "cz": "npx git-cz",
     "lint": "prettier -c \"**/*.(js|ts)\"",
     "lint:fix": "prettier --write \"**/*.(js|ts)\"",
     "precise-commits": "precise-commits",
-    "prepublishOnly": "npm run build && npm run tsc",
+    "prepublishOnly": "npm run build",
     "start": "node index.js",
-    "tsc": "tsc src",
-    "watch": "babel src --extensions .js --out-dir dist --verbose --watch"
+    "tsc": "tsc",
+    "watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
