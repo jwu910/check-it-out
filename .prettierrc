@@ -1,10 +1,6 @@
 # .prettierrc
-bracketSpacing: true
-jsxBracketSameLine: false
-parser: babel
-printWidth: 80
+parser: typescript
 semi: true
-singleQuote: true
 trailingComma: all
 overrides:
   - files: '*.md'
