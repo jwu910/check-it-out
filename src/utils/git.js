@@ -1,14 +1,14 @@
-import chalk from 'chalk';
-import Configstore from 'configstore';
-import path from 'path';
-import { spawn } from 'child_process';
+import chalk from "chalk";
+import Configstore from "configstore";
+import path from "path";
+import { spawn } from "child_process";
 
 /**
  * @typedef {import('../app').Ref} Ref
  * @typedef {import('../app').Remote} Remote
  */
 
-const pkg = require(path.resolve(__dirname, '../../package.json'));
+const pkg = require(path.resolve(__dirname, "../../package.json"));
 
 const conf = new Configstore(pkg.name);
 
@@ -33,7 +33,7 @@ export const getRefData = async () => {
   const remotes = [];
 
   for (const ref of refs) {
-    let remote = remotes.find(remote => remote.name === ref.remoteName);
+    let remote = remotes.find((remote) => remote.name === ref.remoteName);
 
     if (remote === undefined) {
       remote = { name: ref.remoteName, refs: [] };
@@ -54,15 +54,15 @@ export const getRefData = async () => {
  * target branch
  */
 export const doCheckoutBranch = (branch, remote) => {
-  let branchPath = '';
+  let branchPath = "";
 
-  if (remote && remote !== 'local' && remote !== 'origin') {
-    branchPath = [remote, branch].join('/');
+  if (remote && remote !== "local" && remote !== "origin") {
+    branchPath = [remote, branch].join("/");
   } else {
     branchPath = branch;
   }
 
-  const args = ['checkout', branchPath];
+  const args = ["checkout", branchPath];
 
   return execGit(args);
 };
@@ -73,7 +73,7 @@ export const doCheckoutBranch = (branch, remote) => {
  * Returns a promise that resolves to the current branch name.
  */
 export const getCurrentBranch = () => {
-  const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
+  const args = ["rev-parse", "--abbrev-ref", "HEAD"];
 
   return execGit(args);
 };
@@ -83,30 +83,30 @@ export const getCurrentBranch = () => {
  * <args> is expected to be an array of strings.
  * Example: ['fetch', '-pv']
  */
-const execGit = args => {
+const execGit = (args) => {
   return new Promise((resolve, reject) => {
-    let dataString = '';
-    let errorString = '';
+    let dataString = "";
+    let errorString = "";
 
-    gitResponse = spawn('git', args);
+    gitResponse = spawn("git", args);
 
-    gitResponse.stdout.setEncoding('utf8');
-    gitResponse.stderr.setEncoding('utf8');
+    gitResponse.stdout.setEncoding("utf8");
+    gitResponse.stderr.setEncoding("utf8");
 
-    gitResponse.stdout.on('data', data => (dataString += data));
-    gitResponse.stderr.on('data', data => (errorString += data));
+    gitResponse.stdout.on("data", (data) => (dataString += data));
+    gitResponse.stderr.on("data", (data) => (errorString += data));
 
-    gitResponse.on('exit', (code, signal) => {
+    gitResponse.on("exit", (code, signal) => {
       if (code === 0) {
         resolve(dataString.toString());
-      } else if (signal === 'SIGTERM') {
+      } else if (signal === "SIGTERM") {
         reject(signal);
-      } else if (errorString.toString().includes('unknown field name')) {
+      } else if (errorString.toString().includes("unknown field name")) {
         reject(
           errorString.toString() +
-            'Unable to resolve git call. \n' +
-            'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
-            chalk.bold('--reset-config'),
+            "Unable to resolve git call. \n" +
+            "Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: " +
+            chalk.bold("--reset-config"),
         );
       } else {
         reject(errorString.toString());
@@ -121,7 +121,7 @@ const execGit = args => {
  * Return a promise that resolves when a user successfully fetches.
  */
 export const doFetchBranches = () => {
-  const args = ['fetch', '-pq'];
+  const args = ["fetch", "-pq"];
 
   return execGit(args);
 };
@@ -133,31 +133,31 @@ export const doFetchBranches = () => {
  * @param {String} output String list of each ref associated with repository
  * @return {Promise<Array<Ref>>} Array containing an array of line items representing branch information
  */
-export const formatRemoteBranches = async output => {
+export const formatRemoteBranches = async (output) => {
   let remoteBranchArray = [];
 
   const selectedBranch = await getCurrentBranch();
 
-  const outputArray = output.trim().split('\n');
+  const outputArray = output.trim().split("\n");
 
   outputArray.map((line, index) => {
-    const currLine = line.split('/');
+    const currLine = line.split("/");
 
     const currBranch =
-      currLine[1] === 'remotes'
-        ? currLine.slice(3).join('/')
-        : currLine.slice(2).join('/');
+      currLine[1] === "remotes"
+        ? currLine.slice(3).join("/")
+        : currLine.slice(2).join("/");
 
-    const currRemote = currLine[1] === 'remotes' ? currLine[2] : currLine[1];
+    const currRemote = currLine[1] === "remotes" ? currLine[2] : currLine[1];
 
     const active =
-      currLine[1] === 'heads' && currBranch === selectedBranch.trim();
+      currLine[1] === "heads" && currBranch === selectedBranch.trim();
 
-    const selected = active ? '*' : ' ';
+    const selected = active ? "*" : " ";
 
-    if (currLine[currLine.length - 1] === 'HEAD') {
+    if (currLine[currLine.length - 1] === "HEAD") {
       return;
-    } else if (currLine[1] === 'stash') {
+    } else if (currLine[1] === "stash") {
       return;
     }
 
@@ -179,10 +179,10 @@ export const formatRemoteBranches = async output => {
  */
 const getRefs = async () => {
   const args = [
-    'for-each-ref',
-    `--sort=${conf.get('sort')}`,
-    '--format=%(refname)',
-    '--count=500',
+    "for-each-ref",
+    `--sort=${conf.get("sort")}`,
+    "--format=%(refname)",
+    "--count=500",
   ];
 
   return formatRemoteBranches(await execGit(args));

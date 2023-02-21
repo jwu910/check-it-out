@@ -3,10 +3,10 @@
  * @typedef {import('../app').Remote} Remote
  */
 
-const defaultFilterRegex = new RegExp('');
-const defaultSearchRegex = new RegExp('^$');
+const defaultFilterRegex = new RegExp("");
+const defaultSearchRegex = new RegExp("^$");
 
-export const getState = logger => {
+export const getState = (logger) => {
   // State variables
   const stateObject = {
     currentRemoteIndex: 0,
@@ -57,7 +57,7 @@ export const getState = logger => {
     /** @type {(string) => void} */
     setFilter(newFilter) {
       try {
-        stateObject.filterRegex = new RegExp(newFilter, 'gi');
+        stateObject.filterRegex = new RegExp(newFilter, "gi");
       } catch (error) {
         logger.error(error.message);
 
@@ -68,7 +68,7 @@ export const getState = logger => {
     /** @type {(string) => void} */
     setSearch(newSearch) {
       try {
-        stateObject.searchRegex = new RegExp(newSearch, 'gi');
+        stateObject.searchRegex = new RegExp(newSearch, "gi");
       } catch (error) {
         logger.error(error.message);
 
@@ -81,7 +81,7 @@ export const getState = logger => {
       }
 
       stateObject.searchHits = stateObject.currentRemote.refs
-        .filter(ref => ref.name.search(stateObject.filterRegex) !== -1)
+        .filter((ref) => ref.name.search(stateObject.filterRegex) !== -1)
         .map((ref, index) => {
           if (ref.name.search(stateObject.searchRegex) !== -1) {
             return index + 1;
@@ -89,7 +89,7 @@ export const getState = logger => {
 
           return NaN;
         })
-        .filter(index => !isNaN(index));
+        .filter((index) => !isNaN(index));
     },
 
     /** @type {(newRemotes: Remote[]) => void} */
