@@ -7,7 +7,7 @@
     "LICENSE",
     "README.md"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npm run tsc",
     "cz": "npx git-cz",
@@ -15,7 +15,7 @@
     "lint:fix": "prettier --write \"**/*.(js|ts)\"",
     "precise-commits": "precise-commits",
     "prepublishOnly": "npm run build",
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "test": "npm run lint",
     "tsc": "tsc",
     "watch": "tsc --watch"
@@ -36,8 +36,8 @@
     "tool"
   ],
   "bin": {
-    "checkit": "index.js",
-    "cio": "index.js"
+    "checkit": "dist/index.js",
+    "cio": "dist/index.js"
   },
   "engines": {
     "node": ">=6"
