@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const app = require('./dist/app');
+const app = require('./app');
 
 app.start(process.argv.slice(2)).catch(error => {
   console.error(error);
