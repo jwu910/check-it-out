@@ -1,24 +1,24 @@
-import blessed, { Widgets } from 'blessed';
-import path from 'path';
-import Configstore from 'configstore';
+import blessed, { Widgets } from "blessed";
+import path from "path";
+import Configstore from "configstore";
 
-import * as help from './helpText';
-const pkg = require(path.resolve(__dirname, '../../package.json'));
+import * as help from "./helpText";
+const pkg = require(path.resolve(__dirname, "../../package.json"));
 
 const conf = new Configstore(pkg.name);
-const themeColor = conf.get('themeColor');
+const themeColor = conf.get("themeColor");
 
 const baseStyles = {
   border: undefined,
-  width: '100%',
+  width: "100%",
 };
 
 export const loading = (): Widgets.LoadingElement => {
   const loading = blessed.loading({
-    align: 'center',
-    width: 'shrink',
-    top: '0',
-    left: '0',
+    align: "center",
+    width: "shrink",
+    top: "0",
+    left: "0",
   });
 
   return loading;
@@ -26,7 +26,7 @@ export const loading = (): Widgets.LoadingElement => {
 
 export const branchTable = (): Widgets.ListTableElement => {
   const branchTable = blessed.listtable({
-    align: 'left',
+    align: "left",
     left: 0,
     keys: true,
     right: 0,
@@ -38,8 +38,8 @@ export const branchTable = (): Widgets.ListTableElement => {
     style: {
       cell: {
         selected: {
-          bg: '#FFFFFF',
-          fg: '#272727',
+          bg: "#FFFFFF",
+          fg: "#272727",
         },
       },
       header: {
@@ -50,7 +50,7 @@ export const branchTable = (): Widgets.ListTableElement => {
     top: 0,
     bottom: 8,
     vi: false,
-    width: 'shrink',
+    width: "shrink",
   });
 
   return branchTable;
@@ -58,10 +58,10 @@ export const branchTable = (): Widgets.ListTableElement => {
 
 export const helpDialogue = (): Widgets.TableElement => {
   const helpDialogue = blessed.table({
-    align: 'left',
-    border: { type: 'line' },
+    align: "left",
+    border: { type: "line" },
     data: help.helpText(),
-    height: 'shrink',
+    height: "shrink",
     hidden: true,
     noCellBorders: true,
     padding: 1,
@@ -70,7 +70,7 @@ export const helpDialogue = (): Widgets.TableElement => {
       border: { fg: themeColor },
     },
     bottom: 0,
-    width: 'shrink',
+    width: "shrink",
   });
 
   return helpDialogue;
@@ -78,26 +78,26 @@ export const helpDialogue = (): Widgets.TableElement => {
 
 export const input = (label: string, startingValue: string, cb: Function) => {
   const input = blessed.textarea({
-    border: { fg: 3, type: 'line' },
+    border: { fg: 3, type: "line" },
     bottom: 0,
     height: 3,
     inputOnFocus: true,
     label,
     left: 0,
-    name: 'searchInput',
+    name: "searchInput",
     padding: {
       left: 1,
     },
     right: 0,
     value: startingValue,
-    width: '100%',
+    width: "100%",
   });
 
-  input.onceKey('enter', () => {
+  input.onceKey("enter", () => {
     cb(input.value.trim());
     input.submit();
   });
-  input.on('action', () => {
+  input.on("action", () => {
     input.destroy();
     input.screen.render();
   });
@@ -119,7 +119,7 @@ export const screen = (): Widgets.Screen => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
-    ignoreLocked: ['C-c'],
+    ignoreLocked: ["C-c"],
     smartCSR: true,
   });
 
@@ -148,7 +148,7 @@ export const statusBar = (): Widgets.BoxElement => {
 
 export const statusBarText = (): Widgets.TextElement => {
   const statusBarText = blessed.text({
-    content: '',
+    content: "",
     bottom: 0,
     left: 0,
   });
