@@ -45,7 +45,7 @@ export const getRefData = async (): Promise<Remote[]> => {
   const remotes: Remote[] = [];
 
   for (const ref of refs) {
-    let remote = remotes.find((remote) => remote.name === ref.remoteName);
+    let remote = remotes.find(remote => remote.name === ref.remoteName);
 
     if (remote === undefined) {
       remote = { name: ref.remoteName, refs: [] };
@@ -67,7 +67,7 @@ export const getRefData = async (): Promise<Remote[]> => {
  */
 export const doCheckoutBranch = (
   branch: string,
-  remote?: string
+  remote?: string,
 ): Promise<string> => {
   let branchPath = '';
 
@@ -108,8 +108,8 @@ const execGit = (args: string[]): Promise<string> => {
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');
 
-    gitResponse.stdout.on('data', (data) => (dataString += data));
-    gitResponse.stderr.on('data', (data) => (errorString += data));
+    gitResponse.stdout.on('data', data => (dataString += data));
+    gitResponse.stderr.on('data', data => (errorString += data));
 
     gitResponse.on('exit', (code, signal) => {
       if (code === 0) {
@@ -121,7 +121,7 @@ const execGit = (args: string[]): Promise<string> => {
           errorString.toString() +
             'Unable to resolve git call. \n' +
             'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
-            chalk.bold('--reset-config')
+            chalk.bold('--reset-config'),
         );
       } else {
         reject(errorString.toString());
@@ -148,9 +148,7 @@ export const doFetchBranches = (): Promise<string> => {
  * @param {String} output String list of each ref associated with repository
  * @return {Promise<Array<Ref>>} Array containing an array of line items representing branch information
  */
-export const formatRemoteBranches = async (
-  output: string
-): Promise<Ref[]> => {
+export const formatRemoteBranches = async (output: string): Promise<Ref[]> => {
   let remoteBranchArray: Ref[] = [];
 
   const selectedBranch = await getCurrentBranch();
