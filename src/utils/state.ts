@@ -1,61 +1,50 @@
-/**
- * @typedef {import('../app').Ref} Ref
- * @typedef {import('../app').Remote} Remote
- */
+import { Ref, Remote } from '../app';
 
 const defaultFilterRegex = new RegExp('');
 const defaultSearchRegex = new RegExp('^$');
 
-export const getState = logger => {
+export const getState = (logger: any) => {
   // State variables
   const stateObject = {
     currentRemoteIndex: 0,
-    currentRemote: null,
+    currentRemote: null as Remote | null,
     filterRegex: defaultFilterRegex,
-    searchHits: [],
+    searchHits: [] as number[],
     searchRegex: defaultSearchRegex,
-    remotes: [],
+    remotes: [] as Remote[],
   };
 
   return {
-    /** @type {Remote} */
-    get currentRemote() {
+    get currentRemote(): Remote | null {
       return stateObject.currentRemote;
     },
 
-    /** @type {number} */
-    get currentRemoteIndex() {
+    get currentRemoteIndex(): number {
       return stateObject.currentRemoteIndex;
     },
 
-    /** @type {RegExp} */
-    get filterRegex() {
+    get filterRegex(): RegExp {
       return stateObject.filterRegex;
     },
 
-    /** @type {Remote[]} */
-    get remotes() {
+    get remotes(): Remote[] {
       return stateObject.remotes;
     },
 
-    /** @type {number[]} */
-    get searchHits() {
+    get searchHits(): number[] {
       return stateObject.searchHits;
     },
 
-    /** @type {RegExp} */
-    get searchRegex() {
+    get searchRegex(): RegExp {
       return stateObject.searchRegex;
     },
 
-    /** @type {(number) => void} */
-    setCurrentRemoteIndex(newIndex) {
+    setCurrentRemoteIndex(newIndex: number): void {
       stateObject.currentRemoteIndex = newIndex;
       stateObject.currentRemote = stateObject.remotes[newIndex];
     },
 
-    /** @type {(string) => void} */
-    setFilter(newFilter) {
+    setFilter(newFilter: string): void {
       try {
         stateObject.filterRegex = new RegExp(newFilter, 'gi');
       } catch (error) {
@@ -65,8 +54,7 @@ export const getState = logger => {
       }
     },
 
-    /** @type {(string) => void} */
-    setSearch(newSearch) {
+    setSearch(newSearch: string): void {
       try {
         stateObject.searchRegex = new RegExp(newSearch, 'gi');
       } catch (error) {
@@ -92,8 +80,7 @@ export const getState = logger => {
         .filter(index => !isNaN(index));
     },
 
-    /** @type {(newRemotes: Remote[]) => void} */
-    setRemotes(newRemotes) {
+    setRemotes(newRemotes: Remote[]): void {
       stateObject.remotes = newRemotes;
     },
   };

@@ -1,24 +1,36 @@
 import chalk from 'chalk';
 import Configstore from 'configstore';
 import path from 'path';
-import { spawn } from 'child_process';
+import { spawn, ChildProcess } from 'child_process';
 
 /**
  * @typedef {import('../app').Ref} Ref
  * @typedef {import('../app').Remote} Remote
  */
 
+interface Ref {
+  active: boolean;
+  id: number;
+  name: string;
+  remoteName: string;
+}
+
+interface Remote {
+  name: string;
+  refs: Ref[];
+}
+
 const pkg = require(path.resolve(__dirname, '../../package.json'));
 
 const conf = new Configstore(pkg.name);
 
-let gitResponse;
+let gitResponse: ChildProcess;
 
 /**
  * Kill the most recently created child process
  * Used to force exit from loading box
  */
-export const closeGitResponse = () => {
+export const closeGitResponse = (): void => {
   gitResponse.kill();
 };
 
@@ -27,13 +39,13 @@ export const closeGitResponse = () => {
  *
  * @returns {Promise<Remote[]>} payload and uniqueRemotes
  */
-export const getRefData = async () => {
+export const getRefData = async (): Promise<Remote[]> => {
   const refs = await getRefs();
 
-  const remotes = [];
+  const remotes: Remote[] = [];
 
   for (const ref of refs) {
-    let remote = remotes.find(remote => remote.name === ref.remoteName);
+    let remote = remotes.find((remote) => remote.name === ref.remoteName);
 
     if (remote === undefined) {
       remote = { name: ref.remoteName, refs: [] };
@@ -53,7 +65,10 @@ export const getRefData = async () => {
  * Returns a promise that resolves when the user has successfully checked out
  * target branch
  */
-export const doCheckoutBranch = (branch, remote) => {
+export const doCheckoutBranch = (
+  branch: string,
+  remote?: string
+): Promise<string> => {
   let branchPath = '';
 
   if (remote && remote !== 'local' && remote !== 'origin') {
@@ -72,7 +87,7 @@ export const doCheckoutBranch = (branch, remote) => {
  *
  * Returns a promise that resolves to the current branch name.
  */
-export const getCurrentBranch = () => {
+export const getCurrentBranch = (): Promise<string> => {
   const args = ['rev-parse', '--abbrev-ref', 'HEAD'];
 
   return execGit(args);
@@ -83,7 +98,7 @@ export const getCurrentBranch = () => {
  * <args> is expected to be an array of strings.
  * Example: ['fetch', '-pv']
  */
-const execGit = args => {
+const execGit = (args: string[]): Promise<string> => {
   return new Promise((resolve, reject) => {
     let dataString = '';
     let errorString = '';
@@ -93,8 +108,8 @@ const execGit = args => {
     gitResponse.stdout.setEncoding('utf8');
     gitResponse.stderr.setEncoding('utf8');
 
-    gitResponse.stdout.on('data', data => (dataString += data));
-    gitResponse.stderr.on('data', data => (errorString += data));
+    gitResponse.stdout.on('data', (data) => (dataString += data));
+    gitResponse.stderr.on('data', (data) => (errorString += data));
 
     gitResponse.on('exit', (code, signal) => {
       if (code === 0) {
@@ -106,7 +121,7 @@ const execGit = args => {
           errorString.toString() +
             'Unable to resolve git call. \n' +
             'Check custom configs at your Check It Out configuration path, or call Check It Out with the following flag to reset to default configs: ' +
-            chalk.bold('--reset-config'),
+            chalk.bold('--reset-config')
         );
       } else {
         reject(errorString.toString());
@@ -120,7 +135,7 @@ const execGit = args => {
  *
  * Return a promise that resolves when a user successfully fetches.
  */
-export const doFetchBranches = () => {
+export const doFetchBranches = (): Promise<string> => {
   const args = ['fetch', '-pq'];
 
   return execGit(args);
@@ -133,8 +148,10 @@ export const doFetchBranches = () => {
  * @param {String} output String list of each ref associated with repository
  * @return {Promise<Array<Ref>>} Array containing an array of line items representing branch information
  */
-export const formatRemoteBranches = async output => {
-  let remoteBranchArray = [];
+export const formatRemoteBranches = async (
+  output: string
+): Promise<Ref[]> => {
+  let remoteBranchArray: Ref[] = [];
 
   const selectedBranch = await getCurrentBranch();
 
@@ -177,7 +194,7 @@ export const formatRemoteBranches = async output => {
  *
  * @return {Promise<Ref[]>} String list of each ref associated with repository.
  */
-const getRefs = async () => {
+const getRefs = async (): Promise<Ref[]> => {
   const args = [
     'for-each-ref',
     `--sort=${conf.get('sort')}`,

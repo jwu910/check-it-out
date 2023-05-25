@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-export const helpText = () => {
-  const text = [
+export const helpText = (): Array<[string, string]> => {
+  const text: Array<[string, string]> = [
     [chalk.bold('j/k, ▼/▲'), 'Navigate the list'],
     [chalk.bold('h/l, ◀/▶'), 'Previous/Next remote'],
     [chalk.bold('C-r'), 'Refresh with a fetch and prune'],
