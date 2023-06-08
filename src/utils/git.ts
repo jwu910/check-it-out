@@ -1,18 +1,15 @@
 import chalk from "chalk";
 import Configstore from "configstore";
 import path from "path";
-import { spawn } from "child_process";
+import { ChildProcess, spawn } from "child_process";
 
-/**
- * @typedef {import('../app').Ref} Ref
- * @typedef {import('../app').Remote} Remote
- */
+import { Ref, Remote } from "../types";
 
 const pkg = require(path.resolve(__dirname, "../../package.json"));
 
 const conf = new Configstore(pkg.name);
 
-let gitResponse;
+let gitResponse: ChildProcess;
 
 /**
  * Kill the most recently created child process
@@ -30,7 +27,7 @@ export const closeGitResponse = () => {
 export const getRefData = async () => {
   const refs = await getRefs();
 
-  const remotes = [];
+  const remotes: Remote[] = [];
 
   for (const ref of refs) {
     let remote = remotes.find((remote) => remote.name === ref.remoteName);
@@ -53,7 +50,7 @@ export const getRefData = async () => {
  * Returns a promise that resolves when the user has successfully checked out
  * target branch
  */
-export const doCheckoutBranch = (branch, remote) => {
+export const doCheckoutBranch = (branch: string, remote: string) => {
   let branchPath = "";
 
   if (remote && remote !== "local" && remote !== "origin") {
@@ -72,7 +69,7 @@ export const doCheckoutBranch = (branch, remote) => {
  *
  * Returns a promise that resolves to the current branch name.
  */
-export const getCurrentBranch = () => {
+export const getCurrentBranch = (): Promise<string> => {
   const args = ["rev-parse", "--abbrev-ref", "HEAD"];
 
   return execGit(args);
@@ -83,18 +80,18 @@ export const getCurrentBranch = () => {
  * <args> is expected to be an array of strings.
  * Example: ['fetch', '-pv']
  */
-const execGit = (args) => {
+const execGit = (args: string[]): Promise<string> => {
   return new Promise((resolve, reject) => {
     let dataString = "";
     let errorString = "";
 
     gitResponse = spawn("git", args);
 
-    gitResponse.stdout.setEncoding("utf8");
-    gitResponse.stderr.setEncoding("utf8");
+    gitResponse.stdout?.setEncoding("utf8");
+    gitResponse.stderr?.setEncoding("utf8");
 
-    gitResponse.stdout.on("data", (data) => (dataString += data));
-    gitResponse.stderr.on("data", (data) => (errorString += data));
+    gitResponse.stdout?.on("data", (data) => (dataString += data));
+    gitResponse.stderr?.on("data", (data) => (errorString += data));
 
     gitResponse.on("exit", (code, signal) => {
       if (code === 0) {
@@ -133,8 +130,8 @@ export const doFetchBranches = () => {
  * @param {String} output String list of each ref associated with repository
  * @return {Promise<Array<Ref>>} Array containing an array of line items representing branch information
  */
-export const formatRemoteBranches = async (output) => {
-  let remoteBranchArray = [];
+export const formatRemoteBranches = async (output: string): Promise<Ref[]> => {
+  let remoteBranchArray: Ref[] = [];
 
   const selectedBranch = await getCurrentBranch();
 
