@@ -1,16 +1,13 @@
-/**
- * @typedef {import('../app').Ref} Ref
- * @typedef {import('../app').Remote} Remote
- */
+import { InternalState, Logger, State, Remote } from "../types";
 
 const defaultFilterRegex = new RegExp("");
 const defaultSearchRegex = new RegExp("^$");
 
-export const getState = (logger) => {
+export const getState = (logger: Logger): State => {
   // State variables
-  const stateObject = {
+  const stateObject: InternalState = {
     currentRemoteIndex: 0,
-    currentRemote: null,
+    currentRemote: { name: "", refs: [] },
     filterRegex: defaultFilterRegex,
     searchHits: [],
     searchRegex: defaultSearchRegex,
@@ -49,28 +46,28 @@ export const getState = (logger) => {
     },
 
     /** @type {(number) => void} */
-    setCurrentRemoteIndex(newIndex) {
+    setCurrentRemoteIndex(newIndex: number) {
       stateObject.currentRemoteIndex = newIndex;
       stateObject.currentRemote = stateObject.remotes[newIndex];
     },
 
     /** @type {(string) => void} */
-    setFilter(newFilter) {
+    setFilter(newFilter: string) {
       try {
         stateObject.filterRegex = new RegExp(newFilter, "gi");
       } catch (error) {
-        logger.error(error.message);
+        logger.error((error as Error).message);
 
         stateObject.filterRegex = defaultFilterRegex;
       }
     },
 
     /** @type {(string) => void} */
-    setSearch(newSearch) {
+    setSearch(newSearch: string) {
       try {
         stateObject.searchRegex = new RegExp(newSearch, "gi");
       } catch (error) {
-        logger.error(error.message);
+        logger.error((error as Error).message);
 
         stateObject.searchRegex = defaultFilterRegex;
       }
@@ -93,7 +90,7 @@ export const getState = (logger) => {
     },
 
     /** @type {(newRemotes: Remote[]) => void} */
-    setRemotes(newRemotes) {
+    setRemotes(newRemotes: Remote[]) {
       stateObject.remotes = newRemotes;
     },
   };
