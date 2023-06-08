@@ -14,6 +14,7 @@ import {
 
 import * as dialogue from "./utils/interface";
 import { getState } from "./utils/state";
+import { Logger } from "./types";
 
 /**
  * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
@@ -50,7 +51,7 @@ const defaultConfig = {
 
 const conf = new Configstore(pkg.name, defaultConfig);
 
-export const start = async (args) => {
+export const start = async (args: string[]) => {
   if (args[0] === "-v" || args[0] === "--version") {
     process.stdout.write(pkg.version + "\n");
     process.exit(0);
@@ -71,15 +72,15 @@ export const start = async (args) => {
   const statusBarText = dialogue.statusBarText();
   const statusHelpText = dialogue.statusHelpText();
 
-  const logger = {
-    error(message) {
-      this.message(chalk.bold.red("error"), message);
+  function sendMessage(prefix: string, message: string) {
+    messageCenter.log(`[${prefix}] ${message}`);
+  }
+  const logger: Logger = {
+    error(message: string) {
+      sendMessage(chalk.bold.red("error"), message);
     },
-    log(message) {
-      this.message("log", message);
-    },
-    message(prefix, message) {
-      messageCenter.log(`[${prefix}] ${message}`);
+    log(message: string) {
+      sendMessage("log", message);
     },
   };
 
@@ -135,11 +136,11 @@ export const start = async (args) => {
 
       refreshTable();
 
-      logger.error(error);
+      logger.error(error as string);
     }
   });
 
-  function getPrompt(label, cb) {
+  function getPrompt(label: string, cb: Function) {
     const input = dialogue.input(label, "", cb);
 
     screen.append(input);
@@ -151,7 +152,7 @@ export const start = async (args) => {
   }
 
   screen.key("&", () => {
-    getPrompt("Filter term:", (value) => {
+    getPrompt("Filter term:", (value: string) => {
       state.setFilter(value);
 
       refreshTable();
@@ -159,7 +160,7 @@ export const start = async (args) => {
   });
 
   screen.key("/", () => {
-    getPrompt("Search term:", (value) => {
+    getPrompt("Search term:", (value: string) => {
       state.setSearch(value);
 
       refreshTable();
@@ -178,7 +179,7 @@ export const start = async (args) => {
    * @param  {String} selectedLine String representation of selected line.
    * @return {Array}               Array of selected line.
    */
-  const parseSelection = (selectedLine) => {
+  const parseSelection = (selectedLine: string) => {
     const selection = stripAnsi(selectedLine)
       .split(/\s*\s/)
       .map((column) => {
@@ -211,7 +212,7 @@ export const start = async (args) => {
 
       process.exit(0);
     } catch (error) {
-      if (error !== "SIGTERM") {
+      if ((error as string) !== "SIGTERM") {
         screen.destroy();
 
         process.stderr.write(
@@ -219,14 +220,14 @@ export const start = async (args) => {
             "Unable to checkout " +
             chalk.yellow(gitBranch) +
             "\n" +
-            error.toString(),
+            (error as string),
         );
 
         process.exit(1);
       } else {
         refreshTable();
 
-        logger.error(error);
+        logger.error(error as string);
       }
     }
   });
@@ -280,6 +281,7 @@ export const start = async (args) => {
   });
 
   branchTable.key("space", function () {
+    // @ts-ignore
     const selection = parseSelection(this.items[this.selected].content);
 
     const gitBranch = selection[2];
@@ -297,6 +299,7 @@ export const start = async (args) => {
   });
 
   branchTable.key("y", async function () {
+    // @ts-ignore
     const selection = parseSelection(this.items[this.selected].content);
     const gitBranch = selection[2];
     try {
