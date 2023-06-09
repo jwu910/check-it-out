@@ -3,6 +3,7 @@ import path from "path";
 import Configstore from "configstore";
 
 import * as help from "./helpText";
+import { ListTable } from "../types";
 const pkg = require(path.resolve(__dirname, "../../package.json"));
 
 const conf = new Configstore(pkg.name);
@@ -24,7 +25,7 @@ export const loading = (): Widgets.LoadingElement => {
   return loading;
 };
 
-export const branchTable = (): Widgets.ListTableElement => {
+export const branchTable = (): ListTable => {
   const branchTable = blessed.listtable({
     align: "left",
     left: 0,
@@ -53,7 +54,7 @@ export const branchTable = (): Widgets.ListTableElement => {
     width: "shrink",
   });
 
-  return branchTable;
+  return branchTable as ListTable;
 };
 
 export const helpDialogue = (): Widgets.TableElement => {
