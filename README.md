@@ -87,10 +87,6 @@ npm run build
 
 To start the application you can run
 ```
-node index.js
-```
-or
-```
 npm start
 ```
 
