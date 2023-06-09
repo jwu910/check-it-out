@@ -1,3 +1,10 @@
+import { Widgets } from "blessed";
+
+export interface ListTable extends Widgets.ListTableElement {
+  selected: number;
+  items: Widgets.BlessedElement[];
+}
+
 export interface Logger {
   error(message: string): void;
   log(message: string): void;
