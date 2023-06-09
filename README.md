@@ -87,7 +87,7 @@ npm run build
 
 To start the application you can run
 ```
-node index.js
+node dist/index.js
 ```
 or
 ```
