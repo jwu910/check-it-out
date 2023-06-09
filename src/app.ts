@@ -259,7 +259,6 @@ export const start = async (args: string[]) => {
   });
 
   branchTable.key("n", () => {
-    // @ts-ignore
     const currentRefIndex = branchTable.selected;
     const filteredHits = state.searchHits.filter((n) => n > currentRefIndex);
 
@@ -270,7 +269,6 @@ export const start = async (args: string[]) => {
   });
 
   branchTable.key("S-n", () => {
-    // @ts-ignore
     const currentRefIndex = branchTable.selected;
     const filteredHits = state.searchHits.filter((n) => n < currentRefIndex);
 
@@ -281,8 +279,9 @@ export const start = async (args: string[]) => {
   });
 
   branchTable.key("space", function () {
-    // @ts-ignore
-    const selection = parseSelection(this.items[this.selected].content);
+    const selection = parseSelection(
+      branchTable.items[branchTable.selected].content,
+    );
 
     const gitBranch = selection[2];
     const gitRemote = selection[1];
@@ -299,8 +298,9 @@ export const start = async (args: string[]) => {
   });
 
   branchTable.key("y", async function () {
-    // @ts-ignore
-    const selection = parseSelection(this.items[this.selected].content);
+    const selection = parseSelection(
+      branchTable.items[branchTable.selected].content,
+    );
     const gitBranch = selection[2];
     try {
       await copyToClipBoard(gitBranch);
