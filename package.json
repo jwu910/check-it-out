@@ -48,7 +48,7 @@
   "bugs": {
     "url": "https://github.com/jwu910/check-it-out/issues"
   },
-  "homepage": "https://checkit.club",
+  "homepage": "https://jwu910.github.io/check-it-out",
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^2.3.1",
