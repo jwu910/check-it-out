@@ -1,30 +1,25 @@
 import chalk from "chalk";
+import { write as copyToClipBoard } from "clipboardy";
 import Configstore from "configstore";
 import path from "path";
 import stripAnsi from "strip-ansi";
 import updateNotifier from "update-notifier";
-import { write as copyToClipBoard } from "clipboardy";
 
+import { Logger } from "./types";
 import {
   closeGitResponse,
   doCheckoutBranch,
   doFetchBranches,
   getRefData,
 } from "./utils/git";
-
 import * as dialogue from "./utils/interface";
 import { getState } from "./utils/state";
-import { Logger } from "./types";
-
-/**
- * @typedef {{active: boolean, id: number, name: string, remoteName: string}} Ref
- * @typedef {{name: string, refs: Ref[]}} Remote
- */
 
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, "../package.json"));
-const notifier = updateNotifier({ pkg });
 
+const notifier = updateNotifier({ pkg });
+console.log("notifier", notifier);
 if (notifier.update) {
   const notifierMessage = `\
   New ${chalk.yellow(notifier.update.type)} version of ${
@@ -361,7 +356,7 @@ export const start = async (args: string[]) => {
     if (err === "SIGTERM") {
       process.stdout.write(chalk.white.bold("[INFO]") + "\n");
       process.stdout.write(
-        "Checkitout closed before initial load completed \n",
+        "Check it out closed before initial load completed \n",
       );
 
       process.exit(0);

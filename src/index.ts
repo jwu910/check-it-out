@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const app = require("./app");
+import * as app from "./app";
 
 app.start(process.argv.slice(2)).catch((error: Error) => {
   console.error(error);
