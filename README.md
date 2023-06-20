@@ -48,7 +48,7 @@ Check it out, before you checkout.
 Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
 
 ## Requirements
-[Node >= v10.0](https://nodejs.org/en/blog/release/v10.0.0/)
+[Node >= v14](https://nodejs.org/en/blog/release/v14.21.3) - _note:_ developed and tested on Node 14 and up. There isn't a guarantee this will work on earlier versions.
 
 [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - Required for core features
 
@@ -217,7 +217,8 @@ This project wouldn't have been possible with the help so many contributors both
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ### Acknowledgements
-Thanks to [@kiend](https://github.com/kiend) for the inspiration and motivation to finish this project. [Check This Out](https://github.com/kiend/check-this-out).
+[@drewbrokke](https://github.com/drewbrokke) was the initial spark that inspired the creation of this project and encouraged me to let me curiosity drive this forward.
+[@kiend](https://github.com/kiend) gave me the inspiration and motivation to finish this project after letting it sit for so long. [Check This Out](https://github.com/kiend/check-this-out). Thank you both for the encouragement and support through my career.
 
 Logo Design by [@arasatasaygin](https://github.com/arasatasaygin) [@openlogos](http://openlogos.org)
 
