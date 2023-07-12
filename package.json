@@ -7,7 +7,7 @@
     "LICENSE",
     "README.md"
   ],
-  "main": "dist/index.js",
+  "exports": "./dist/index.js",
   "scripts": {
     "build": "npm run tsc",
     "cz": "npx git-cz",
