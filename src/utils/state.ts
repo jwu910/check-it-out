@@ -1,4 +1,4 @@
-import { InternalState, Logger, State, Remote } from "../types";
+import { InternalState, Logger, State, Remote } from "../types.js";
 
 const defaultFilterRegex = new RegExp("");
 const defaultSearchRegex = new RegExp("^$");

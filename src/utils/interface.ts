@@ -2,8 +2,8 @@ import blessed, { Widgets } from "blessed";
 import path from "path";
 import Configstore from "configstore";
 
-import * as help from "./helpText";
-import { ListTable } from "../types";
+import * as help from "./helpText.js";
+import { ListTable } from "../types.js";
 const pkg = require(path.resolve(__dirname, "../../package.json"));
 
 const conf = new Configstore(pkg.name);

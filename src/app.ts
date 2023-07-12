@@ -5,15 +5,15 @@ import path from "path";
 import stripAnsi from "strip-ansi";
 import updateNotifier from "update-notifier";
 
-import { Logger } from "./types";
+import { Logger } from "./types.js";
 import {
   closeGitResponse,
   doCheckoutBranch,
   doFetchBranches,
   getRefData,
-} from "./utils/git";
-import * as dialogue from "./utils/interface";
-import { getState } from "./utils/state";
+} from "./utils/git.js";
+import * as dialogue from "./utils/interface.js";
+import { getState } from "./utils/state.js";
 
 // Checks for available update and returns an instance
 const pkg = require(path.resolve(__dirname, "../package.json"));
@@ -184,7 +184,7 @@ export const start = async (args: string[]) => {
     return selection;
   };
 
-  branchTable.on("select", async (selectedLine) => {
+  branchTable.on("select", async (selectedLine: { content: string }) => {
     const selection = parseSelection(selectedLine.content);
 
     const gitBranch = selection[2];
@@ -255,7 +255,9 @@ export const start = async (args: string[]) => {
 
   branchTable.key("n", () => {
     const currentRefIndex = branchTable.selected;
-    const filteredHits = state.searchHits.filter((n) => n > currentRefIndex);
+    const filteredHits = state.searchHits.filter(
+      (n: number) => n > currentRefIndex,
+    );
 
     if (filteredHits.length) {
       branchTable.select(filteredHits[0]);
@@ -265,7 +267,9 @@ export const start = async (args: string[]) => {
 
   branchTable.key("S-n", () => {
     const currentRefIndex = branchTable.selected;
-    const filteredHits = state.searchHits.filter((n) => n < currentRefIndex);
+    const filteredHits = state.searchHits.filter(
+      (n: number) => n < currentRefIndex,
+    );
 
     if (filteredHits.length) {
       branchTable.select(filteredHits[filteredHits.length - 1]);
@@ -281,7 +285,7 @@ export const start = async (args: string[]) => {
     const gitBranch = selection[2];
     const gitRemote = selection[1];
 
-    let args = [];
+    let args: string[] = [];
 
     if (gitRemote) {
       args.push(gitRemote);
@@ -312,16 +316,20 @@ export const start = async (args: string[]) => {
    */
   const refreshTable = () => {
     const tableData = state.currentRemote.refs
-      .filter((ref) => ref.name.search(state.filterRegex) !== -1)
-      .map((ref) => [
+      .filter(
+        (ref: { name: string }) => ref.name.search(state.filterRegex) !== -1,
+      )
+      .map((ref: { active: any; remoteName: any; name: string }) => [
         ref.active ? "*" : " ",
         ref.remoteName,
-        ref.name.replace(state.searchRegex, (match) => chalk.inverse(match)),
+        ref.name.replace(state.searchRegex, (match: unknown) =>
+          chalk.inverse(match),
+        ),
       ]);
 
     branchTable.setData([["", "Remote", "Ref Name"], ...tableData]);
 
-    const tabNames = state.remotes.map((remote, index) => {
+    const tabNames = state.remotes.map((remote: { name: any }, index: any) => {
       let name = remote.name;
 
       if (index === state.currentRemoteIndex) {
@@ -344,7 +352,9 @@ export const start = async (args: string[]) => {
     state.setRemotes(await getRefData());
 
     state.setCurrentRemoteIndex(
-      state.remotes.findIndex((remote) => remote.name === "heads"),
+      state.remotes.findIndex(
+        (remote: { name: string }) => remote.name === "heads",
+      ),
     );
 
     refreshTable();
