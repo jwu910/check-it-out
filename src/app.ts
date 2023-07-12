@@ -18,7 +18,7 @@ import { getState } from "./utils/state.js";
 const pkg = config.packageJson;
 
 const notifier = updateNotifier({ pkg });
-console.log("notifier", notifier);
+
 if (notifier.update) {
   const notifierMessage = `\
   New ${chalk.yellow(notifier.update.type)} version of ${
