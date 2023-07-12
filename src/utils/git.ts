@@ -1,13 +1,9 @@
 import chalk from "chalk";
-import Configstore from "configstore";
-import path from "path";
 import { ChildProcess, spawn } from "child_process";
 
 import { Ref, Remote } from "../types.js";
 
-const pkg = require(path.resolve(__dirname, "../../package.json"));
-
-const conf = new Configstore(pkg.name);
+import * as config from "./config.js";
 
 let gitResponse: ChildProcess;
 
@@ -177,7 +173,7 @@ export const formatRemoteBranches = async (output: string): Promise<Ref[]> => {
 const getRefs = async () => {
   const args = [
     "for-each-ref",
-    `--sort=${conf.get("sort")}`,
+    `--sort=${config.getSort()}`,
     "--format=%(refname)",
     "--count=500",
   ];
