@@ -1,11 +1,10 @@
 import chalk from "chalk";
 import { write as copyToClipBoard } from "clipboardy";
-import Configstore from "configstore";
-import path from "path";
 import stripAnsi from "strip-ansi";
 import updateNotifier from "update-notifier";
 
 import { Logger } from "./types.js";
+import * as config from "./utils/config.js";
 import {
   closeGitResponse,
   doCheckoutBranch,
@@ -16,7 +15,7 @@ import * as dialogue from "./utils/interface.js";
 import { getState } from "./utils/state.js";
 
 // Checks for available update and returns an instance
-const pkg = require(path.resolve(__dirname, "../package.json"));
+const pkg = config.packageJson;
 
 const notifier = updateNotifier({ pkg });
 console.log("notifier", notifier);
@@ -35,26 +34,15 @@ if (notifier.update) {
   notifier.notify({ message: notifierMessage });
 }
 
-const defaultConfig = {
-  gitLogArguments: [
-    "--color=always",
-    "--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ",
-  ],
-  sort: "-committerdate",
-  themeColor: "#FFA66D",
-};
-
-const conf = new Configstore(pkg.name, defaultConfig);
-
 export const start = async (args: string[]) => {
   if (args[0] === "-v" || args[0] === "--version") {
     process.stdout.write(pkg.version + "\n");
     process.exit(0);
   } else if (args[0] === "--reset-config") {
-    conf.all = defaultConfig;
+    config.resetConfig();
   }
 
-  const gitLogArguments = conf.get("gitLogArguments");
+  const gitLogArguments = config.getGitLogArguments();
   const screen = dialogue.screen();
 
   const branchTable = dialogue.branchTable();
