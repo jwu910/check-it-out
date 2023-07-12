@@ -1,13 +1,10 @@
 import blessed, { Widgets } from "blessed";
-import path from "path";
-import Configstore from "configstore";
 
+import * as config from "./config.js";
 import * as help from "./helpText.js";
 import { ListTable } from "../types.js";
-const pkg = require(path.resolve(__dirname, "../../package.json"));
 
-const conf = new Configstore(pkg.name);
-const themeColor = conf.get("themeColor");
+const themeColor = config.getThemeColor();
 
 const baseStyles = {
   border: undefined,
