@@ -3,7 +3,7 @@ import Configstore from "configstore";
 import path from "path";
 import { ChildProcess, spawn } from "child_process";
 
-import { Ref, Remote } from "../types";
+import { Ref, Remote } from "../types.js";
 
 const pkg = require(path.resolve(__dirname, "../../package.json"));
 
