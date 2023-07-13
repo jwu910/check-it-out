@@ -10,7 +10,7 @@
   "exports": "./dist/index.js",
   "scripts": {
     "build": "npm run tsc",
-    "build:update-version":  "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/utils/packageInfo.ts",
+    "build:update-version": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/utils/packageInfo.ts",
     "build:update-name": "node -p \"'export const name = ' + JSON.stringify(require('./package.json').name) + ';'\" >> src/utils/packageInfo.ts",
     "cz": "npx git-cz",
     "lint": "prettier -c \"**/*.(js|ts)\"",
@@ -20,6 +20,7 @@
     "start": "node dist/index.js",
     "test": "npm run ts:check && npm run lint",
     "tsc": "tsc",
+    "preversion": "npm run prepublishOnly && git add src/utils/packageInfo.ts && git commit -m \"chore: [automated] bump package version number\"",
     "ts:check": "tsc --noEmit",
     "watch": "tsc --watch"
   },
