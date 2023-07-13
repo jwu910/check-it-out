@@ -1,58 +1,17 @@
 {
-  "name": "check-it-out",
-  "version": "4.0.3",
-  "description": "Easy git checkout CLI tool.",
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
-  "exports": "./dist/index.js",
-  "scripts": {
-    "build": "npm run tsc",
-    "build:update-version": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/utils/packageInfo.ts",
-    "build:update-name": "node -p \"'export const name = ' + JSON.stringify(require('./package.json').name) + ';'\" >> src/utils/packageInfo.ts",
-    "cz": "npx git-cz",
-    "lint": "prettier -c \"**/*.(js|ts)\"",
-    "lint:fix": "prettier --write \"**/*.(js|ts)\"",
-    "precise-commits": "precise-commits",
-    "prepublishOnly": "npm run build:update-version && npm run build:update-name && npm run build",
-    "start": "node dist/index.js",
-    "test": "npm run ts:check && npm run lint",
-    "tsc": "tsc",
-    "preversion": "npm run prepublishOnly && git add src/utils/packageInfo.ts && git commit -m \"chore: [automated] bump package version number\"",
-    "ts:check": "tsc --noEmit",
-    "watch": "tsc --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jwu910/check-it-out.git"
-  },
-  "keywords": [
-    "branch",
-    "checkout",
-    "cli",
-    "easy",
-    "git",
-    "git-branch",
-    "git-checkout",
-    "github",
-    "tool"
-  ],
+  "author": "Joshua Wu",
   "bin": {
     "checkit": "dist/index.js",
     "cio": "dist/index.js"
   },
-  "engines": {
-    "node": ">=16"
-  },
-  "type": "module",
-  "author": "Joshua Wu",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jwu910/check-it-out/issues"
   },
-  "homepage": "https://jwu910.github.io/check-it-out",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^5.3.0",
@@ -61,6 +20,7 @@
     "strip-ansi": "^7.1.0",
     "update-notifier": "^6.0.2"
   },
+  "description": "Easy git checkout CLI tool.",
   "devDependencies": {
     "@types/blessed": "^0.1.19",
     "@types/configstore": "^5.0.1",
@@ -73,14 +33,55 @@
     "prettier": "^2.8.4",
     "typescript": "^4.6.4"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+  "engines": {
+    "node": ">=16"
   },
+  "exports": "./dist/index.js",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "https://jwu910.github.io/check-it-out",
   "husky": {
     "hooks": {
       "pre-commit": "npm run precise-commits"
     }
-  }
+  },
+  "keywords": [
+    "branch",
+    "checkout",
+    "cli",
+    "easy",
+    "git",
+    "git-branch",
+    "git-checkout",
+    "github",
+    "tool"
+  ],
+  "license": "MIT",
+  "name": "check-it-out",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwu910/check-it-out.git"
+  },
+  "scripts": {
+    "build": "npm run tsc",
+    "build:update-name": "node -p \"'export const name = ' + JSON.stringify(require('./package.json').name) + ';'\" >> src/utils/packageInfo.ts",
+    "build:update-packageInfo": "npm run build:update-version && npm run build:update-name",
+    "build:update-version": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/utils/packageInfo.ts",
+    "cz": "npx git-cz",
+    "lint": "prettier -c \"**/*.(js|ts)\"",
+    "lint:fix": "prettier --write \"**/*.(js|ts)\"",
+    "postversion": "npm run prepublishOnly && git add src/utils/packageInfo.ts && git commit --amend --no-edit",
+    "precise-commits": "precise-commits",
+    "prepublishOnly": "npm run build:update-packageInfo && npm run build",
+    "start": "node dist/index.js",
+    "test": "npm run ts:check && npm run lint",
+    "ts:check": "tsc --noEmit",
+    "tsc": "tsc",
+    "watch": "tsc --watch"
+  },
+  "type": "module",
+  "version": "4.0.3"
 }
