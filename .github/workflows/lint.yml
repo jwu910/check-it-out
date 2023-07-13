@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main, typescript-migration ] # Remove typescript-migration after completion
+    branches: [ main ] # Remove typescript-migration after completion
 
 jobs:
   prettier:
