@@ -1,5 +1,10 @@
 import chalk from "chalk";
 
+/**
+ * Returns the help text for the application
+ *
+ * @returns {string[][]}
+ */
 export const helpText = (): Array<Array<string>> => {
   const text = [
     [chalk.bold("j/k, ▼/▲"), "Navigate the list"],

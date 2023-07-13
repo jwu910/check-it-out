@@ -10,17 +10,19 @@ let gitResponse: ChildProcess;
 /**
  * Kill the most recently created child process
  * Used to force exit from loading box
+ *
+ * @returns {void}
  */
 export const closeGitResponse = () => {
   gitResponse.kill();
 };
 
 /**
- * Get references and parse through data to build branch array and remote list
+ * Get references and parse through data to build branch array and remote list.
  *
  * @returns {Promise<Remote[]>} payload and uniqueRemotes
  */
-export const getRefData = async () => {
+export const getRefData = async (): Promise<Remote[]> => {
   const refs = await getRefs();
 
   const remotes: Remote[] = [];
@@ -45,6 +47,10 @@ export const getRefData = async () => {
  *
  * Returns a promise that resolves when the user has successfully checked out
  * target branch
+ *
+ * @param {string} branch
+ * @param {string} remote
+ * @returns {Promise<string>}
  */
 export const doCheckoutBranch = (branch: string, remote: string) => {
   let branchPath = "";
@@ -63,7 +69,7 @@ export const doCheckoutBranch = (branch: string, remote: string) => {
 /**
  * Return name of current branch.
  *
- * Returns a promise that resolves to the current branch name.
+ * @returns {Promise<string>} Name of current branch
  */
 export const getCurrentBranch = (): Promise<string> => {
   const args = ["rev-parse", "--abbrev-ref", "HEAD"];
@@ -73,8 +79,10 @@ export const getCurrentBranch = (): Promise<string> => {
 
 /**
  * Execute git command with passed arguments.
- * <args> is expected to be an array of strings.
  * Example: ['fetch', '-pv']
+ *
+ * @param {string[]} args
+ * @returns {Promise<string>}
  */
 const execGit = (args: string[]): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -111,7 +119,7 @@ const execGit = (args: string[]): Promise<string> => {
 /**
  * Call git fetch with a prune and quiet flag.
  *
- * Return a promise that resolves when a user successfully fetches.
+ * @returns {Promise<string>}
  */
 export const doFetchBranches = () => {
   const args = ["fetch", "-pq"];
@@ -124,7 +132,7 @@ export const doFetchBranches = () => {
  * formatted lines for the data table.
  *
  * @param {String} output String list of each ref associated with repository
- * @return {Promise<Array<Ref>>} Array containing an array of line items representing branch information
+ * @returns {Promise<Ref[]>} Array containing an array of line items representing branch information
  */
 export const formatRemoteBranches = async (output: string): Promise<Ref[]> => {
   let remoteBranchArray: Ref[] = [];
@@ -166,9 +174,9 @@ export const formatRemoteBranches = async (output: string): Promise<Ref[]> => {
 };
 
 /**
- * Print all refs assicated with git repository.
+ * Print all refs associated with git repository.
  *
- * @return {Promise<Ref[]>} String list of each ref associated with repository.
+ * @returns {Promise<Ref[]>} String list of each ref associated with repository.
  */
 const getRefs = async () => {
   const args = [
