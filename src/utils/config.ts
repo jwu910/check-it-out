@@ -1,9 +1,5 @@
-import fs from "node:fs/promises";
 import Configstore from "configstore";
-
-export const packageJson = JSON.parse(
-  await fs.readFile("package.json", { encoding: "utf-8" }),
-);
+import * as packageInfo from "../utils/packageInfo.js";
 
 const defaultConfig = {
   gitLogArguments: [
@@ -14,7 +10,7 @@ const defaultConfig = {
   themeColor: "#FFA66D",
 };
 
-const conf = new Configstore(packageJson.name, defaultConfig);
+const conf = new Configstore(packageInfo.name, defaultConfig);
 
 export const getGitLogArguments = () => conf.get("gitLogArguments");
 export const getSort = () => conf.get("sort");

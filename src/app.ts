@@ -12,12 +12,13 @@ import {
   getRefData,
 } from "./utils/git.js";
 import * as dialogue from "./utils/interface.js";
+import * as packageInfo from "./utils/packageInfo.js";
 import { getState } from "./utils/state.js";
 
 // Checks for available update and returns an instance
-const pkg = config.packageJson;
-
-const notifier = updateNotifier({ pkg });
+const notifier = updateNotifier({
+  pkg: { name: packageInfo.name, version: packageInfo.version },
+});
 
 if (notifier.update) {
   const notifierMessage = `\
@@ -41,7 +42,7 @@ if (notifier.update) {
  */
 export const start = async (args: string[]) => {
   if (args[0] === "-v" || args[0] === "--version") {
-    process.stdout.write(pkg.version + "\n");
+    process.stdout.write(packageInfo.version + "\n");
     process.exit(0);
   } else if (args[0] === "--reset-config") {
     config.resetConfig();
