@@ -41,7 +41,7 @@
 </div>
 
 <hr/>
-<img src="assets/images/checkit-intro.gif">
+<img src="docs/assets/images/checkit-intro.gif">
 
 Check it out, before you checkout.
 
@@ -136,13 +136,13 @@ or
 cio
 ```
 
-![Check It Out Usage](assets/images/checkit-usage.gif)
+![Check It Out Usage](docs/assets/images/checkit-usage.gif)
 
 ## Features
 
 See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 
-![Quick Git Log!](assets/images/checkit-log.gif)
+![Quick Git Log!](docs/assets/images/checkit-log.gif)
 
 | Commands                                                         | Description                                         |
 | ---------------------------------------------------------------- | --------------------------------------------------- |
