@@ -84,5 +84,5 @@
     "watch": "tsc --watch"
   },
   "type": "module",
-  "version": "4.0.3"
+  "version": "4.0.4"
 }
