@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="https://checkit.club" alt="Check It Out webpage">
+	<a href="https://jwu910.github.io/check-it-out" alt="Check It Out webpage">
 		<img src="https://cdn.rawgit.com/jwu910/check-it-out/7adf00b2/assets/logo-type.svg" alt="Check It Out Logo" width="500" />
 	</a>
 </p>
@@ -47,27 +47,47 @@ Check it out, before you checkout.
 
 Check It Out lets you interactively see and choose what branch you want to check out without the hassle of trying to type out a long or confusing branch name. Checking out branches just got even simpler!
 
+- [Requirements](#requirements)
+- [Compatibility](#compatibility)
+- [Installation](#installation)
+  - [Installing from source](#installing-from-source)
+- [Local development](#local-development)
+- [Usage](#usage)
+- [Features](#features)
+- [Settings](#settings)
+- [Contributing](#contributing)
+- [Contributors](#contributors)
+  - [Acknowledgements](#acknowledgements)
+  - [License](#license)
+
 ## Requirements
-[Node >= v14](https://nodejs.org/en/blog/release/v14.21.3) - _note:_ developed and tested on Node 14 and up. There isn't a guarantee this will work on earlier versions.
+
+[Node >= v16](https://nodejs.org/en/blog/release/v16.20.1) - _note:_ developed and tested on Node 16 and up. There isn't a guarantee this will work on earlier versions.
 
 [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - Required for core features
 
 ## Compatibility
+
 Check It Out currently has known issues with Windows. Some users have reported it working while others have reported that it does not. It is built and tested mostly in an Arch Linux environment with some user testing on MacOS and other Linux distributions. We're currently looking for help figuring out why Check It Out is unstable on Windows. See [CIO-128](https://github.com/jwu910/check-it-out/issues/128)
 
 ## Installation
+
 We're on [NPM!](https://www.npmjs.org/package/check-it-out)
+
 ```
 npm install -g check-it-out
 ```
 
 ### Installing from source
+
 [Fork](https://github.com/jwu910/check-it-out#fork-destination-box) or clone the repository
+
 ```
 git clone https://github.com/jwu910/check-it-out.git
 ```
 
 Navigate to your repository directory and run
+
 ```
 npm install
 ```
@@ -75,21 +95,27 @@ npm install
 Create a symbolic link to the entry point
 
 In the repository directory run:
+
 ```
 npm link
 ```
 
 ## Local development
+
 From your repository directory run
+
 ```
 npm run build
 ```
 
 To start the application you can run
+
 ```
 node dist/index.js
 ```
+
 or
+
 ```
 npm start
 ```
@@ -97,7 +123,9 @@ npm start
 If you want to test your local build in other repositories, you can use `npm link` which will let you run your local build files with the `cio` or `checkit` aliases.
 
 ## Usage
+
 To get started, just run:
+
 ```
 checkit
 ```
@@ -116,7 +144,6 @@ See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 
 ![Quick Git Log!](assets/images/checkit-log.gif)
 
-
 | Commands                                                         | Description                                         |
 | ---------------------------------------------------------------- | --------------------------------------------------- |
 | <kbd>j</kbd>/<kbd>k</kbd>, <kbd>&#9660;</kbd>/<kbd>&#9650;</kbd> | Navigate the list                                   |
@@ -132,36 +159,40 @@ See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 | <kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>esc</kbd>       | Quit                                                |
 
 ## Settings
+
 Git log argument validation is planned, but not finished. Currently, if the git log fails, <kbd>space</kbd> should not crash the app, but the process should not spawn at all.
 
 Configurable settings can be found at `~/.config/configstore/check-it-out.json`
 
 Options include:
-* gitLogArguments
-	* Type: Array
-	* Default: `['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']`
-	* Array of strings of valid git log arguments.
-* sort
-	* Type: String
-	* Default: -committerdate
-	* Sort references by latest commit date. Value must be a valid sort key or Check It Out will break on start.
-* themeColor
-	* Type: String
-	* Default: `#FFA66D`
-	* A hex color code to style Check It Out
+
+- gitLogArguments
+  - Type: Array
+  - Default: `['--color=always', '--pretty=format:%C(yellow)%h %Creset%s%Cblue [%cn] %Cred%d ']`
+  - Array of strings of valid git log arguments.
+- sort
+  - Type: String
+  - Default: -committerdate
+  - Sort references by latest commit date. Value must be a valid sort key or Check It Out will break on start.
+- themeColor
+  - Type: String
+  - Default: `#FFA66D`
+  - A hex color code to style Check It Out
 
 To reset Check It Out to its original configurations listed above, start with the flag `--reset-config`:
 
 ```
-checkit --reset-config
+cio --reset-config
 ```
 
 ## Contributing
+
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md) before contributing.
 
 See the rest of our [issues](https://github.com/jwu910/check-it-out/issues)
 
 ## Contributors
+
 This project wouldn't have been possible with the help so many contributors both in and out of the source code. I look forward to working with you as this project continues to evolve and improve.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -217,10 +248,12 @@ This project wouldn't have been possible with the help so many contributors both
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ### Acknowledgements
+
 [@drewbrokke](https://github.com/drewbrokke) was the initial spark that inspired the creation of this project and encouraged me to let me curiosity drive this forward.
 [@kiend](https://github.com/kiend) gave me the inspiration and motivation to finish this project after letting it sit for so long. [Check This Out](https://github.com/kiend/check-this-out). Thank you both for the encouragement and support through my career.
 
 Logo Design by [@arasatasaygin](https://github.com/arasatasaygin) [@openlogos](http://openlogos.org)
 
 ### License
+
 MIT @ [Joshua Wu](https://www.npmjs.com/~jwu910)
