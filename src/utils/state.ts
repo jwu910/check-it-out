@@ -3,6 +3,12 @@ import { InternalState, Logger, State, Remote } from "../types.js";
 const defaultFilterRegex = new RegExp("");
 const defaultSearchRegex = new RegExp("^$");
 
+/**
+ * Get state object
+ *
+ * @param {Logger} logger
+ * @returns {State}
+ */
 export const getState = (logger: Logger): State => {
   // State variables
   const stateObject: InternalState = {

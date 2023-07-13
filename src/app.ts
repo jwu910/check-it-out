@@ -34,6 +34,11 @@ if (notifier.update) {
   notifier.notify({ message: notifierMessage });
 }
 
+/**
+ * Start the application
+ *
+ * @param {string[]} args
+ */
 export const start = async (args: string[]) => {
   if (args[0] === "-v" || args[0] === "--version") {
     process.stdout.write(pkg.version + "\n");
@@ -159,8 +164,8 @@ export const start = async (args: string[]) => {
   /**
    * Trim and remove whitespace from selected line.
    *
-   * @param  {String} selectedLine String representation of selected line.
-   * @return {Array}               Array of selected line.
+   * @param  {string} selectedLine String representation of selected line.
+   * @returns {string[]} Array of selected line.
    */
   const parseSelection = (selectedLine: string) => {
     const selection = stripAnsi(selectedLine)

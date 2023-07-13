@@ -11,7 +11,12 @@ const baseStyles = {
   width: "100%",
 };
 
-export const loading = (): Widgets.LoadingElement => {
+/**
+ * Blessed Loading element
+ *
+ * @returns {Widgets.LoadingElement}
+ */
+const loading = (): Widgets.LoadingElement => {
   const loading = blessed.loading({
     align: "center",
     width: "shrink",
@@ -22,7 +27,12 @@ export const loading = (): Widgets.LoadingElement => {
   return loading;
 };
 
-export const branchTable = (): ListTable => {
+/**
+ * Blessed ListTable element for branch list
+ *
+ * @returns {ListTable}
+ */
+const branchTable = (): ListTable => {
   const branchTable = blessed.listtable({
     align: "left",
     left: 0,
@@ -54,7 +64,12 @@ export const branchTable = (): ListTable => {
   return branchTable as ListTable;
 };
 
-export const helpDialogue = (): Widgets.TableElement => {
+/**
+ * Blessed Table element for help dialogue
+ *
+ * @returns {Widgets.TableElement}
+ */
+const helpDialogue = (): Widgets.TableElement => {
   const helpDialogue = blessed.table({
     align: "left",
     border: { type: "line" },
@@ -74,7 +89,19 @@ export const helpDialogue = (): Widgets.TableElement => {
   return helpDialogue;
 };
 
-export const input = (label: string, startingValue: string, cb: Function) => {
+/**
+ * Blessed Textarea element for input
+ *
+ * @param {string} label
+ * @param {string} startingValue
+ * @param {Function} cb
+ * @returns {Widgets.TextareaElement}
+ */
+const input = (
+  label: string,
+  startingValue: string,
+  cb: Function,
+): Widgets.TextareaElement => {
   const input = blessed.textarea({
     border: { fg: 3, type: "line" },
     bottom: 0,
@@ -103,7 +130,12 @@ export const input = (label: string, startingValue: string, cb: Function) => {
   return input;
 };
 
-export const messageCenter = (): Widgets.Log => {
+/**
+ * Blessed Log element for message center
+ *
+ * @returns {Widgets.Log}
+ */
+const messageCenter = (): Widgets.Log => {
   const messageCenter = blessed.log({
     ...baseStyles,
     bottom: 2,
@@ -113,7 +145,12 @@ export const messageCenter = (): Widgets.Log => {
   return messageCenter;
 };
 
-export const screen = (): Widgets.Screen => {
+/**
+ * Blessed Screen element
+ *
+ * @returns {Widgets.Screen}
+ */
+const screen = (): Widgets.Screen => {
   const screen = blessed.screen({
     autoPadding: true,
     fullUnicode: true,
@@ -124,7 +161,12 @@ export const screen = (): Widgets.Screen => {
   return screen;
 };
 
-export const statusBarContainer = (): Widgets.BoxElement => {
+/**
+ * Blessed Box element for status bar container
+ *
+ * @returns {Widgets.BoxElement}
+ */
+const statusBarContainer = (): Widgets.BoxElement => {
   const statusBarContainer = blessed.box({
     ...baseStyles,
     bottom: 0,
@@ -134,7 +176,12 @@ export const statusBarContainer = (): Widgets.BoxElement => {
   return statusBarContainer;
 };
 
-export const statusBar = (): Widgets.BoxElement => {
+/**
+ * Blessed Box element for status bar
+ *
+ * @returns {Widgets.BoxElement}
+ */
+const statusBar = (): Widgets.BoxElement => {
   const statusBar = blessed.box({
     ...baseStyles,
     bottom: 0,
@@ -144,7 +191,12 @@ export const statusBar = (): Widgets.BoxElement => {
   return statusBar;
 };
 
-export const statusBarText = (): Widgets.TextElement => {
+/**
+ * Blessed Text element for status bar text
+ *
+ * @returns {Widgets.TextElement}
+ */
+const statusBarText = (): Widgets.TextElement => {
   const statusBarText = blessed.text({
     content: "",
     bottom: 0,
@@ -154,7 +206,12 @@ export const statusBarText = (): Widgets.TextElement => {
   return statusBarText;
 };
 
-export const statusHelpText = (): Widgets.TextElement => {
+/**
+ * Blessed Text element for status bar help text
+ *
+ * @returns {Widgets.TextElement}
+ */
+const statusHelpText = (): Widgets.TextElement => {
   const statusHelpText = blessed.text({
     bottom: 0,
     content: 'Press "?" to show/hide help.',
@@ -162,4 +219,17 @@ export const statusHelpText = (): Widgets.TextElement => {
   });
 
   return statusHelpText;
+};
+
+export {
+  loading,
+  branchTable,
+  helpDialogue,
+  input,
+  messageCenter,
+  screen,
+  statusBarContainer,
+  statusBar,
+  statusBarText,
+  statusHelpText,
 };
