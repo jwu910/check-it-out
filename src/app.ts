@@ -8,6 +8,7 @@ import * as config from "./utils/config.js";
 import {
   closeGitResponse,
   doCheckoutBranch,
+  forceDeleteBranch,
   doFetchBranches,
   getRefData,
 } from "./utils/git.js";
@@ -301,6 +302,39 @@ export const start = async (args: string[]) => {
     } catch (error) {
       logger.error(`Unable to copy : ${JSON.stringify(error)}`);
     }
+  });
+
+  branchTable.key("d", function () {
+    const selection = parseSelection(
+      branchTable.items[branchTable.selected].content,
+    );
+    const branchName = selection[2];
+
+    if (state.currentRemoteIndex !== 0) {
+      logger.error("Branch deletion is only available on heads");
+      return;
+    }
+
+    getPrompt(
+      `Are you sure you want to force delete ${branchName}? (only y is accepted)`,
+      async (value: string) => {
+        if (value === "y") {
+          try {
+            await forceDeleteBranch(branchName);
+
+            process.stdout.write(
+              `Successfully deleted branch ${chalk.bold(branchName)}\n`,
+            );
+
+            process.exit(0);
+          } catch (error) {
+            logger.error(`Failed to delete branch ${branchName}`);
+          }
+        } else {
+          logger.log("Skipping deletion");
+        }
+      },
+    );
   });
 
   branchTable.focus();

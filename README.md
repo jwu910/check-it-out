@@ -152,6 +152,7 @@ See a git log for the highlighted ref by pressing <kbd>SPACE</kbd>
 | <kbd>enter</kbd>                                                 | Select highlighted item                             |
 | <kbd>y</kbd>                                                     | Copy highlighted item                               |
 | <kbd>space</kbd>                                                 | Git log                                             |
+| <kbd>d</kbd>                                                     | Prompt to delete highlighted item                   |
 | <kbd>&</kbd>                                                     | Filter lines - enter blank search to show all lines |
 | <kbd>/</kbd>                                                     | Search Lines                                        |
 | <kbd>n</kbd>                                                     | Jump to next search result                          |
