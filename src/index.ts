@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
-import * as app from "./app.js";
+import { start } from "./app.js";
 
-app.start(process.argv.slice(2)).catch((error: Error) => {
-  console.error(error);
-  process.exit(1);
-});
+(async () => {
+  try {
+    await start(process.argv.slice(2));
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+})();
