@@ -285,9 +285,19 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Himanshuch8055",
+      "name": "Himanshu Chauhan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/94627200?v=4",
+      "profile": "https://himanshuch8055.github.io/portfolio",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
