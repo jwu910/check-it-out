@@ -128,6 +128,18 @@ export const doFetchBranches = () => {
 };
 
 /**
+ * Force delete the given branch
+ *
+ * @param selectedBranch
+ * @returns {Promise<string>}
+ */
+export const forceDeleteBranch = (selectedBranch: string) => {
+  const args = ["branch", "-D", selectedBranch];
+
+  return execGit(args);
+};
+
+/**
  * Format output from getBranchesFrom() and return an array of arrays containing
  * formatted lines for the data table.
  *
