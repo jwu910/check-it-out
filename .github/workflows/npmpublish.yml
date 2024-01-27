@@ -24,10 +24,6 @@ jobs:
         with:
           node-version: "16"
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-
-      - if: ${{ steps.publish.outputs.type }}
-        run: echo "Package upgraded from ${{ steps.publish.outputs.old-version }} to ${{ steps.publish.outputs.version }}!"
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
